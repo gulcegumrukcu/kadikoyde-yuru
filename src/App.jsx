@@ -246,8 +246,8 @@ function App() {
             characterStats={characterStats}
           />
           {showMoodAnimation && (
-            <div style={{ position: 'absolute', bottom: '10px', color: 'white', backgroundColor: 'green', left: '50%', transform: 'translateX(-50%)' }}>
-              +{moodIncrease} Mood
+            <div style={{ position: 'absolute', right: '10px', fontSize: '22px', color: 'white', backgroundColor: 'green', left: '90%', top: '10px', }}>
+              +{moodIncrease} Ruh Hali
             </div>
           )}
         </div>

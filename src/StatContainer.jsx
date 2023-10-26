@@ -2,21 +2,22 @@ import React from 'react';
 import StatBar from './StatBar';
 
 function StatContainer({ label, value, color, showAnimation, animationValue }) {
+
+
     const statContainerStyle = {
         borderRadius: '10px',
         padding: '10px',
         margin: '10px',
-
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'column', // Change to column
         alignItems: 'center',
         width: '150px',
     };
 
     const statValueContainerStyle = {
         display: 'flex',
-        justifyContent: 'space-between',
-        width: '100%',
+        flexDirection: 'column', // Change to column
+        alignItems: 'center', // Add this line to center the content
     };
 
     const statValueStyle = {

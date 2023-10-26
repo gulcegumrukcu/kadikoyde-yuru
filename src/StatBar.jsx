@@ -7,7 +7,7 @@ function StatBar({ label, value, color }) {
         backgroundColor: '#ddd',
         borderRadius: '5px',
         margin: '5px 0',
-        border: '1px solid #ccc',
+
     };
 
     return (

@@ -9,53 +9,59 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
     }
 
     return (
-        <div style={{ ...footerStyle, ...mobileStyle }}>
-            <div className='flex justify-between items-center'>
-                <div className='flex gap-4'>
-                    <Menu onClick={onMenuClick} />
-                    <SoundControl onToggleSound={onToggleSound} />
-                </div>
-                <div className='flex gap-16 justify-center stat-container'>
-                    {characterStats && (
-                        <StatContainer
-                            label='Sağlık'
-                            value={characterStats.health}
-                            color='#e74c3c'
-                        />
-                    )}
-                    {characterStats && (
-                        <StatContainer
-                            label='Para'
-                            value={characterStats.money}
-                            color='#f39c12'
-                        />
-                    )}
-                    {characterStats && (
-                        <StatContainer
-                            label='Ruh Hali'
-                            value={characterStats.mood}
-                            color='#3498db'
-                            showAnimation={showMoodAnimation}
-                            animationValue={showMoodAnimation ? `+${moodIncrease}` : ''}
-                        />
-                    )}
-                    {characterStats && (
-                        <StatContainer
-                            label='Zeka'
-                            value={characterStats.intelligence}
-                            color='#9b59b6'
-                        />
-                    )}
-                    {characterStats && (
-                        <StatContainer
-                            label='Zaman'
-                            value={characterStats.time}
-                            color='#2ecc71'
-                        />
-                    )}
+        <>
+            <div className='fixed top-0 left-0 bg-black flex-row gap-4 p-4 text-white flex mx-auto w-36'>
+                <Menu onClick={onMenuClick} />
+                <SoundControl onToggleSound={onToggleSound} />
+            </div>
+            <div style={{ ...footerStyle, ...mobileStyle }}>
+
+
+                <div className='flex justify-between items-center'>
+
+                    <div className='flex gap-20 mx-auto justify-center stat-container'>
+                        {characterStats && (
+                            <StatContainer
+                                label='Sağlık'
+                                value={characterStats.health}
+                                color='#e74c3c'
+                            />
+                        )}
+                        {characterStats && (
+                            <StatContainer
+                                label='Para'
+                                value={characterStats.money}
+                                color='#f39c12'
+                            />
+                        )}
+                        {characterStats && (
+                            <StatContainer
+                                label='Ruh Hali'
+                                value={characterStats.mood}
+                                color='#3498db'
+                                showAnimation={showMoodAnimation}
+                                animationValue={showMoodAnimation ? `+${moodIncrease}` : ''}
+                            />
+                        )}
+                        {characterStats && (
+                            <StatContainer
+                                label='Zeka'
+                                value={characterStats.intelligence}
+                                color='#9b59b6'
+                            />
+                        )}
+                        {characterStats && (
+                            <StatContainer
+                                label='Zaman'
+                                value={characterStats.time}
+                                color='#2ecc71'
+                            />
+                        )}
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
+
     );
 };
 
@@ -65,7 +71,7 @@ const footerStyle = {
     width: '100%',
     justifyContent: 'space-between',
     padding: '0 20px',
-    backgroundColor: '#334A52',
+    backgroundColor: 'black',
     color: '#fff',
 };
 
