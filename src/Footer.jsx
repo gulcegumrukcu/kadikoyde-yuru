@@ -3,7 +3,7 @@ import StatContainer from './StatContainer';
 import SoundControl from './SoundControl';
 import Menu from './Menu';
 
-const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats }) => {
+const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMoodAnimation, moodIncrease }) => {
     if (!showFooter) {
         return null; // Don't render the footer if it's not supposed to be shown
     }
@@ -17,19 +17,41 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats }) => {
                 </div>
                 <div className='flex gap-16 justify-center stat-container'>
                     {characterStats && (
-                        <StatContainer label='Sağlık' value={characterStats.health} color='#e74c3c' />
+                        <StatContainer
+                            label='Sağlık'
+                            value={characterStats.health}
+                            color='#e74c3c'
+                        />
                     )}
                     {characterStats && (
-                        <StatContainer label='Para' value={characterStats.money} color='#f39c12' />
+                        <StatContainer
+                            label='Para'
+                            value={characterStats.money}
+                            color='#f39c12'
+                        />
                     )}
                     {characterStats && (
-                        <StatContainer label='Ruh Hali' value={characterStats.mood} color='#3498db' />
+                        <StatContainer
+                            label='Ruh Hali'
+                            value={characterStats.mood}
+                            color='#3498db'
+                            showAnimation={showMoodAnimation}
+                            animationValue={showMoodAnimation ? `+${moodIncrease}` : ''}
+                        />
                     )}
                     {characterStats && (
-                        <StatContainer label='Zeka' value={characterStats.intelligence} color='#9b59b6' />
+                        <StatContainer
+                            label='Zeka'
+                            value={characterStats.intelligence}
+                            color='#9b59b6'
+                        />
                     )}
                     {characterStats && (
-                        <StatContainer label='Zaman' value={characterStats.time} color='#2ecc71' />
+                        <StatContainer
+                            label='Zaman'
+                            value={characterStats.time}
+                            color='#2ecc71'
+                        />
                     )}
                 </div>
             </div>

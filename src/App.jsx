@@ -11,18 +11,21 @@ function generateRandomStat() {
 }
 
 function App() {
+  const [moodIncrease, setMoodIncrease] = useState(0); // Moved useState inside the component
+
   const handleToggleSound = () => {
     // Implement sound control logic here
     console.log('Toggle sound');
   };
-
 
   const handleMenuClick = () => {
     // Implement settings logic here
     console.log('Open settings');
   };
 
+
   const [showEntrancePage, setShowEntrancePage] = useState(true);
+  const [showMoodAnimation, setShowMoodAnimation] = useState(false);
 
   const handleEntrancePageReady = () => {
     setShowEntrancePage(false);
@@ -64,7 +67,7 @@ function App() {
             text: 'Zil hala çalıyor, ısrarcı biri olmalı.\nÖnünde bir bardak su, kirli bir telefon ve kulaklarında bitmeyen zil var.',
             choices: [
               { text: 'Telefona bak', target: 'telefon' },
-              { text: 'Su iç', target: 'cok' },
+              { text: 'Su iç', target: 'su' },
             ],
             buttonsDisabled: false,
             characterStats: newCharacterStats,
@@ -73,7 +76,7 @@ function App() {
         case 'telefon':
           return {
             ...prevStory,
-            text: 'Görünüşe göre emektarı değiştirme zamanı yaklaşıyor.\n0 yeni mesajın var.',
+            text: 'Görünüşe göre emektarı değiştirme zamanı yaklaşıyor.\n 0 yeni mesajın var.',
             choices: [
               { text: 'Hala su içebilir miyim?', target: 'su' },
               { text: 'Kapıya baksam fena olmaz', target: 'kapi' },
@@ -86,38 +89,42 @@ function App() {
 
 
 
-        case 'cok':
+        case 'su':
+          const moodIncrease = Math.floor(Math.random() * 10) + 1;
+          console.log('Current moodIncrease:', moodIncrease);
+          setCharacterStats((prevStats) => {
+            const newMood = prevStats.mood + moodIncrease;
+            console.log('New mood:', newMood);
+            return {
+              ...prevStats,
+              mood: newMood,
+            };
+          });
+          setShowMoodAnimation(true);
           return {
             ...prevStory,
-            text: 'Hmm, böyle şeylere anlam veren birisin demek. Kendini hep dışarıda mı ararsın?',
+            text: 'Gluk, gluk ve gluk. Suyun canlandırıcı etkisiyle kendini daha iyi hissetmeye başladın bile. Kapı hala çalıyor.',
             choices: [
-              { text: 'Bu ne demek şimdi?', target: 'supheci', damaged: 50 },
-              { text: 'Şu ana kadar bulmuş değilim.', target: 'notr' },
+              { text: 'Artık kapıya bakayım', target: 'kapi-su' },
             ],
             buttonsDisabled: false,
-
+            background: './images/1background11.png',
+            moodIncrease, // Add moodIncrease to the state
           };
-        case 'salak':
+
+        case 'kapi-su':
           return {
             ...prevStory,
-            text: 'You opened the treasure chest and found a magical amulet!',
-            choices: [],
-            buttonsDisabled: true,
-
-          };
-        case 'supheci':
-          return {
-            ...prevStory,
-            text: 'You decided to continue exploring the forest. What will you find next?',
+            text: 'Komşun Emre elleri cebinde, yorgun bir şekilde sana bakıyor.\n"Günaydın! Gece pek uyuyamadım, erken oldu biliyorum.."\nİyi ki su içmişsin, rahatça konuşmak senin hakkın. ',
             choices: [
-              { text: 'Follow the mysterious sounds deeper into the forest.', target: 'mysteriousSounds' },
-              { text: 'Head back to the crossroads.', target: 'backToCrossroads' },
+              { text: 'İçeri Al', target: 'ic' },
+              { text: 'Bekle', target: 'bekle' },
             ],
             buttonsDisabled: false,
             background: './images/background7.png',
 
           };
-        case 'befriendCreature':
+        case 'ic':
           return {
             ...prevStory,
             text: 'You befriended the forest creature. It offers to guide you to a hidden glade.',
@@ -194,9 +201,29 @@ function App() {
     alignItems: 'center', // Align buttons to the center vertically
   };
 
+  const statBarPosition = {
+    position: 'absolute',
+    bottom: '10px',
+    color: 'white',
+    backgroundColor: 'green',
+    transform: 'translateX(-50%)',
+  };
 
 
+  useEffect(() => {
+    if (showMoodAnimation) {
+      // Reset the animation state after the animation duration
+      const timeoutId = setTimeout(() => {
+        setShowMoodAnimation(false);
+      }, 2000); // Change the duration as needed
 
+      return () => {
+        clearTimeout(timeoutId);
+        // Reset the showMoodAnimation state when the component unmounts
+        setShowMoodAnimation(false);
+      };
+    }
+  }, [showMoodAnimation]);
 
 
   return (
@@ -204,7 +231,7 @@ function App() {
       {showEntrancePage ? (
         <EntrancePage onReady={handleEntrancePageReady} />
       ) : (
-        <div className=' flex items-center justify-center bg-cover bg-center text-center ' style={containerStyle}>
+        <div className='flex flex-col items-center justify-center bg-cover bg-center text-center ' style={containerStyle}>
           <QuestionComponent
             story={story}
             handleChoice={handleChoice}
@@ -216,10 +243,15 @@ function App() {
             onMenuClick={handleMenuClick}
             characterStats={characterStats}
           />
+          {showMoodAnimation && (
+            <div style={{ position: 'absolute', bottom: '10px', color: 'white', backgroundColor: 'green', left: '50%', transform: 'translateX(-50%)' }}>
+              +{moodIncrease} Mood
+            </div>
+          )}
         </div>
       )}
     </div>
   );
 }
 
-export default App;
+export default App

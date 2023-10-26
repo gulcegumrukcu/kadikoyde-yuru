@@ -1,12 +1,12 @@
 import React from 'react';
 import StatBar from './StatBar';
 
-function StatContainer({ label, value, color }) {
+function StatContainer({ label, value, color, showAnimation, animationValue }) {
     const statContainerStyle = {
         borderRadius: '10px',
         padding: '10px',
         margin: '10px',
-        backgroundColor: 'rgba(255, 255, 255, 0.3)',
+
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -35,6 +35,11 @@ function StatContainer({ label, value, color }) {
                 <StatBar label={label} value={value} color={color} />
                 <div style={statValueStyle}>{value}</div>
             </div>
+            {showAnimation && (
+                <div style={animationStyle}>
+                    +{animationValue} Mood
+                </div>
+            )}
         </div>
     );
 }
