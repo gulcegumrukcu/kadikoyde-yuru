@@ -89,18 +89,23 @@ function App() {
 
 
 
+
         case 'su':
-          const moodIncrease = Math.floor(Math.random() * 10) + 1;
-          console.log('Current moodIncrease:', moodIncrease);
+          // Check if mood increase has already been applied
+          if (moodIncrease > 0) return prevStory;
+
+          const newMoodIncrease = Math.floor(Math.random() * 5) + 1;
           setCharacterStats((prevStats) => {
-            const newMood = prevStats.mood + moodIncrease;
+            const newMood = prevStats.mood + newMoodIncrease;
+            console.log('Current moodIncrease:', newMoodIncrease);
             console.log('New mood:', newMood);
+            setMoodIncrease((prevMoodIncrease) => prevMoodIncrease + newMoodIncrease);
+            setShowMoodAnimation(true);
             return {
               ...prevStats,
               mood: newMood,
             };
           });
-          setShowMoodAnimation(true);
           return {
             ...prevStory,
             text: 'Gluk, gluk ve gluk. Suyun canlandırıcı etkisiyle kendini daha iyi hissetmeye başladın bile. Kapı hala çalıyor.',
@@ -109,7 +114,7 @@ function App() {
             ],
             buttonsDisabled: false,
             background: './images/1background11.png',
-            moodIncrease, // Add moodIncrease to the state
+            moodIncrease: newMoodIncrease,
           };
 
         case 'kapi-su':
@@ -209,10 +214,9 @@ function App() {
     transform: 'translateX(-50%)',
   };
 
-
   useEffect(() => {
     if (showMoodAnimation) {
-      // Reset the animation state after the animation duration
+      // Set the animation timeout when moodIncrease changes
       const timeoutId = setTimeout(() => {
         setShowMoodAnimation(false);
       }, 2000); // Change the duration as needed
@@ -223,9 +227,7 @@ function App() {
         setShowMoodAnimation(false);
       };
     }
-  }, [showMoodAnimation]);
-
-
+  }, [showMoodAnimation, moodIncrease]);
   return (
     <div>
       {showEntrancePage ? (
