@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import logo from '/images/logo1.png';
+import Settings from './Settings';
 
 function EntrancePage({ onReady }) {
     const [showButton, setShowButton] = useState(false);
@@ -20,6 +21,7 @@ function EntrancePage({ onReady }) {
                 position: 'relative',
             }}
         >
+            <Settings></Settings>
             <img src={logo} alt='Logo' className='' />
             <div className='flex'>
                 {showButton && (

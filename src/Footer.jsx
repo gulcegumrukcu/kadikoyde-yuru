@@ -1,25 +1,26 @@
+// FOOTER Do no delete this.
+
 import React from 'react';
 import StatContainer from './StatContainer';
-import SoundControl from './SoundControl';
-import Menu from './Menu';
+
 
 const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMoodAnimation, moodIncrease }) => {
     if (!showFooter) {
         return null; // Don't render the footer if it's not supposed to be shown
     }
 
+    console.log('showMoodAnimation:', showMoodAnimation);
+    console.log('moodIncrease:', moodIncrease);
+
     return (
         <>
-            <div className='fixed top-0 left-0 bg-black flex-row gap-4 p-4 text-white flex mx-auto w-36'>
-                <Menu onClick={onMenuClick} />
-                <SoundControl onToggleSound={onToggleSound} />
-            </div>
+
             <div style={{ ...footerStyle, ...mobileStyle }}>
 
 
-                <div className='flex justify-between items-center'>
+                <div className='flex justify-between items-center '>
 
-                    <div className='flex gap-20 mx-auto justify-center stat-container'>
+                    <div className='flex gap-20 mx-auto justify-center  mt-[100px]   '>
                         {characterStats && (
                             <StatContainer
                                 label='Sağlık'
@@ -34,6 +35,8 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                 color='#f39c12'
                             />
                         )}
+
+
                         {characterStats && (
                             <StatContainer
                                 label='Ruh Hali'
@@ -50,6 +53,7 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                 color='#9b59b6'
                             />
                         )}
+
                         {characterStats && (
                             <StatContainer
                                 label='Zaman'
@@ -73,6 +77,9 @@ const footerStyle = {
     padding: '0 20px',
     backgroundColor: 'black',
     color: '#fff',
+    height: '160px',
+
+
 };
 
 const mobileStyle = {

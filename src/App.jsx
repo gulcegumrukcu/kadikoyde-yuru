@@ -1,8 +1,12 @@
+// App.jsx Do no delete this
+
+
 import React, { useState, useEffect } from 'react';
 import EntrancePage from './EntrancePage';
 import ChoiceButton from './ChoiceButton';
 import Footer from './Footer';
 import QuestionComponent from './QuestionComponent';
+import Settings from './Settings';
 
 
 
@@ -234,6 +238,7 @@ function App() {
         <EntrancePage onReady={handleEntrancePageReady} />
       ) : (
         <div className='flex flex-col items-center justify-center bg-cover bg-center text-center ' style={containerStyle}>
+          <Settings></Settings>
           <QuestionComponent
             story={story}
             handleChoice={handleChoice}
