@@ -1,12 +1,15 @@
 // App.jsx Do no delete this
 
 
-import React, { useState, useEffect } from 'react';
-import EntrancePage from './EntrancePage';
-import ChoiceButton from './ChoiceButton';
-import Footer from './Footer';
-import QuestionComponent from './QuestionComponent';
-import Settings from './Settings';
+import React, { useState, useEffect, } from 'react';
+import EntrancePage from './src/components/EntrancePage';
+import { useDispatch } from 'react-redux';
+
+
+import Footer from './src/components/Footer';
+import QuestionComponent from './src/components/QuestionComponent';
+import Settings from './src/components/Settings';
+import handleMoodAnimation from './src/components/utils'
 
 
 
@@ -14,9 +17,12 @@ function generateRandomStat() {
   return Math.floor(Math.random() * (100 - 50 + 1)) + 40;
 }
 
-function App() {
-  const [moodIncrease, setMoodIncrease] = useState(0); // Moved useState inside the component
 
+function App() {
+
+
+  const [showMoodAnimation, setShowMoodAnimation] = useState(false);
+  const dispatch = useDispatch();
   const handleToggleSound = () => {
     // Implement sound control logic here
     console.log('Toggle sound');
@@ -29,7 +35,6 @@ function App() {
 
 
   const [showEntrancePage, setShowEntrancePage] = useState(true);
-  const [showMoodAnimation, setShowMoodAnimation] = useState(false);
 
   const handleEntrancePageReady = () => {
     setShowEntrancePage(false);
@@ -49,6 +54,7 @@ function App() {
     time: generateRandomStat(),
     intelligence: generateRandomStat(),
   });
+
 
   const [showFooter, setShowFooter] = useState(false);
 
@@ -74,10 +80,19 @@ function App() {
               { text: 'Su iç', target: 'su' },
             ],
             buttonsDisabled: false,
-            characterStats: newCharacterStats,
+
             background: './images/background22.png',
           };
+
         case 'telefon':
+          let newMoodDecrease = 10;
+
+          handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, false);  // Pass `false` for decrease
+          setCharacterStats((prevStats) => ({
+            ...prevStats,
+            mood: Math.max(prevStats.mood - newMoodDecrease),
+          }));
+          dispatch({ type: 'CHANGE_MOOD', payload: -newMoodDecrease });
           return {
             ...prevStory,
             text: 'Görünüşe göre emektarı değiştirme zamanı yaklaşıyor.\n 0 yeni mesajın var.',
@@ -86,30 +101,18 @@ function App() {
               { text: 'Kapıya baksam fena olmaz', target: 'kapi' },
             ],
             buttonsDisabled: false,
-
             background: './images/mobile-background.png',
           };
 
-
-
-
-
         case 'su':
-          // Check if mood increase has already been applied
-          if (moodIncrease > 0) return prevStory;
+          const newMoodIncrease = 10
 
-          const newMoodIncrease = Math.floor(Math.random() * 5) + 1;
-          setCharacterStats((prevStats) => {
-            const newMood = prevStats.mood + newMoodIncrease;
-            console.log('Current moodIncrease:', newMoodIncrease);
-            console.log('New mood:', newMood);
-            setMoodIncrease((prevMoodIncrease) => prevMoodIncrease + newMoodIncrease);
-            setShowMoodAnimation(true);
-            return {
-              ...prevStats,
-              mood: newMood,
-            };
-          });
+          handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation);  // Default is increase
+          setCharacterStats((prevStats) => ({
+            ...prevStats,
+            mood: prevStats.mood + newMoodIncrease,
+          }));
+          dispatch({ type: 'CHANGE_MOOD', payload: newMoodIncrease });
           return {
             ...prevStory,
             text: 'Gluk, gluk ve gluk. Suyun canlandırıcı etkisiyle kendini daha iyi hissetmeye başladın bile. Kapı hala çalıyor.',
@@ -121,18 +124,7 @@ function App() {
             moodIncrease: newMoodIncrease,
           };
 
-        case 'kapi-su':
-          return {
-            ...prevStory,
-            text: 'Komşun Emre elleri cebinde, yorgun bir şekilde sana bakıyor.\n"Günaydın! Gece pek uyuyamadım, erken oldu biliyorum.."\nİyi ki su içmişsin, rahatça konuşmak senin hakkın. ',
-            choices: [
-              { text: 'İçeri Al', target: 'ic' },
-              { text: 'Bekle', target: 'bekle' },
-            ],
-            buttonsDisabled: false,
-            background: './images/background7.png',
 
-          };
         case 'ic':
           return {
             ...prevStory,
@@ -181,8 +173,11 @@ function App() {
 
 
   useEffect(() => {
-    console.log('Background Image:', story.background);
+    if (story.background) {
+      console.log('Background Image:', story.background);
+    }
   }, [story.background]);
+
 
   const containerStyle = {
     backgroundImage: `url(${story.background || './images/background.png'})`,
@@ -201,7 +196,7 @@ function App() {
   }
 
   const buttonsContainerStyle = {
-    display: 'flex',
+
     flexDirection: 'row', // Ensure buttons are in the same row
     justifyContent: 'space-between', // Add space between buttons
     display: 'flex',
@@ -210,28 +205,11 @@ function App() {
     alignItems: 'center', // Align buttons to the center vertically
   };
 
-  const statBarPosition = {
-    position: 'absolute',
-    bottom: '10px',
-    color: 'white',
-    backgroundColor: 'green',
-    transform: 'translateX(-50%)',
-  };
 
-  useEffect(() => {
-    if (showMoodAnimation) {
-      // Set the animation timeout when moodIncrease changes
-      const timeoutId = setTimeout(() => {
-        setShowMoodAnimation(false);
-      }, 2000); // Change the duration as needed
 
-      return () => {
-        clearTimeout(timeoutId);
-        // Reset the showMoodAnimation state when the component unmounts
-        setShowMoodAnimation(false);
-      };
-    }
-  }, [showMoodAnimation, moodIncrease]);
+
+
+
   return (
     <div>
       {showEntrancePage ? (
@@ -249,15 +227,31 @@ function App() {
             onToggleSound={handleToggleSound}
             onMenuClick={handleMenuClick}
             characterStats={characterStats}
+            showMoodAnimation={showMoodAnimation}
           />
           {showMoodAnimation && (
-            <div style={{ position: 'absolute', right: '10px', fontSize: '22px', color: 'white', backgroundColor: 'green', left: '90%', top: '10px', }}>
-              +{moodIncrease} Ruh Hali
-            </div>
+            <>
+              <div style={{ position: 'absolute', right: '10px', fontSize: '22px', color: 'white', left: '90%', top: '10px', }}>
+                {showMoodAnimation}
+              </div>
+
+              {console.log('JSX - showMoodAnimation:', showMoodAnimation)}
+            </>
+
+
           )}
         </div>
+
       )}
     </div>
+
+
+
+
+
+
+
+
   );
 }
 

@@ -2,24 +2,25 @@
 
 import React from 'react';
 import StatContainer from './StatContainer';
+import useAnimation from './useAnimation'
 
 
-const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMoodAnimation, moodIncrease }) => {
+const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMoodAnimation }) => {
+
+    const showAnimation = useAnimation(
+        showMoodAnimation !== 0 ? `${showMoodAnimation > 0 ? '+' : '-'}${showMoodAnimation} Ruh Hali` : ''
+    );
+
     if (!showFooter) {
-        return null; // Don't render the footer if it's not supposed to be shown
+        return null;
     }
 
-    console.log('showMoodAnimation:', showMoodAnimation);
-    console.log('moodIncrease:', moodIncrease);
-
+    console.log('Footer - characterStats:', characterStats);
+    console.log('Footer - showMoodAnimation:', showMoodAnimation);
     return (
         <>
-
             <div style={{ ...footerStyle, ...mobileStyle }}>
-
-
                 <div className='flex justify-between items-center '>
-
                     <div className='flex gap-20 mx-auto justify-center  mt-[100px]   '>
                         {characterStats && (
                             <StatContainer
@@ -35,15 +36,17 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                 color='#f39c12'
                             />
                         )}
-
-
                         {characterStats && (
                             <StatContainer
                                 label='Ruh Hali'
                                 value={characterStats.mood}
                                 color='#3498db'
-                                showAnimation={showMoodAnimation}
-                                animationValue={showMoodAnimation ? `+${moodIncrease}` : ''}
+                                showAnimation={() => setShowAnimation(true)}
+                                animationValue={
+                                    showAnimation && showMoodAnimation !== 0
+                                        ? `${showMoodAnimation > 0 ? '+' : '-'}${showMoodAnimation} Ruh Hali`
+                                        : ''
+                                }
                             />
                         )}
                         {characterStats && (
@@ -53,7 +56,6 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                 color='#9b59b6'
                             />
                         )}
-
                         {characterStats && (
                             <StatContainer
                                 label='Zaman'
@@ -65,7 +67,6 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                 </div>
             </div>
         </>
-
     );
 };
 
@@ -78,8 +79,6 @@ const footerStyle = {
     backgroundColor: 'black',
     color: '#fff',
     height: '160px',
-
-
 };
 
 const mobileStyle = {
