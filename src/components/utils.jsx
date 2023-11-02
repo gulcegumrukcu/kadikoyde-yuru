@@ -5,7 +5,7 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, increase = 
     // Set an initial alert text based on the increase/decrease with color
     const backgroundColor = increase ? 'green' : 'red';
     const initialAlertText = amount !== 0
-        ? <span style={{ backgroundColor }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Ruh Hali`}</span>
+        ? <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Ruh Hali`}</span>
         : '';
 
 

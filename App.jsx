@@ -34,19 +34,29 @@ function App() {
   };
 
 
+
   const [showEntrancePage, setShowEntrancePage] = useState(true);
 
   const handleEntrancePageReady = () => {
     setShowEntrancePage(false);
   };
+
+
+
   const [story, setStory] = useState({
-    text: 'GÜNAYDIN UYKUCU!\nSabahın körü, geceden kalmışlığın etkisiyle ağzın kurumuş. Kapı mı o çalan?',
+    text: [
+      <div key="greeting" style={{ whiteSpace: 'pre-line', fontSize: '20px', display: 'block', color: '#E6F0FF', fontWeight: 'bold' }}>
+        GÜNAYDIN UYKUCU!
+      </div>,
+      '\nSabahın körü, geceden kalmışlığın etkisiyle ağzın kurumuş. Kapı mı o çalan?',
+    ],
     choices: [
       { text: 'Ne?', target: 'choice' },
     ],
     buttonsDisabled: false,
-    background: './images/background11.png',
+    background: './images/background111.png',
   });
+
   const [characterStats, setCharacterStats] = useState({
     health: generateRandomStat(),
     money: generateRandomStat(),
@@ -76,8 +86,8 @@ function App() {
             ...prevStory,
             text: 'Zil hala çalıyor, ısrarcı biri olmalı.\nÖnünde bir bardak su, kirli bir telefon ve kulaklarında bitmeyen zil var.',
             choices: [
-              { text: 'Telefona bak', target: 'telefon' },
-              { text: 'Su iç', target: 'su' },
+              { text: 'TELEFONA BAK', target: 'telefon' },
+              { text: 'SU İÇ', target: 'su' },
             ],
             buttonsDisabled: false,
 
@@ -97,11 +107,21 @@ function App() {
             ...prevStory,
             text: 'Görünüşe göre emektarı değiştirme zamanı yaklaşıyor.\n 0 yeni mesajın var.',
             choices: [
-              { text: 'Hala su içebilir miyim?', target: 'su' },
-              { text: 'Kapıya baksam fena olmaz', target: 'kapi' },
+              { text: 'HALA SU İÇEBİLİRİM, DEĞİL Mİ?', target: 'secim' },
+              { text: 'KAPIYA BAKSAM FENA OLMAZ', target: 'kapi-su' },
             ],
             buttonsDisabled: false,
             background: './images/mobile-background.png',
+          };
+
+        case 'secim':
+          return {
+            ...prevStory,
+            text: 'Pek sayılmaz. Ama bunu baştan öğrenmen iyi olmuştur. \nSeçimlerin bazı sonuçlar doğuracak, tıpkı hayat gibi...',
+            choices: [
+              { text: 'TAMAM O ZAMAN, KAPIYA BAKAYIM.', target: 'kapi-su' },
+            ],
+            buttonsDisabled: false,
           };
 
         case 'su':
@@ -117,7 +137,7 @@ function App() {
             ...prevStory,
             text: 'Gluk, gluk ve gluk. Suyun canlandırıcı etkisiyle kendini daha iyi hissetmeye başladın bile. Kapı hala çalıyor.',
             choices: [
-              { text: 'Artık kapıya bakayım', target: 'kapi-su' },
+              { text: 'GELİYORUM!!!', target: 'kapi-su' },
             ],
             buttonsDisabled: false,
             background: './images/1background11.png',
@@ -125,41 +145,71 @@ function App() {
           };
 
 
-        case 'ic':
-          return {
-            ...prevStory,
-            text: 'You befriended the forest creature. It offers to guide you to a hidden glade.',
-            choices: [],
-            buttonsDisabled: true,
+        case 'kapi-su':
 
-          };
-        case 'notr':
+          if (characterStats.intelligence > 65) {
+            return {
+              ...prevStory,
+              text: 'Sabah içtiği iki litre kahveyi göz bebekleriyle anlatan çılgın apartman yöneticin kapıda. \n“Günaydın, günaydın...... Naptın?” \nSana yumruğunu uzattığını görüyorsun, niyetinin ‘fist bump’ olduğu aşikar. Hatta bunu gençler arası bir selamlaşma olarak gördüğünü söylemek de zor değil, Watson.',
+              choices: [
+                { text: 'POKER FACE', target: 'aidat' },
+                { text: 'YUMRUK TOKUŞTUR', target: 'aidat' },
+              ],
+              buttonsDisabled: false,
+
+            };
+
+          } else {
+            return {
+              ...prevStory,
+              text: 'Sabah içtiği iki litre kahveyi göz bebekleriyle anlatan çılgın apartman yöneticin kapıda. \n“Günaydın, günaydın...... Naptın?” \nElini kaldırıp tuhaf bir şekle sokuyor, yumruk mu o? \nİnan bana bu zeka anlayabilmek için elinden geleni yapıyorsun.',
+              choices: [
+                { text: 'POKER FACE', target: 'aidat' },
+                { text: '"NE VARDI ABİ?"', target: 'aidat' },
+              ],
+              buttonsDisabled: false,
+
+            };
+          }
+
+        case 'aidat':
           return {
             ...prevStory,
-            text: 'You decided to go in a different direction. The forest seems to get denser.',
+            text: '“Bizim, bi aidat vardı...Bu ayın.” \nYüzünde sürekli taktığı medikal maskesi, uzun, gri çalı saçları ile evsiz bir  bilim adamına benzeyen adını bilmediğin apartman abinin söylediklerini anlamakta güçlük çekiyorsun.',
             choices: [
-              { text: 'Keep going deeper into the dense forest.', target: 'keepGoingDeeper' },
-              { text: 'Return to the path you came from.', target: 'returnPath' },
+              { text: '"ABİ AYIN DAHA 1İ BUGÜN"', target: 'binnur' },
+              { text: '"KURTULAYIM MADEM, BUYUR"', target: 'ev' },
             ],
             buttonsDisabled: false,
           };
-        case 'keepGoingDeeper':
+
+        case 'binnur':
           return {
             ...prevStory,
-            text: 'As you venture deeper into the dense forest, the trees close in around you, creating an almost mystical atmosphere. Strange whispers surround you, and you catch glimpses of mysterious lights flickering in the distance.',
+            text: 'Açıkçası seni pek dinliyormuş gibi gözükmüyor.. \n“Ya o değil de, çok ses yapıyormuşsunuz. Alt kattaki Binnur Hanım çok rahatsız valla. \nİletmemi istedi...” \nHalin olduğu pek söylenemez, ancak sabah ilk iş olarak Apartman Bey’i görmeden önce en azından su içmiş olmak seni iyi hissettirdi. Yardır gitsin.',
             choices: [
-              { text: 'Follow the mysterious lights.', target: 'followLights' },
-              { text: 'Head back to the path.', target: 'headBackToPath' },
+              { text: '"BİNNUR BAKSIN KENDİNE!"', target: 'bedel' },
+              { text: '"AİDATI VERİRSEM KURTULURUM"', target: 'ev' },
             ],
             buttonsDisabled: false,
           };
-        case 'followLights':
+        case 'bedel':
           return {
             ...prevStory,
-            text: 'Guided by the lights, you discover a hidden glade bathed in an otherworldly glow. In the center, you find an ancient artifact with unimaginable powers.',
+            text: 'Söylediklerine olan dikkatinde bir değişiklik olmadı. \n“Sen bana uğra o zaman, aidat için.” diyor, ellerini cebine koyarak. \nHala geç değil, bu elbet ödenecek bir bedel.',
             choices: [
-              { text: 'Reach for the artifact.', target: 'reachForArtifact' },
-              { text: 'Leave the glade and return to the forest.', target: 'leaveGlade' },
+              { text: '"BAŞKA BİR ŞEY?"', target: 'ev' },
+              { text: '"ZIKKIMI VERİP KURTULAYIM ARTIK"', target: 'ev' },
+            ],
+            buttonsDisabled: false,
+          };
+        case 'ev':
+          return {
+            ...prevStory,
+            text: '“Sağolasın.. Ha bi de bugün çağırdım ustaları, çatıyı yapacaklar, evde olursun değil mi?” \nSabah sabah seni acil olmayan bir şey için rahatsız etmesinden memnuniyetsiz olsan da, ağzının kuruluğu adama cevap vermende yardımcı olmuyor. \nNeden suyu içmemiştin ki?',
+            choices: [
+              { text: '"ASLINDA ŞU AN OKULDA OLMAM LAZIM"', target: 'okul' },
+              { text: '"ASLINDA ŞU AN İŞTE OLMAM LAZIM"', target: 'is' },
             ],
             buttonsDisabled: false,
           };
