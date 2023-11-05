@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
 
 const useAnimation = (animationValue) => {
-    const [showAnimation, setShowAnimation] = useState(false);
+    const [animationInfo, setAnimationInfo] = useState(null);
 
     useEffect(() => {
         if (animationValue) {
-            setShowAnimation(true);
+            setAnimationInfo({
+                showAnimation: true,
+                text: animationValue,
+            });
             const timeoutId = setTimeout(() => {
-                setShowAnimation(false);
+                setAnimationInfo(null);
             }, 2000); // Adjust the duration as needed
 
             return () => {
@@ -16,7 +19,7 @@ const useAnimation = (animationValue) => {
         }
     }, [animationValue]);
 
-    return showAnimation;
+    return animationInfo;
 };
 
 export default useAnimation;

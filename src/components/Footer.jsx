@@ -21,48 +21,46 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
         <>
             <div style={{ ...footerStyle, ...mobileStyle }}>
                 <div className='flex justify-between items-center '>
-                    <div className='flex gap-20 mx-auto justify-center  mt-[100px]   '>
+                    <div className='flex gap-20 mx-auto justify-center     '>
                         {characterStats && (
                             <StatContainer
                                 label='Sağlık'
                                 value={characterStats.health}
-                                color='#e74c3c'
-                            />
-                        )}
-                        {characterStats && (
-                            <StatContainer
-                                label='Para'
-                                value={characterStats.money}
-                                color='#f39c12'
+                                color='#F34203'
+                                circleBorderColor='#F34203'
+                                animationValue={showAnimation}
                             />
                         )}
                         {characterStats && (
                             <StatContainer
                                 label='Ruh Hali'
                                 value={characterStats.mood}
-                                color='#3498db'
-                                showAnimation={() => setShowAnimation(true)}
-                                animationValue={
-                                    showAnimation && showMoodAnimation !== 0
-                                        ? `${showMoodAnimation > 0 ? '+' : '-'}${showMoodAnimation} Ruh Hali`
-                                        : ''
-                                }
+                                color='#FEE440'
+                                circleBorderColor='#FEE440'  // For the circular stat
+                                showAnimation={showAnimation}
+                                animationValue={showAnimation}
                             />
                         )}
+                        {characterStats && (
+                            <StatContainer
+                                label='Para'
+                                value={characterStats.money}
+                                color='#496F5D'
+                                circleBorderColor='#496F5D'
+                                animationValue={showAnimation}
+                            />
+                        )}
+
                         {characterStats && (
                             <StatContainer
                                 label='Zeka'
                                 value={characterStats.intelligence}
-                                color='#9b59b6'
+                                color='#26408B'
+                                circleBorderColor='#26408B'
+                                animationValue={showAnimation}
                             />
                         )}
-                        {characterStats && (
-                            <StatContainer
-                                label='Zaman'
-                                value={characterStats.time}
-                                color='#2ecc71'
-                            />
-                        )}
+
                     </div>
                 </div>
             </div>
@@ -72,11 +70,11 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
 
 const footerStyle = {
     position: 'fixed',
-    bottom: 0,
+    top: 0,
     width: '100%',
     justifyContent: 'space-between',
     padding: '0 20px',
-    backgroundColor: 'black',
+    backgroundColor: 'rgba(00, 00, 00, 0.99)',
     color: '#fff',
     height: '160px',
 };

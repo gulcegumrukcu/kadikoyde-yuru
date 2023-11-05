@@ -3,27 +3,12 @@
 import React, { useState, useEffect } from 'react';
 import StatBar from './StatBar';
 import { useSelector, useDispatch } from 'react-redux';
+import useAnimation from './useAnimation';
 
-function StatContainer({ label, value, color, animationValue }) {
-    const { showMoodAnimation } = useSelector((state) => state.stats);
-    const dispatch = useDispatch();
-    const [showAnimation, setShowAnimation] = useState(false);
+function StatContainer({ label, value, color, animationValue, circleBorderColor }) {
 
-    useEffect(() => {
-        if (animationValue !== 0 && animationValue !== value) {
-            setShowAnimation(true);
 
-            const timeoutId = setTimeout(() => {
-                setShowAnimation(false);
-                dispatch({ type: 'CHANGE_MOOD', payload: value });
-            }, 2000);
-
-            return () => {
-                clearTimeout(timeoutId);
-            };
-        }
-    }, [animationValue, value, dispatch]);
-
+    const animationInfo = useAnimation(animationValue);
 
     const statContainerStyle = {
         borderRadius: '10px',
@@ -37,7 +22,7 @@ function StatContainer({ label, value, color, animationValue }) {
 
     const statValueContainerStyle = {
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
         alignItems: 'center', // Align statValue in the center
     };
 
@@ -48,28 +33,17 @@ function StatContainer({ label, value, color, animationValue }) {
         marginTop: '5px',
     };
 
-    const animationStyle = {
-        fontSize: '12px',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginTop: '5px',
-        color: showMoodAnimation > 0 ? 'green' : 'red', // Set the color based on the sign of the mood change
-    };
-
-
 
     return (
         <div style={{ ...statContainerStyle }}>
             <div className='flex-row flex w-full gap-2 mx-auto'>
-                <StatBar label={label} value={value} color={color} animationValue={animationValue} />
+                <StatBar label={label} value={value} color={color} circleBorderColor={circleBorderColor} />
                 <div style={statValueContainerStyle}>
-                    <div style={statValueStyle}>{value}</div>
-                    {showAnimation && (
-                        <div style={animationStyle}>
-
-                        </div>
-                    )}
+                    <div style={statValueStyle}>
+                        {value}
+                    </div>
                 </div>
+
             </div>
         </div>
     );

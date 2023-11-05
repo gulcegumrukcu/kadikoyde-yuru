@@ -3,6 +3,8 @@
 import React from 'react';
 import ChoiceButton from './ChoiceButton';
 
+
+
 const applyStyles = (text) => {
     if (typeof text !== 'string') {
         // If text is not a string, return it as it is
@@ -16,46 +18,56 @@ const applyStyles = (text) => {
     return textWithItalic;
 };
 
+
+
+
+
+const buttonStyle = {
+    width: 'auto',
+    margin: '24px 0',
+    padding: '12px 8px',
+    backgroundColor: '#000',
+    color: '#fff',
+    borderRadius: '0',
+    height: 'auto',
+    border: '2px solid white',
+};
+
 const questionContainerStyle = {
     maxHeight: '50vh',
-    width: '95vw',
-    padding: '20px',
+    width: 'auto',
+    maxWidth: '40vw',
+    height: 'auto',
+    padding: '30px',
     backgroundColor: 'rgba(23, 22, 22, 0.95)',
     color: '#a4abc6',
     display: 'flex',
     flexDirection: 'column',
+
     alignItems: 'center',
     justifyContent: 'center',
     fontFamily: 'Montserrat', // Add Montserrat font
-    gap: '4px',
+    gap: '10px',
 };
 
-const specialQuestionStyle = {
-    backgroundColor: 'rgba(23, 28, 14, 0.9)',
-    color: '#a4abc6',
-    fontSize: '14px', // Increase font size
 
-    height: '205px',
-    fontFamily: 'Montserrat', // Add Montserrat font
-};
 
-if (window.innerWidth < 600) {
-    specialQuestionStyle.width = '30%';
-    specialQuestionStyle.marginBottom = "13px";
-    questionContainerStyle.width = '250px';
-} else {
 
-    specialQuestionStyle.width = '17%';
-    specialQuestionStyle.height = '450px';
-    specialQuestionStyle.marginBottom = "130px";
-    questionContainerStyle.width = '30%';
-
-}
 
 const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle }) => (
-    <div className='' id='story' style={story.text.includes('Görünüşe göre emektarı değiştirme zamanı') ? { ...specialQuestionStyle } : questionContainerStyle}>
-        <div style={{ whiteSpace: 'pre-line', fontSize: '20px', }} className='flex text-[#f5fdc3] items-center justify-center text-md sm:text-xl mt-8'>
-            {applyStyles(story.text)}
+    <div className='' id='story' style={questionContainerStyle}>
+        <div style={{ whiteSpace: 'pre-line', fontSize: '20px' }} className=' text-[#f5fdc3]  text-md sm:text-xl mt-4'>
+            {Array.isArray(story.text) ? (
+                story.text.map((item, index) => (
+                    typeof item === 'object' ? (
+                        <span key={index} style={item.style}>{item.text}</span>
+                    ) : (
+                        <span key={index}>{item}</span>
+                    )
+                ))
+            ) : (
+                <span>{story.text}</span>
+            )}
         </div>
         <div style={buttonsContainerStyle}>
             {story.choices.map((choice, index) => (
@@ -64,10 +76,12 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle }) => (
                     text={applyStyles(choice.text)}
                     onClick={() => handleChoice(choice.target)}
                     disabled={story.buttonsDisabled}
-                    isSpecialQuestion={story.text.includes('Görünüşe göre emektarı değiştirme zamanı')}
+
+                    style={buttonStyle}
                 />
             ))}
         </div>
     </div>
 );
+
 export default QuestionComponent;

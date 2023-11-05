@@ -1,22 +1,24 @@
 import React from 'react';
 
 function ChoiceButton({ text, onClick, disabled, isSpecialQuestion }) {
+
+
     const buttonStyle = {
-        width: 'auto', // Full width for larger screens
-        margin: '24px', // Default margin for larger screens
-        padding: '12px',
-        backgroundColor: '#000', // Set background color to black
-        color: '#fff', // Set text color to white
-        borderRadius: '0', // Remove border-radius to make edges sharp
-        height: 'auto', // Make the height flexible based on content
+        width: 'auto',
+        margin: '24px 0',
+        padding: '12px 18px',
+        backgroundColor: '#000',
+        color: '#fff',
+        borderRadius: '0',
+        height: 'auto',
+        border: '2px solid white',
     };
 
-
     return (
-        <div className={`flex items-center justify-${isSpecialQuestion ? 'start' : 'end'}`}>
+        <div className={`flex items-center `}>
             <button
                 style={buttonStyle}
-                className=' text-[8px]   sm:text-[20px]  items-center hover:bg-[#8f4830] bg-[#a4abc6] text-white border-none cursor-pointer'
+
                 onClick={onClick}
                 disabled={disabled}
             >

@@ -41,14 +41,28 @@ function App() {
     setShowEntrancePage(false);
   };
 
-
+  const [userChoseSuIc, setUserChoseSuIc] = useState(false);
 
   const [story, setStory] = useState({
     text: [
-      <div key="greeting" style={{ whiteSpace: 'pre-line', fontSize: '20px', display: 'block', color: '#E6F0FF', fontWeight: 'bold' }}>
-        GÜNAYDIN UYKUCU!
-      </div>,
-      '\nSabahın körü, geceden kalmışlığın etkisiyle ağzın kurumuş. Kapı mı o çalan?',
+      {
+        text: 'GÜNAYDIN UYKUCU!\n',
+        style: {
+          fontSize: '24px',
+          fontWeight: 'bold',
+          color: 'white',
+        },
+      },
+      '\nSabahın körü, geceden kalmışlığın etkisiyle ağzın kurumuş.\n',
+      {
+        text: '\nKapı mı o çalan?',
+        style: {
+          fontSize: '20px',
+          fontWeight: 'normal',
+          fontStyle: 'italic',
+          color: 'white',
+        },
+      },
     ],
     choices: [
       { text: 'Ne?', target: 'choice' },
@@ -64,6 +78,7 @@ function App() {
     time: generateRandomStat(),
     intelligence: generateRandomStat(),
   });
+
 
 
   const [showFooter, setShowFooter] = useState(false);
@@ -84,7 +99,27 @@ function App() {
           setShowFooter(true);
           return {
             ...prevStory,
-            text: 'Zil hala çalıyor, ısrarcı biri olmalı.\nÖnünde bir bardak su, kirli bir telefon ve kulaklarında bitmeyen zil var.',
+            text: [
+              {
+                text: 'Zil ',
+                style: {
+                  fontSize: '20px',
+                  fontWeight: 'normal',
+                  color: 'white',
+                },
+              },
+              'hala çalıyor, ısrarcı biri olmalı. \n\nÖnünde ',
+              {
+                text: 'bir bardak su, kirli bir telefon ',
+                style: {
+                  fontSize: '20px',
+                  fontWeight: 'normal',
+                  color: 'white',
+                },
+              },
+
+              've kulaklarında bitmeyen bir zil var.',
+            ],
             choices: [
               { text: 'TELEFONA BAK', target: 'telefon' },
               { text: 'SU İÇ', target: 'su' },
@@ -105,7 +140,21 @@ function App() {
           dispatch({ type: 'CHANGE_MOOD', payload: -newMoodDecrease });
           return {
             ...prevStory,
-            text: 'Görünüşe göre emektarı değiştirme zamanı yaklaşıyor.\n 0 yeni mesajın var.',
+
+            text: [
+
+              'Görünüşe göre emektarı değiştirme zamanı yaklaşıyor. ',
+              {
+                text: '\n\n0 yeni mesajın var.',
+                style: {
+                  fontSize: '20px',
+                  fontWeight: 'normal',
+                  fontStyle: 'italic',
+                  color: 'white',
+                },
+              },
+
+            ],
             choices: [
               { text: 'HALA SU İÇEBİLİRİM, DEĞİL Mİ?', target: 'secim' },
               { text: 'KAPIYA BAKSAM FENA OLMAZ', target: 'kapi-su' },
@@ -117,7 +166,41 @@ function App() {
         case 'secim':
           return {
             ...prevStory,
-            text: 'Pek sayılmaz. Ama bunu baştan öğrenmen iyi olmuştur. \nSeçimlerin bazı sonuçlar doğuracak, tıpkı hayat gibi...',
+            text: [
+              {
+                text: 'Pek sayılmaz. ',
+                style: {
+                  fontSize: '20px',
+                  fontWeight: 'normal',
+                  color: 'white',
+                },
+              },
+              'Ama bunu baştan öğrenmen iyi olmuştur. ',
+              {
+                text: '\n\nSeçimlerin ',
+                style: {
+                  fontSize: '20px',
+                  fontWeight: 'normal',
+                  color: 'white',
+                  fontStyle: 'italic',
+                },
+
+              },
+              '  bazı  ',
+              {
+                text: 'sonuçlar ',
+                style: {
+                  fontSize: '20px',
+                  fontWeight: 'normal',
+                  color: 'white',
+                  fontStyle: 'italic',
+                },
+              },
+
+
+              'doğuracak, tıpkı hayat gibi...  ',
+            ],
+
             choices: [
               { text: 'TAMAM O ZAMAN, KAPIYA BAKAYIM.', target: 'kapi-su' },
             ],
@@ -126,7 +209,7 @@ function App() {
 
         case 'su':
           const newMoodIncrease = 10
-
+          setUserChoseSuIc(true);
           handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation);  // Default is increase
           setCharacterStats((prevStats) => ({
             ...prevStats,
@@ -135,7 +218,21 @@ function App() {
           dispatch({ type: 'CHANGE_MOOD', payload: newMoodIncrease });
           return {
             ...prevStory,
-            text: 'Gluk, gluk ve gluk. Suyun canlandırıcı etkisiyle kendini daha iyi hissetmeye başladın bile. Kapı hala çalıyor.',
+            text: [
+
+              'Gluk, gluk ve gluk. ',
+              {
+                text: '\nSuyun canlandırıcı etkisiyle kendini daha iyi hissetmeye başladın bile.',
+                style: {
+                  fontSize: '20px',
+                  fontWeight: 'normal',
+                  fontStyle: 'italic',
+                  color: 'white',
+                },
+              },
+              '\n\nKapı hala çalıyor.',
+            ],
+
             choices: [
               { text: 'GELİYORUM!!!', target: 'kapi-su' },
             ],
@@ -150,7 +247,40 @@ function App() {
           if (characterStats.intelligence > 65) {
             return {
               ...prevStory,
-              text: 'Sabah içtiği iki litre kahveyi göz bebekleriyle anlatan çılgın apartman yöneticin kapıda. \n“Günaydın, günaydın...... Naptın?” \nSana yumruğunu uzattığını görüyorsun, niyetinin ‘fist bump’ olduğu aşikar. Hatta bunu gençler arası bir selamlaşma olarak gördüğünü söylemek de zor değil, Watson.',
+              text: [
+                {
+                  text: 'Sabah içtiği iki litre kahveyi göz bebekleriyle anlatan çılgın apartman yöneticin kapıda. ',
+                  style: {
+                    fontSize: '20px',
+                    fontWeight: 'normal',
+
+
+                  },
+                },
+                {
+                  text: '\n\n“Günaydın, günaydın...... Naptın?”\n',
+                  style: {
+                    fontSize: '20px',
+                    fontWeight: 'normal',
+                    fontStyle: 'italic',
+                    color: 'white',
+                  },
+                },
+                '\nSana yumruğunu uzattığını görüyorsun, niyetinin',
+                {
+                  text: ' ‘fist bump’ ',
+                  style: {
+                    fontSize: '20px',
+                    fontWeight: 'bold',
+                    fontStyle: 'italic',
+                    color: 'white',
+                  },
+                },
+                'olduğu aşikar. \n\nHatta bunu gençler arası bir selamlaşma olarak gördüğünü söylemek de zor değil, Watson. ',
+
+
+              ],
+
               choices: [
                 { text: 'POKER FACE', target: 'aidat' },
                 { text: 'YUMRUK TOKUŞTUR', target: 'aidat' },
@@ -162,10 +292,51 @@ function App() {
           } else {
             return {
               ...prevStory,
-              text: 'Sabah içtiği iki litre kahveyi göz bebekleriyle anlatan çılgın apartman yöneticin kapıda. \n“Günaydın, günaydın...... Naptın?” \nElini kaldırıp tuhaf bir şekle sokuyor, yumruk mu o? \nİnan bana bu zeka anlayabilmek için elinden geleni yapıyorsun.',
+              text: [
+                {
+                  text: 'Sabah içtiği iki litre kahveyi göz bebekleriyle anlatan çılgın apartman yöneticin kapıda. ',
+                  style: {
+                    fontSize: '20px',
+                    fontWeight: 'normal',
+
+
+                  },
+                },
+                {
+                  text: '\n\n“Günaydın, günaydın...... Naptın?”\n',
+                  style: {
+                    fontSize: '20px',
+                    fontWeight: 'normal',
+                    fontStyle: 'italic',
+                    color: 'white',
+                  },
+                },
+                '\nElini kaldırıp tuhaf bir şekle sokuyor, ',
+                {
+                  text: 'yumruk ',
+                  style: {
+                    fontSize: '20px',
+                    fontWeight: 'bold',
+                    fontStyle: 'italic',
+                    color: 'white',
+                  },
+                },
+                'mu o? ',
+                {
+                  text: '\n\nİnan bana bu zeka anlayabilmek için elinden geleni yapıyorsun.',
+                  style: {
+                    fontSize: '20px',
+                    fontWeight: 'normal',
+                    fontStyle: 'italic',
+
+                  },
+                },
+
+              ],
+
               choices: [
                 { text: 'POKER FACE', target: 'aidat' },
-                { text: '"NE VARDI ABİ?"', target: 'aidat' },
+                { text: 'YUMRUK TOKUŞTUR', target: 'aidat' },
               ],
               buttonsDisabled: false,
 
@@ -175,7 +346,22 @@ function App() {
         case 'aidat':
           return {
             ...prevStory,
-            text: '“Bizim, bi aidat vardı...Bu ayın.” \nYüzünde sürekli taktığı medikal maskesi, uzun, gri çalı saçları ile evsiz bir  bilim adamına benzeyen adını bilmediğin apartman abinin söylediklerini anlamakta güçlük çekiyorsun.',
+
+            text: [
+              {
+                text: '“Bizim, bi aidat vardı...Bu ayın.” \n',
+                style: {
+                  fontSize: '20px',
+                  fontWeight: 'normal',
+                  fontStyle: 'italic',
+
+
+                },
+              },
+
+              '\nYüzünde sürekli taktığı medikal maskesi, uzun, gri çalı saçları ile evsiz bir  bilim adamına benzeyen adını bilmediğin apartman abinin söylediklerini anlamakta güçlük çekiyorsun.',
+
+            ],
             choices: [
               { text: '"ABİ AYIN DAHA 1İ BUGÜN"', target: 'binnur' },
               { text: '"KURTULAYIM MADEM, BUYUR"', target: 'ev' },
@@ -186,7 +372,25 @@ function App() {
         case 'binnur':
           return {
             ...prevStory,
-            text: 'Açıkçası seni pek dinliyormuş gibi gözükmüyor.. \n“Ya o değil de, çok ses yapıyormuşsunuz. Alt kattaki Binnur Hanım çok rahatsız valla. \nİletmemi istedi...” \nHalin olduğu pek söylenemez, ancak sabah ilk iş olarak Apartman Bey’i görmeden önce en azından su içmiş olmak seni iyi hissettirdi. Yardır gitsin.',
+
+            text: [
+              'Açıkçası seni pek dinliyormuş gibi gözükmüyor..\n',
+              {
+                text: '\n“Ya o değil de, çok ses yapıyormuşsunuz. Alt kattaki Binnur Hanım çok rahatsız valla. \nİletmemi istedi...” \n',
+                style: {
+                  fontSize: '20px',
+                  fontWeight: 'normal',
+                  fontStyle: 'italic',
+                  color: 'white',
+
+
+                },
+              },
+
+              userChoseSuIc
+                ? '\nHalin olduğu pek söylenemez, ancak sabah ilk iş Apartman Bey’i görmeden önce en azından su içmiş olmak seni iyi hissettirdi. Yardır gitsin.'
+                : '\nHalin olduğu pek söylenemez, üstüne sabah ilk iş su içmek yerine kapıya bakmak da yardımcı olmadı. \nAdam seni koklamak üzere.',
+            ],
             choices: [
               { text: '"BİNNUR BAKSIN KENDİNE!"', target: 'bedel' },
               { text: '"AİDATI VERİRSEM KURTULURUM"', target: 'ev' },
@@ -196,7 +400,24 @@ function App() {
         case 'bedel':
           return {
             ...prevStory,
-            text: 'Söylediklerine olan dikkatinde bir değişiklik olmadı. \n“Sen bana uğra o zaman, aidat için.” diyor, ellerini cebine koyarak. \nHala geç değil, bu elbet ödenecek bir bedel.',
+
+            text: 'Söylediklerine olan dikkatinde bir değişiklik olmadı. ',
+            text: [
+              {
+                text: '\n\n“Sen bana uğra o zaman, aidat için.” ',
+                style: {
+                  fontSize: '20px',
+                  fontWeight: 'normal',
+                  fontStyle: 'italic',
+                  color: 'white',
+
+
+                },
+              },
+              'diyor, ellerini cebine koyarak. ',
+              '\n\nHala geç değil, bu elbet ödenecek bir bedel.',
+
+            ],
             choices: [
               { text: '"BAŞKA BİR ŞEY?"', target: 'ev' },
               { text: '"ZIKKIMI VERİP KURTULAYIM ARTIK"', target: 'ev' },
@@ -247,12 +468,15 @@ function App() {
 
   const buttonsContainerStyle = {
 
-    flexDirection: 'row', // Ensure buttons are in the same row
-    justifyContent: 'space-between', // Add space between buttons
     display: 'flex',
-    flexDirection: 'row', // Ensure buttons are in the same row
-    justifyContent: 'space-between', // Add space between buttons
-    alignItems: 'center', // Align buttons to the center vertically
+    flexDirection: 'row',
+    margin: 'auto',
+    width: '60%',
+    justifyContent: 'space-around',
+
+
+
+
   };
 
 
@@ -266,7 +490,7 @@ function App() {
         <EntrancePage onReady={handleEntrancePageReady} />
       ) : (
         <div className='flex flex-col items-center justify-center bg-cover bg-center text-center ' style={containerStyle}>
-          <Settings></Settings>
+
           <QuestionComponent
             story={story}
             handleChoice={handleChoice}
@@ -290,6 +514,7 @@ function App() {
 
 
           )}
+          <Settings></Settings>
         </div>
 
       )}

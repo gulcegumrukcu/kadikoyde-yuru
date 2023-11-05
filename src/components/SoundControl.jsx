@@ -4,7 +4,7 @@ import React from 'react';
 const SoundControl = ({ onToggleSound }) => {
     return (
         <svg
-            className='w-12 h-12 cursor-pointer'
+            className='w-10 h-10 cursor-pointer'
             viewBox='0 0 64 64'
             xmlns='http://www.w3.org/2000/svg'
             strokeWidth='3'

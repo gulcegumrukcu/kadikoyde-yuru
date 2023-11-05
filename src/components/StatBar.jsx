@@ -1,44 +1,55 @@
-// StatBar Do no delete this.
-
 import React from 'react';
 
-function StatBar({ label, value, color, animationValue }) {
-    const barHeight = `${value}px`;
-
+function StatBar({ label, value, color, circleBorderColor }) {
     const statBarStyle = {
-        height: barHeight,
-        width: '20px', // You can adjust the width if needed
-        backgroundColor: color || '#ddd', // Use the provided color or default to '#ddd'
-        borderRadius: '5px',
-        transform: 'rotate(180deg)', // Rotate the bar 180 degrees
-        transformOrigin: 'top', // Set the rotation origin to the bottom left
+        fontSize: '24px',
+        color: color || '#ddd',
+
 
     };
 
     const statBarAnimation = {
         fontSize: '14px',
         fontWeight: 'bold',
-
         alignItems: 'center',
         marginTop: '10px',
         color: 'white',
     };
 
+    const gaugeContainerStyle = {
+        display: 'flex',
+        flexDirection: 'column', // Stack the circles vertically
+        alignItems: 'center', // Center the circles horizontally
+    };
+
+    const circleStyle = {
+        height: '80px', // Adjust the height according to your design
+        width: '72px', // Fixed width for the gauge
+        borderRadius: '50%',
+        border: `1px solid ${circleBorderColor}`,
+        overflow: 'hidden', // Clip the overflowing part of the circle
+
+        position: 'relative', // Enable positioning for the fill
+    };
+
+    const fillStyle = {
+        position: 'absolute',
+        bottom: '0', // Start filling from the bottom
+        left: '0',
+        width: '100%',
+        height: `${value}%`, // Adjust the height to represent the value
+        background: color || '#ddd',
+    };
+
     return (
-        <>
-            <div className='flex flex-row '>
-                <div style={{ ...statBarAnimation, }}>{label}</div>
-                <div className='stat-bar' style={statBarStyle}>
-
-
-
-
+        <div style={gaugeContainerStyle}>
+            <div style={statBarAnimation}>{label}</div>
+            <div style={statBarStyle}>
+                <div style={circleStyle}>
+                    <div style={fillStyle}></div>
                 </div>
             </div>
-
-
-        </>
-
+        </div>
     );
 }
 
