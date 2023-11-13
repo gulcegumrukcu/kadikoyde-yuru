@@ -5,7 +5,7 @@ import StatContainer from './StatContainer';
 import useAnimation from './useAnimation'
 
 
-const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMoodAnimation }) => {
+const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMoodAnimation, showIntelligenceAnimation }) => {
 
     const showAnimation = useAnimation(
         showMoodAnimation !== 0 ? `${showMoodAnimation > 0 ? '+' : '-'}${showMoodAnimation} Ruh Hali` : ''
@@ -21,7 +21,7 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
         <>
             <div style={{ ...footerStyle, ...mobileStyle }}>
                 <div className='flex h-[160px] justify-between items-center'>
-                    <div className='grid grid-cols-4 gap-4  mx-auto justify-center'>
+                    <div className='grid grid-cols-4 gap-4  lg:mx-auto   justify-center '>
                         {characterStats && (
                             <StatContainer
                                 label='Sağlık'
@@ -60,8 +60,19 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                 animationValue={showAnimation}
                             />
                         )}
+                        {showMoodAnimation && (
+                            <>
+                                <div className='text-white font-bold absolute lg:right-16 right-2 top-16 text-md lg:text-2xl bg-blue-500'>
+                                    {showMoodAnimation}
+                                </div>
 
+                                {console.log('app - showMoodAnimation:', showMoodAnimation)}
+                            </>
+
+
+                        )}
                     </div>
+
                 </div>
             </div>
         </>

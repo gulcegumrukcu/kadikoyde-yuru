@@ -9,7 +9,8 @@ import { useDispatch } from 'react-redux';
 import Footer from './src/components/Footer';
 import QuestionComponent from './src/components/QuestionComponent';
 import Settings from './src/components/Settings';
-import handleMoodAnimation from './src/components/utils'
+import utils from './src/components/utils';
+
 
 
 
@@ -48,7 +49,7 @@ function App() {
       {
         text: 'GÜNAYDIN UYKUCU!\n',
         style: {
-          fontSize: '24px',
+
           fontWeight: 'bold',
           color: 'white',
         },
@@ -57,7 +58,7 @@ function App() {
       {
         text: '\nKapı mı o çalan?',
         style: {
-          fontSize: '20px',
+
           fontWeight: 'normal',
           fontStyle: 'italic',
           color: 'white',
@@ -82,6 +83,8 @@ function App() {
 
 
   const [showFooter, setShowFooter] = useState(false);
+  const { handleMoodAnimation, handleIntelligenceAnimation } = utils;
+  const [showIntelligenceAnimation, setShowIntelligenceAnimation] = useState(false);
 
   const handleChoice = (path) => {
     if (story.buttonsDisabled) return;
@@ -103,7 +106,7 @@ function App() {
               {
                 text: 'Zil ',
                 style: {
-                  fontSize: '20px',
+
                   fontWeight: 'normal',
                   color: 'white',
                 },
@@ -112,7 +115,7 @@ function App() {
               {
                 text: 'bir bardak su, kirli bir telefon ',
                 style: {
-                  fontSize: '20px',
+
                   fontWeight: 'normal',
                   color: 'white',
                 },
@@ -147,7 +150,7 @@ function App() {
               {
                 text: '\n\n0 yeni mesajın var.',
                 style: {
-                  fontSize: '20px',
+
                   fontWeight: 'normal',
                   fontStyle: 'italic',
                   color: 'white',
@@ -170,7 +173,7 @@ function App() {
               {
                 text: 'Pek sayılmaz. ',
                 style: {
-                  fontSize: '20px',
+
                   fontWeight: 'normal',
                   color: 'white',
                 },
@@ -179,7 +182,7 @@ function App() {
               {
                 text: '\n\nSeçimlerin ',
                 style: {
-                  fontSize: '20px',
+
                   fontWeight: 'normal',
                   color: 'white',
                   fontStyle: 'italic',
@@ -190,7 +193,7 @@ function App() {
               {
                 text: 'sonuçlar ',
                 style: {
-                  fontSize: '20px',
+
                   fontWeight: 'normal',
                   color: 'white',
                   fontStyle: 'italic',
@@ -224,7 +227,7 @@ function App() {
               {
                 text: '\nSuyun canlandırıcı etkisiyle kendini daha iyi hissetmeye başladın bile.',
                 style: {
-                  fontSize: '20px',
+
                   fontWeight: 'normal',
                   fontStyle: 'italic',
                   color: 'white',
@@ -243,7 +246,7 @@ function App() {
 
 
         case 'kapi-su':
-
+          handleIntelligenceAnimation(dispatch, true, setShowIntelligenceAnimation);
           if (characterStats.intelligence > 65) {
             return {
               ...prevStory,
@@ -251,7 +254,7 @@ function App() {
                 {
                   text: 'Sabah içtiği iki litre kahveyi göz bebekleriyle anlatan çılgın apartman yöneticin kapıda. ',
                   style: {
-                    fontSize: '20px',
+
                     fontWeight: 'normal',
 
 
@@ -260,7 +263,7 @@ function App() {
                 {
                   text: '\n\n“Günaydın, günaydın...... Naptın?”\n',
                   style: {
-                    fontSize: '20px',
+
                     fontWeight: 'normal',
                     fontStyle: 'italic',
                     color: 'white',
@@ -270,7 +273,7 @@ function App() {
                 {
                   text: ' ‘fist bump’ ',
                   style: {
-                    fontSize: '20px',
+
                     fontWeight: 'bold',
                     fontStyle: 'italic',
                     color: 'white',
@@ -290,13 +293,14 @@ function App() {
             };
 
           } else {
+            handleIntelligenceAnimation(dispatch, false, setShowIntelligenceAnimation);
             return {
               ...prevStory,
               text: [
                 {
                   text: 'Sabah içtiği iki litre kahveyi göz bebekleriyle anlatan çılgın apartman yöneticin kapıda. ',
                   style: {
-                    fontSize: '20px',
+
                     fontWeight: 'normal',
 
 
@@ -305,7 +309,7 @@ function App() {
                 {
                   text: '\n\n“Günaydın, günaydın...... Naptın?”\n',
                   style: {
-                    fontSize: '20px',
+
                     fontWeight: 'normal',
                     fontStyle: 'italic',
                     color: 'white',
@@ -315,7 +319,7 @@ function App() {
                 {
                   text: 'yumruk ',
                   style: {
-                    fontSize: '20px',
+
                     fontWeight: 'bold',
                     fontStyle: 'italic',
                     color: 'white',
@@ -325,7 +329,7 @@ function App() {
                 {
                   text: '\n\nİnan bana bu zeka anlayabilmek için elinden geleni yapıyorsun.',
                   style: {
-                    fontSize: '20px',
+
                     fontWeight: 'normal',
                     fontStyle: 'italic',
 
@@ -351,10 +355,10 @@ function App() {
               {
                 text: '“Bizim, bi aidat vardı...Bu ayın.” \n',
                 style: {
-                  fontSize: '20px',
+
                   fontWeight: 'normal',
                   fontStyle: 'italic',
-
+                  color: 'white',
 
                 },
               },
@@ -378,7 +382,7 @@ function App() {
               {
                 text: '\n“Ya o değil de, çok ses yapıyormuşsunuz. Alt kattaki Binnur Hanım çok rahatsız valla. \nİletmemi istedi...” \n',
                 style: {
-                  fontSize: '20px',
+
                   fontWeight: 'normal',
                   fontStyle: 'italic',
                   color: 'white',
@@ -407,7 +411,7 @@ function App() {
               {
                 text: '\n\n“Sen bana uğra o zaman, aidat için.” ',
                 style: {
-                  fontSize: '20px',
+
                   fontWeight: 'normal',
                   fontStyle: 'italic',
                   color: 'white',
@@ -428,7 +432,22 @@ function App() {
         case 'ev':
           return {
             ...prevStory,
-            text: '“Sağolasın.. Ha bi de bugün çağırdım ustaları, çatıyı yapacaklar, evde olursun değil mi?” \nSabah sabah seni acil olmayan bir şey için rahatsız etmesinden memnuniyetsiz olsan da, ağzının kuruluğu adama cevap vermende yardımcı olmuyor. \nNeden suyu içmemiştin ki?',
+            text: [
+              {
+                text: '“Sağolasın.. Ha bi de bugün çağırdım ustaları, çatıyı yapacaklar, evde olursun değil mi?” \n',
+                style: {
+
+                  fontWeight: 'normal',
+                  fontStyle: 'italic',
+                  color: 'white',
+
+                },
+              },
+
+
+
+            ],
+
             choices: [
               { text: '"ASLINDA ŞU AN OKULDA OLMAM LAZIM"', target: 'okul' },
               { text: '"ASLINDA ŞU AN İŞTE OLMAM LAZIM"', target: 'is' },
@@ -442,7 +461,10 @@ function App() {
     });
   };
 
-
+  useEffect(() => {
+    // This block of code will run whenever showIntelligenceAnimation changes
+    console.log('Show Intelligence Animation:', showIntelligenceAnimation);
+  }, [showIntelligenceAnimation]);
 
   useEffect(() => {
     if (story.background) {
@@ -461,11 +483,7 @@ function App() {
     position: 'relative',
   };
 
-  if (story.background === './images/mobile-background.png') {
-    containerStyle.backgroundSize = 'cover';
-    containerStyle.backgroundPosition = 'center';
 
-  }
 
   const buttonsContainerStyle = {
 
@@ -491,15 +509,18 @@ function App() {
         <EntrancePage onReady={handleEntrancePageReady} />
       ) : (
         <>
+
           <Footer
             showFooter={showFooter}
             onToggleSound={handleToggleSound}
             onMenuClick={handleMenuClick}
             characterStats={characterStats}
             showMoodAnimation={showMoodAnimation}
+            showIntelligenceAnimation={showIntelligenceAnimation}
           />
 
-          <div className='flex flex-col items-center justify-center bg-cover bg-center text-center ' style={containerStyle}>
+
+          <div className='flex flex-col items-center justify-center  text-center ' style={containerStyle}>
 
             <QuestionComponent
               story={story}
@@ -507,17 +528,7 @@ function App() {
               buttonsContainerStyle={buttonsContainerStyle}
             />
 
-            {showMoodAnimation && (
-              <>
-                <div style={{ position: 'absolute', right: '10px', fontSize: '22px', color: 'white', left: '90%', top: '10px', }}>
-                  {showMoodAnimation}
-                </div>
 
-                {console.log('JSX - showMoodAnimation:', showMoodAnimation)}
-              </>
-
-
-            )}
             <Settings></Settings>
           </div>
         </>

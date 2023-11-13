@@ -15,8 +15,7 @@ const StatBar = ({ label, value, color, circleBorderColor }) => {
     };
 
     const circleStyle = {
-        height: '80px',
-        width: '80px',
+
         borderRadius: '50%',
         border: `1px solid ${circleBorderColor}`,
         overflow: 'hidden',
@@ -37,7 +36,7 @@ const StatBar = ({ label, value, color, circleBorderColor }) => {
         <div style={gaugeContainerStyle}>
             <div className='text-sm font-bold mb-2  lg:text-[18px] lg:font-bold'>{label}</div>
             <div style={statBarStyle}>
-                <div style={circleStyle}>
+                <div className='lg:w-20 lg:h-20 h-16 w-16' style={circleStyle}>
                     <div style={fillStyle}></div>
                 </div>
             </div>

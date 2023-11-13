@@ -5,27 +5,15 @@ function ChoiceButton({ text, onClick, disabled, isSpecialQuestion }) {
     const audio = new Audio(sound)
 
 
-    const buttonStyle = {
-        width: 'auto',
-        margin: '24px 0',
-        padding: '12px 18px',
-        backgroundColor: '#000',
-        color: '#fff',
-        borderRadius: '0px',
-        height: 'auto',
-        border: '2px solid white',
-    };
+
 
     return (
-        <div className={`flex items-center `}>
+        <div className="flex items-center">
             <button
-                style={buttonStyle}
-
+                className=" min-h-[80px] max-h-[68px] min-w-[100px] lg:h-[140px] lg:w-48 max-w-48 m-4 p-2 font-bold  lg:p-4  bg-black text-white rounded-none border-2 border-white text-xs lg:text-xl mx-auto flex justify-center items-center hover:bg-white hover:border-black hover:border-2 hover:text-black"
                 onClick={() => {
-                    audio.play()
-                    onClick()
-
-
+                    audio.play();
+                    onClick();
                 }}
                 disabled={disabled}
             >

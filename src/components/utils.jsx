@@ -8,7 +8,6 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, increase = 
         ? <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Ruh Hali`}</span>
         : '';
 
-
     // Check if the amount is not 0 before setting the initial animation value
     if (amount !== 0) {
         setShowMoodAnimation(initialAlertText);
@@ -30,4 +29,20 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, increase = 
     };
 };
 
-export default handleMoodAnimation;
+const handleIntelligenceAnimation = (dispatch, intelligenceCheckResult, setShowIntelligenceAnimation) => {
+    // Set an initial alert text based on the intelligence check result
+    const backgroundColor = intelligenceCheckResult ? 'green' : 'red';
+    const initialAlertText = intelligenceCheckResult
+        ? <span style={{ backgroundColor, padding: '6px' }}>Zeka Kontrol Başarılı!</span>
+        : <span style={{ backgroundColor, padding: '6px' }}>Zeka Kontrol Başarısız!</span>;
+
+    // Display the initial alert text
+    setShowIntelligenceAnimation(initialAlertText);
+
+    // Reset the intelligence animation after a delay
+    setTimeout(() => {
+        setShowIntelligenceAnimation('');
+    }, 2000);
+};
+
+export default { handleMoodAnimation, handleIntelligenceAnimation };

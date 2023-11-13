@@ -19,45 +19,17 @@ const applyStyles = (text) => {
 };
 
 
-
-
-
-
-const questionContainerStyle = {
-    maxHeight: '56vh',
-    width: 'auto',
-    maxWidth: '40vw',
-    height: 'auto',
-    padding: '30px',
-    backgroundColor: 'rgba(23, 22, 22, 0.95)',
-    color: '#a4abc6',
-    display: 'flex',
-    flexDirection: 'column',
-    borderRadius: '0px',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontFamily: 'Montserrat', // Add Montserrat font
-    gap: '10px',
-    marginBottom: '110px',
-};
-
-
-
-
-
 const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle }) => (
-    <div className='' id='story' style={questionContainerStyle}>
-        <div style={{ whiteSpace: 'pre-line', fontSize: '20px' }} className=' text-[#f5fdc3]  text-md sm:text-xl mt-4'>
+    <div className='h-auto w-auto max-w-xs p-4 lg:max-h-56vh lg:max-w-2xl lg:h-auto lg:p-8 bg-opacity-95 bg-[#161617] flex flex-col rounded-0 items-center justify-center font-montserrat lg:mb-20 mb-20 hover:bg-black ' id='story'>
+        <div className='text-[#f5fdc3] text-sm lg:text-xl mt-4 whitespace-pre-line'>
             {Array.isArray(story.text) ? (
                 story.text.map((item, index) => (
-                    typeof item === 'object' ? (
-                        <span key={index} style={item.style}>{item.text}</span>
-                    ) : (
-                        <span key={index}>{item}</span>
-                    )
+                    <span key={index} style={item.style} className="">
+                        {typeof item === 'object' ? item.text : item}
+                    </span>
                 ))
             ) : (
-                <span>{story.text}</span>
+                <span className="">{story.text}</span>
             )}
         </div>
         <div style={buttonsContainerStyle}>
@@ -67,12 +39,12 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle }) => (
                     text={applyStyles(choice.text)}
                     onClick={() => handleChoice(choice.target)}
                     disabled={story.buttonsDisabled}
-
-
                 />
             ))}
         </div>
     </div>
 );
+
+
 
 export default QuestionComponent;

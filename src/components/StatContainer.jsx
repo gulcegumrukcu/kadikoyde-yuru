@@ -23,11 +23,6 @@ function StatContainer({ label, value, color, animationValue, circleBorderColor 
                 <StatBar label={label} value={value} color={color} circleBorderColor={circleBorderColor} />
                 <div style={statValueContainerStyle}>
 
-                    {animationInfo && animationInfo.text && (
-                        <div style={{ marginRight: '5px', color: 'green' }}>
-                            {animationInfo.text}
-                        </div>
-                    )}
 
 
                     <div className='text-md font-bold lg:text-xl mx-auto align-center flex'>
