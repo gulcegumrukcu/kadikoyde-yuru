@@ -20,8 +20,8 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
     return (
         <>
             <div style={{ ...footerStyle, ...mobileStyle }}>
-                <div className='flex justify-between items-center '>
-                    <div className='flex gap-20 mx-auto justify-center     '>
+                <div className='flex h-[160px] justify-between items-center'>
+                    <div className='grid grid-cols-4 gap-4  mx-auto justify-center'>
                         {characterStats && (
                             <StatContainer
                                 label='Sağlık'
@@ -69,14 +69,13 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
 };
 
 const footerStyle = {
-    position: 'fixed',
-    top: 0,
+
     width: '100%',
     justifyContent: 'space-between',
     padding: '0 20px',
     backgroundColor: 'rgba(00, 00, 00, 0.99)',
     color: '#fff',
-    height: '160px',
+
 };
 
 const mobileStyle = {

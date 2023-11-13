@@ -22,19 +22,9 @@ const applyStyles = (text) => {
 
 
 
-const buttonStyle = {
-    width: 'auto',
-    margin: '24px 0',
-    padding: '12px 8px',
-    backgroundColor: '#000',
-    color: '#fff',
-    borderRadius: '0',
-    height: 'auto',
-    border: '2px solid white',
-};
 
 const questionContainerStyle = {
-    maxHeight: '50vh',
+    maxHeight: '56vh',
     width: 'auto',
     maxWidth: '40vw',
     height: 'auto',
@@ -43,11 +33,12 @@ const questionContainerStyle = {
     color: '#a4abc6',
     display: 'flex',
     flexDirection: 'column',
-
+    borderRadius: '0px',
     alignItems: 'center',
     justifyContent: 'center',
     fontFamily: 'Montserrat', // Add Montserrat font
     gap: '10px',
+    marginBottom: '110px',
 };
 
 
@@ -77,7 +68,7 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle }) => (
                     onClick={() => handleChoice(choice.target)}
                     disabled={story.buttonsDisabled}
 
-                    style={buttonStyle}
+
                 />
             ))}
         </div>

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-
+import sound from '../assets/sound.wav'
 import logo from '/images/logo1.png';
 import Settings from './Settings';
 
 function EntrancePage({ onReady }) {
     const [showButton, setShowButton] = useState(false);
-
+    const audio = new Audio(sound)
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowButton(true);
@@ -13,6 +13,14 @@ function EntrancePage({ onReady }) {
 
         return () => clearTimeout(timer);
     }, []);
+
+    const handleReadyClick = () => {
+        // Play the sound when the button is clicked
+        audio.play();
+
+        // Call the onReady function
+        onReady();
+    };
 
     return (
         <div
@@ -27,13 +35,12 @@ function EntrancePage({ onReady }) {
                 {showButton && (
                     <button
                         className='px-6 py-3 mt-6 bg-black hover:text-red-400 text-white font-bold rounded-lg focus:outline-none'
-                        onClick={onReady}
+                        onClick={handleReadyClick} // Use the new handler
                     >
                         Hazırım.
                     </button>
                 )}
             </div>
-
         </div>
     );
 }

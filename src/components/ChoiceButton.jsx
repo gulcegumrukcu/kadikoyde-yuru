@@ -1,6 +1,8 @@
 import React from 'react';
+import sound from '../assets/sound.wav'
 
 function ChoiceButton({ text, onClick, disabled, isSpecialQuestion }) {
+    const audio = new Audio(sound)
 
 
     const buttonStyle = {
@@ -9,7 +11,7 @@ function ChoiceButton({ text, onClick, disabled, isSpecialQuestion }) {
         padding: '12px 18px',
         backgroundColor: '#000',
         color: '#fff',
-        borderRadius: '0',
+        borderRadius: '0px',
         height: 'auto',
         border: '2px solid white',
     };
@@ -19,7 +21,12 @@ function ChoiceButton({ text, onClick, disabled, isSpecialQuestion }) {
             <button
                 style={buttonStyle}
 
-                onClick={onClick}
+                onClick={() => {
+                    audio.play()
+                    onClick()
+
+
+                }}
                 disabled={disabled}
             >
                 {text}

@@ -14,7 +14,7 @@ import handleMoodAnimation from './src/components/utils'
 
 
 function generateRandomStat() {
-  return Math.floor(Math.random() * (100 - 50 + 1)) + 40;
+  return Math.floor(Math.random() * (65 - 45 + 1)) + 45;
 }
 
 
@@ -401,8 +401,9 @@ function App() {
           return {
             ...prevStory,
 
-            text: 'Söylediklerine olan dikkatinde bir değişiklik olmadı. ',
+
             text: [
+              'Söylediklerine olan dikkatinde bir değişiklik olmadı. ',
               {
                 text: '\n\n“Sen bana uğra o zaman, aidat için.” ',
                 style: {
@@ -453,16 +454,16 @@ function App() {
   const containerStyle = {
     backgroundImage: `url(${story.background || './images/background.png'})`,
     backgroundSize: 'cover',
-    backgroundPosition: '50% 70%',
+    backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     overflow: 'hidden',
-    minHeight: '100vh',
+    minHeight: showFooter ? 'calc(100vh - 160px)' : '100vh',
     position: 'relative',
   };
 
   if (story.background === './images/mobile-background.png') {
     containerStyle.backgroundSize = 'cover';
-    containerStyle.backgroundPosition = '50% 60%';
+    containerStyle.backgroundPosition = 'center';
 
   }
 
@@ -489,13 +490,7 @@ function App() {
       {showEntrancePage ? (
         <EntrancePage onReady={handleEntrancePageReady} />
       ) : (
-        <div className='flex flex-col items-center justify-center bg-cover bg-center text-center ' style={containerStyle}>
-
-          <QuestionComponent
-            story={story}
-            handleChoice={handleChoice}
-            buttonsContainerStyle={buttonsContainerStyle}
-          />
+        <>
           <Footer
             showFooter={showFooter}
             onToggleSound={handleToggleSound}
@@ -503,19 +498,29 @@ function App() {
             characterStats={characterStats}
             showMoodAnimation={showMoodAnimation}
           />
-          {showMoodAnimation && (
-            <>
-              <div style={{ position: 'absolute', right: '10px', fontSize: '22px', color: 'white', left: '90%', top: '10px', }}>
-                {showMoodAnimation}
-              </div>
 
-              {console.log('JSX - showMoodAnimation:', showMoodAnimation)}
-            </>
+          <div className='flex flex-col items-center justify-center bg-cover bg-center text-center ' style={containerStyle}>
+
+            <QuestionComponent
+              story={story}
+              handleChoice={handleChoice}
+              buttonsContainerStyle={buttonsContainerStyle}
+            />
+
+            {showMoodAnimation && (
+              <>
+                <div style={{ position: 'absolute', right: '10px', fontSize: '22px', color: 'white', left: '90%', top: '10px', }}>
+                  {showMoodAnimation}
+                </div>
+
+                {console.log('JSX - showMoodAnimation:', showMoodAnimation)}
+              </>
 
 
-          )}
-          <Settings></Settings>
-        </div>
+            )}
+            <Settings></Settings>
+          </div>
+        </>
 
       )}
     </div>
