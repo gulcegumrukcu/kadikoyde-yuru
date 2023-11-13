@@ -2,10 +2,10 @@
 
 import React from 'react';
 import StatBar from './StatBar';
-import useAnimation from './useAnimation';
 
-function StatContainer({ label, value, color, animationValue, circleBorderColor }) {
-    const animationInfo = useAnimation(animationValue);
+
+function StatContainer({ label, value, color, circleBorderColor }) {
+
 
 
 

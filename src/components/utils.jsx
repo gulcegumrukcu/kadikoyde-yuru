@@ -36,8 +36,15 @@ const handleIntelligenceAnimation = (dispatch, intelligenceCheckResult, setShowI
         ? <span style={{ backgroundColor, padding: '6px' }}>Zeka Kontrol Başarılı!</span>
         : <span style={{ backgroundColor, padding: '6px' }}>Zeka Kontrol Başarısız!</span>;
 
-    // Display the initial alert text
-    setShowIntelligenceAnimation(initialAlertText);
+
+    // Display the initial alert text with inline styles
+    setShowIntelligenceAnimation({
+        text: initialAlertText,
+        style: {
+            backgroundColor,
+            padding: '6px',
+        },
+    });
 
     // Reset the intelligence animation after a delay
     setTimeout(() => {

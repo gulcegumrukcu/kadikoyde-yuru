@@ -6,17 +6,18 @@ import useAnimation from './useAnimation'
 
 
 const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMoodAnimation, showIntelligenceAnimation }) => {
-
-    const showAnimation = useAnimation(
+    const showMoodAnimationValue = useAnimation(
         showMoodAnimation !== 0 ? `${showMoodAnimation > 0 ? '+' : '-'}${showMoodAnimation} Ruh Hali` : ''
     );
-
+    const showIntelligenceAnimationValue = useAnimation(showIntelligenceAnimation.text);
     if (!showFooter) {
         return null;
     }
 
     console.log('Footer - characterStats:', characterStats);
     console.log('Footer - showMoodAnimation:', showMoodAnimation);
+    console.log('Footer - showIntelligenceAnimation:', showIntelligenceAnimation);
+
     return (
         <>
             <div style={{ ...footerStyle, ...mobileStyle }}>
@@ -28,7 +29,7 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                 value={characterStats.health}
                                 color='#F34203'
                                 circleBorderColor='#F34203'
-                                animationValue={showAnimation}
+                                animationValue={showMoodAnimation}
                             />
                         )}
                         {characterStats && (
@@ -37,8 +38,8 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                 value={characterStats.mood}
                                 color='#FEE440'
                                 circleBorderColor='#FEE440'  // For the circular stat
-                                showAnimation={showAnimation}
-                                animationValue={showAnimation}
+                                showMoodAnimation={showMoodAnimation}
+                                animationValue={showMoodAnimation}
                             />
                         )}
                         {characterStats && (
@@ -47,7 +48,7 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                 value={characterStats.money}
                                 color='#496F5D'
                                 circleBorderColor='#496F5D'
-                                animationValue={showAnimation}
+                                animationValue={showMoodAnimation}
                             />
                         )}
 
@@ -57,12 +58,16 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                 value={characterStats.intelligence}
                                 color='#26408B'
                                 circleBorderColor='#26408B'
-                                animationValue={showAnimation}
+                                animationValue={showIntelligenceAnimationValue}
+                                showAnimation={showIntelligenceAnimation}
+                                backgroundColor={showIntelligenceAnimationValue ? '#00FF00' : '#FF0000'}
                             />
                         )}
+
+
                         {showMoodAnimation && (
                             <>
-                                <div className='text-white font-bold absolute lg:right-16 right-2 top-16 text-md lg:text-2xl bg-blue-500'>
+                                <div className='text-white font-bold absolute lg:right-16 right-2 top-16 text-md lg:text-2xl '>
                                     {showMoodAnimation}
                                 </div>
 
@@ -71,6 +76,19 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
 
 
                         )}
+
+                        {showIntelligenceAnimation && showIntelligenceAnimationValue && (
+                            <>
+                                <div className='text-white font-bold absolute lg:right-16 right-2 top-16 text-md lg:text-2xl '>
+                                    {showIntelligenceAnimationValue}
+                                </div>
+                                {console.log('app - showIntelligenceAnimation:', showIntelligenceAnimation)}
+                            </>
+                        )}
+
+                        {console.log('Footer - showMoodAnimation:', showMoodAnimation)}
+                        {console.log('Footer - showIntelligenceAnimation:', showIntelligenceAnimation)}
+
                     </div>
 
                 </div>
