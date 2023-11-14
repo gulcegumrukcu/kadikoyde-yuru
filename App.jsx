@@ -141,10 +141,10 @@ function App() {
         case 'telefon':
           let newMoodDecrease = 10;
 
-          handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, false);  // Pass `false` for decrease
+          handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false);  // Pass `false` for decrease
           setCharacterStats((prevStats) => ({
             ...prevStats,
-            mood: Math.max(prevStats.mood - newMoodDecrease),
+            mood: Math.max(prevStats.mood - newMoodDecrease, 0),
           }));
           statMoodChangeRef.current = true;
           dispatch({ type: 'CHANGE_MOOD', payload: -newMoodDecrease });
