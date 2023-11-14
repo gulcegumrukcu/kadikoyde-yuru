@@ -27,6 +27,8 @@ function App() {
   const statIntelligenceChangeRef = useRef(false);
   const [showMoneyAnimation, setShowMoneyAnimation] = useState(false);
   const [showMoodAnimation, setShowMoodAnimation] = useState(false);
+  const [showHealthAnimation, setShowHealthAnimation] = useState(false);
+  const [showIntelligenceAnimation, setShowIntelligenceAnimation] = useState(false);
   const dispatch = useDispatch();
   const handleToggleSound = () => {
     // Implement sound control logic here
@@ -216,9 +218,10 @@ function App() {
           };
 
         case 'su':
-          const newMoodIncrease = 10
+          const newMoodIncrease = 10;
           setUserChoseSuIc(true);
           handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation);  // Default is increase
+          statMoodChangeRef.current = true;
           setCharacterStats((prevStats) => ({
             ...prevStats,
             mood: prevStats.mood + newMoodIncrease,
@@ -227,12 +230,10 @@ function App() {
           return {
             ...prevStory,
             text: [
-
               'Gluk, gluk ve gluk. ',
               {
                 text: '\nSuyun canlandırıcı etkisiyle kendini daha iyi hissetmeye başladın bile.',
                 style: {
-
                   fontWeight: 'normal',
                   fontStyle: 'italic',
                   color: 'white',
@@ -240,7 +241,6 @@ function App() {
               },
               '\n\nKapı hala çalıyor.',
             ],
-
             choices: [
               { text: 'GELİYORUM!!!', target: 'kapi-su' },
             ],
@@ -250,109 +250,90 @@ function App() {
           };
 
 
+
         case 'kapi-su':
-          handleIntelligenceCheckAnimation(dispatch, characterStats.intelligence > 55, setShowIntelligenceCheckAnimation)
-            .then((isSuccess) => {
-              if (isSuccess) {
-                return {
-                  ...prevStory,
-                  text: [
-                    {
-                      text: 'Sabah içtiği iki litre kahveyi göz bebekleriyle anlatan çılgın apartman yöneticin kapıda. ',
-                      style: {
+          handleIntelligenceCheckAnimation(dispatch, characterStats.intelligence > 55, setShowIntelligenceCheckAnimation);
 
-                        fontWeight: 'normal',
+          if (characterStats.intelligence > 55) {
+            return {
+              ...prevStory,
+              text: [
+                {
+                  text: 'Sabah içtiği iki litre kahveyi göz bebekleriyle anlatan çılgın apartman yöneticin kapıda. ',
+                  style: {
+                    fontWeight: 'normal',
+                  },
+                },
+                {
+                  text: '\n\n“Günaydın, günaydın...... Naptın?”\n',
+                  style: {
+                    fontWeight: 'normal',
+                    fontStyle: 'italic',
+                    color: 'white',
+                  },
+                },
+                '\nSana yumruğunu uzattığını görüyorsun, niyetinin',
+                {
+                  text: ' ‘fist bump’ ',
+                  style: {
+                    fontWeight: 'bold',
+                    fontStyle: 'italic',
+                    color: 'white',
+                  },
+                },
+                'olduğu aşikar. \n\nHatta bunu gençler arası bir selamlaşma olarak gördüğünü söylemek de zor değil, Watson. ',
+              ],
+              choices: [
+                { text: 'POKER FACE', target: 'aidat' },
+                { text: 'YUMRUK TOKUŞTUR', target: 'aidat' },
+              ],
+              buttonsDisabled: false,
+            };
+          } else {
+            return {
+              ...prevStory,
+              text: [
+                {
+                  text: 'Sabah içtiği iki litre kahveyi göz bebekleriyle anlatan çılgın apartman yöneticin kapıda. ',
+                  style: {
+                    fontWeight: 'normal',
+                  },
+                },
+                {
+                  text: '\n\n“Günaydın, günaydın...... Naptın?”\n',
+                  style: {
+                    fontWeight: 'normal',
+                    fontStyle: 'italic',
+                    color: 'white',
+                  },
+                },
+                '\nElini kaldırıp tuhaf bir şekle sokuyor, ',
+                {
+                  text: 'yumruk ',
+                  style: {
+                    fontWeight: 'bold',
+                    fontStyle: 'italic',
+                    color: 'white',
+                  },
+                },
+                'mu o? ',
+                {
+                  text: '\n\nİnan bana bu zeka anlayabilmek için elinden geleni yapıyorsun.',
+                  style: {
+                    fontWeight: 'normal',
+                    fontStyle: 'italic',
+                  },
+                },
+              ],
+              choices: [
+                { text: 'POKER FACE', target: 'aidat' },
+                { text: 'YUMRUK TOKUŞTUR', target: 'aidat' },
+              ],
+              buttonsDisabled: false,
+            };
+          }
 
 
-                      },
-                    },
-                    {
-                      text: '\n\n“Günaydın, günaydın...... Naptın?”\n',
-                      style: {
-
-                        fontWeight: 'normal',
-                        fontStyle: 'italic',
-                        color: 'white',
-                      },
-                    },
-                    '\nSana yumruğunu uzattığını görüyorsun, niyetinin',
-                    {
-                      text: ' ‘fist bump’ ',
-                      style: {
-
-                        fontWeight: 'bold',
-                        fontStyle: 'italic',
-                        color: 'white',
-                      },
-                    },
-                    'olduğu aşikar. \n\nHatta bunu gençler arası bir selamlaşma olarak gördüğünü söylemek de zor değil, Watson. ',
-
-
-                  ],
-
-                  choices: [
-                    { text: 'POKER FACE', target: 'aidat' },
-                    { text: 'YUMRUK TOKUŞTUR', target: 'aidat' },
-                  ],
-                  buttonsDisabled: false,
-
-                };
-
-              } else {
-
-                return {
-                  ...prevStory,
-                  text: [
-                    {
-                      text: 'Sabah içtiği iki litre kahveyi göz bebekleriyle anlatan çılgın apartman yöneticin kapıda. ',
-                      style: {
-
-                        fontWeight: 'normal',
-
-
-                      },
-                    },
-                    {
-                      text: '\n\n“Günaydın, günaydın...... Naptın?”\n',
-                      style: {
-
-                        fontWeight: 'normal',
-                        fontStyle: 'italic',
-                        color: 'white',
-                      },
-                    },
-                    '\nElini kaldırıp tuhaf bir şekle sokuyor, ',
-                    {
-                      text: 'yumruk ',
-                      style: {
-
-                        fontWeight: 'bold',
-                        fontStyle: 'italic',
-                        color: 'white',
-                      },
-                    },
-                    'mu o? ',
-                    {
-                      text: '\n\nİnan bana bu zeka anlayabilmek için elinden geleni yapıyorsun.',
-                      style: {
-
-                        fontWeight: 'normal',
-                        fontStyle: 'italic',
-
-                      },
-                    },
-
-                  ],
-
-                  choices: [
-                    { text: 'POKER FACE', target: 'aidat' },
-                    { text: 'YUMRUK TOKUŞTUR', target: 'aidat' },
-                  ],
-                  buttonsDisabled: false,
-
-                };
-              }
-            });
 
 
         case 'aidat':
@@ -434,35 +415,35 @@ function App() {
             buttonsDisabled: false,
           };
         case 'ev':
-          const newMoneyDecrease = 10; // Adjust the amount as needed
-          handleMoneyAnimation(dispatch, newMoneyDecrease, setShowMoneyAnimation, statMoneyChangeRef, false); // Decrease money
+          const newMoneyDecreaseEv = 10; // Adjust the amount as needed
+          console.log('Before handleMoneyAnimation');
+          handleMoneyAnimation(dispatch, newMoneyDecreaseEv, setShowMoneyAnimation, statMoneyChangeRef, false); // Decrease money
+          console.log('After handleMoneyAnimation');
           statMoneyChangeRef.current = true;
           setCharacterStats((prevStats) => ({
             ...prevStats,
-            money: Math.max(prevStats.money - newMoneyDecrease),
+            money: Math.max(prevStats.money - newMoneyDecreaseEv, 0), // Ensure non-negative value
           }));
-          dispatch({ type: 'CHANGE_MONEY', payload: -newMoneyDecrease });
+          dispatch({ type: 'CHANGE_MONEY', payload: -newMoneyDecreaseEv });
           return {
             ...prevStory,
             text: [
               {
                 text: '“Sağolasın.. Ha bi de bugün çağırdım ustaları, çatıyı yapacaklar, evde olursun değil mi?” \n',
                 style: {
-
                   fontWeight: 'normal',
                   fontStyle: 'italic',
                   color: 'white',
-
                 },
               },
             ],
-
             choices: [
               { text: '"ASLINDA ŞU AN OKULDA OLMAM LAZIM"', target: 'okul' },
               { text: '"ASLINDA ŞU AN İŞTE OLMAM LAZIM"', target: 'is' },
             ],
             buttonsDisabled: false,
           };
+
         default:
           console.warn('Unhandled target:', path);
           return prevStory;
@@ -511,13 +492,19 @@ function App() {
             onToggleSound={handleToggleSound}
             onMenuClick={handleMenuClick}
             characterStats={characterStats}
+
             showMoodAnimation={showMoodAnimation}
-            showIntelligenceCheckAnimation={showIntelligenceCheckAnimation}
+            showIntelligenceAnimation={showIntelligenceAnimation}
             showMoneyAnimation={showMoneyAnimation}
+            showHealthAnimation={showHealthAnimation}
+
             statMoneyChangeRef={statMoneyChangeRef}
             statHealthChangeRef={statHealthChangeRef}
             statIntelligenceChangeRef={statIntelligenceChangeRef}
             statMoodChangeRef={statMoodChangeRef}
+
+            showIntelligenceCheckAnimation={showIntelligenceCheckAnimation}
+
           />
 
 

@@ -6,6 +6,7 @@ const correctAudio = new Audio(correct)
 const wrongAudio = new Audio(wrong)
 
 const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, statMoneyChangeRef, increase = true) => {
+    console.log(`Handling money animation - Amount: ${amount}, Increase: ${increase}`);
     const backgroundColor = increase ? 'green' : 'red';
     const initialAlertText = amount !== 0 ? (
         <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Para`}</span>
@@ -59,10 +60,11 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodCha
     }
     const clampedAmount = 10;
     setTimeout(() => {
+        console.log('Timer completed - Hiding Mood Animation');
         const moodChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_MOOD', payload: moodChange });
-        statMoodChangeRef = true;
         setShowMoodAnimation('');
+        statMoodChangeRef.current = true;
     }, 1000);
 
     return () => {
@@ -82,7 +84,7 @@ const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, statHea
     setTimeout(() => {
         const healthChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_HEALTH', payload: healthChange });
-        statHealthChangeRef = true;
+        statHealthChangeRef.current = true;
         setShowHealthAnimation('');
     }, 1000);
 
@@ -98,7 +100,6 @@ async function handleIntelligenceCheckAnimation(dispatch, intelligenceCheckResul
         ? <span style={{ backgroundColor, padding: '6px' }}>Zeka Kontrol Başarılı!</span>
         : <span style={{ backgroundColor, padding: '6px' }}>Zeka Kontrol Başarısız!</span>;
 
-
     setShowIntelligenceCheckAnimation({
         text: initialAlertText,
         style: {
@@ -106,18 +107,21 @@ async function handleIntelligenceCheckAnimation(dispatch, intelligenceCheckResul
             padding: '6px',
         },
     });
+
     audioToPlay.play();
 
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            setShowIntelligenceCheckAnimation('');
+            resolve(true);
+        }, 1000);
+    });
+}
 
-
-    setTimeout(() => {
-
-        setShowIntelligenceCheckAnimation('');
-    }, 1000);
-
-
-
-
-
+export default {
+    handleMoodAnimation,
+    handleMoneyAnimation,
+    handleHealthAnimation,
+    handleIntelligenceAnimation,
+    handleIntelligenceCheckAnimation,
 };
-export default { handleMoodAnimation, handleMoneyAnimation, handleHealthAnimation, handleIntelligenceAnimation, handleIntelligenceCheckAnimation };
