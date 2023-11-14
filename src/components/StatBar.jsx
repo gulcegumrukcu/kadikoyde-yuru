@@ -4,6 +4,7 @@ const StatBar = ({ label, value, color, circleBorderColor }) => {
     const statBarStyle = {
         fontSize: '24px',
         color: color || '#ddd',
+
     };
 
 

@@ -1,7 +1,7 @@
 // App.jsx Do no delete this
 
 
-import React, { useState, useEffect, } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import EntrancePage from './src/components/EntrancePage';
 import { useDispatch } from 'react-redux';
 
@@ -21,7 +21,10 @@ function generateRandomStat() {
 
 function App() {
   const [showIntelligenceCheckAnimation, setShowIntelligenceCheckAnimation] = useState(false);
-
+  const statMoneyChangeRef = useRef(false);
+  const statMoodChangeRef = useRef(false);
+  const statHealthChangeRef = useRef(false);
+  const statIntelligenceChangeRef = useRef(false);
   const [showMoneyAnimation, setShowMoneyAnimation] = useState(false);
   const [showMoodAnimation, setShowMoodAnimation] = useState(false);
   const dispatch = useDispatch();
@@ -84,7 +87,7 @@ function App() {
 
 
   const [showFooter, setShowFooter] = useState(false);
-  const { handleMoodAnimation, handleIntelligenceCheckAnimation, handleMoneyAnimation } = utils;
+  const { handleMoodAnimation, handleIntelligenceCheckAnimation, handleMoneyAnimation, handleHealthAnimation, handleIntelligenceAnimation } = utils;
 
 
 
@@ -141,6 +144,7 @@ function App() {
             ...prevStats,
             mood: Math.max(prevStats.mood - newMoodDecrease),
           }));
+          statMoodChangeRef.current = true;
           dispatch({ type: 'CHANGE_MOOD', payload: -newMoodDecrease });
           return {
             ...prevStory,
@@ -431,8 +435,8 @@ function App() {
           };
         case 'ev':
           const newMoneyDecrease = 10; // Adjust the amount as needed
-          handleMoneyAnimation(dispatch, newMoneyDecrease, setShowMoneyAnimation, false); // Decrease money
-
+          handleMoneyAnimation(dispatch, newMoneyDecrease, setShowMoneyAnimation, statMoneyChangeRef, false); // Decrease money
+          statMoneyChangeRef.current = true;
           setCharacterStats((prevStats) => ({
             ...prevStats,
             money: Math.max(prevStats.money - newMoneyDecrease),
@@ -510,6 +514,10 @@ function App() {
             showMoodAnimation={showMoodAnimation}
             showIntelligenceCheckAnimation={showIntelligenceCheckAnimation}
             showMoneyAnimation={showMoneyAnimation}
+            statMoneyChangeRef={statMoneyChangeRef}
+            statHealthChangeRef={statHealthChangeRef}
+            statIntelligenceChangeRef={statIntelligenceChangeRef}
+            statMoodChangeRef={statMoodChangeRef}
           />
 
 

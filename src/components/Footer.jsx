@@ -5,7 +5,7 @@ import StatContainer from './StatContainer';
 import useAnimation from './useAnimation'
 
 
-const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMoodAnimation, showIntelligenceCheckAnimation, showMoneyAnimation }) => {
+const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMoodAnimation, showIntelligenceCheckAnimation, showMoneyAnimation, statMoneyChangeRef, statHealthChangeRef, statIntelligenceChangeRef, statMoodChangeRef }) => {
 
     const showIntelligenceCheckAnimationValue = useAnimation(showIntelligenceCheckAnimation.text);
     if (!showFooter) {
@@ -27,6 +27,7 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                 value={characterStats.health}
                                 color='#F34203'
                                 circleBorderColor='#F34203'
+                                statHealthChangeRef={statHealthChangeRef}
 
                             />
                         )}
@@ -36,7 +37,7 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                 value={characterStats.mood}
                                 color='#FEE440'
                                 circleBorderColor='#FEE440'  // For the circular stat
-
+                                statMoodChangeRef={statMoodChangeRef}
 
                             />
                         )}
@@ -46,7 +47,7 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                 value={characterStats.money}
                                 color='#496F5D'
                                 circleBorderColor='#496F5D'
-
+                                statMoneyChangeRef={statMoneyChangeRef}
 
                             />
                         )}
@@ -57,7 +58,7 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                 value={characterStats.intelligence}
                                 color='#26408B'
                                 circleBorderColor='#26408B'
-
+                                statIntelligenceChangeRef={statIntelligenceChangeRef}
 
                             />
                         )}
@@ -69,7 +70,6 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                     {showMoodAnimation}
                                 </div>
 
-                                {console.log('footer - showMoodAnimation:', showMoodAnimation)}
                             </>
 
 
@@ -79,7 +79,6 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                 <div className='text-white font-bold absolute lg:right-16 right-2 top-16 text-md lg:text-2xl '>
                                     {showMoneyAnimation}
                                 </div>
-                                {console.log('footer - showMoneyAnimation:', showMoneyAnimation)}
                             </>
                         )}
 

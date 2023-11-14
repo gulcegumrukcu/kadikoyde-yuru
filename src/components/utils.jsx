@@ -5,11 +5,11 @@ import wrong from '../assets/wrong.mp3'
 const correctAudio = new Audio(correct)
 const wrongAudio = new Audio(wrong)
 
-const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, increase = true) => {
+const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, statMoneyChangeRef, increase = true) => {
     const backgroundColor = increase ? 'green' : 'red';
-    const initialAlertText = amount !== 0
-        ? <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Para`}</span>
-        : '';
+    const initialAlertText = amount !== 0 ? (
+        <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Para`}</span>
+    ) : '';
     if (amount !== 0) {
         setShowMoneyAnimation(initialAlertText);
     }
@@ -17,6 +17,7 @@ const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, increase 
     setTimeout(() => {
         const moneyChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_MONEY', payload: moneyChange });
+        statMoneyChangeRef.current = true; // Notify about the stat change
         setShowMoneyAnimation('');
     }, 1000);
     return () => {
@@ -24,7 +25,7 @@ const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, increase 
     };
 };
 
-const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimation, increase = true) => {
+const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimation, statIntelligenceChangeRef, increase = true) => {
     const backgroundColor = increase ? 'green' : 'red';
     const initialAlertText = amount !== 0
         ? <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Zeka`}</span>
@@ -39,6 +40,7 @@ const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimat
     setTimeout(() => {
         const intelligenceChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_INTELLIGENCE', payload: intelligenceChange });
+        statIntelligenceChangeRef.current = true;
         setShowIntelligenceAnimation('');
     }, 1000);
 
@@ -47,7 +49,7 @@ const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimat
     };
 };
 
-const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, increase = true) => {
+const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodChangeRef, increase = true) => {
     const backgroundColor = increase ? 'green' : 'red';
     const initialAlertText = amount !== 0
         ? <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Ruh Hali`}</span>
@@ -59,6 +61,7 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, increase = 
     setTimeout(() => {
         const moodChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_MOOD', payload: moodChange });
+        statMoodChangeRef = true;
         setShowMoodAnimation('');
     }, 1000);
 
@@ -67,7 +70,7 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, increase = 
     };
 };
 
-const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, increase = true) => {
+const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, statHealthChangeRef, increase = true) => {
     const backgroundColor = increase ? 'green' : 'red';
     const initialAlertText = amount !== 0
         ? <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Sağlık`}</span>
@@ -79,6 +82,7 @@ const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, increas
     setTimeout(() => {
         const healthChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_HEALTH', payload: healthChange });
+        statHealthChangeRef = true;
         setShowHealthAnimation('');
     }, 1000);
 
@@ -88,7 +92,6 @@ const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, increas
 };
 
 async function handleIntelligenceCheckAnimation(dispatch, intelligenceCheckResult, setShowIntelligenceCheckAnimation) {
-    console.log(intelligenceCheckResult)
     const backgroundColor = intelligenceCheckResult ? 'green' : 'red';
     const audioToPlay = intelligenceCheckResult ? correctAudio : wrongAudio;
     const initialAlertText = intelligenceCheckResult

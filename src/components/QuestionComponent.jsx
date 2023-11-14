@@ -20,7 +20,7 @@ const applyStyles = (text) => {
 
 
 const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle }) => (
-    <div className='h-auto w-auto max-w-xs p-4 lg:max-h-56vh lg:max-w-2xl lg:h-auto lg:p-8 bg-opacity-95 bg-[#161617] flex flex-col rounded-0 items-center justify-center font-montserrat mb-80 lg:mb-20 hover:bg-black ' id='story'>
+    <div className='h-auto w-auto max-w-xs p-4 lg:max-h-56vh lg:max-w-2xl lg:h-auto lg:p-8 bg-opacity-95 bg-[#161617] flex flex-col rounded-0 items-center justify-center font-montserrat mb-60 lg:mb-20 hover:bg-black ' id='story'>
         <div className='text-[#f5fdc3] text-sm lg:text-xl mt-4 whitespace-pre-line'>
             {Array.isArray(story.text) ? (
                 story.text.map((item, index) => (
