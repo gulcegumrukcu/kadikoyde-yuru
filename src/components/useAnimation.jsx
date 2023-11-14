@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
-const useAnimation = (animationValue) => {
+const useAnimation = (initialValue) => {
     const [animationState, setAnimationState] = useState(false);
 
     useEffect(() => {
-        if (animationValue) {
+        if (initialValue) {
             setAnimationState(true);
             const timeoutId = setTimeout(() => {
                 setAnimationState(false);
@@ -14,9 +14,9 @@ const useAnimation = (animationValue) => {
                 clearTimeout(timeoutId);
             };
         }
-    }, [animationValue]);
+    }, [initialValue]);
 
-    return animationValue ? animationValue : animationState;
+    return initialValue ? initialValue : animationState;
 };
 
 export default useAnimation;

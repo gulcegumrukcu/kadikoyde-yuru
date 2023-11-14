@@ -1,6 +1,36 @@
 // utils.js
+const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, increase = true) => {
+    // Set an initial alert text based on the increase/decrease with color
+    const backgroundColor = increase ? 'green' : 'red';
+    const initialAlertText = amount !== 0
+        ? <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Para`}</span>
+        : '';
+
+
+
+    // Check if the amount is not 0 before setting the initial animation value
+    if (amount !== 0) {
+        setShowMoneyAnimation(initialAlertText);
+    }
+
+    // Ensure the amount is within the desired range
+    const clampedAmount = 10;
+
+    // Dispatch the action to increase or decrease money after a delay
+    setTimeout(() => {
+        const moneyChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
+        dispatch({ type: 'CHANGE_MONEY', payload: moneyChange });
+
+        setShowMoneyAnimation('');
+    }, 1000);
+
+    return () => {
+        setShowMoneyAnimation(increase ? clampedAmount : 0);
+    };
+};
+
+
 const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, increase = true) => {
-    console.log('handleMoodAnimation called with amount:', amount);
 
     // Set an initial alert text based on the increase/decrease with color
     const backgroundColor = increase ? 'green' : 'red';
@@ -13,7 +43,7 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, increase = 
         setShowMoodAnimation(initialAlertText);
     }
     // Ensure the amount is within the desired range
-    const clampedAmount = Math.min(Math.max(amount, -6), 6);
+    const clampedAmount = 10;
 
     // Dispatch the action to increase or decrease mood after a delay
     setTimeout(() => {
@@ -22,7 +52,7 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, increase = 
 
         // Reset the mood animation after the action is dispatched
         setShowMoodAnimation('');
-    }, 2000);
+    }, 1000);
 
     return () => {
         setShowMoodAnimation(increase ? clampedAmount : 0);
@@ -49,7 +79,7 @@ const handleIntelligenceAnimation = (dispatch, intelligenceCheckResult, setShowI
     // Reset the intelligence animation after a delay
     setTimeout(() => {
         setShowIntelligenceAnimation('');
-    }, 2000);
+    }, 1000);
 };
 
-export default { handleMoodAnimation, handleIntelligenceAnimation };
+export default { handleMoodAnimation, handleIntelligenceAnimation, handleMoneyAnimation };

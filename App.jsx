@@ -20,8 +20,9 @@ function generateRandomStat() {
 
 
 function App() {
+  const [showIntelligenceAnimation, setShowIntelligenceAnimation] = useState(false);
 
-
+  const [showMoneyAnimation, setShowMoneyAnimation] = useState(false);
   const [showMoodAnimation, setShowMoodAnimation] = useState(false);
   const dispatch = useDispatch();
   const handleToggleSound = () => {
@@ -83,8 +84,9 @@ function App() {
 
 
   const [showFooter, setShowFooter] = useState(false);
-  const { handleMoodAnimation, handleIntelligenceAnimation } = utils;
-  const [showIntelligenceAnimation, setShowIntelligenceAnimation] = useState(false);
+  const { handleMoodAnimation, handleIntelligenceAnimation, handleMoneyAnimation } = utils;
+
+
 
   const handleChoice = (path) => {
     if (story.buttonsDisabled) return;
@@ -247,7 +249,7 @@ function App() {
 
         case 'kapi-su':
           handleIntelligenceAnimation(dispatch, true, setShowIntelligenceAnimation);
-          if (characterStats.intelligence > 65) {
+          if (characterStats.intelligence > 55) {
             return {
               ...prevStory,
               text: [
@@ -346,25 +348,21 @@ function App() {
 
             };
           }
-
         case 'aidat':
+
+
           return {
             ...prevStory,
-
             text: [
               {
                 text: '“Bizim, bi aidat vardı...Bu ayın.” \n',
                 style: {
-
                   fontWeight: 'normal',
                   fontStyle: 'italic',
                   color: 'white',
-
                 },
               },
-
               '\nYüzünde sürekli taktığı medikal maskesi, uzun, gri çalı saçları ile evsiz bir  bilim adamına benzeyen adını bilmediğin apartman abinin söylediklerini anlamakta güçlük çekiyorsun.',
-
             ],
             choices: [
               { text: '"ABİ AYIN DAHA 1İ BUGÜN"', target: 'binnur' },
@@ -372,7 +370,6 @@ function App() {
             ],
             buttonsDisabled: false,
           };
-
         case 'binnur':
           return {
             ...prevStory,
@@ -430,6 +427,14 @@ function App() {
             buttonsDisabled: false,
           };
         case 'ev':
+          const newMoneyDecrease = 10; // Adjust the amount as needed
+          handleMoneyAnimation(dispatch, newMoneyDecrease, setShowMoneyAnimation, false); // Decrease money
+
+          setCharacterStats((prevStats) => ({
+            ...prevStats,
+            money: Math.max(prevStats.money - newMoneyDecrease),
+          }));
+          dispatch({ type: 'CHANGE_MONEY', payload: -newMoneyDecrease });
           return {
             ...prevStory,
             text: [
@@ -443,9 +448,6 @@ function App() {
 
                 },
               },
-
-
-
             ],
 
             choices: [
@@ -463,7 +465,7 @@ function App() {
 
   useEffect(() => {
     // This block of code will run whenever showIntelligenceAnimation changes
-    console.log('Show Intelligence Animation:', showIntelligenceAnimation);
+    ;
   }, [showIntelligenceAnimation]);
 
   useEffect(() => {
@@ -500,8 +502,8 @@ function App() {
 
 
 
-
-
+  console.log('App - showMoodAnimation type:', typeof showMoodAnimation);
+  console.log('App - showMoneyAnimation type:', typeof showMoneyAnimation);
 
   return (
     <div>
@@ -517,6 +519,7 @@ function App() {
             characterStats={characterStats}
             showMoodAnimation={showMoodAnimation}
             showIntelligenceAnimation={showIntelligenceAnimation}
+            showMoneyAnimation={showMoneyAnimation}
           />
 
 

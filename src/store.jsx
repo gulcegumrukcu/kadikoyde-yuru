@@ -1,8 +1,7 @@
-// STORE.js DO NOT DELETE THAT
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers'; // Replace with your actual reducer file path
 
-import { createStore } from 'redux';
-import rootReducer from './reducers/index'; // Adjust the path accordingly
-
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default store;

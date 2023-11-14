@@ -5,18 +5,16 @@ import StatContainer from './StatContainer';
 import useAnimation from './useAnimation'
 
 
-const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMoodAnimation, showIntelligenceAnimation }) => {
-    const showMoodAnimationValue = useAnimation(
-        showMoodAnimation !== 0 ? `${showMoodAnimation > 0 ? '+' : '-'}${showMoodAnimation} Ruh Hali` : ''
-    );
+const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMoodAnimation, showIntelligenceAnimation, showMoneyAnimation }) => {
+
     const showIntelligenceAnimationValue = useAnimation(showIntelligenceAnimation.text);
     if (!showFooter) {
         return null;
     }
 
-    console.log('Footer - characterStats:', characterStats);
-    console.log('Footer - showMoodAnimation:', showMoodAnimation);
-    console.log('Footer - showIntelligenceAnimation:', showIntelligenceAnimation);
+
+
+
 
     return (
         <>
@@ -29,7 +27,7 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                 value={characterStats.health}
                                 color='#F34203'
                                 circleBorderColor='#F34203'
-                                animationValue={showMoodAnimation}
+
                             />
                         )}
                         {characterStats && (
@@ -38,8 +36,8 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                 value={characterStats.mood}
                                 color='#FEE440'
                                 circleBorderColor='#FEE440'  // For the circular stat
-                                showMoodAnimation={showMoodAnimation}
-                                animationValue={showMoodAnimation}
+
+
                             />
                         )}
                         {characterStats && (
@@ -48,7 +46,8 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                 value={characterStats.money}
                                 color='#496F5D'
                                 circleBorderColor='#496F5D'
-                                animationValue={showMoodAnimation}
+
+
                             />
                         )}
 
@@ -58,9 +57,8 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                 value={characterStats.intelligence}
                                 color='#26408B'
                                 circleBorderColor='#26408B'
-                                animationValue={showIntelligenceAnimationValue}
-                                showAnimation={showIntelligenceAnimation}
-                                backgroundColor={showIntelligenceAnimationValue ? '#00FF00' : '#FF0000'}
+
+
                             />
                         )}
 
@@ -71,23 +69,31 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                                     {showMoodAnimation}
                                 </div>
 
-                                {console.log('app - showMoodAnimation:', showMoodAnimation)}
+                                {console.log('footer - showMoodAnimation:', showMoodAnimation)}
                             </>
 
 
                         )}
+                        {showMoneyAnimation && (
+                            <>
+                                <div className='text-white font-bold absolute lg:right-16 right-2 top-16 text-md lg:text-2xl '>
+                                    {showMoneyAnimation}
+                                </div>
+                                {console.log('footer - showMoneyAnimation:', showMoneyAnimation)}
+                            </>
+                        )}
+
 
                         {showIntelligenceAnimation && showIntelligenceAnimationValue && (
                             <>
                                 <div className='text-white font-bold absolute lg:right-16 right-2 top-16 text-md lg:text-2xl '>
                                     {showIntelligenceAnimationValue}
                                 </div>
-                                {console.log('app - showIntelligenceAnimation:', showIntelligenceAnimation)}
+
                             </>
                         )}
 
-                        {console.log('Footer - showMoodAnimation:', showMoodAnimation)}
-                        {console.log('Footer - showIntelligenceAnimation:', showIntelligenceAnimation)}
+
 
                     </div>
 
@@ -96,6 +102,8 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
         </>
     );
 };
+console.log('footer - showMoodAnimation type:', typeof showMoodAnimation);
+console.log('footer - showMoneyAnimation type:', typeof showMoneyAnimation);
 
 const footerStyle = {
 
