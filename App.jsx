@@ -20,7 +20,7 @@ function generateRandomStat() {
 
 
 function App() {
-  const [showIntelligenceAnimation, setShowIntelligenceAnimation] = useState(false);
+  const [showIntelligenceCheckAnimation, setShowIntelligenceCheckAnimation] = useState(false);
 
   const [showMoneyAnimation, setShowMoneyAnimation] = useState(false);
   const [showMoodAnimation, setShowMoodAnimation] = useState(false);
@@ -84,13 +84,12 @@ function App() {
 
 
   const [showFooter, setShowFooter] = useState(false);
-  const { handleMoodAnimation, handleIntelligenceAnimation, handleMoneyAnimation } = utils;
+  const { handleMoodAnimation, handleIntelligenceCheckAnimation, handleMoneyAnimation } = utils;
 
 
 
-  const handleChoice = (path) => {
+  async function handleChoice(path) {
     if (story.buttonsDisabled) return;
-
     setStory((prevStory) => {
       switch (path) {
         case 'choice':
@@ -248,106 +247,110 @@ function App() {
 
 
         case 'kapi-su':
-          handleIntelligenceAnimation(dispatch, true, setShowIntelligenceAnimation);
-          if (characterStats.intelligence > 55) {
-            return {
-              ...prevStory,
-              text: [
-                {
-                  text: 'Sabah içtiği iki litre kahveyi göz bebekleriyle anlatan çılgın apartman yöneticin kapıda. ',
-                  style: {
+          handleIntelligenceCheckAnimation(dispatch, characterStats.intelligence > 55, setShowIntelligenceCheckAnimation)
+            .then((isSuccess) => {
+              if (isSuccess) {
+                return {
+                  ...prevStory,
+                  text: [
+                    {
+                      text: 'Sabah içtiği iki litre kahveyi göz bebekleriyle anlatan çılgın apartman yöneticin kapıda. ',
+                      style: {
 
-                    fontWeight: 'normal',
-
-
-                  },
-                },
-                {
-                  text: '\n\n“Günaydın, günaydın...... Naptın?”\n',
-                  style: {
-
-                    fontWeight: 'normal',
-                    fontStyle: 'italic',
-                    color: 'white',
-                  },
-                },
-                '\nSana yumruğunu uzattığını görüyorsun, niyetinin',
-                {
-                  text: ' ‘fist bump’ ',
-                  style: {
-
-                    fontWeight: 'bold',
-                    fontStyle: 'italic',
-                    color: 'white',
-                  },
-                },
-                'olduğu aşikar. \n\nHatta bunu gençler arası bir selamlaşma olarak gördüğünü söylemek de zor değil, Watson. ',
+                        fontWeight: 'normal',
 
 
-              ],
+                      },
+                    },
+                    {
+                      text: '\n\n“Günaydın, günaydın...... Naptın?”\n',
+                      style: {
 
-              choices: [
-                { text: 'POKER FACE', target: 'aidat' },
-                { text: 'YUMRUK TOKUŞTUR', target: 'aidat' },
-              ],
-              buttonsDisabled: false,
+                        fontWeight: 'normal',
+                        fontStyle: 'italic',
+                        color: 'white',
+                      },
+                    },
+                    '\nSana yumruğunu uzattığını görüyorsun, niyetinin',
+                    {
+                      text: ' ‘fist bump’ ',
+                      style: {
 
-            };
-
-          } else {
-            handleIntelligenceAnimation(dispatch, false, setShowIntelligenceAnimation);
-            return {
-              ...prevStory,
-              text: [
-                {
-                  text: 'Sabah içtiği iki litre kahveyi göz bebekleriyle anlatan çılgın apartman yöneticin kapıda. ',
-                  style: {
-
-                    fontWeight: 'normal',
+                        fontWeight: 'bold',
+                        fontStyle: 'italic',
+                        color: 'white',
+                      },
+                    },
+                    'olduğu aşikar. \n\nHatta bunu gençler arası bir selamlaşma olarak gördüğünü söylemek de zor değil, Watson. ',
 
 
-                  },
-                },
-                {
-                  text: '\n\n“Günaydın, günaydın...... Naptın?”\n',
-                  style: {
+                  ],
 
-                    fontWeight: 'normal',
-                    fontStyle: 'italic',
-                    color: 'white',
-                  },
-                },
-                '\nElini kaldırıp tuhaf bir şekle sokuyor, ',
-                {
-                  text: 'yumruk ',
-                  style: {
+                  choices: [
+                    { text: 'POKER FACE', target: 'aidat' },
+                    { text: 'YUMRUK TOKUŞTUR', target: 'aidat' },
+                  ],
+                  buttonsDisabled: false,
 
-                    fontWeight: 'bold',
-                    fontStyle: 'italic',
-                    color: 'white',
-                  },
-                },
-                'mu o? ',
-                {
-                  text: '\n\nİnan bana bu zeka anlayabilmek için elinden geleni yapıyorsun.',
-                  style: {
+                };
 
-                    fontWeight: 'normal',
-                    fontStyle: 'italic',
+              } else {
 
-                  },
-                },
+                return {
+                  ...prevStory,
+                  text: [
+                    {
+                      text: 'Sabah içtiği iki litre kahveyi göz bebekleriyle anlatan çılgın apartman yöneticin kapıda. ',
+                      style: {
 
-              ],
+                        fontWeight: 'normal',
 
-              choices: [
-                { text: 'POKER FACE', target: 'aidat' },
-                { text: 'YUMRUK TOKUŞTUR', target: 'aidat' },
-              ],
-              buttonsDisabled: false,
 
-            };
-          }
+                      },
+                    },
+                    {
+                      text: '\n\n“Günaydın, günaydın...... Naptın?”\n',
+                      style: {
+
+                        fontWeight: 'normal',
+                        fontStyle: 'italic',
+                        color: 'white',
+                      },
+                    },
+                    '\nElini kaldırıp tuhaf bir şekle sokuyor, ',
+                    {
+                      text: 'yumruk ',
+                      style: {
+
+                        fontWeight: 'bold',
+                        fontStyle: 'italic',
+                        color: 'white',
+                      },
+                    },
+                    'mu o? ',
+                    {
+                      text: '\n\nİnan bana bu zeka anlayabilmek için elinden geleni yapıyorsun.',
+                      style: {
+
+                        fontWeight: 'normal',
+                        fontStyle: 'italic',
+
+                      },
+                    },
+
+                  ],
+
+                  choices: [
+                    { text: 'POKER FACE', target: 'aidat' },
+                    { text: 'YUMRUK TOKUŞTUR', target: 'aidat' },
+                  ],
+                  buttonsDisabled: false,
+
+                };
+              }
+            });
+
+
         case 'aidat':
 
 
@@ -377,7 +380,7 @@ function App() {
             text: [
               'Açıkçası seni pek dinliyormuş gibi gözükmüyor..\n',
               {
-                text: '\n“Ya o değil de, çok ses yapıyormuşsunuz. Alt kattaki Binnur Hanım çok rahatsız valla. \nİletmemi istedi...” \n',
+                text: '\n“Ya o değil de, çok ses yapıyormuşsunuz. Alt kattaki Binnur Hanım çok rahatsız valla. İletmemi istedi...” \n',
                 style: {
 
                   fontWeight: 'normal',
@@ -464,16 +467,10 @@ function App() {
   };
 
   useEffect(() => {
-    // This block of code will run whenever showIntelligenceAnimation changes
-    ;
-  }, [showIntelligenceAnimation]);
-
-  useEffect(() => {
     if (story.background) {
       console.log('Background Image:', story.background);
     }
   }, [story.background]);
-
 
   const containerStyle = {
     backgroundImage: `url(${story.background || './images/background.png'})`,
@@ -484,8 +481,6 @@ function App() {
     minHeight: showFooter ? 'calc(100vh - 160px)' : '100vh',
     position: 'relative',
   };
-
-
 
   const buttonsContainerStyle = {
 
@@ -500,11 +495,6 @@ function App() {
 
   };
 
-
-
-  console.log('App - showMoodAnimation type:', typeof showMoodAnimation);
-  console.log('App - showMoneyAnimation type:', typeof showMoneyAnimation);
-
   return (
     <div>
       {showEntrancePage ? (
@@ -518,12 +508,12 @@ function App() {
             onMenuClick={handleMenuClick}
             characterStats={characterStats}
             showMoodAnimation={showMoodAnimation}
-            showIntelligenceAnimation={showIntelligenceAnimation}
+            showIntelligenceCheckAnimation={showIntelligenceCheckAnimation}
             showMoneyAnimation={showMoneyAnimation}
           />
 
 
-          <div className='flex flex-col items-center justify-center  text-center ' style={containerStyle}>
+          <div className='flex items-center   justify-center   text-center ' style={containerStyle}>
 
             <QuestionComponent
               story={story}

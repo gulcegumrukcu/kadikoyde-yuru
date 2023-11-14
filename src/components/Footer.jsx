@@ -5,9 +5,9 @@ import StatContainer from './StatContainer';
 import useAnimation from './useAnimation'
 
 
-const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMoodAnimation, showIntelligenceAnimation, showMoneyAnimation }) => {
+const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMoodAnimation, showIntelligenceCheckAnimation, showMoneyAnimation }) => {
 
-    const showIntelligenceAnimationValue = useAnimation(showIntelligenceAnimation.text);
+    const showIntelligenceCheckAnimationValue = useAnimation(showIntelligenceCheckAnimation.text);
     if (!showFooter) {
         return null;
     }
@@ -84,10 +84,10 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                         )}
 
 
-                        {showIntelligenceAnimation && showIntelligenceAnimationValue && (
+                        {showIntelligenceCheckAnimation && showIntelligenceCheckAnimationValue && (
                             <>
                                 <div className='text-white font-bold absolute lg:right-16 right-2 top-16 text-md lg:text-2xl '>
-                                    {showIntelligenceAnimationValue}
+                                    {showIntelligenceCheckAnimationValue}
                                 </div>
 
                             </>
@@ -102,8 +102,6 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
         </>
     );
 };
-console.log('footer - showMoodAnimation type:', typeof showMoodAnimation);
-console.log('footer - showMoneyAnimation type:', typeof showMoneyAnimation);
 
 const footerStyle = {
 

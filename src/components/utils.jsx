@@ -1,56 +1,64 @@
 // utils.js
+import correct from '../assets/correct.mp3'
+import wrong from '../assets/wrong.mp3'
+
+const correctAudio = new Audio(correct)
+const wrongAudio = new Audio(wrong)
+
 const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, increase = true) => {
-    // Set an initial alert text based on the increase/decrease with color
     const backgroundColor = increase ? 'green' : 'red';
     const initialAlertText = amount !== 0
         ? <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Para`}</span>
         : '';
-
-
-
-    // Check if the amount is not 0 before setting the initial animation value
     if (amount !== 0) {
         setShowMoneyAnimation(initialAlertText);
     }
-
-    // Ensure the amount is within the desired range
     const clampedAmount = 10;
-
-    // Dispatch the action to increase or decrease money after a delay
     setTimeout(() => {
         const moneyChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_MONEY', payload: moneyChange });
-
         setShowMoneyAnimation('');
     }, 1000);
-
     return () => {
         setShowMoneyAnimation(increase ? clampedAmount : 0);
     };
 };
 
+const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimation, increase = true) => {
+    const backgroundColor = increase ? 'green' : 'red';
+    const initialAlertText = amount !== 0
+        ? <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Zeka`}</span>
+        : '';
+
+    if (amount !== 0) {
+        setShowIntelligenceAnimation(initialAlertText);
+    }
+
+    const clampedAmount = 10;
+
+    setTimeout(() => {
+        const intelligenceChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
+        dispatch({ type: 'CHANGE_INTELLIGENCE', payload: intelligenceChange });
+        setShowIntelligenceAnimation('');
+    }, 1000);
+
+    return () => {
+        setShowIntelligenceAnimation(increase ? clampedAmount : 0);
+    };
+};
 
 const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, increase = true) => {
-
-    // Set an initial alert text based on the increase/decrease with color
     const backgroundColor = increase ? 'green' : 'red';
     const initialAlertText = amount !== 0
         ? <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Ruh Hali`}</span>
         : '';
-
-    // Check if the amount is not 0 before setting the initial animation value
     if (amount !== 0) {
         setShowMoodAnimation(initialAlertText);
     }
-    // Ensure the amount is within the desired range
     const clampedAmount = 10;
-
-    // Dispatch the action to increase or decrease mood after a delay
     setTimeout(() => {
         const moodChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_MOOD', payload: moodChange });
-
-        // Reset the mood animation after the action is dispatched
         setShowMoodAnimation('');
     }, 1000);
 
@@ -59,27 +67,54 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, increase = 
     };
 };
 
-const handleIntelligenceAnimation = (dispatch, intelligenceCheckResult, setShowIntelligenceAnimation) => {
-    // Set an initial alert text based on the intelligence check result
+const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, increase = true) => {
+    const backgroundColor = increase ? 'green' : 'red';
+    const initialAlertText = amount !== 0
+        ? <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Sağlık`}</span>
+        : '';
+    if (amount !== 0) {
+        setShowHealthAnimation(initialAlertText);
+    }
+    const clampedAmount = 10;
+    setTimeout(() => {
+        const healthChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
+        dispatch({ type: 'CHANGE_HEALTH', payload: healthChange });
+        setShowHealthAnimation('');
+    }, 1000);
+
+    return () => {
+        setShowHealthAnimation(increase ? clampedAmount : 0);
+    };
+};
+
+async function handleIntelligenceCheckAnimation(dispatch, intelligenceCheckResult, setShowIntelligenceCheckAnimation) {
+    console.log(intelligenceCheckResult)
     const backgroundColor = intelligenceCheckResult ? 'green' : 'red';
+    const audioToPlay = intelligenceCheckResult ? correctAudio : wrongAudio;
     const initialAlertText = intelligenceCheckResult
         ? <span style={{ backgroundColor, padding: '6px' }}>Zeka Kontrol Başarılı!</span>
         : <span style={{ backgroundColor, padding: '6px' }}>Zeka Kontrol Başarısız!</span>;
 
 
-    // Display the initial alert text with inline styles
-    setShowIntelligenceAnimation({
+    setShowIntelligenceCheckAnimation({
         text: initialAlertText,
         style: {
             backgroundColor,
             padding: '6px',
         },
     });
+    audioToPlay.play();
 
-    // Reset the intelligence animation after a delay
+
+
     setTimeout(() => {
-        setShowIntelligenceAnimation('');
-    }, 1000);
-};
 
-export default { handleMoodAnimation, handleIntelligenceAnimation, handleMoneyAnimation };
+        setShowIntelligenceCheckAnimation('');
+    }, 1000);
+
+
+
+
+
+};
+export default { handleMoodAnimation, handleMoneyAnimation, handleHealthAnimation, handleIntelligenceAnimation, handleIntelligenceCheckAnimation };
