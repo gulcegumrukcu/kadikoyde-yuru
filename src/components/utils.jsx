@@ -5,15 +5,25 @@ import wrong from '../assets/wrong.mp3'
 const correctAudio = new Audio(correct)
 const wrongAudio = new Audio(wrong)
 
+let background = '';
+const setBackground = (color) => {
+    background = color;
+};
+const getBackground = () => background;
+
 const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, statMoneyChangeRef, increase = true) => {
     console.log(`Handling money animation - Amount: ${amount}, Increase: ${increase}`);
     const backgroundColor = increase ? 'green' : 'red';
+    setBackground(backgroundColor); // Correct assignment
+
     const initialAlertText = amount !== 0 ? (
         <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Para`}</span>
     ) : '';
+
     if (amount !== 0) {
         setShowMoneyAnimation(initialAlertText);
     }
+
     const clampedAmount = 10;
     setTimeout(() => {
         const moneyChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
@@ -21,13 +31,17 @@ const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, statMoney
         statMoneyChangeRef.current = true; // Notify about the stat change
         setShowMoneyAnimation('');
     }, 1000);
+
     return () => {
         setShowMoneyAnimation(increase ? clampedAmount : 0);
     };
 };
 
 const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimation, statIntelligenceChangeRef, increase = true) => {
+    console.log(`Handling intelligence animation - Amount: ${amount}, Increase: ${increase}`);
     const backgroundColor = increase ? 'green' : 'red';
+    setBackground(backgroundColor); // Correct assignment
+
     const initialAlertText = amount !== 0
         ? <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Zeka`}</span>
         : '';
@@ -51,14 +65,20 @@ const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimat
 };
 
 const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodChangeRef, increase = true) => {
+    console.log(`Handling mood animation - Amount: ${amount}, Increase: ${increase}`);
     const backgroundColor = increase ? 'green' : 'red';
+    setBackground(backgroundColor); // Correct assignment
+
     const initialAlertText = amount !== 0
         ? <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Ruh Hali`}</span>
         : '';
+
     if (amount !== 0) {
         setShowMoodAnimation(initialAlertText);
     }
+
     const clampedAmount = 10;
+
     setTimeout(() => {
         console.log('Timer completed - Hiding Mood Animation');
         const moodChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
@@ -73,14 +93,20 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodCha
 };
 
 const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, statHealthChangeRef, increase = true) => {
+    console.log(`Handling health animation - Amount: ${amount}, Increase: ${increase}`);
     const backgroundColor = increase ? 'green' : 'red';
+    setBackground(backgroundColor); // Correct assignment
+
     const initialAlertText = amount !== 0
         ? <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Sağlık`}</span>
         : '';
+
     if (amount !== 0) {
         setShowHealthAnimation(initialAlertText);
     }
+
     const clampedAmount = 10;
+
     setTimeout(() => {
         const healthChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_HEALTH', payload: healthChange });
@@ -124,4 +150,6 @@ export default {
     handleHealthAnimation,
     handleIntelligenceAnimation,
     handleIntelligenceCheckAnimation,
+    setBackground,
+    getBackground,
 };

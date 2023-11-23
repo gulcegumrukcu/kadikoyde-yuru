@@ -75,7 +75,7 @@ function App() {
       { text: 'Ne?', target: 'choice' },
     ],
     buttonsDisabled: false,
-    background: './images/background111.png',
+    background: './images/main.png',
   });
 
   const [characterStats, setCharacterStats] = useState({
@@ -135,7 +135,7 @@ function App() {
             ],
             buttonsDisabled: false,
 
-            background: './images/background22.png',
+            background: './images/telefon-su.png',
           };
 
         case 'telefon':
@@ -170,7 +170,7 @@ function App() {
               { text: 'KAPIYA BAKSAM FENA OLMAZ', target: 'kapi-su' },
             ],
             buttonsDisabled: false,
-            background: './images/mobile-background.png',
+            background: './images/telefon.png',
           };
 
         case 'secim':
@@ -215,6 +215,7 @@ function App() {
               { text: 'TAMAM O ZAMAN, KAPIYA BAKAYIM.', target: 'kapi-su' },
             ],
             buttonsDisabled: false,
+            background: './images/kapi.png',
           };
 
         case 'su':
@@ -245,7 +246,7 @@ function App() {
               { text: 'GELİYORUM!!!', target: 'kapi-su' },
             ],
             buttonsDisabled: false,
-            background: './images/1background11.png',
+            background: './images/su.png',
             moodIncrease: newMoodIncrease,
           };
 
@@ -288,6 +289,7 @@ function App() {
                 { text: 'YUMRUK TOKUŞTUR', target: 'aidat' },
               ],
               buttonsDisabled: false,
+              background: './images/yonetici.png',
             };
           } else {
             return {
@@ -330,6 +332,8 @@ function App() {
                 { text: 'YUMRUK TOKUŞTUR', target: 'aidat' },
               ],
               buttonsDisabled: false,
+              background: './images/yonetici.png',
+
             };
           }
 
@@ -415,16 +419,16 @@ function App() {
             buttonsDisabled: false,
           };
         case 'ev':
-          const newMoneyDecreaseEv = 10; // Adjust the amount as needed
+          const newMoneyDecrease = 10; // Adjust the amount as needed
           console.log('Before handleMoneyAnimation');
-          handleMoneyAnimation(dispatch, newMoneyDecreaseEv, setShowMoneyAnimation, statMoneyChangeRef, false); // Decrease money
+          handleMoneyAnimation(dispatch, newMoneyDecrease, setShowMoneyAnimation, statMoneyChangeRef, false); // Decrease money
           console.log('After handleMoneyAnimation');
           statMoneyChangeRef.current = true;
           setCharacterStats((prevStats) => ({
             ...prevStats,
-            money: Math.max(prevStats.money - newMoneyDecreaseEv, 0), // Ensure non-negative value
+            money: Math.max(prevStats.money - newMoneyDecrease, 0), // Ensure non-negative value
           }));
-          dispatch({ type: 'CHANGE_MONEY', payload: -newMoneyDecreaseEv });
+          dispatch({ type: 'CHANGE_MONEY', payload: -newMoneyDecrease });
           return {
             ...prevStory,
             text: [
