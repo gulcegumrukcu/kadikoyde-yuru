@@ -367,7 +367,7 @@ function App() {
             ...prevStory,
 
             text: [
-              'Açıkçası seni pek dinliyormuş gibi gözükmüyor..\n',
+              'Açıkçası seni pek dinliyormuş gibi gözükmüyor.\n',
               {
                 text: '\n“Ya o değil de, çok ses yapıyormuşsunuz. Alt kattaki Binnur Hanım çok rahatsız valla. İletmemi istedi...” \n',
                 style: {
