@@ -546,7 +546,7 @@ function App() {
   const characterImage = {
     position: 'absolute',
     width: window.innerWidth >= 1024 ? '400px' : '200px', // Responsive width
-    top: window.innerWidth >= 1024 ? '20%' : '30%', // Responsive width
+    top: window.innerWidth >= 1024 ? '20%' : '40%', // Responsive width
     left: '2%', // Adjust the left position as needed
 
   };
