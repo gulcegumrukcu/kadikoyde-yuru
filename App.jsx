@@ -289,7 +289,7 @@ function App() {
                 { text: 'YUMRUK TOKUŞTUR', target: 'aidat' },
               ],
               buttonsDisabled: false,
-              background: './images/yonetici.png',
+              background: './images/yonetici1.png',
             };
           } else {
             return {
@@ -332,7 +332,7 @@ function App() {
                 { text: 'YUMRUK TOKUŞTUR', target: 'aidat' },
               ],
               buttonsDisabled: false,
-              background: './images/yonetici.png',
+              background: './images/yonetici1.png',
 
             };
           }
@@ -361,6 +361,7 @@ function App() {
               { text: '"KURTULAYIM MADEM, BUYUR"', target: 'ev' },
             ],
             buttonsDisabled: false,
+            background: './images/yonetici.png',
           };
         case 'binnur':
           return {
@@ -389,6 +390,7 @@ function App() {
               { text: '"AİDATI VERİRSEM KURTULURUM"', target: 'ev' },
             ],
             buttonsDisabled: false,
+            background: './images/yonetici1.png',
           };
         case 'bedel':
           return {
@@ -417,6 +419,7 @@ function App() {
               { text: '"ZIKKIMI VERİP KURTULAYIM ARTIK"', target: 'ev' },
             ],
             buttonsDisabled: false,
+            background: './images/yonetici.png',
           };
         case 'ev':
           const newMoneyDecrease = 10; // Adjust the amount as needed

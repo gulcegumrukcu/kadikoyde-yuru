@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import sound from '../assets/sound.wav'
-import logo from '/images/logo1.png';
+import logo from '/images/logoo.png';
 import Settings from './Settings';
 
 function EntrancePage({ onReady }) {
@@ -30,7 +30,7 @@ function EntrancePage({ onReady }) {
             }}
         >
             <Settings></Settings>
-            <img src={logo} alt='Logo' className='' />
+            <img src={logo} alt='Logo' className='h-32 w-160' />
             <div className='flex'>
                 {showButton && (
                     <button
