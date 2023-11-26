@@ -445,11 +445,66 @@ function App() {
               },
             ],
             choices: [
-              { text: '"ASLINDA ŞU AN OKULDA OLMAM LAZIM"', target: 'okul' },
-              { text: '"ASLINDA ŞU AN İŞTE OLMAM LAZIM"', target: 'is' },
+              { text: '"ASLINDA ŞU AN OKULDA OLMAM LAZIM"', target: 'okul-cikis' },
+              { text: '"ASLINDA ŞU AN İŞTE OLMAM LAZIM"', target: 'is-cikis' },
             ],
             buttonsDisabled: false,
           };
+        case 'okul-cikis':
+
+          return {
+            ...prevStory,
+            text: [
+              {
+                text: 'Yerinde olsam hızlıca evden çıkardım. Malum, akşam saatleri ve insan trafiği. Seversin...',
+
+              },
+            ],
+            choices: [
+              { text: 'EVDEN ÇIK', target: 'first' },
+            ],
+            buttonsDisabled: false,
+            background: './images/cikis.png',
+          };
+        case 'is-cikis':
+
+          return {
+            ...prevStory,
+            text: [
+              {
+                text: 'Yerinde olsam hızlıca evden çıkardım. Malum, akşam saatleri ve insan trafiği. Seversin...',
+
+              },
+            ],
+            choices: [
+              { text: 'EVDEN ÇIK', target: 'first' },
+            ],
+            buttonsDisabled: false,
+            background: './images/cikis.png',
+          };
+        case 'first':
+
+          return {
+            ...prevStory,
+            text: [
+              {
+                text: 'Hava soğuk ve önünde uzun bir yol var. Çoktan geç kaldığını söylememe gerek yoktur umarım?',
+
+              },
+            ],
+            choices: [
+              { text: 'İLERLE', target: 'first' },
+            ],
+            buttonsDisabled: false,
+            background: './images/first.png',
+            characterImage: './images/teyze.png', // Add the path to your teyze.png
+          };
+
+
+
+
+
+
 
         default:
           console.warn('Unhandled target:', path);
@@ -472,6 +527,7 @@ function App() {
     overflow: 'hidden',
     minHeight: showFooter ? 'calc(100vh - 160px)' : '100vh',
     position: 'relative',
+
   };
 
   const buttonsContainerStyle = {
@@ -486,6 +542,16 @@ function App() {
 
 
   };
+
+  const characterImage = {
+    position: 'absolute',
+    width: window.innerWidth >= 1024 ? '400px' : '100px', // Responsive width
+    left: '2%', // Adjust the left position as needed
+    top: '0%', // Adjust the top position as needed
+  };
+
+
+
 
   return (
     <div>
@@ -516,7 +582,14 @@ function App() {
 
 
           <div className='flex items-center   justify-center   text-center ' style={containerStyle}>
+            {story.characterImage && (
+              <img
+                src={story.characterImage}
+                alt="Character"
 
+                style={characterImage}
+              />
+            )}
             <QuestionComponent
               story={story}
               handleChoice={handleChoice}

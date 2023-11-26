@@ -20,7 +20,7 @@ function StatContainer({ label, value, color, circleBorderColor, statMoneyChange
                     // After 1 second, revert back to the original value
                     setDisplayValue(value);
                     statChangeRef.current = false; // Reset the statChangeRef 
-                    executeAnimation(); // Trigger the animation execution
+
                 }, 1000);
 
                 return () => {

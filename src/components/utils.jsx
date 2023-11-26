@@ -28,7 +28,7 @@ const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, statMoney
     setTimeout(() => {
         const moneyChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_MONEY', payload: moneyChange });
-        statMoneyChangeRef.current = true; // Notify about the stat change
+        statMoneyChangeRef = true; // Notify about the stat change
         setShowMoneyAnimation('');
     }, 1000);
 
@@ -55,7 +55,7 @@ const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimat
     setTimeout(() => {
         const intelligenceChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_INTELLIGENCE', payload: intelligenceChange });
-        statIntelligenceChangeRef.current = true;
+        statIntelligenceChangeRef = true;
         setShowIntelligenceAnimation('');
     }, 1000);
 
@@ -84,7 +84,7 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodCha
         const moodChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_MOOD', payload: moodChange });
         setShowMoodAnimation('');
-        statMoodChangeRef.current = true;
+        statMoodChangeRef = true;
     }, 1000);
 
     return () => {
@@ -110,7 +110,7 @@ const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, statHea
     setTimeout(() => {
         const healthChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_HEALTH', payload: healthChange });
-        statHealthChangeRef.current = true;
+        statHealthChangeRef = true;
         setShowHealthAnimation('');
     }, 1000);
 
