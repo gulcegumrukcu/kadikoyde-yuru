@@ -547,7 +547,7 @@ function App() {
     position: 'absolute',
     width: window.innerWidth >= 1024 ? '400px' : '100px', // Responsive width
     left: '2%', // Adjust the left position as needed
-    top: '0%', // Adjust the top position as needed
+    top: '20%', // Adjust the top position as needed
   };
 
 
