@@ -94,6 +94,15 @@ function App() {
 
 
   async function handleChoice(path) {
+    let newMoneyDecrease;
+    let newMoodDecrease;
+    let newMoodIncrease;
+    let newMoneyIncrease;
+    let newHealthDecrease;
+    let newHealthIncrease;
+    let newIntelligenceDecrease;
+    let newIntelligenceIncrease;
+
     if (story.buttonsDisabled) return;
     setStory((prevStory) => {
       switch (path) {
@@ -139,9 +148,9 @@ function App() {
           };
 
         case 'telefon':
-          let newMoodDecrease = 10;
+          newMoodDecrease = 10;
 
-          handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false);  // Pass `false` for decrease
+          handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false);
           setCharacterStats((prevStats) => ({
             ...prevStats,
             mood: Math.max(prevStats.mood - newMoodDecrease, 0),
@@ -219,7 +228,7 @@ function App() {
           };
 
         case 'su':
-          const newMoodIncrease = 10;
+          newMoodIncrease = 10;
           setUserChoseSuIc(true);
           handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation);  // Default is increase
           statMoodChangeRef.current = true;
@@ -422,10 +431,10 @@ function App() {
             background: './images/yonetici.png',
           };
         case 'ev':
-          const newMoneyDecrease = 10; // Adjust the amount as needed
-          console.log('Before handleMoneyAnimation');
+          newMoneyDecrease = 10; // Adjust the amount as needed
+
           handleMoneyAnimation(dispatch, newMoneyDecrease, setShowMoneyAnimation, statMoneyChangeRef, false); // Decrease money
-          console.log('After handleMoneyAnimation');
+
           statMoneyChangeRef.current = true;
           setCharacterStats((prevStats) => ({
             ...prevStats,
@@ -510,13 +519,73 @@ function App() {
             ],
             choices: [
               { text: 'YAKLAŞ', target: 'dilenci-devam' },
-              { text: 'YOLA DEVAM', target: 'dilenci-devam' },
+              { text: 'YOLA DEVAM', target: 'yola-devam' },
             ],
             buttonsDisabled: false,
             background: './images/second.png',
             characterImage: './images/teyze.png', // Add the path to your teyze.png
 
           };
+        case 'yola-devam':
+          handleIntelligenceCheckAnimation(dispatch, characterStats.intelligence > 55, setShowIntelligenceCheckAnimation);
+
+          if (characterStats.intelligence > 55) {
+            return {
+              ...prevStory,
+              text: [
+
+                {
+                  text: '"يا طفلتي، بحق الله، بعض الخبز ekmek، بعض الماء... lütfen... نحن جائعون جدا."',
+                  style: {
+
+                    fontWeight: 'normal',
+                    fontStyle: 'italic',
+                    color: 'white',
+
+
+                  },
+                },
+                '\n Ne derler bilirsin. Bazen sen çekip gitmeye hazır olsan da, karşındaki olmaz. \n Neyse ki aklın başında, kısmen dediklerini anlıyorsun. \n Teyze oldukça kirli ve yardıma muhtaç gözüküyor.',
+
+              ],
+
+              choices: [
+                { text: 'PARA VER', target: 'dilenci-para' },
+                { text: 'GÖRMEZDEN GEL', target: 'dilenci-parasiz' },
+              ],
+              buttonsDisabled: false,
+              background: './images/second.png',
+              characterImage: './images/teyze.png', // Add the path to your teyze.png
+
+            };
+
+          } else {
+            return {
+              ...prevStory,
+              text: [
+                {
+                  text: '"يا طفلتي، بحق الله، بعض الخبز، بعض الماء... من فضلك. نحن جائعون جدا."',
+                  style: {
+
+                    fontWeight: 'normal',
+                    fontStyle: 'italic',
+                    color: 'white',
+
+
+                  },
+                },
+                '\n Ne derler bilirsin. Bazen sen çekip gitmeye hazır olsan da, karşındaki olmaz. \n Bir de ne dediğini anlaman için akıl yürütmekten fazlasını yapman gerekecek :(',
+              ],
+              choices: [
+                { text: 'أعطني نقودا', target: 'dilenci-para' },
+                { text: 'يتجاهل', target: 'dilenci-parasiz' },
+              ],
+              buttonsDisabled: false,
+              background: './images/second.png',
+              characterImage: './images/teyze.png', // Add the path to your teyze.png
+
+            };
+          }
         case 'dilenci-devam':
           handleIntelligenceCheckAnimation(dispatch, characterStats.intelligence > 55, setShowIntelligenceCheckAnimation);
 
@@ -541,8 +610,8 @@ function App() {
               ],
 
               choices: [
-                { text: 'PARA VER', target: 'dilenci-devam' },
-                { text: 'GÖRMEZDEN GEL', target: 'dilenci-devam' },
+                { text: 'PARA VER', target: 'dilenci-para' },
+                { text: 'ÖLÜME TERKET', target: 'dilenci-parasiz' },
               ],
               buttonsDisabled: false,
               background: './images/second.png',
@@ -578,9 +647,120 @@ function App() {
             };
           }
 
+        case 'dilenci-para':
+
+          newMoodIncrease = 10,
+            handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
+          statMoodChangeRef.current = true;
 
 
+          newMoneyDecrease = 10,
+            handleMoneyAnimation(dispatch, newMoneyDecrease, setShowMoneyAnimation, statMoneyChangeRef, false, 0);
+          statMoneyChangeRef.current = true;
 
+          setCharacterStats((prevStats) => ({
+            ...prevStats,
+            money: Math.max(prevStats.money - newMoneyDecrease, 0), // Ensure non-negative value
+            mood: Math.max(prevStats.mood + newMoodIncrease, 0), // Ensure non-negative value
+          }));
+          dispatch({ type: 'CHANGE_MONEY', payload: -newMoneyDecrease });
+          dispatch({ type: 'CHANGE_MOOD', payload: newMoodIncrease });
+          return {
+            ...prevStory,
+            text: [
+              {
+                text: 'Wow! Cömertliğin karşısında gülümsemekten kendini alamıyor teyze. Kim bilir, belki ilerde sana başka dönütleri de olur.',
+
+              },
+            ],
+            choices: [
+              { text: 'İYİ ETTİM YA', target: 'iyi-ettim' },
+            ],
+            buttonsDisabled: false,
+            background: './images/second.png',
+            characterImage: './images/teyze-gulen.png', // Add the path to your teyze.png
+
+          };
+
+        case 'dilenci-parasiz':
+          newMoodDecrease = 10;
+
+          handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false);
+          setCharacterStats((prevStats) => ({
+            ...prevStats,
+            mood: Math.max(prevStats.mood - newMoodDecrease, 0),
+          }));
+          statMoodChangeRef.current = true;
+          dispatch({ type: 'CHANGE_MOOD', payload: -newMoodDecrease });
+          return {
+            ...prevStory,
+            text: [
+              {
+                text: 'Teyze son umudunu sana harcamış gibi gözükse de para vermemeyi tercih ettin. \n Yarın öbür gün tekrar karşına çıkarsa sana çok iyi davranmayabilir.',
+
+              },
+            ],
+            choices: [
+              { text: 'PİŞMAN DEĞİLİM', target: 'pisman-degilim' },
+            ],
+            buttonsDisabled: false,
+            background: './images/second.png',
+            characterImage: './images/teyze.png',
+
+          };
+        case 'iyi-ettim':
+          newMoodDecrease = 10;
+
+          handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false);
+          setCharacterStats((prevStats) => ({
+            ...prevStats,
+            mood: Math.max(prevStats.mood - newMoodDecrease, 0),
+          }));
+          statMoodChangeRef.current = true;
+          dispatch({ type: 'CHANGE_MOOD', payload: -newMoodDecrease });
+          return {
+            ...prevStory,
+            text: [
+              {
+                text: 'Belli ki ilk başta birbirinizi keyiflendirdiniz. \n Ancak şimdi tekrar düşününce, aslında iyi bir şey mi yaptın emin değil gibisin.',
+
+              },
+            ],
+            choices: [
+              { text: 'PİŞMAN DEĞİLİM', target: 'pisman-degilim' },
+            ],
+            buttonsDisabled: false,
+            background: './images/second.png',
+
+
+          };
+
+        case 'pisman-degilim':
+          newMoodDecrease = 10;
+
+          handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false);
+          setCharacterStats((prevStats) => ({
+            ...prevStats,
+            mood: Math.max(prevStats.mood - newMoodDecrease, 0),
+          }));
+          statMoodChangeRef.current = true;
+          dispatch({ type: 'CHANGE_MOOD', payload: -newMoodDecrease });
+          return {
+            ...prevStory,
+            text: [
+              {
+                text: 'Bla bla.',
+
+              },
+            ],
+            choices: [
+              { text: 'bla', target: 'bla' },
+            ],
+            buttonsDisabled: false,
+            background: './images/second.png',
+
+
+          };
 
 
 

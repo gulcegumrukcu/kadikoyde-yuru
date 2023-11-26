@@ -9,11 +9,18 @@ function StatContainer({ label, value, color, circleBorderColor, statMoneyChange
 
 
     useEffect(() => {
-        // Inside handleStatChange function in StatContainer.jsx
-        const handleStatChange = (statLabel, statChangeRef, setChangeAmount) => {
+        const background = utils.getBackground();
+
+        const handleStatChange = (statLabel, statChangeRef, setChangeAmount, backgroundColor) => {
             if (statChangeRef && statChangeRef.current) {
                 console.log(`Changing ${statLabel} - Display temporary change amount for 1 second: ${setChangeAmount}`);
-                setDisplayValue(`${utils.getBackground() === 'green' ? '+' : '-'}${setChangeAmount}`);
+
+                // Calculate the displayed value based on the change amount and the original value
+                const displayAmount = backgroundColor === 'green' ? `+${setChangeAmount}` : `-${setChangeAmount}`;
+                console.log(`Display ${statLabel} Value before setting: ${displayAmount}`);
+                console.log(`background for ${statLabel} is: ${backgroundColor}`);
+
+                setDisplayValue(displayAmount);
 
                 const timeoutId = setTimeout(() => {
                     console.log(`Reverting ${statLabel} - After 1 second. Current value: ${value}`);
@@ -21,6 +28,7 @@ function StatContainer({ label, value, color, circleBorderColor, statMoneyChange
                     setDisplayValue(value);
                     statChangeRef.current = false; // Reset the statChangeRef 
 
+                    console.log(`Display Value after reverting: ${value}`);
                 }, 1000);
 
                 return () => {
@@ -29,12 +37,12 @@ function StatContainer({ label, value, color, circleBorderColor, statMoneyChange
             }
         };
 
+        // Pass the background color to handleStatChange
 
-        // Pass the utility function to handleStatChange
-        handleStatChange('Money', statMoneyChangeRef, 10);
-        handleStatChange('Health', statHealthChangeRef, 10);
-        handleStatChange('Intelligence', statIntelligenceChangeRef, 10);
-        handleStatChange('Mood', statMoodChangeRef, 10);
+        handleStatChange('Health', statHealthChangeRef, 10, background);
+        handleStatChange('Intelligence', statIntelligenceChangeRef, 10, background);
+        handleStatChange('Mood', statMoodChangeRef, 10, background);
+        handleStatChange('Money', statMoneyChangeRef, 10, background);
     }, [statMoneyChangeRef, statHealthChangeRef, statIntelligenceChangeRef, statMoodChangeRef, value]);
 
     const statValueContainerStyle = {

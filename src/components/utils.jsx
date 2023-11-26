@@ -11,33 +11,9 @@ const setBackground = (color) => {
 };
 const getBackground = () => background;
 
-const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, statMoneyChangeRef, increase = true) => {
-    console.log(`Handling money animation - Amount: ${amount}, Increase: ${increase}`);
-    const backgroundColor = increase ? 'green' : 'red';
-    setBackground(backgroundColor); // Correct assignment
 
-    const initialAlertText = amount !== 0 ? (
-        <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Para`}</span>
-    ) : '';
 
-    if (amount !== 0) {
-        setShowMoneyAnimation(initialAlertText);
-    }
-
-    const clampedAmount = 10;
-    setTimeout(() => {
-        const moneyChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
-        dispatch({ type: 'CHANGE_MONEY', payload: moneyChange });
-        statMoneyChangeRef = true; // Notify about the stat change
-        setShowMoneyAnimation('');
-    }, 1000);
-
-    return () => {
-        setShowMoneyAnimation(increase ? clampedAmount : 0);
-    };
-};
-
-const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimation, statIntelligenceChangeRef, increase = true) => {
+const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimation, statIntelligenceChangeRef, increase = true, delay = 0) => {
     console.log(`Handling intelligence animation - Amount: ${amount}, Increase: ${increase}`);
     const backgroundColor = increase ? 'green' : 'red';
     setBackground(backgroundColor); // Correct assignment
@@ -57,14 +33,14 @@ const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimat
         dispatch({ type: 'CHANGE_INTELLIGENCE', payload: intelligenceChange });
         statIntelligenceChangeRef = true;
         setShowIntelligenceAnimation('');
-    }, 1000);
+    }, 1000 + delay);
 
     return () => {
         setShowIntelligenceAnimation(increase ? clampedAmount : 0);
     };
 };
 
-const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodChangeRef, increase = true) => {
+const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodChangeRef, increase = true, delay = 0) => {
     console.log(`Handling mood animation - Amount: ${amount}, Increase: ${increase}`);
     const backgroundColor = increase ? 'green' : 'red';
     setBackground(backgroundColor); // Correct assignment
@@ -85,14 +61,38 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodCha
         dispatch({ type: 'CHANGE_MOOD', payload: moodChange });
         setShowMoodAnimation('');
         statMoodChangeRef = true;
-    }, 1000);
+    }, 1000 + delay);
 
     return () => {
         setShowMoodAnimation(increase ? clampedAmount : 0);
     };
 };
+const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, statMoneyChangeRef, increase = true, delay = 0) => {
+    console.log(`Handling money animation - Amount: ${amount}, Increase: ${increase}`);
+    const backgroundColor = increase ? 'green' : 'red';
+    setBackground(backgroundColor);
 
-const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, statHealthChangeRef, increase = true) => {
+    const initialAlertText = amount !== 0 ? (
+        <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Para`}</span>
+    ) : '';
+
+    if (amount !== 0) {
+        setShowMoneyAnimation(initialAlertText);
+    }
+
+    const clampedAmount = 10;
+    setTimeout(() => {
+        const moneyChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
+        dispatch({ type: 'CHANGE_MONEY', payload: moneyChange });
+        statMoneyChangeRef = true;
+        setShowMoneyAnimation('');
+    }, 1000 + delay); // Adjust the delay here
+
+    return () => {
+        setShowMoneyAnimation(increase ? clampedAmount : 0);
+    };
+};
+const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, statHealthChangeRef, increase = true, delay = 0) => {
     console.log(`Handling health animation - Amount: ${amount}, Increase: ${increase}`);
     const backgroundColor = increase ? 'green' : 'red';
     setBackground(backgroundColor); // Correct assignment
@@ -112,14 +112,14 @@ const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, statHea
         dispatch({ type: 'CHANGE_HEALTH', payload: healthChange });
         statHealthChangeRef = true;
         setShowHealthAnimation('');
-    }, 1000);
+    }, 1000 + delay);
 
     return () => {
         setShowHealthAnimation(increase ? clampedAmount : 0);
     };
 };
 
-async function handleIntelligenceCheckAnimation(dispatch, intelligenceCheckResult, setShowIntelligenceCheckAnimation) {
+async function handleIntelligenceCheckAnimation(dispatch, intelligenceCheckResult, setShowIntelligenceCheckAnimation,) {
     const backgroundColor = intelligenceCheckResult ? 'green' : 'red';
     const audioToPlay = intelligenceCheckResult ? correctAudio : wrongAudio;
     const initialAlertText = intelligenceCheckResult
@@ -152,4 +152,5 @@ export default {
     handleIntelligenceCheckAnimation,
     setBackground,
     getBackground,
+
 };
