@@ -5,14 +5,13 @@ import wrong from '../assets/wrong.mp3'
 const correctAudio = new Audio(correct)
 const wrongAudio = new Audio(wrong)
 
-let background = '';
+let backgrounds = [];
+
 const setBackground = (color) => {
-    background = color;
+    backgrounds.push(color);
 };
-const getBackground = () => background;
 
-
-
+const getBackground = () => backgrounds.pop() || '';
 const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimation, statIntelligenceChangeRef, increase = true, delay = 0) => {
     console.log(`Handling intelligence animation - Amount: ${amount}, Increase: ${increase}`);
     const backgroundColor = increase ? 'green' : 'red';
@@ -31,7 +30,7 @@ const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimat
     setTimeout(() => {
         const intelligenceChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_INTELLIGENCE', payload: intelligenceChange });
-        statIntelligenceChangeRef = true;
+        statIntelligenceChangeRef.current = true;
         setShowIntelligenceAnimation('');
     }, 1000 + delay);
 
@@ -60,7 +59,7 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodCha
         const moodChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_MOOD', payload: moodChange });
         setShowMoodAnimation('');
-        statMoodChangeRef = true;
+        statMoodChangeRef.current = true;
     }, 1000 + delay);
 
     return () => {
@@ -84,7 +83,7 @@ const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, statMoney
     setTimeout(() => {
         const moneyChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_MONEY', payload: moneyChange });
-        statMoneyChangeRef = true;
+        statMoneyChangeRef.current = true;
         setShowMoneyAnimation('');
     }, 1000 + delay); // Adjust the delay here
 
@@ -110,7 +109,7 @@ const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, statHea
     setTimeout(() => {
         const healthChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_HEALTH', payload: healthChange });
-        statHealthChangeRef = true;
+        statHealthChangeRef.current = true;
         setShowHealthAnimation('');
     }, 1000 + delay);
 

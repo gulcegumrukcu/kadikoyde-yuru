@@ -15,8 +15,11 @@ function StatContainer({ label, value, color, circleBorderColor, statMoneyChange
             if (statChangeRef && statChangeRef.current) {
                 console.log(`Changing ${statLabel} - Display temporary change amount for 1 second: ${setChangeAmount}`);
 
+                // Determine the sign based on the change amount
+                const changeAmount = backgroundColor === 'green' ? setChangeAmount : -setChangeAmount;
+
                 // Calculate the displayed value based on the change amount and the original value
-                const displayAmount = backgroundColor === 'green' ? `+${setChangeAmount}` : `-${setChangeAmount}`;
+                const displayAmount = `${changeAmount > 0 ? '+' : ''}${changeAmount}`;
                 console.log(`Display ${statLabel} Value before setting: ${displayAmount}`);
                 console.log(`background for ${statLabel} is: ${backgroundColor}`);
 
@@ -36,6 +39,8 @@ function StatContainer({ label, value, color, circleBorderColor, statMoneyChange
                 };
             }
         };
+
+
 
         // Pass the background color to handleStatChange
 

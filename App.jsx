@@ -731,7 +731,7 @@ function App() {
             ],
             buttonsDisabled: false,
             background: './images/second.png',
-
+            characterImage: null,
 
           };
 
@@ -759,7 +759,7 @@ function App() {
             buttonsDisabled: false,
             background: './images/second.png',
 
-
+            characterImage: null,
           };
 
 
