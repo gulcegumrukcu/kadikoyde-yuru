@@ -30,7 +30,7 @@ function EntrancePage({ onReady }) {
             }}
         >
             <Settings></Settings>
-            <img src={logo} alt='Logo' className='h-24 w-160' />
+            <img src={logo} alt='Logo' className='h-[80%] w-[80%]' />
             <div className='flex'>
                 {showButton && (
                     <button

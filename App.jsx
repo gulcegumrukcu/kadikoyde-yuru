@@ -488,17 +488,96 @@ function App() {
             ...prevStory,
             text: [
               {
-                text: 'Hava soğuk ve önünde uzun bir yol var. Çoktan geç kaldığını söylememe gerek yoktur umarım?',
+                text: 'Hava soğuk ve önünde uzun bir yol var. \nÇoktan geç kaldığını söylememe gerek yoktur umarım?',
 
               },
             ],
             choices: [
-              { text: 'İLERLE', target: 'first' },
+              { text: 'İLERLE', target: 'dilenci' },
             ],
             buttonsDisabled: false,
             background: './images/first.png',
-            characterImage: './images/teyze.png', // Add the path to your teyze.png
           };
+        case 'dilenci':
+
+          return {
+            ...prevStory,
+            text: [
+              {
+                text: 'Daha yolunun başında, uzaktan seni gözüne kestiren yaşlı bir teyze sana yaklaşıyor.',
+
+              },
+            ],
+            choices: [
+              { text: 'YAKLAŞ', target: 'dilenci-devam' },
+              { text: 'YOLA DEVAM', target: 'dilenci-devam' },
+            ],
+            buttonsDisabled: false,
+            background: './images/second.png',
+            characterImage: './images/teyze.png', // Add the path to your teyze.png
+
+          };
+        case 'dilenci-devam':
+          handleIntelligenceCheckAnimation(dispatch, characterStats.intelligence > 55, setShowIntelligenceCheckAnimation);
+
+          if (characterStats.intelligence > 55) {
+            return {
+              ...prevStory,
+              text: [
+
+                {
+                  text: '"يا طفلتي، بحق الله، بعض الخبز ekmek، بعض الماء... lütfen... نحن جائعون جدا."',
+                  style: {
+
+                    fontWeight: 'normal',
+                    fontStyle: 'italic',
+                    color: 'white',
+
+
+                  },
+                },
+                '\n Neyse ki aklın başında, kısmen dediklerini anlıyorsun. \n Teyze oldukça kirli ve yardıma muhtaç gözüküyor.',
+
+              ],
+
+              choices: [
+                { text: 'PARA VER', target: 'dilenci-devam' },
+                { text: 'GÖRMEZDEN GEL', target: 'dilenci-devam' },
+              ],
+              buttonsDisabled: false,
+              background: './images/second.png',
+              characterImage: './images/teyze.png', // Add the path to your teyze.png
+
+            };
+
+          } else {
+            return {
+              ...prevStory,
+              text: [
+                {
+                  text: '"يا طفلتي، بحق الله، بعض الخبز، بعض الماء... من فضلك. نحن جائعون جدا."',
+                  style: {
+
+                    fontWeight: 'normal',
+                    fontStyle: 'italic',
+                    color: 'white',
+
+
+                  },
+                },
+                '\n Uh-oh, ne dediğini anlaman için akıl yürütmekten fazlasını yapman gerekecek :(',
+              ],
+              choices: [
+                { text: 'أعطني نقودا', target: 'dilenci-para' },
+                { text: 'يتجاهل', target: 'dilenci-parasiz' },
+              ],
+              buttonsDisabled: false,
+              background: './images/second.png',
+              characterImage: './images/teyze.png', // Add the path to your teyze.png
+
+            };
+          }
+
 
 
 
