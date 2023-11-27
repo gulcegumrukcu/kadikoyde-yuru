@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import sound from '../assets/sound.wav'
-import logo from '/images/logoo.png';
+import logo from '/images/logo.mp4';
 import Settings from './Settings';
 
 function EntrancePage({ onReady }) {
@@ -30,7 +30,11 @@ function EntrancePage({ onReady }) {
             }}
         >
             <Settings></Settings>
-            <img src={logo} alt='Logo' className='h-[70%] w-[80%]' />
+            {/* Use the video element with the loop attribute */}
+            <video autoPlay loop muted className=' w-[100%]'>
+                <source src={logo} type='video/mp4' />
+                Your browser does not support the video tag.
+            </video>
             <div className='flex'>
                 {showButton && (
                     <button
