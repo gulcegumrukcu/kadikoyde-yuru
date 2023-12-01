@@ -32,7 +32,7 @@ function StatContainer({ label, value, color, circleBorderColor, statMoneyChange
                     statChangeRef.current = false; // Reset the statChangeRef 
 
                     console.log(`Display Value after reverting: ${value}`);
-                }, 1000);
+                }, 3000);
 
                 return () => {
                     clearTimeout(timeoutId);

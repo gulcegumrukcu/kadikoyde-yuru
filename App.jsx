@@ -48,34 +48,28 @@ function App() {
     setShowEntrancePage(false);
   };
 
+
   const [userChoseSuIc, setUserChoseSuIc] = useState(false);
 
   const [story, setStory] = useState({
     text: [
       {
-        text: 'GÜNAYDIN UYKUCU!\n',
+        text: '“İyi sabahlar.”\n',
         style: {
 
           fontWeight: 'bold',
           color: 'white',
         },
       },
-      '\nSabahın körü, geceden kalmışlığın etkisiyle ağzın kurumuş.\n',
-      {
-        text: '\nKapı mı o çalan?',
-        style: {
-
-          fontWeight: 'normal',
-          fontStyle: 'italic',
-          color: 'white',
-        },
-      },
+      '\nBir adam silüetine hoşgeldin. Bu görüntüyü silüetten bir kimliğe çekmen gerekiyor.\n',
+      ,
     ],
     choices: [
-      { text: 'Ne?', target: 'choice' },
+      { text: 'GÖZLERİNİ OVUŞTUR', target: 'adiNeydi' },
+      { text: 'ADAMI DİNLEMEYE ÇALIŞ', target: 'yagmurYagdi' },
     ],
     buttonsDisabled: false,
-    background: './images/main.png',
+    background: './images/siluet.png',
   });
 
   const [characterStats, setCharacterStats] = useState({
@@ -88,7 +82,7 @@ function App() {
 
 
 
-  const [showFooter, setShowFooter] = useState(false);
+  const [showFooter, setShowFooter] = useState(true);
   const { handleMoodAnimation, handleIntelligenceCheckAnimation, handleMoneyAnimation, handleHealthAnimation, handleIntelligenceAnimation } = utils;
 
 
@@ -102,131 +96,83 @@ function App() {
     let newHealthIncrease;
     let newIntelligenceDecrease;
     let newIntelligenceIncrease;
+    const newCharacterStats = characterStats || {
+      health: generateRandomStat(),
+      money: generateRandomStat(),
+      mood: generateRandomStat(),
+      time: generateRandomStat(),
+      intelligence: generateRandomStat(),
+    };
 
     if (story.buttonsDisabled) return;
     setStory((prevStory) => {
       switch (path) {
-        case 'choice':
-          const newCharacterStats = characterStats || {
-            health: generateRandomStat(),
-            money: generateRandomStat(),
-            mood: generateRandomStat(),
-            time: generateRandomStat(),
-            intelligence: generateRandomStat(),
-          };
+        case 'adiNeydi':
+
           setShowFooter(true);
           return {
             ...prevStory,
             text: [
-              {
-                text: 'Zil ',
-                style: {
-
-                  fontWeight: 'normal',
-                  color: 'white',
-                },
-              },
-              'hala çalıyor, ısrarcı biri olmalı. \n\nÖnünde ',
-              {
-                text: 'bir bardak su, kirli bir telefon ',
-                style: {
-
-                  fontWeight: 'normal',
-                  color: 'white',
-                },
-              },
-
-              've kulaklarında bitmeyen bir zil var.',
+              ,
+              'Adamı kesinlikle tanıyorsun. Burada yaşadığın süre boyunca en az bir defa gördün. \n\n Bu adam senin apartman yöneticin, adı neydi?',
             ],
             choices: [
-              { text: 'TELEFONA BAK', target: 'telefon' },
-              { text: 'SU İÇ', target: 'su' },
+              { text: 'SUAT', target: 'suat' },
+              { text: 'ÖNEMİ VAR MI?', target: 'onemiVarMi' },
             ],
             buttonsDisabled: false,
 
-            background: './images/telefon-su.png',
+            background: './images/yonetici1.png',
           };
-
-        case 'telefon':
-          newMoodDecrease = 10;
-
-          handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false);
-          setCharacterStats((prevStats) => ({
-            ...prevStats,
-            mood: Math.max(prevStats.mood - newMoodDecrease, 0),
-          }));
-          statMoodChangeRef.current = true;
-          dispatch({ type: 'CHANGE_MOOD', payload: -newMoodDecrease });
+        case 'yagmurYagdi':
           return {
             ...prevStory,
 
             text: [
-
-              'Görünüşe göre emektarı değiştirme zamanı yaklaşıyor. ',
               {
-                text: '\n\n0 yeni mesajın var.',
+                text: '“Ya biliyorsun geçen çok fena yağmur yağdı, borular morular sorular aklımda binbir tane, boyalar falan sökülmüş akmış hep duvarlar üstüme üstüme geliyor…”',
                 style: {
 
-                  fontWeight: 'normal',
-                  fontStyle: 'italic',
+                  fontWeight: 'bold',
                   color: 'white',
+                  fontStyle: 'italic',
                 },
-              },
+              }
+
 
             ],
             choices: [
-              { text: 'HALA SU İÇEBİLİRİM, DEĞİL Mİ?', target: 'secim' },
-              { text: 'KAPIYA BAKSAM FENA OLMAZ', target: 'kapi-su' },
+              { text: '"NASIL YANİ ABİ?"', target: 'neDiyor' },
+              { text: 'BEN BİR SU İÇEYİM', target: 'su' },
             ],
             buttonsDisabled: false,
-            background: './images/telefon.png',
+            background: './images/yari-siluet.png',
           };
-
-        case 'secim':
+        case 'neDiyor':
           return {
             ...prevStory,
             text: [
               {
-                text: 'Pek sayılmaz. ',
+                text: '“Yav işte yağmur büyümüş dolu olmuş, dolu büyümüş çatıya konmuş. Kedi içti ağaca çıktı balta kesti suya düştü inek içti dağa kaçtı yandı bitti kül oldu.” ',
                 style: {
 
-                  fontWeight: 'normal',
-                  color: 'white',
-                },
-              },
-              'Ama bunu baştan öğrenmen iyi olmuştur. ',
-              {
-                text: '\n\nSeçimlerin ',
-                style: {
-
-                  fontWeight: 'normal',
-                  color: 'white',
-                  fontStyle: 'italic',
-                },
-
-              },
-              '  bazı  ',
-              {
-                text: 'sonuçlar ',
-                style: {
-
-                  fontWeight: 'normal',
+                  fontWeight: 'bold',
                   color: 'white',
                   fontStyle: 'italic',
                 },
               },
 
 
-              'doğuracak, tıpkı hayat gibi...  ',
+              '\n\n Ne diyor bu adam? ',
             ],
 
             choices: [
-              { text: 'TAMAM O ZAMAN, KAPIYA BAKAYIM.', target: 'kapi-su' },
+              { text: 'ÇATI AKITMIŞ ONU YAPTIRACAĞIZ.', target: 'cati' },
+              { text: 'YÖNETİCİNİN DEDESİ ÇATIYA ÇIKMIŞ, ONU İNDİRECEĞİZ.', target: 'icSesim' },
             ],
             buttonsDisabled: false,
-            background: './images/kapi.png',
+            background: './images/yonetici2.png',
           };
-
         case 'su':
           newMoodIncrease = 10;
           setUserChoseSuIc(true);
@@ -240,197 +186,114 @@ function App() {
           return {
             ...prevStory,
             text: [
-              'Gluk, gluk ve gluk. ',
-              {
-                text: '\nSuyun canlandırıcı etkisiyle kendini daha iyi hissetmeye başladın bile.',
-                style: {
-                  fontWeight: 'normal',
-                  fontStyle: 'italic',
-                  color: 'white',
-                },
-              },
-              '\n\nKapı hala çalıyor.',
+              'Su inanılmaz güzel. Derinin en doğru yerlerinden nemlendiğini ve ciğerlerinin havayla dolduğunu hissediyorsun. \n\n Şimdi bir düşün bakalım ne diyor bu adam?',
             ],
             choices: [
-              { text: 'GELİYORUM!!!', target: 'kapi-su' },
+              { text: 'ÇATI AKITMIŞ ONU YAPTIRACAĞIZ.', target: 'cati' },
+              { text: 'YÖNETİCİNİN DEDESİ ÇATIYA ÇIKMIŞ, ONU İNDİRECEĞİZ.', target: 'icSesim' },
             ],
             buttonsDisabled: false,
             background: './images/su.png',
             moodIncrease: newMoodIncrease,
           };
+        case 'cati':
+          return {
+            ...prevStory,
+            text: [
+              {
+                text: '“Heh işte onun için para vermen lazım ki biz de adama verelim.”',
 
-
-
-        case 'kapi-su':
-          handleIntelligenceCheckAnimation(dispatch, characterStats.intelligence > 55, setShowIntelligenceCheckAnimation);
-
-          if (characterStats.intelligence > 55) {
-            return {
-              ...prevStory,
-              text: [
-                {
-                  text: 'Sabah içtiği iki litre kahveyi göz bebekleriyle anlatan çılgın apartman yöneticin kapıda. ',
-                  style: {
-                    fontWeight: 'normal',
-                  },
+                style: {
+                  fontWeight: 'bold',
+                  color: 'white',
+                  fontStyle: 'italic',
                 },
-                {
-                  text: '\n\n“Günaydın, günaydın...... Naptın?”\n',
-                  style: {
-                    fontWeight: 'normal',
-                    fontStyle: 'italic',
-                    color: 'white',
-                  },
-                },
-                '\nSana yumruğunu uzattığını görüyorsun, niyetinin',
-                {
-                  text: ' ‘fist bump’ ',
-                  style: {
-                    fontWeight: 'bold',
-                    fontStyle: 'italic',
-                    color: 'white',
-                  },
-                },
-                'olduğu aşikar. \n\nHatta bunu gençler arası bir selamlaşma olarak gördüğünü söylemek de zor değil, Watson. ',
-              ],
-              choices: [
-                { text: 'POKER FACE', target: 'aidat' },
-                { text: 'YUMRUK TOKUŞTUR', target: 'aidat' },
-              ],
-              buttonsDisabled: false,
-              background: './images/yonetici1.png',
-            };
-          } else {
-            return {
-              ...prevStory,
-              text: [
-                {
-                  text: 'Sabah içtiği iki litre kahveyi göz bebekleriyle anlatan çılgın apartman yöneticin kapıda. ',
-                  style: {
-                    fontWeight: 'normal',
-                  },
-                },
-                {
-                  text: '\n\n“Günaydın, günaydın...... Naptın?”\n',
-                  style: {
-                    fontWeight: 'normal',
-                    fontStyle: 'italic',
-                    color: 'white',
-                  },
-                },
-                '\nElini kaldırıp tuhaf bir şekle sokuyor, ',
-                {
-                  text: 'yumruk ',
-                  style: {
-                    fontWeight: 'bold',
-                    fontStyle: 'italic',
-                    color: 'white',
-                  },
-                },
-                'mu o? ',
-                {
-                  text: '\n\nİnan bana bu zeka anlayabilmek için elinden geleni yapıyorsun.',
-                  style: {
-                    fontWeight: 'normal',
-                    fontStyle: 'italic',
-                  },
-                },
-              ],
-              choices: [
-                { text: 'POKER FACE', target: 'aidat' },
-                { text: 'YUMRUK TOKUŞTUR', target: 'aidat' },
-              ],
-              buttonsDisabled: false,
-              background: './images/yonetici1.png',
+              },
+            ],
+            choices: [
+              { text: '“TABİİ ABİ BİR SANİYE.” \n\nPARAYI VER.', target: 'usta' },
+              { text: '"BEN SANA IBANDAN ATAYIM ABİ ONU, NAKTİM KALMADI HİÇ.” \n\nYALAN SÖYLE', target: 'yalan' },
 
-            };
-          }
+            ],
+            buttonsDisabled: false,
+            background: './images/yonetici-el.png',
 
-
-
-
-        case 'aidat':
+          };
+        case 'icSesim':
 
 
           return {
             ...prevStory,
             text: [
               {
-                text: '“Bizim, bi aidat vardı...Bu ayın.” \n',
+                text: 'Aynen öyle, apartmanda 7 metrelik bir merdiveni bulabilecek tek kişi sen olduğun için de sana geldiler. \n\n İçini bir kahramanlık ateşi sarıyor ve apartman yöneticin sana soru sorar gözler ile bakıyor. ',
                 style: {
-                  fontWeight: 'normal',
+                  fontWeight: 'bold',
+                  color: '#94B9AF',
                   fontStyle: 'italic',
-                  color: 'white',
+
                 },
               },
-              '\nYüzünde sürekli taktığı medikal maskesi, uzun, gri çalı saçları ile evsiz bir  bilim adamına benzeyen adını bilmediğin apartman abinin söylediklerini anlamakta güçlük çekiyorsun.',
+              {
+                text: '\n\n 7 metrelik merdivenini almaya gidecek misin?',
+
+              }
+
+
+
             ],
             choices: [
-              { text: '"ABİ AYIN DAHA 1İ BUGÜN"', target: 'binnur' },
-              { text: '"KURTULAYIM MADEM, BUYUR"', target: 'ev' },
+              {
+                text: 'BU KADAR SAÇMA OLAMAZ. \nKESIN BAŞKA BIR ŞEY SÖYLÜYORDUR.',
+
+                target: 'catiSesim',
+              },
+              { text: '“TABİ Kİ… APARTMANIMIN BANA İHTIYACI VAR.” \nEVDEN ÇIK.', target: 'merdiven' },
             ],
             buttonsDisabled: false,
-            background: './images/yonetici.png',
+            background: './images/yonetici-cep.png',
           };
-        case 'binnur':
+        case 'catiSesim':
           return {
             ...prevStory,
 
             text: [
-              'Açıkçası seni pek dinliyormuş gibi gözükmüyor.\n',
-              {
-                text: '\n“Ya o değil de, çok ses yapıyormuşsunuz. Alt kattaki Binnur Hanım çok rahatsız valla. İletmemi istedi...” \n',
-                style: {
-
-                  fontWeight: 'normal',
-                  fontStyle: 'italic',
-                  color: 'white',
-
-
-                },
-              },
-
-              userChoseSuIc
-                ? '\nHalin olduğu pek söylenemez, ancak sabah ilk iş Apartman Bey’i görmeden önce en azından su içmiş olmak seni iyi hissettirdi. Yardır gitsin.'
-                : '\nHalin olduğu pek söylenemez, üstüne sabah ilk iş su içmek yerine kapıya bakmak da yardımcı olmadı. \nAdam seni koklamak üzere.',
+              'Çatıyla ilgili başka ne olabilir? Salonun kenarında tavandan damlayan su… Çatıyı tamir ettiriyorlar!',
             ],
             choices: [
-              { text: '"BİNNUR BAKSIN KENDİNE!"', target: 'bedel' },
-              { text: '"AİDATI VERİRSEM KURTULURUM"', target: 'ev' },
+              { text: '“TAMAM ABİ HALLEDELİM ONU BENCE DE…”', target: 'cati' },
+              { text: 'BU İNANDIRICI GELMEDİ, 7 METRELİK MERDİVEN AVINA GİDELİM.', target: 'merdiven' },
             ],
             buttonsDisabled: false,
-            background: './images/yonetici1.png',
+            background: './images/kova.png',
           };
-        case 'bedel':
+        case 'merdiven':
           return {
             ...prevStory,
 
 
             text: [
-              'Söylediklerine olan dikkatinde bir değişiklik olmadı. ',
               {
-                text: '\n\n“Sen bana uğra o zaman, aidat için.” ',
+                text: 'Hazırlanma hızın inanılmaz.',
                 style: {
-
-                  fontWeight: 'normal',
+                  fontWeight: 'bold',
+                  color: '#94B9AF',
                   fontStyle: 'italic',
-                  color: 'white',
-
 
                 },
               },
-              'diyor, ellerini cebine koyarak. ',
-              '\n\nHala geç değil, bu elbet ödenecek bir bedel.',
+
+              '\n\nMerdiven yolu onurlu bir yol. Bol şans.',
 
             ],
             choices: [
-              { text: '"BAŞKA BİR ŞEY?"', target: 'ev' },
-              { text: '"ZIKKIMI VERİP KURTULAYIM ARTIK"', target: 'ev' },
+              { text: 'EVDEN ÇIK', target: 'dilenci' },
+
             ],
             buttonsDisabled: false,
-            background: './images/yonetici.png',
+            background: './images/cikis.png',
           };
-        case 'ev':
+        case 'usta':
           newMoneyDecrease = 10; // Adjust the amount as needed
 
           handleMoneyAnimation(dispatch, newMoneyDecrease, setShowMoneyAnimation, statMoneyChangeRef, false); // Decrease money
@@ -445,210 +308,259 @@ function App() {
             ...prevStory,
             text: [
               {
-                text: '“Sağolasın.. Ha bi de bugün çağırdım ustaları, çatıyı yapacaklar, evde olursun değil mi?” \n',
+                text: '“Usta yarım saate geliyor çatıya bakmaya, sen buradasın değil mi?. Adamın başında dur da kaytarmasın.” ',
                 style: {
-                  fontWeight: 'normal',
+                  fontWeight: 'bold',
                   fontStyle: 'italic',
                   color: 'white',
                 },
               },
             ],
             choices: [
-              { text: '"ASLINDA ŞU AN OKULDA OLMAM LAZIM"', target: 'okul-cikis' },
-              { text: '"ASLINDA ŞU AN İŞTE OLMAM LAZIM"', target: 'is-cikis' },
+              { text: '"YOK ABİ BENİM ÇIKMAM LAZIM"', target: 'cikis' },
             ],
             buttonsDisabled: false,
+            background: './images/yonetici-cep.png',
           };
-        case 'okul-cikis':
+        case 'yalan':
+
 
           return {
             ...prevStory,
             text: [
               {
-                text: 'Yerinde olsam hızlıca evden çıkardım. Malum, akşam saatleri ve insan trafiği. Seversin...',
+                text: '“İyi bana hatırlatırsın, IBAN’ı atarım Whatsapp’tan. \n Sen buradasın, değil mi? Adamın başında dur da kaytarmasın.”',
+                style: {
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  color: 'white',
+                },
+              },
+            ],
+            choices: [
+              { text: '"YOK ABİ BENİM ÇIKMAM LAZIM"', target: 'cikis' },
+            ],
+            buttonsDisabled: false,
+            background: './images/yonetici-cep.png',
+          };
+        case 'cikis':
+
+          return {
+            ...prevStory,
+            text: [
+              {
+                text: 'Hazırlanma hızın inanılmaz. Abiyi başından saldığına göre dışarı çıkmaya hazırsın.',
 
               },
             ],
             choices: [
-              { text: 'EVDEN ÇIK', target: 'first' },
+              { text: 'EVDEN ÇIK', target: 'dilenci1' },
             ],
             buttonsDisabled: false,
             background: './images/cikis.png',
           };
-        case 'is-cikis':
+        case 'suat':
 
           return {
             ...prevStory,
             text: [
               {
-                text: 'Yerinde olsam hızlıca evden çıkardım. Malum, akşam saatleri ve insan trafiği. Seversin...',
-
+                text: '“Eyvallah Suat abi, sana da. ”',
+                style: {
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  color: 'white',
+                },
               },
+              ' deyiverdin. \n\n Bakışları değişmedi, ama sözünü kestiğin için ilginç bir yinelemenin içine düştü. \n\nDilinle damağının arasındaki sürtünme katsayısı hoşuna gidenden çok daha az. \n\nHidrasyonla igili ne düşünürsün?'
             ],
             choices: [
-              { text: 'EVDEN ÇIK', target: 'first' },
+              { text: 'SU İÇ', target: 'suIc' },
+              { text: 'NİYE GELMİŞ BU ADAM?', target: 'aidat' },
             ],
             buttonsDisabled: false,
-            background: './images/cikis.png',
+            background: './images/yonetici1.png',
           };
-        case 'first':
+        case 'suIc':
+          newMoodIncrease = 10;
+
+          handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true);
+          setCharacterStats((prevStats) => ({
+            ...prevStats,
+            mood: Math.max(prevStats.mood + newMoodIncrease, 0),
+          }));
+          statMoodChangeRef.current = true;
+          dispatch({ type: 'CHANGE_MOOD', payload: newMoodIncrease });
+          return {
+            ...prevStory,
+            text: [
+              {
+                text: 'Su çok güzel, ciğerlerine doğru gelen canlanma hissi sana çok müthiş hissettiriyor ve her şey daha net.',
+
+              },
+            ],
+            choices: [
+              { text: 'OH BE. ŞİMDİ Bİ BAKALIM NE DİYOR SUAT ABİ.', target: 'aidat' },
+
+            ],
+            buttonsDisabled: false,
+            background: './images/su.png',
+
+          };
+        case 'aidat':
+
+
+          return {
+            ...prevStory,
+            text: [
+
+              'Adam söylediklerine kaldığı yerden devam ediyor. ',
+              {
+                text: '\n\n“İşte senin aidatı bugün vermen lazım ki, biz de ustaya vereceğiz.”',
+                style: {
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  color: 'white',
+                },
+              },
+
+            ],
+            choices: [
+              { text: '“TABİİ ABİ BİR SANİYE.” \n\nPARAYI VER.', target: 'usta' },
+              { text: '"BEN SANA IBANDAN ATAYIM ABİ ONU, NAKTİM KALMADI HİÇ.” \n\nYALAN SÖYLE', target: 'yalan' },
+            ],
+            buttonsDisabled: false,
+            background: './images/yonetici-el.png',
+
+
+          };
+        case 'onemiVarMi':
+
 
           return {
             ...prevStory,
             text: [
               {
-                text: 'Hava soğuk ve önünde uzun bir yol var. \nÇoktan geç kaldığını söylememe gerek yoktur umarım?',
-
+                text: '“Eyvallah abi, sana da. ”',
+                style: {
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  color: 'white',
+                },
               },
+              ' deyiverdin. \n\n Adam söylediklerine kaldığı yerden devam ediyor. \n\n',
+              {
+                text: '“İşte senin aidatı bugün vermen lazım ki, biz de ustaya vereceğiz.”',
+                style: {
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  color: 'white',
+                },
+              },
+
             ],
             choices: [
-              { text: 'İLERLE', target: 'dilenci' },
+              { text: '“TABİİ ABİ BİR SANİYE.” \n\nPARAYI VER.', target: 'usta' },
+              { text: '"BEN SANA IBANDAN ATAYIM ABİ ONU, NAKTİM KALMADI HİÇ.” \n\nYALAN SÖYLE', target: 'yalan' },
             ],
             buttonsDisabled: false,
-            background: './images/first.png',
+            background: './images/yonetici-el.png',
+
+
           };
         case 'dilenci':
 
           return {
             ...prevStory,
             text: [
+              'Sokağa çıktın ve vazgeçmek için çok geç olduğunun farkındasın. \n\nNalbur sormak için gördüğün ilk tekele girmek üzereyken bir dilenci yanında bitti.',
               {
-                text: 'Daha yolunun başında, uzaktan seni gözüne kestiren yaşlı bir teyze sana yaklaşıyor.',
+                text: ' \n\n“Çocuğuma şuradan bir tavuk alabilir misin?”',
+                style: {
 
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  color: 'white',
+
+
+                },
               },
             ],
+
             choices: [
-              { text: 'YAKLAŞ', target: 'dilenci-devam' },
-              { text: 'YOLA DEVAM', target: 'yola-devam' },
+              { text: 'BEN DE AY BAŞINI BEKLİYORUM VALLA', target: 'aybasi' },
+              { text: 'TABİ Kİ... BİR ÖZEL ANTAKYA SOSLU ZURNA?', target: 'dilenciParasiz' },
             ],
             buttonsDisabled: false,
             background: './images/second.png',
             characterImage: './images/teyze.png', // Add the path to your teyze.png
 
           };
-        case 'yola-devam':
-          handleIntelligenceCheckAnimation(dispatch, characterStats.intelligence > 55, setShowIntelligenceCheckAnimation);
 
-          if (characterStats.intelligence > 55) {
-            return {
-              ...prevStory,
-              text: [
+        case 'dilenci1':
 
-                {
-                  text: '"يا طفلتي، بحق الله، بعض الخبز ekmek، بعض الماء... lütfen... نحن جائعون جدا."',
-                  style: {
+          return {
+            ...prevStory,
+            text: [
+              'Sokağa çıktın ve ilk köşeyi döner dönmez bir dilenci yanında bitti.',
+              {
+                text: ' \n\n“Çocuğuma şuradan bir tavuk alabilir misin?”',
+                style: {
 
-                    fontWeight: 'normal',
-                    fontStyle: 'italic',
-                    color: 'white',
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  color: 'white',
 
 
-                  },
                 },
-                '\n Ne derler bilirsin. Bazen sen çekip gitmeye hazır olsan da, karşındaki olmaz. \n Neyse ki aklın başında, kısmen dediklerini anlıyorsun. \n Teyze oldukça kirli ve yardıma muhtaç gözüküyor.',
+              },
+            ],
 
-              ],
+            choices: [
+              { text: 'BEN DE AY BAŞINI BEKLİYORUM VALLA', target: 'aybasi' },
+              { text: 'TABİ Kİ... BİR XXL ÖZEL ANTAKYA SOSLU ZURNA TAVUK DÜRÜM GELİYOR!', target: 'dilenciParasiz' },
+            ],
+            buttonsDisabled: false,
+            background: './images/second.png',
+            characterImage: './images/teyze.png', // Add the path to your teyze.png
 
-              choices: [
-                { text: 'PARA VER', target: 'dilenci-para' },
-                { text: 'GÖRMEZDEN GEL', target: 'dilenci-parasiz' },
-              ],
-              buttonsDisabled: false,
-              background: './images/second.png',
-              characterImage: './images/teyze.png', // Add the path to your teyze.png
+          };
 
-            };
+        case 'aybasi':
 
-          } else {
-            return {
-              ...prevStory,
-              text: [
-                {
-                  text: '"يا طفلتي، بحق الله، بعض الخبز، بعض الماء... من فضلك. نحن جائعون جدا."',
-                  style: {
+          return {
+            ...prevStory,
+            text: [
 
-                    fontWeight: 'normal',
-                    fontStyle: 'italic',
-                    color: 'white',
+              {
+                text: '"Canın sağ olsun."',
+                style: {
+
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  color: 'white',
 
 
-                  },
                 },
-                '\n Ne derler bilirsin. Bazen sen çekip gitmeye hazır olsan da, karşındaki olmaz. \n Bir de ne dediğini anlaman için akıl yürütmekten fazlasını yapman gerekecek :(',
-              ],
-              choices: [
-                { text: 'أعطني نقودا', target: 'dilenci-para' },
-                { text: 'يتجاهل', target: 'dilenci-parasiz' },
-              ],
-              buttonsDisabled: false,
-              background: './images/second.png',
-              characterImage: './images/teyze.png', // Add the path to your teyze.png
+              },
+              '\n\n Çocuğun varlığından emin olamasan bile bir bebişi doyuramamak vicdanına çöküyor.',
 
-            };
-          }
-        case 'dilenci-devam':
-          handleIntelligenceCheckAnimation(dispatch, characterStats.intelligence > 55, setShowIntelligenceCheckAnimation);
+            ],
 
-          if (characterStats.intelligence > 55) {
-            return {
-              ...prevStory,
-              text: [
+            choices: [
+              { text: 'HEPSİNİ BEN Mİ DOYURAYIM KARDEŞİM, DEVLET YOK MU?', target: 'politikBilinc' },
+              { text: 'EVET YA... KEŞKE TÜM AÇLARI DOYURABİLSEYDİM.', target: 'adakHayat' },
+            ],
+            buttonsDisabled: false,
+            background: './images/second.png',
+            characterImage: './images/teyze.png', // Add the path to your teyze.png
 
-                {
-                  text: '"يا طفلتي، بحق الله، بعض الخبز ekmek، بعض الماء... lütfen... نحن جائعون جدا."',
-                  style: {
-
-                    fontWeight: 'normal',
-                    fontStyle: 'italic',
-                    color: 'white',
+          };
 
 
-                  },
-                },
-                '\n Neyse ki aklın başında, kısmen dediklerini anlıyorsun. \n Teyze oldukça kirli ve yardıma muhtaç gözüküyor.',
-
-              ],
-
-              choices: [
-                { text: 'PARA VER', target: 'dilenci-para' },
-                { text: 'ÖLÜME TERKET', target: 'dilenci-parasiz' },
-              ],
-              buttonsDisabled: false,
-              background: './images/second.png',
-              characterImage: './images/teyze.png', // Add the path to your teyze.png
-
-            };
-
-          } else {
-            return {
-              ...prevStory,
-              text: [
-                {
-                  text: '"يا طفلتي، بحق الله، بعض الخبز، بعض الماء... من فضلك. نحن جائعون جدا."',
-                  style: {
-
-                    fontWeight: 'normal',
-                    fontStyle: 'italic',
-                    color: 'white',
 
 
-                  },
-                },
-                '\n Uh-oh, ne dediğini anlaman için akıl yürütmekten fazlasını yapman gerekecek :(',
-              ],
-              choices: [
-                { text: 'أعطني نقودا', target: 'dilenci-para' },
-                { text: 'يتجاهل', target: 'dilenci-parasiz' },
-              ],
-              buttonsDisabled: false,
-              background: './images/second.png',
-              characterImage: './images/teyze.png', // Add the path to your teyze.png
-
-            };
-          }
-
-        case 'dilenci-para':
-
+        case 'dilenciParasiz':
           newMoodIncrease = 10,
             handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
           statMoodChangeRef.current = true;
@@ -669,72 +581,85 @@ function App() {
             ...prevStory,
             text: [
               {
-                text: 'Wow! Cömertliğin karşısında gülümsemekten kendini alamıyor teyze. Kim bilir, belki ilerde sana başka dönütleri de olur.',
+                text: '“Allah senden razı olsun.”',
+                style: {
 
-              },
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  color: 'white',
+
+
+                },
+              }
+              ,
+              { text: '\n\nAz önce bir dilenciye yardım ettin. Dünyadaki tüm insanlara karşı ahlaki üstünlüğünü parmak uçlarında hissediyorsun.' },
             ],
             choices: [
-              { text: 'İYİ ETTİM YA', target: 'iyi-ettim' },
+              { text: 'BU ARADA BURALARDA BİR NALBUR BİLİYOR MUSUNUZ?', target: 'kahvehane' },
             ],
             buttonsDisabled: false,
             background: './images/second.png',
-            characterImage: './images/teyze-gulen.png', // Add the path to your teyze.png
+            characterImage: './images/teyze-gulen.png',
 
           };
 
-        case 'dilenci-parasiz':
-          newMoodDecrease = 10;
 
-          handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false);
+        case 'politikBilinc':
+
+          newMoodIncrease = 10,
+            handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
+          statMoodChangeRef.current = true;
+
+
+
+
           setCharacterStats((prevStats) => ({
             ...prevStats,
-            mood: Math.max(prevStats.mood - newMoodDecrease, 0),
+            mood: Math.max(prevStats.mood + newMoodIncrease, 0), // Ensure non-negative value
           }));
-          statMoodChangeRef.current = true;
-          dispatch({ type: 'CHANGE_MOOD', payload: -newMoodDecrease });
+          dispatch({ type: 'CHANGE_MOOD', payload: newMoodIncrease });
           return {
             ...prevStory,
             text: [
               {
-                text: 'Teyze son umudunu sana harcamış gibi gözükse de para vermemeyi tercih ettin. \n Yarın öbür gün tekrar karşına çıkarsa sana çok iyi davranmayabilir.',
+                text: 'Haklısın. Bu politik bilinç içini rahatlatmak için yeter de artar bile.',
 
               },
             ],
             choices: [
-              { text: 'PİŞMAN DEĞİLİM', target: 'pisman-degilim' },
+              { text: 'BU ARADA BURALARDA BİR NALBUR BİLİYOR MUSUNUZ?', target: 'kahvehane' },
             ],
             buttonsDisabled: false,
             background: './images/second.png',
-            characterImage: './images/teyze.png',
+            characterImage: './images/teyze.png', // Add the path to your teyze.png
 
           };
-        case 'iyi-ettim':
-          newMoodDecrease = 10;
+        case 'adakHayat':
+          newIntelligenceDecrease = 10;
 
-          handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false);
+          handleMoodAnimation(dispatch, newIntelligenceDecrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, false);
           setCharacterStats((prevStats) => ({
             ...prevStats,
-            mood: Math.max(prevStats.mood - newMoodDecrease, 0),
+            intelligence: Math.max(prevStats.intelligence - newIntelligenceDecrease, 0),
           }));
-          statMoodChangeRef.current = true;
-          dispatch({ type: 'CHANGE_MOOD', payload: -newMoodDecrease });
+          statIntelligenceChangeRef.current = true;
+          dispatch({ type: 'CHANGE_INTELLIGENCE', payload: -newIntelligenceDecrease });
           return {
             ...prevStory,
             text: [
               {
-                text: 'Belli ki ilk başta birbirinizi keyiflendirdiniz. \n Ancak şimdi tekrar düşününce, aslında iyi bir şey mi yaptın emin değil gibisin.',
+                text: 'Keşke... Neden tüm bu sorumluluğu kabul edip hayatının geri kalanını buna adamıyorsun?',
 
               },
             ],
             choices: [
-              { text: 'PİŞMAN DEĞİLİM', target: 'pisman-degilim' },
+              { text: 'BU ARADA BURALARDA BİR NALBUR BİLİYOR MUSUNUZ?', target: 'kahvehane' },
             ],
             buttonsDisabled: false,
             background: './images/second.png',
             characterImage: null,
 
           };
-
         case 'pisman-degilim':
           newMoodDecrease = 10;
 

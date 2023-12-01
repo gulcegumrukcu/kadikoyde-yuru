@@ -33,7 +33,7 @@ function EntrancePage({ onReady }) {
             {/* Use the video element with the loop attribute */}
             <video autoPlay loop muted className=' w-[100%]'>
                 <source src={logo} type='video/mp4' />
-                Your browser does not support the video tag.
+
             </video>
             <div className='flex'>
                 {showButton && (

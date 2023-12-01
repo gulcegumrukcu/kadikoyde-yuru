@@ -10,14 +10,17 @@ function ChoiceButton({ text, onClick, disabled, isSpecialQuestion }) {
     return (
         <div className="flex items-center">
             <button
-                className=" min-h-[100px] max-h-[68px] min-w-[100px] lg:h-[150px] lg:w-48 max-w-48 m-4 p-2 font-bold  lg:p-4  bg-black text-white rounded-none border-2 border-white text-xs lg:text-xl mx-auto flex justify-center items-center hover:bg-opacity-10 hover:border-black hover:border-4 hover:text-white hover:text-bold"
+                className=" min-h-[150px] max-h-[180px] min-w-[140px] lg:h-[220px] lg:w-52 max-w-48 m-4 p-2 font-bold  lg:p-4  bg-black text-white rounded-none border-2 border-white text-xs lg:text-xl mx-auto flex justify-center items-center hover:bg-opacity-50 hover:border-black hover:border-2 hover:text-white hover:text-bold"
                 onClick={() => {
                     audio.play();
                     onClick();
                 }}
                 disabled={disabled}
             >
-                {text}
+                <div className='whitespace-pre-line'>
+                    {text}
+                </div>
+
             </button>
         </div>
     );

@@ -12,13 +12,14 @@ const setBackground = (color) => {
 };
 
 const getBackground = () => backgrounds.pop() || '';
+
 const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimation, statIntelligenceChangeRef, increase = true, delay = 0) => {
     console.log(`Handling intelligence animation - Amount: ${amount}, Increase: ${increase}`);
     const backgroundColor = increase ? 'green' : 'red';
     setBackground(backgroundColor); // Correct assignment
 
     const initialAlertText = amount !== 0
-        ? <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Zeka`}</span>
+        ? <span style={{ backgroundColor, padding: '6px', display: 'flex', }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Zeka`}</span>
         : '';
 
     if (amount !== 0) {
@@ -45,7 +46,7 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodCha
     setBackground(backgroundColor); // Correct assignment
 
     const initialAlertText = amount !== 0
-        ? <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Ruh Hali`}</span>
+        ? <span style={{ backgroundColor, padding: '6px', display: 'flex', }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Ruh Hali`}</span>
         : '';
 
     if (amount !== 0) {
@@ -60,7 +61,7 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodCha
         dispatch({ type: 'CHANGE_MOOD', payload: moodChange });
         setShowMoodAnimation('');
         statMoodChangeRef.current = true;
-    }, 1000 + delay);
+    }, 3000 + delay);
 
     return () => {
         setShowMoodAnimation(increase ? clampedAmount : 0);
@@ -72,7 +73,7 @@ const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, statMoney
     setBackground(backgroundColor);
 
     const initialAlertText = amount !== 0 ? (
-        <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Para`}</span>
+        <span style={{ backgroundColor, padding: '6px', display: 'flex', }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Para`}</span>
     ) : '';
 
     if (amount !== 0) {
@@ -85,7 +86,7 @@ const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, statMoney
         dispatch({ type: 'CHANGE_MONEY', payload: moneyChange });
         statMoneyChangeRef.current = true;
         setShowMoneyAnimation('');
-    }, 1000 + delay); // Adjust the delay here
+    }, 3000 + delay); // Adjust the delay here
 
     return () => {
         setShowMoneyAnimation(increase ? clampedAmount : 0);
@@ -97,7 +98,7 @@ const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, statHea
     setBackground(backgroundColor); // Correct assignment
 
     const initialAlertText = amount !== 0
-        ? <span style={{ backgroundColor, padding: '6px' }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Sağlık`}</span>
+        ? <span style={{ backgroundColor, padding: '6px', display: 'flex', }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Sağlık`}</span>
         : '';
 
     if (amount !== 0) {
@@ -111,7 +112,7 @@ const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, statHea
         dispatch({ type: 'CHANGE_HEALTH', payload: healthChange });
         statHealthChangeRef.current = true;
         setShowHealthAnimation('');
-    }, 1000 + delay);
+    }, 3000 + delay);
 
     return () => {
         setShowHealthAnimation(increase ? clampedAmount : 0);
@@ -122,14 +123,15 @@ async function handleIntelligenceCheckAnimation(dispatch, intelligenceCheckResul
     const backgroundColor = intelligenceCheckResult ? 'green' : 'red';
     const audioToPlay = intelligenceCheckResult ? correctAudio : wrongAudio;
     const initialAlertText = intelligenceCheckResult
-        ? <span style={{ backgroundColor, padding: '6px' }}>Zeka Kontrol Başarılı!</span>
-        : <span style={{ backgroundColor, padding: '6px' }}>Zeka Kontrol Başarısız!</span>;
+        ? <span style={{ backgroundColor, padding: '6px', display: 'flex', }}>Zeka Kontrol Başarılı!</span>
+        : <span style={{ backgroundColor, padding: '6px', display: 'flex', }}>Zeka Kontrol Başarısız!</span>;
 
     setShowIntelligenceCheckAnimation({
         text: initialAlertText,
         style: {
             backgroundColor,
             padding: '6px',
+            display: 'flex',
         },
     });
 
@@ -139,7 +141,7 @@ async function handleIntelligenceCheckAnimation(dispatch, intelligenceCheckResul
         setTimeout(() => {
             setShowIntelligenceCheckAnimation('');
             resolve(true);
-        }, 1000);
+        }, 3000);
     });
 }
 

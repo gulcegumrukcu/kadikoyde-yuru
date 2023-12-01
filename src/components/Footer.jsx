@@ -5,7 +5,7 @@ import StatContainer from './StatContainer';
 import useAnimation from './useAnimation'
 
 
-const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMoodAnimation, showIntelligenceCheckAnimation, showMoneyAnimation, statMoneyChangeRef, statHealthChangeRef, statIntelligenceChangeRef, statMoodChangeRef }) => {
+const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMoodAnimation, showHealthAnimation, showIntelligenceAnimation, showIntelligenceCheckAnimation, showMoneyAnimation, statMoneyChangeRef, statHealthChangeRef, statIntelligenceChangeRef, statMoodChangeRef }) => {
 
     const showIntelligenceCheckAnimationValue = useAnimation(showIntelligenceCheckAnimation.text);
     if (!showFooter) {
@@ -25,8 +25,8 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                             <StatContainer
                                 label='Sağlık'
                                 value={characterStats.health}
-                                color='#F34203'
-                                circleBorderColor='#F34203'
+                                color='#8E2F2C'
+                                circleBorderColor='#8E2F2C'
                                 statHealthChangeRef={statHealthChangeRef}
 
                             />
@@ -35,8 +35,8 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                             <StatContainer
                                 label='Ruh Hali'
                                 value={characterStats.mood}
-                                color='#FEE440'
-                                circleBorderColor='#FEE440'  // For the circular stat
+                                color='#BFA437'
+                                circleBorderColor='#BFA437'  // For the circular stat
                                 statMoodChangeRef={statMoodChangeRef}
 
                             />
@@ -68,6 +68,26 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                             <>
                                 <div className='text-white font-bold absolute lg:right-16 right-2 top-16 text-md lg:text-2xl '>
                                     {showMoodAnimation}
+                                </div>
+
+                            </>
+
+
+                        )}
+                        {showIntelligenceAnimation && (
+                            <>
+                                <div className='text-white font-bold absolute lg:right-16 right-2 top-16 text-md lg:text-2xl '>
+                                    {showIntelligenceAnimation}
+                                </div>
+
+                            </>
+
+
+                        )}
+                        {showHealthAnimation && (
+                            <>
+                                <div className='text-white font-bold absolute lg:right-16 right-2 top-16 text-md lg:text-2xl '>
+                                    {showHealthAnimation}
                                 </div>
 
                             </>
