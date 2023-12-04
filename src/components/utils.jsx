@@ -7,6 +7,20 @@ const correctAudio = new Audio(correct)
 const wrongAudio = new Audio(wrong)
 const animationAudio = new Audio(animation)
 
+export const createInitialAlertText = (amount, increase) => {
+    const backgroundColor = increase ? 'green' : 'red';
+    const jsxAlertText = amount !== 0
+        ? <span style={{ backgroundColor, display: 'flex' }}>{`${increase ? '+' : '-'}${Math.abs(amount)}`}</span>
+        : '';
+
+    const stringAlertText = amount !== 0
+        ? `${increase ? '+' : '-'}${Math.abs(amount)}`
+        : '';
+
+    return { jsxAlertText, stringAlertText };
+};
+
+
 let backgrounds = [];
 
 const setBackground = (color) => {
@@ -16,7 +30,6 @@ const setBackground = (color) => {
 const getBackground = () => backgrounds.pop() || '';
 
 const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimation, statIntelligenceChangeRef, increase = true, delay = 0) => {
-    console.log(`Handling intelligence animation - Amount: ${amount}, Increase: ${increase}`);
     const backgroundColor = increase ? 'green' : 'red';
     setBackground(backgroundColor); // Correct assignment
     const audioToPlay = animationAudio
@@ -35,18 +48,20 @@ const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimat
         dispatch({ type: 'CHANGE_INTELLIGENCE', payload: intelligenceChange });
         statIntelligenceChangeRef.current = true;
         setShowIntelligenceAnimation('');
-    }, 1000 + delay);
+    }, 2000 + delay);
 
     return () => {
         setShowIntelligenceAnimation(increase ? clampedAmount : 0);
+
     };
 };
 
 const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodChangeRef, increase = true, delay = 0) => {
-    console.log(`Handling mood animation - Amount: ${amount}, Increase: ${increase}`);
+    console.log(`Utils Mood değişimi miktar: ${amount}, Increase: ${increase}`);
+
     const backgroundColor = increase ? 'green' : 'red';
     setBackground(backgroundColor); // Correct assignment
-    const audioToPlay = animationAudio
+    const audioToPlay = animationAudio;
     const initialAlertText = amount !== 0
         ? <span style={{ backgroundColor, padding: '6px', display: 'flex', }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Ruh Hali`}</span>
         : '';
@@ -58,19 +73,20 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodCha
     const clampedAmount = 10;
     audioToPlay.play();
     setTimeout(() => {
-        console.log('Timer completed - Hiding Mood Animation');
         const moodChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_MOOD', payload: moodChange });
         setShowMoodAnimation('');
         statMoodChangeRef.current = true;
-    }, 3000 + delay);
+    }, 2000 + delay);
 
     return () => {
         setShowMoodAnimation(increase ? clampedAmount : 0);
+
     };
 };
+
 const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, statMoneyChangeRef, increase = true, delay = 0) => {
-    console.log(`Handling money animation - Amount: ${amount}, Increase: ${increase}`);
+    console.log(`Utils Money değişimi miktar: ${amount}, Increase: ${increase}`);
     const backgroundColor = increase ? 'green' : 'red';
     setBackground(backgroundColor);
     const audioToPlay = animationAudio
@@ -89,14 +105,15 @@ const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, statMoney
         dispatch({ type: 'CHANGE_MONEY', payload: moneyChange });
         statMoneyChangeRef.current = true;
         setShowMoneyAnimation('');
-    }, 3000 + delay); // Adjust the delay here
+    }, 2000 + delay); // Adjust the delay here
 
     return () => {
         setShowMoneyAnimation(increase ? clampedAmount : 0);
+
+
     };
 };
 const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, statHealthChangeRef, increase = true, delay = 0) => {
-    console.log(`Handling health animation - Amount: ${amount}, Increase: ${increase}`);
     const backgroundColor = increase ? 'green' : 'red';
     setBackground(backgroundColor); // Correct assignment
     const audioToPlay = animationAudio;
@@ -119,6 +136,7 @@ const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, statHea
 
     return () => {
         setShowHealthAnimation(increase ? clampedAmount : 0);
+
     };
 };
 
@@ -148,7 +166,11 @@ async function handleIntelligenceCheckAnimation(dispatch, intelligenceCheckResul
     });
 }
 
+
+
+
 export default {
+    createInitialAlertText,
     handleMoodAnimation,
     handleMoneyAnimation,
     handleHealthAnimation,
@@ -156,5 +178,5 @@ export default {
     handleIntelligenceCheckAnimation,
     setBackground,
     getBackground,
-
 };
+

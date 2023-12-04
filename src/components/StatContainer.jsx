@@ -1,38 +1,30 @@
 // StatContainer.jsx
 import StatBar from './StatBar';
-import React, { useState, useEffect, useRef } from 'react'; import utils from './utils.jsx';
-
+import React, { useState, useEffect, useRef } from 'react';
+import { createInitialAlertText } from './utils.jsx'; // Correct import statement
+import utils from './utils.jsx';
 
 function StatContainer({ label, value, color, circleBorderColor, statMoneyChangeRef, statHealthChangeRef, statIntelligenceChangeRef, statMoodChangeRef }) {
 
     const [displayValue, setDisplayValue] = useState(value);
 
-
     useEffect(() => {
         const background = utils.getBackground();
 
-        const handleStatChange = (statLabel, statChangeRef, setChangeAmount, backgroundColor) => {
+        const handleStatChange = (statLabel, statChangeRef) => {
             if (statChangeRef && statChangeRef.current) {
-                console.log(`Changing ${statLabel} - Display temporary change amount for 1 second: ${setChangeAmount}`);
+                const { jsxAlertText, stringAlertText } = createInitialAlertText(10, background === 'green', background, statLabel);
 
-                // Determine the sign based on the change amount
-                const changeAmount = backgroundColor === 'green' ? setChangeAmount : -setChangeAmount;
+                // You can use jsxAlertText in your component
+                setDisplayValue(jsxAlertText);
 
-                // Calculate the displayed value based on the change amount and the original value
-                const displayAmount = `${changeAmount > 0 ? '+' : ''}${changeAmount}`;
-                console.log(`Display ${statLabel} Value before setting: ${displayAmount}`);
-                console.log(`background for ${statLabel} is: ${backgroundColor}`);
-
-                setDisplayValue(displayAmount);
+                // You can also use stringAlertText for other purposes
+                console.log`text of ${label} ${stringAlertText}`;
 
                 const timeoutId = setTimeout(() => {
-                    console.log(`Reverting ${statLabel} - After 1 second. Current value: ${value}`);
-                    // After 1 second, revert back to the original value
                     setDisplayValue(value);
-                    statChangeRef.current = false; // Reset the statChangeRef 
-
-                    console.log(`Display Value after reverting: ${value}`);
-                }, 3000);
+                    statChangeRef.current = false;
+                }, 2000);
 
                 return () => {
                     clearTimeout(timeoutId);
@@ -40,14 +32,10 @@ function StatContainer({ label, value, color, circleBorderColor, statMoneyChange
             }
         };
 
-
-
-        // Pass the background color to handleStatChange
-
-        handleStatChange('Health', statHealthChangeRef, 10, background);
-        handleStatChange('Intelligence', statIntelligenceChangeRef, 10, background);
-        handleStatChange('Mood', statMoodChangeRef, 10, background);
-        handleStatChange('Money', statMoneyChangeRef, 10, background);
+        handleStatChange('Health', statHealthChangeRef);
+        handleStatChange('Intelligence', statIntelligenceChangeRef);
+        handleStatChange('Mood', statMoodChangeRef);
+        handleStatChange('Money', statMoneyChangeRef);
     }, [statMoneyChangeRef, statHealthChangeRef, statIntelligenceChangeRef, statMoodChangeRef, value]);
 
     const statValueContainerStyle = {
@@ -55,7 +43,6 @@ function StatContainer({ label, value, color, circleBorderColor, statMoneyChange
         flexDirection: 'column',
         alignItems: 'center',
     };
-
 
     return (
         <div className='lg:w-[160px]'>
@@ -70,4 +57,3 @@ function StatContainer({ label, value, color, circleBorderColor, statMoneyChange
 }
 
 export default StatContainer;
-

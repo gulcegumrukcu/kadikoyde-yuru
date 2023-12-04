@@ -32,12 +32,12 @@ function App() {
   const dispatch = useDispatch();
   const handleToggleSound = () => {
     // Implement sound control logic here
-    console.log('Toggle sound');
+
   };
 
   const handleMenuClick = () => {
     // Implement settings logic here
-    console.log('Open settings');
+
   };
 
 
@@ -50,6 +50,10 @@ function App() {
 
 
   const [userChoseSuIc, setUserChoseSuIc] = useState(false);
+  const [merdivenYolu, setMerdivenYolu] = useState(false);
+
+
+
 
   const [story, setStory] = useState({
     text: [
@@ -103,6 +107,7 @@ function App() {
       time: generateRandomStat(),
       intelligence: generateRandomStat(),
     };
+
 
     if (story.buttonsDisabled) return;
     setStory((prevStory) => {
@@ -268,8 +273,10 @@ function App() {
             background: './images/kova.png',
           };
         case 'merdiven':
+          setMerdivenYolu(true)
           return {
             ...prevStory,
+
 
 
             text: [
@@ -287,7 +294,7 @@ function App() {
 
             ],
             choices: [
-              { text: 'EVDEN ÇIK', target: 'dilenci' },
+              { text: 'EVDEN ÇIK', target: 'merdivenDilenci' },
 
             ],
             buttonsDisabled: false,
@@ -354,7 +361,7 @@ function App() {
               },
             ],
             choices: [
-              { text: 'EVDEN ÇIK', target: 'dilenci1' },
+              { text: 'EVDEN ÇIK', target: 'dilenci' },
             ],
             buttonsDisabled: false,
             background: './images/cikis.png',
@@ -468,7 +475,7 @@ function App() {
 
 
           };
-        case 'dilenci':
+        case 'merdivenDilenci':
 
           return {
             ...prevStory,
@@ -496,8 +503,7 @@ function App() {
             characterImage: './images/teyze.png', // Add the path to your teyze.png
 
           };
-
-        case 'dilenci1':
+        case 'dilenci':
 
           return {
             ...prevStory,
@@ -525,7 +531,6 @@ function App() {
             characterImage: './images/teyze.png', // Add the path to your teyze.png
 
           };
-
         case 'aybasi':
 
           return {
@@ -556,61 +561,64 @@ function App() {
             characterImage: './images/teyze.png', // Add the path to your teyze.png
 
           };
-
-
-
-
         case 'dilenciParasiz':
-          newMoodIncrease = 10,
-            handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
-          statMoodChangeRef.current = true;
-
-
-          newMoneyDecrease = 10,
-            handleMoneyAnimation(dispatch, newMoneyDecrease, setShowMoneyAnimation, statMoneyChangeRef, false, 0);
+          newMoneyDecrease = 10;
+          handleMoneyAnimation(dispatch, newMoneyDecrease, setShowMoneyAnimation, statMoneyChangeRef, false, 0);
           statMoneyChangeRef.current = true;
+
+          newMoodIncrease = 10;
+          handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
+          statMoodChangeRef.current = true;
 
           setCharacterStats((prevStats) => ({
             ...prevStats,
-            money: Math.max(prevStats.money - newMoneyDecrease, 0), // Ensure non-negative value
             mood: Math.max(prevStats.mood + newMoodIncrease, 0), // Ensure non-negative value
+            money: Math.max(prevStats.money - newMoneyDecrease, 0), // Ensure non-negative value
           }));
-          dispatch({ type: 'CHANGE_MONEY', payload: -newMoneyDecrease });
           dispatch({ type: 'CHANGE_MOOD', payload: newMoodIncrease });
+          dispatch({ type: 'CHANGE_MONEY', payload: -newMoneyDecrease });
+          console.log(merdivenYolu)
+
+
           return {
             ...prevStory,
             text: [
               {
                 text: '“Allah senden razı olsun.”',
                 style: {
-
                   fontWeight: 'bold',
                   fontStyle: 'italic',
                   color: 'white',
-
-
                 },
-              }
-              ,
-              { text: '\n\nAz önce bir dilenciye yardım ettin. Dünyadaki tüm insanlara karşı ahlaki üstünlüğünü parmak uçlarında hissediyorsun.' },
+              },
+              {
+                text: '\n\nAz önce bir dilenciye yardım ettin. Dünyadaki tüm insanlara karşı ahlaki üstünlüğünü parmak uçlarında hissediyorsun.',
+              },
             ],
-            choices: [
-              { text: 'BU ARADA BURALARDA BİR NALBUR BİLİYOR MUSUNUZ?', target: 'kahvehane' },
-            ],
+            choices: merdivenYolu
+              ? [
+                {
+                  text: 'BU ARADA BURALARDA BİR NALBUR BİLİYOR MUSUNUZ?',
+                  target: 'nalburSorusu',
+                },
+              ]
+              : [
+                {
+                  text: '>',
+                  target: 'korna',
+                },
+              ],
+
+
             buttonsDisabled: false,
             background: './images/second.png',
             characterImage: './images/teyze-gulen.png',
-
           };
-
-
         case 'politikBilinc':
 
           newMoodIncrease = 10,
             handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
           statMoodChangeRef.current = true;
-
-
 
 
           setCharacterStats((prevStats) => ({
@@ -626,9 +634,19 @@ function App() {
 
               },
             ],
-            choices: [
-              { text: 'BU ARADA BURALARDA BİR NALBUR BİLİYOR MUSUNUZ?', target: 'kahvehane' },
-            ],
+            choices: merdivenYolu
+              ? [
+                {
+                  text: 'BU ARADA BURALARDA BİR NALBUR BİLİYOR MUSUNUZ?',
+                  target: 'nalburSorusu',
+                },
+              ]
+              : [
+                {
+                  text: '>',
+                  target: 'korna',
+                },
+              ],
             buttonsDisabled: false,
             background: './images/second.png',
             characterImage: './images/teyze.png', // Add the path to your teyze.png
@@ -637,13 +655,15 @@ function App() {
         case 'adakHayat':
           newIntelligenceDecrease = 10;
 
-          handleMoodAnimation(dispatch, newIntelligenceDecrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, false);
+          handleIntelligenceAnimation(dispatch, newIntelligenceDecrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, false);
           setCharacterStats((prevStats) => ({
             ...prevStats,
             intelligence: Math.max(prevStats.intelligence - newIntelligenceDecrease, 0),
           }));
           statIntelligenceChangeRef.current = true;
           dispatch({ type: 'CHANGE_INTELLIGENCE', payload: -newIntelligenceDecrease });
+
+
           return {
             ...prevStory,
             text: [
@@ -652,44 +672,64 @@ function App() {
 
               },
             ],
-            choices: [
-              { text: 'BU ARADA BURALARDA BİR NALBUR BİLİYOR MUSUNUZ?', target: 'kahvehane' },
-            ],
+            choices: merdivenYolu
+              ? [
+                {
+                  text: 'BU ARADA BURALARDA BİR NALBUR BİLİYOR MUSUNUZ?',
+                  target: 'nalburSorusu',
+                },
+              ]
+              : [
+                {
+                  text: '>',
+                  target: 'korna',
+                },
+              ],
             buttonsDisabled: false,
             background: './images/second.png',
+            characterImage: './images/teyze.png',
+
+          };
+        case 'korna':
+
+          return {
+            ...prevStory,
+            text: [
+
+              'Ne kadar mükemmel biri olduğunu düşünürken yoğun bir korna sesiyle gerçekliğe çekildin. \n\n Ters yönden gelen bir motor kurye kaldırıma çıkmış ve yolundan çıkman için sana korna çalıyor.',
+            ],
+            choices: [
+              { text: 'KUSURA BAKMAYIN, HEMEN ÇEKİLİYORUM', target: 'çekil' },
+              { text: 'KALDIRIM ULAN BURASI DAVAR HERİF!', target: 'davar' },
+            ],
+            buttonsDisabled: false,
+            background: './images/background5.png',
             characterImage: null,
 
           };
-        case 'pisman-degilim':
-          newMoodDecrease = 10;
+        case 'nalburSorusu':
 
-          handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false);
-          setCharacterStats((prevStats) => ({
-            ...prevStats,
-            mood: Math.max(prevStats.mood - newMoodDecrease, 0),
-          }));
-          statMoodChangeRef.current = true;
-          dispatch({ type: 'CHANGE_MOOD', payload: -newMoodDecrease });
           return {
             ...prevStory,
             text: [
               {
-                text: 'Bla bla.',
-
+                text: 'Hayır.',
+                style: {
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  color: 'white',
+                },
               },
+              '\n\nGözlerinle etrafı tarayarak yürümeye devam ediyorsun.',
             ],
             choices: [
-              { text: 'bla', target: 'bla' },
+              { text: '>', target: 'nalbur' },
             ],
             buttonsDisabled: false,
-            background: './images/second.png',
-
+            background: './images/background5.png',
             characterImage: null,
+
           };
-
-
-
-
         default:
           console.warn('Unhandled target:', path);
           return prevStory;
@@ -699,7 +739,7 @@ function App() {
 
   useEffect(() => {
     if (story.background) {
-      console.log('Background Image:', story.background);
+
     }
   }, [story.background]);
 
