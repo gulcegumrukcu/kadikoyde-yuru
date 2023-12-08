@@ -703,8 +703,8 @@ function App() {
               { text: 'KALDIRIM ULAN BURASI DAVAR HERİF!', target: 'davar' },
             ],
             buttonsDisabled: false,
-            background: './images/background5.png',
-            characterImage: null,
+            background: './images/trafik.png',
+            characterImage: './images/kurye.png',
 
           };
         case 'nalburSorusu':
@@ -754,6 +754,14 @@ function App() {
 
   };
 
+  const characterContainerStyle = {
+    position: 'absolute',
+    bottom: -100,
+    left: '2%',
+    display: 'flex',
+    flexDirection: 'column-reverse',
+  };
+
   const buttonsContainerStyle = {
 
     display: 'flex',
@@ -768,11 +776,7 @@ function App() {
   };
 
   const characterImage = {
-    position: 'absolute',
-    width: window.innerWidth >= 1024 ? '400px' : '200px', // Responsive width
-    top: window.innerWidth >= 1024 ? '20%' : '40%', // Responsive width
-    left: '2%', // Adjust the left position as needed
-
+    maxWidth: '100%',
   };
 
 
@@ -807,14 +811,17 @@ function App() {
 
 
           <div className='flex items-center   justify-center   text-center ' style={containerStyle}>
-            {story.characterImage && (
-              <img
-                src={story.characterImage}
-                alt="Character"
+            <div style={characterContainerStyle}>
+              {story.characterImage && (
+                <img
+                  src={story.characterImage}
+                  alt="Character"
 
-                style={characterImage}
-              />
-            )}
+                  style={{ ...characterImage, width: window.innerWidth >= 1024 ? '540px' : '200px' }}
+                />
+              )}
+            </div>
+
             <QuestionComponent
               story={story}
               handleChoice={handleChoice}
