@@ -696,7 +696,7 @@ function App() {
             ...prevStory,
             text: [
 
-              'Ne kadar mükemmel biri olduğunu düşünürken yoğun bir korna sesiyle gerçekliğe çekildin. \n\n Ters yönden gelen bir motor kurye kaldırıma çıkmış ve yolundan çıkman için sana korna çalıyor.',
+              'Ne kadar mükemmel biri olduğunu düşünürken yoğun bir korna sesiyle gerçekliğe çekildin. \n\nTers yönden gelen bir motor kurye kaldırıma çıkmış ve yolundan çıkman için sana korna çalıyor.',
             ],
             choices: [
               { text: 'KUSURA BAKMAYIN, HEMEN ÇEKİLİYORUM', target: 'çekil' },
@@ -814,7 +814,7 @@ function App() {
               {story.characterImage && (
                 <img
                   src={story.characterImage}
-                  alt="Character"
+                  alt="Character "
 
                   style={{ ...characterImage, width: '100%', height: '100%' }}
                 />
