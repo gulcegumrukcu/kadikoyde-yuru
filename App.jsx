@@ -821,7 +821,7 @@ function App() {
                     ...characterImage,
                     width: '100%',
                     height: '100%',
-                    maxWidth: window.innerWidth < mobileMaxWidth ? '80%' : '100%',
+                    maxWidth: window.innerWidth < mobileMaxWidth ? '60%' : '100%',
                   }}
                 />
               )}
