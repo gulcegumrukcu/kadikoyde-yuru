@@ -781,6 +781,8 @@ function App() {
 
   };
 
+  const mobileMaxWidth = 480; // Adjust the maximum width for mobile screens as needed
+
   return (
     <div>
       {showEntrancePage ? (
@@ -809,14 +811,18 @@ function App() {
           />
 
 
-          <div className='flex items-center   justify-center   text-center ' style={containerStyle}>
+          <div className='flex items-center justify-center text-center' style={containerStyle}>
             <div style={characterContainerStyle}>
               {story.characterImage && (
                 <img
                   src={story.characterImage}
                   alt="Character "
-
-                  style={{ ...characterImage, width: '100%', height: '100%' }}
+                  style={{
+                    ...characterImage,
+                    width: '100%',
+                    height: '100%',
+                    maxWidth: window.innerWidth < mobileMaxWidth ? '80%' : '100%',
+                  }}
                 />
               )}
             </div>
