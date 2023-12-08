@@ -756,7 +756,7 @@ function App() {
 
   const characterContainerStyle = {
     position: 'absolute',
-    bottom: -100,
+    bottom: -60,
     left: '2%',
     display: 'flex',
     flexDirection: 'column-reverse',
@@ -777,10 +777,9 @@ function App() {
 
   const characterImage = {
     maxWidth: '100%',
+    objectFit: 'cover',
+
   };
-
-
-
 
   return (
     <div>
@@ -817,7 +816,7 @@ function App() {
                   src={story.characterImage}
                   alt="Character"
 
-                  style={{ ...characterImage, width: window.innerWidth >= 1024 ? '540px' : '200px' }}
+                  style={{ ...characterImage, width: '100%', height: '100%' }}
                 />
               )}
             </div>
