@@ -132,7 +132,7 @@ const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, statHea
         dispatch({ type: 'CHANGE_HEALTH', payload: healthChange });
         statHealthChangeRef.current = true;
         setShowHealthAnimation('');
-    }, 3000 + delay);
+    }, 2000 + delay);
 
     return () => {
         setShowHealthAnimation(increase ? clampedAmount : 0);

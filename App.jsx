@@ -40,7 +40,7 @@ function App() {
 
   };
 
-
+  /* const [gameOver, setGameOver] = useState(false); */
 
   const [showEntrancePage, setShowEntrancePage] = useState(true);
 
@@ -92,6 +92,7 @@ function App() {
 
 
   async function handleChoice(path) {
+    /* if (gameOver || story.buttonsDisabled) return; */
     let newMoneyDecrease;
     let newMoodDecrease;
     let newMoodIncrease;
@@ -100,6 +101,7 @@ function App() {
     let newHealthIncrease;
     let newIntelligenceDecrease;
     let newIntelligenceIncrease;
+
     const newCharacterStats = characterStats || {
       health: generateRandomStat(),
       money: generateRandomStat(),
@@ -108,10 +110,20 @@ function App() {
       intelligence: generateRandomStat(),
     };
 
+    /* checkAndHandleEnding('Health', newCharacterStats.health);
+    checkAndHandleEnding('Money', newCharacterStats.money);
+    checkAndHandleEnding('Mood', newCharacterStats.mood);
+    checkAndHandleEnding('Intelligence', newCharacterStats.intelligence);
+
+ */
 
     if (story.buttonsDisabled) return;
     setStory((prevStory) => {
       switch (path) {
+
+
+
+
         case 'adiNeydi':
 
           setShowFooter(true);
@@ -180,14 +192,19 @@ function App() {
           };
         case 'su':
           newMoodIncrease = 10;
+          newHealthIncrease = 10;
           setUserChoseSuIc(true);
-          handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation);  // Default is increase
+          handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
+          handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0);
           statMoodChangeRef.current = true;
+          statHealthChangeRef.current = true;
           setCharacterStats((prevStats) => ({
             ...prevStats,
             mood: prevStats.mood + newMoodIncrease,
+            health: prevStats.health + newHealthIncrease,
           }));
           dispatch({ type: 'CHANGE_MOOD', payload: newMoodIncrease });
+          dispatch({ type: 'CHANGE_HEALTH', payload: newHealthIncrease });
           return {
             ...prevStory,
             text: [
@@ -199,7 +216,7 @@ function App() {
             ],
             buttonsDisabled: false,
             background: './images/su.png',
-            moodIncrease: newMoodIncrease,
+
           };
         case 'cati':
           return {
@@ -234,7 +251,7 @@ function App() {
                 text: 'Aynen öyle, apartmanda 7 metrelik bir merdiveni bulabilecek tek kişi sen olduğun için de sana geldiler. \n\n İçini bir kahramanlık ateşi sarıyor ve apartman yöneticin sana soru sorar gözler ile bakıyor. ',
                 style: {
                   fontWeight: 'bold',
-                  color: '#94B9AF',
+
                   fontStyle: 'italic',
 
                 },
@@ -284,7 +301,7 @@ function App() {
                 text: 'Hazırlanma hızın inanılmaz.',
                 style: {
                   fontWeight: 'bold',
-                  color: '#94B9AF',
+
                   fontStyle: 'italic',
 
                 },
@@ -390,14 +407,19 @@ function App() {
           };
         case 'suIc':
           newMoodIncrease = 10;
-
-          handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true);
+          newHealthIncrease = 10;
+          setUserChoseSuIc(true);
+          handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
+          handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0);
+          statMoodChangeRef.current = true;
+          statHealthChangeRef.current = true;
           setCharacterStats((prevStats) => ({
             ...prevStats,
-            mood: Math.max(prevStats.mood + newMoodIncrease, 0),
+            mood: prevStats.mood + newMoodIncrease,
+            health: prevStats.health + newHealthIncrease,
           }));
-          statMoodChangeRef.current = true;
           dispatch({ type: 'CHANGE_MOOD', payload: newMoodIncrease });
+          dispatch({ type: 'CHANGE_HEALTH', payload: newHealthIncrease });
           return {
             ...prevStory,
             text: [
@@ -692,22 +714,211 @@ function App() {
           };
         case 'korna':
 
+          console.log('merdivenYolu:', merdivenYolu);
+
+
           return {
             ...prevStory,
             text: [
+              {
+                text: merdivenYolu
+                  ? 'Yol sorabileceğin bir kahvehaneye denk geldin. Oraya girmek için yolun karşısına geçmeye çalıştığın sırada bir korna sesi sağ kulağını aldı götürdü. \n\n Bu, ters yönden gelen bir motor kurye.'
+                  : 'Ne kadar mükemmel biri olduğunu düşünürken yoğun bir korna sesiyle gerçekliğe çekildin. \n\nTers yönden gelen bir motor kurye kaldırıma çıkmış ve yolundan çıkman için sana korna çalıyor.'
+              }],
+            choices: [
+              { text: 'KUSURA BAKMAYIN, HEMEN ÇEKİLİYORUM', target: 'cekil' },
+              { text: 'KALDIRIM ULAN BURASI DAVAR HERİF!', target: 'davar' },
+            ],
+            buttonsDisabled: false,
+            background: './images/trafik.png',
+            characterImage: './images/kurye.png',
+          };
+        case 'cekil':
 
-              'Ne kadar mükemmel biri olduğunu düşünürken yoğun bir korna sesiyle gerçekliğe çekildin. \n\nTers yönden gelen bir motor kurye kaldırıma çıkmış ve yolundan çıkman için sana korna çalıyor.',
+          return {
+            ...prevStory,
+            text: [
+              {
+                text: '“Çok teşekkürler.”',
+                style: {
+
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  color: 'white',
+
+
+                },
+              },
+
+              '\n\n Kurye teşekkür etmek için sana küçük bir tantuni fırlatıp uzaklaşmaya başlıyor. Yola devam?'
             ],
             choices: [
-              { text: 'KUSURA BAKMAYIN, HEMEN ÇEKİLİYORUM', target: 'çekil' },
-              { text: 'KALDIRIM ULAN BURASI DAVAR HERİF!', target: 'davar' },
+              { text: 'TANTUNİYİ YE', target: 'tantuni' },
+              { text: 'YETER ARTIK, BEN VEGANIM', target: 'vegan' },
             ],
             buttonsDisabled: false,
             background: './images/trafik.png',
             characterImage: './images/kurye.png',
 
           };
+        case 'vegan':
+          newMoodIncrease = 10,
+            handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
+          statMoodChangeRef.current = true;
+
+
+          setCharacterStats((prevStats) => ({
+            ...prevStats,
+            mood: Math.max(prevStats.mood + newMoodIncrease, 0),
+          }));
+          dispatch({ type: 'CHANGE_MOOD', payload: newMoodIncrease });
+          return {
+            ...prevStory,
+            text: [
+
+              'Tamam, bunu not alıyoruz...',
+            ],
+            choices: [
+              {
+                text: 'GÜZEL',
+                target: merdivenYolu ? 'kahvehane' : 'polis',
+              },
+            ],
+            buttonsDisabled: false,
+            background: './images/not.png',
+            characterImage: null
+
+          };
+        case 'tantuni':
+          newIntelligenceDecrease = 10;
+
+          handleIntelligenceAnimation(dispatch, newIntelligenceDecrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, false);
+          setCharacterStats((prevStats) => ({
+            ...prevStats,
+            intelligence: Math.max(prevStats.intelligence - newIntelligenceDecrease, 0),
+          }));
+          statIntelligenceChangeRef.current = true;
+          dispatch({ type: 'CHANGE_INTELLIGENCE', payload: -newIntelligenceDecrease });
+
+          newHealthIncrease = 10;
+          handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0);
+          statHealthChangeRef.current = true;
+
+
+          setCharacterStats((prevStats) => ({
+            ...prevStats,
+            health: Math.max(prevStats.health + newHealthIncrease, 0), // Ensure non-negative value
+          }));
+          dispatch({ type: 'CHANGE_HEALTH', payload: -newHealthIncrease });
+
+
+          return {
+            ...prevStory,
+            text: merdivenYolu
+              ?
+              'Afiyet olsun. Şimdi şu merdiveni çabucak bulsan iyi edersin...'
+              :
+              'Afiyet olsun. Artık geç kalmamak için hızlansan iyi edersin...',
+            choices: merdivenYolu ? [
+              { text: '>', target: 'kahvehane' },
+            ] : [
+              { text: '>', target: 'polis' },
+            ],
+            buttonsDisabled: false,
+            background: './images/trafik.png',
+            characterImage: './images/kurye.png',
+
+          };
+        case 'davar':
+          const textContent = 'Hakların için dik durdun. Bu harika bir his. Bu arada motor kurye elinde bir tantuniyi nunçaku gibi çevirerek sana yaklaşıyor.';
+
+          const choices = [
+            { text: 'KENDİNİ SAVUN', target: 'kendiniSavun' },
+          ];
+
+          if (merdivenYolu) {
+            choices.push({ text: 'KENDİNİ KAHVEHANEYE AT', target: 'kahvehaneKarari' });
+          } else {
+            choices.push({ text: 'KAÇ', target: 'kac' });
+          }
+
+          return {
+            ...prevStory,
+            text: [textContent],
+            choices,
+            buttonsDisabled: false,
+            background: './images/trafik.png',
+            characterImage: './images/kurye.png',
+          };
+        case 'kendiniSavun':
+          newHealthDecrease = 10;
+          handleHealthAnimation(dispatch, newHealthDecrease, setShowHealthAnimation, statHealthChangeRef, false, 0);
+          statHealthChangeRef.current = true;
+
+
+          setCharacterStats((prevStats) => ({
+            ...prevStats,
+            health: Math.max(prevStats.health - newHealthDecrease, 0), // Ensure non-negative value
+          }));
+          dispatch({ type: 'CHANGE_HEALTH', payload: -newHealthDecrease });
+
+          return {
+            ...prevStory,
+            text: [
+              {
+                text: 'Nunçakulu bir kuryeyi alt edebileceğine inanman güzel fakat gerçeklerle tanışma zamanı. Artık yoluna devam etmelisin.',
+
+              },
+            ],
+            choices: merdivenYolu
+              ? [
+                {
+                  text: '>',
+                  target: 'kahvehane',
+                },
+              ]
+              : [
+                {
+                  text: '>',
+                  target: 'polis',
+                },
+              ],
+
+            buttonsDisabled: false,
+            background: './images/trafik.png',
+            characterImage: null,
+
+          };
+        case 'kac':
+          newHealthIncrease = 10;
+          handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0);
+          statHealthChangeRef.current = true;
+
+
+          setCharacterStats((prevStats) => ({
+            ...prevStats,
+            health: Math.max(prevStats.health + newHealthIncrease, 0), // Ensure non-negative value
+          }));
+          dispatch({ type: 'CHANGE_HEALTH', payload: -newHealthIncrease });
+
+          return {
+            ...prevStory,
+            text: [
+              {
+                text: 'Bugünlük kardiyonu halletmiş oldun. Yola devam..',
+
+              },
+            ],
+            choices: [
+              { text: '>', target: 'polis' },
+            ],
+            buttonsDisabled: false,
+            background: './images/trafik.png',
+            characterImage: null,
+
+          };
         case 'nalburSorusu':
+
 
           return {
             ...prevStory,
@@ -723,19 +934,544 @@ function App() {
               '\n\nGözlerinle etrafı tarayarak yürümeye devam ediyorsun.',
             ],
             choices: [
-              { text: '>', target: 'nalbur' },
+              { text: '>', target: 'korna' },
             ],
             buttonsDisabled: false,
-            background: './images/background5.png',
+            background: './images/second.png',
             characterImage: null,
 
           };
+        case 'polis':
+
+          return {
+            ...prevStory,
+            text: [
+              'Bir polisin zevkine göre fazla farklı giyiniyorsun. Bir tanesi seni durduruyor. ',
+
+              {
+                text: '\n\n“Kimliğine bir bakabilir miyiz?”',
+                style: {
+
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  color: 'white',
+
+
+                },
+              },
+
+            ],
+            choices: [
+              { text: '“TABİ MEMUR BEY, BUYURUN”', target: 'buyurun' },
+              { text: '“İZİN BELGENİZİ GÖREBİLİR MİYİM?', target: 'izinBelgesi' },
+            ],
+            buttonsDisabled: false,
+            background: './images/cilek.png',
+            characterImage: './images/polis.png',
+
+          };
+        case 'buyurun':
+
+          return {
+            ...prevStory,
+            text: [
+
+
+              {
+                text: 'Teşekkürler. Sigara kullanıyor musun?',
+                style: {
+
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  color: 'white',
+
+
+                },
+              },
+
+            ],
+            choices: [
+              { text: '“EVET, KULLANIYORUM”', target: 'sigaraKullaniyorum' },
+              { text: '"HAYIR, KULLANMIYORUM"', target: 'polisDevam' },
+            ],
+            buttonsDisabled: false,
+            background: './images/cilek.png',
+            characterImage: './images/polis.png',
+
+          };
+        case 'sigaraKullaniyorum':
+
+          return {
+            ...prevStory,
+            text: [
+
+
+              {
+                text: '“Paketini görebilir miyim?”',
+                style: {
+
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  color: 'white',
+
+
+                },
+              },
+
+            ],
+            choices: [
+              { text: '“TABİİ, BUYRUN”', target: 'polisDevam' },
+              { text: '"PAKET TAŞIMIYORUM, OTLAKÇIYIM"', target: 'otlakci' },
+            ],
+            buttonsDisabled: false,
+            background: './images/cilek.png',
+            characterImage: './images/polis.png',
+
+          };
+        case 'polisDevam':
+
+          return {
+            ...prevStory,
+            text: [
+
+
+              {
+                text: '"Tamam, devam edebilirsin."',
+                style: {
+
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  color: 'white',
+
+
+                },
+              },
+
+            ],
+            choices: [
+              { text: '>', target: 'charlie' },
+            ],
+            buttonsDisabled: false,
+            background: './images/cilek.png',
+            characterImage: './images/polis.png',
+
+          };
+        case 'otlakci':
+          newMoodDecrease = 10,
+            handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
+          statMoodChangeRef.current = true;
+
+
+          setCharacterStats((prevStats) => ({
+            ...prevStats,
+            mood: Math.max(prevStats.mood - newMoodDecrease, 0),
+          }));
+          dispatch({ type: 'CHANGE_MOOD', payload: newMoodDecrease });
+          return {
+            ...prevStory,
+            text: [
+
+
+              {
+                text: '"Tamam, devam edebilirsin."',
+                style: {
+
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  color: 'white',
+
+
+                },
+              },
+
+            ],
+            choices: [
+              { text: '>', target: 'charlie' },
+            ],
+            buttonsDisabled: false,
+            background: './images/cilek.png',
+            characterImage: './images/polis.png',
+
+          };
+        case 'izinBelgesi':
+          newHealthDecrease = 10;
+          handleHealthAnimation(dispatch, newHealthDecrease, setShowHealthAnimation, statHealthChangeRef, false, 0);
+          statHealthChangeRef.current = true;
+
+          newMoodDecrease = 10;
+          handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
+          statMoodChangeRef.current = true;
+
+          setCharacterStats((prevStats) => ({
+            ...prevStats,
+            mood: Math.max(prevStats.mood - newMoodDecrease, 0), // Ensure non-negative value
+            health: Math.max(prevStats.health - newHealthDecrease, 0), // Ensure non-negative value
+          }));
+          dispatch({ type: 'CHANGE_MOOD', payload: newMoodDecrease });
+          dispatch({ type: 'CHANGE_HEALTH', payload: -newHealthDecrease });
+          return {
+            ...prevStory,
+            text: [
+              'İnanılmaz bir bilinçli vatandaşlık hissiyle dolup taşıyorsun ama ne yazık ki bu vatandaşlık Kanada vatandaşlığı değil. \n\n Cebinde beliren o gizemli beyaz paket de ne öyle?',
+
+            ],
+            choices: [
+              { text: '“PARDON, BUYRUN”', target: 'buyurun' },
+            ],
+            buttonsDisabled: false,
+            background: './images/cilek.png',
+            characterImage: './images/kizgin-polis.png',
+
+          };
+        case 'kahvehaneKarari':
+
+          newHealthIncrease = 10;
+          handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0);
+          statHealthChangeRef.current = true;
+
+
+
+          setCharacterStats((prevStats) => ({
+            ...prevStats,
+            health: Math.max(prevStats.health + newHealthIncrease, 0), // Ensure non-negative value
+          }));
+          dispatch({ type: 'CHANGE_HEALTH', payload: -newHealthIncrease });
+          return {
+            ...prevStory,
+            text: [
+              'Hızlı karar verme yeteneği ve güçlü refleksler. İşte gerçek bir karakter.',
+
+            ],
+            choices: [
+              { text: '>', target: 'kahvehane' },
+            ],
+            buttonsDisabled: false,
+            background: './images/trafik.png',
+            characterImage: null
+
+          };
+        case 'kahvehane':
+          return {
+            ...prevStory,
+            text: [
+              'İçeri girer girmez eline bir bardak çay tutuşturuluyor ve herkesin gözü sana dönüyor. \n\n Burada daha önce hiç senin kadar kahramansı biri bulunmamış herhalde. ',
+
+            ],
+            choices: [
+              { text: '"MERHABA, 7 METRELİK BİR MERDİVEN ARIYORUM"', target: 'merdivenAriyorum' },
+              { text: '"VAR MI RÜZGARA KARŞI İŞEYİP BİR BATAK ATACAK OLAN?"', target: 'batak' },
+            ],
+            buttonsDisabled: false,
+            background: './images/kahvehane.png',
+            characterImage: null
+
+          };
+        case 'merdivenAriyorum':
+          return {
+            ...prevStory,
+            text: [
+              'Bazı adamlar inşaata sorabileceğini, bir kişi de iki sokak yukarıdaki nalburda bir tane gördüğünü söylüyor',
+
+            ],
+            choices: [
+              { text: '"İNŞAAT NEREDE?"', target: 'insaat' },
+              { text: '"NALBUR NEREDE?"', target: 'nalbur' },
+            ],
+            buttonsDisabled: false,
+            background: './images/kahvehane.png',
+            characterImage: null
+
+          };
+        case 'batak':
+          newHealthDecrease = 10;
+          handleHealthAnimation(dispatch, newHealthDecrease, setShowHealthAnimation, statHealthChangeRef, false, 0);
+          statHealthChangeRef.current = true;
+
+          newMoodDecrease = 10;
+          handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
+          statMoodChangeRef.current = true;
+
+          setCharacterStats((prevStats) => ({
+            ...prevStats,
+            mood: Math.max(prevStats.mood - newMoodDecrease, 0), // Ensure non-negative value
+            health: Math.max(prevStats.health - newHealthDecrease, 0), // Ensure non-negative value
+          }));
+          dispatch({ type: 'CHANGE_MOOD', payload: newMoodDecrease });
+          dispatch({ type: 'CHANGE_HEALTH', payload: -newHealthDecrease });
+
+          return {
+            ...prevStory,
+            text: [
+              'İnsanlar seni tanımadıkları için sana garip garip bakıyorlar.',
+
+            ],
+            choices: [
+              { text: '"TAMAM, 7 METRELİK BİR MERDİVEN ARIYORUM"', target: 'tamamMerdiven' },
+            ],
+            buttonsDisabled: false,
+            background: './images/kahvehane2.png',
+            characterImage: null
+
+          };
+        case 'tamamMerdiven':
+
+          return {
+            ...prevStory,
+            text: [
+              'Bazı adamlar inşaata sorabileceğini, bir kişi de iki sokak yukarıdaki nalburda bir tane gördüğünü söylüyor',
+
+            ],
+            choices: [
+              { text: '"İNŞAAT NEREDE?"', target: 'insaat' },
+              { text: '"NALBUR NEREDE?"', target: 'nalbur' },
+            ],
+            buttonsDisabled: false,
+            background: './images/kahvehane.png',
+            characterImage: null
+
+          };
+        case 'insaat':
+
+          return {
+            ...prevStory,
+            text: [
+              'Ayvalıtaş Meydanından Saint Joseph’e doğru inerken kesin göreceğini söylüyorlar.',
+
+            ],
+            choices: [
+              { text: 'ÇIK', target: 'charlie' },
+            ],
+            buttonsDisabled: false,
+            background: './images/kahvehane.png',
+            characterImage: null
+
+          };
+        case 'nalbur':
+
+          return {
+            ...prevStory,
+            text: [
+              'Herkes sana garip şekilde bakıyor. Sözüne inandığın kişinin raporlu deli olduğuna ve ona inanmaman gerektiğine dair fısıltılar var.',
+
+            ],
+            choices: [
+              { text: '"BEN ONA İNANIYORUM, O ASLINDA GİZLİ BİR DAHİ"', target: 'deliyeInanma' },
+              { text: '"İNŞAAT NEREDE?"', target: 'insaat' },
+            ],
+            buttonsDisabled: false,
+            background: './images/kahvehane2.png',
+            characterImage: null
+
+          };
+        case 'deliyeInanma':
+          newMoodDecrease = 10;
+          handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
+          statMoodChangeRef.current = true;
+
+          setCharacterStats((prevStats) => ({
+            ...prevStats,
+            mood: Math.max(prevStats.mood - newMoodDecrease, 0), // Ensure non-negative value
+          }));
+          dispatch({ type: 'CHANGE_MOOD', payload: newMoodDecrease });
+          return {
+            ...prevStory,
+            text: [
+              'Deli adam sana dil çıkarıp burnunu karıştırıyor. Başka bir yere bakmak daha iyi olabilir. ',
+
+            ],
+            choices: [
+              { text: '"İNŞAAT NEREDE?"', target: 'insaat' },
+            ],
+            buttonsDisabled: false,
+            background: './images/kahvehane.png',
+            characterImage: null
+
+          };
+
+
+
+
         default:
           console.warn('Unhandled target:', path);
           return prevStory;
       }
     });
+
   };
+
+
+  /*  function checkAndHandleEnding(statName, statValue) {
+     if (statValue < 40 || statValue > 80) {
+       handleEnding(statName, statValue);
+     }
+   }
+ 
+ 
+   function handleEnding(statName, statValue) {
+     console.log(`Game Over: ${statName} is too low or too high!`);
+     console.log(`Handling ending for ${statName}...`);
+     // Display unique ending screen based on stat
+     switch (statName) {
+       case 'Health':
+         handleHealthEnding(statValue);
+         break;
+       case 'Money':
+         handleMoneyEnding(statValue);
+         break;
+       case 'Mood':
+         handleMoodEnding(statValue);
+         break;
+       case 'Intelligence':
+         handleIntelligenceEnding(statValue);
+         break;
+       // Add more cases for other stats
+ 
+       default:
+         break;
+     }
+ 
+     setGameOver(true); // Move the setGameOver here
+ 
+   }
+ 
+   function handleHealthEnding(statValue) {
+     if (statValue < 40) {
+       console.log("health is too low!");
+       setStory((prevStory) => ({
+         ...prevStory,
+         background: './images/leylek.png',
+         text: [
+           {
+             text: 'Hay Allah, sağlığına bak! Kendine hiç iyi bakmamışsın. Bunu farkeden güz leylekleri yol üstünde seni kaçırıyor, karşı koyamıyorsun....',
+             style: {
+               fontWeight: 'bold',
+               color: 'white',
+             },
+           },
+           // Add additional text as needed
+         ],
+       }), () => setGameOver(true));
+     } else if (statValue > 80) {
+       console.log("health is too high!");
+       setStory((prevStory) => ({
+         ...prevStory,
+         background: './images/denek.png',
+         text: [
+           {
+             text: ':( Bu sefer olur sanmıştın sanırım? Evet, çok sağlıklısın ve evet, maşallahın var. Ancak bunu sadece sen fark etmedin, bilim adamları tarafından denek olarak kaçırıldın. ',
+             style: {
+               fontWeight: 'bold',
+               color: 'white',
+             },
+           },
+           // Add additional text as needed
+         ],
+       }), () => setGameOver(true));
+     }
+   }
+ 
+   function handleMoneyEnding(statValue) {
+     if (statValue < 40) {
+       console.log("Money is too low!");
+       setStory((prevStory) => ({
+         ...prevStory,
+         background: './images/fakir.png',
+         text: [
+           {
+             text: 'Oyunun neden bittiğini söylememe gerek yoktur sanırım? Cüzdanına baktın mı hiç? Ya da, cüzdanın var mı?',
+             style: {
+               fontWeight: 'bold',
+               color: 'white',
+             },
+           },
+           // Add additional text as needed
+         ],
+       }), () => setGameOver(true));
+     } else if (statValue > 80) {
+       console.log("Money is too high!");
+       setStory((prevStory) => ({
+         ...prevStory,
+         background: './images/zengin.png',
+         text: [
+           {
+             text: 'Vay be! Paranın maşallahı var. Ancak tüm akrabalar, dostlar, toslar ve adostlar akbaba gibi tepene çöküyor...',
+             style: {
+               fontWeight: 'bold',
+               color: 'white',
+             },
+           },
+           // Add additional text as needed
+         ],
+       }), () => setGameOver(true));
+     }
+   }
+ 
+ 
+   function handleMoodEnding(statValue) {
+     if (statValue < 40) {
+       // Set background and text for Mood low ending
+       setStory((prevStory) => ({
+         ...prevStory,
+         background: './images/kurtcobain.png',
+         text: [
+           {
+             text: 'Uh oh :( \n\n Kurt Cobain? \n\n Sen misin? \n\n Majör depresyonundan kurtulamadın :( ',
+             style: {
+               fontWeight: 'bold',
+               color: 'white',
+             },
+           },
+           // Add additional text as needed
+         ],
+       }));
+     } else if (statValue > 80) {
+       setStory((prevStory) => ({
+         ...prevStory,
+         background: './images/paklamayanoyun.png',
+         text: [
+           {
+             text: 'Hehe. Kendini çok iyi hissediyorsun. Ama, çok iyi hissediyorsun. Çok iyi. Seni bu oyun paklamaz artık.',
+             style: {
+               fontWeight: 'bold',
+               color: 'white',
+             },
+           },
+         ],
+       }));
+     }
+   }
+ 
+   function handleIntelligenceEnding(statValue) {
+     if (statValue < 40) {
+       setStory((prevStory) => ({
+         ...prevStory,
+         background: './images/amip.png',
+         text: [
+           {
+             text: 'Hmmm.. Belki bu yazdıklarımı bile anlamıyorsundur? Kim bilir? Ancak şunu söyleyebilirim, bu zekayla amip olarak yaşamaya karar verdin.',
+             style: {
+               fontWeight: 'bold',
+               color: 'white',
+             },
+           },
+         ],
+       }));
+     } else if (statValue > 80) {
+       setStory((prevStory) => ({
+         ...prevStory,
+         background: './images/halkdayagi.png',
+         text: [
+           {
+             text: 'Uh oh :( Biliyorum, biliyorsun... Biliyoruz. Zekana maşallah. Ancak... Sokakta ağzını tutamadın.. \n\n Halk meydanında dayak yedin :( ',
+             style: {
+               fontWeight: 'bold',
+               color: 'white',
+             },
+           },
+         ],
+       }));
+     }
+   } */
 
   useEffect(() => {
     if (story.background) {

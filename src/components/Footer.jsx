@@ -13,20 +13,11 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
     }
 
 
-    const calculateTopValue = (index) => {
-        const baseTop = 0; // Initial top value
-        const spacing = 20; // Adjust the spacing as needed
-        const previousAnimations = [showMoodAnimation, showIntelligenceAnimation, showHealthAnimation, showMoneyAnimation];
 
-        // Filter out the undefined (falsy) animations
-        const activeAnimations = previousAnimations.filter(animation => animation);
+    const animations = [showMoodAnimation, showIntelligenceAnimation, showHealthAnimation, showMoneyAnimation].filter(Boolean);
 
-        // Calculate the total top offset based on the number of active animations
-        const totalTopOffset = activeAnimations.length * spacing;
 
-        // Calculate the dynamic top value
-        return `${baseTop + totalTopOffset + index * spacing}px`;
-    };
+
 
     return (
         <>
@@ -75,34 +66,13 @@ const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMo
                             />
                         )}
 
-                        <div className=''>
-                            {showMoodAnimation && (
-                                <div className='text-white font-bold absolute lg:right-16 right-2 top-16 text-md lg:text-2xl' style={{ top: calculateTopValue(0) }}>
-                                    {showMoodAnimation}
+                        <div className='text-white font-bold absolute lg:right-16 right-2 top-4 text-md lg:text-2xl' style={{ display: 'flex', flexDirection: animations.length > 1 ? 'column' : 'row' }}>
+                            {animations.map((animation, index) => (
+                                <div key={index} style={{ margin: animations.length > 1 ? '10px 0' : '40 0px' }}>
+                                    {animation}
                                 </div>
-                            )}
-
-                            {showIntelligenceAnimation && (
-                                <div className='text-white font-bold absolute lg:right-16 right-2 top-16 text-md lg:text-2xl' style={{ top: calculateTopValue(1) }}>
-                                    {showIntelligenceAnimation}
-                                </div>
-                            )}
-
-                            {showHealthAnimation && (
-                                <div className='text-white font-bold absolute lg:right-16 right-2 top-16 text-md lg:text-2xl' style={{ top: calculateTopValue(2) }}>
-                                    {showHealthAnimation}
-                                </div>
-                            )}
-
-                            {showMoneyAnimation && (
-                                <div className='text-white font-bold absolute lg:right-16 right-2 top-16 text-md lg:text-2xl' style={{ top: calculateTopValue(3) }}>
-                                    {showMoneyAnimation}
-                                </div>
-                            )}
-
-
+                            ))}
                         </div>
-
 
                         {showIntelligenceCheckAnimation && showIntelligenceCheckAnimationValue && (
                             <>
