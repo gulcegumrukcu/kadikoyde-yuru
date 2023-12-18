@@ -10,19 +10,14 @@ function StatContainer({ label, value, color, circleBorderColor, statMoneyChange
 
     useEffect(() => {
         const background = utils.getBackground();
-        console.log('StatContainer - value:', value);
         const handleStatChange = (statLabel, statChangeRef) => {
             if (statChangeRef && statChangeRef.current) {
                 const { jsxAlertText, stringAlertText } = createInitialAlertText(10, background === 'green', background, statLabel);
-                console.log('statLabel:', statLabel);
-                console.log('jsxAlertText:', jsxAlertText);
-                console.log('stringAlertText:', stringAlertText);
-                console.log('value:', value);
+
                 // You can use jsxAlertText in your component
                 setDisplayValue(jsxAlertText);
 
                 // You can also use stringAlertText for other purposes
-                console.log`text of ${label} ${stringAlertText}`;
 
                 const timeoutId = setTimeout(() => {
                     setDisplayValue(value);

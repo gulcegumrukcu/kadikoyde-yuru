@@ -57,7 +57,6 @@ const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimat
 };
 
 const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodChangeRef, increase = true, delay = 0) => {
-    console.log(`Utils Mood değişimi miktar: ${amount}, Increase: ${increase}`);
 
     const backgroundColor = increase ? 'green' : 'red';
     setBackground(backgroundColor); // Correct assignment
@@ -86,7 +85,6 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodCha
 };
 
 const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, statMoneyChangeRef, increase = true, delay = 0) => {
-    console.log(`Utils Money değişimi miktar: ${amount}, Increase: ${increase}`);
     const backgroundColor = increase ? 'green' : 'red';
     setBackground(backgroundColor);
     const audioToPlay = animationAudio

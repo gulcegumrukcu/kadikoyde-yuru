@@ -19,6 +19,9 @@ function generateRandomStat() {
 }
 
 
+
+
+
 function App() {
   const [showIntelligenceCheckAnimation, setShowIntelligenceCheckAnimation] = useState(false);
   const statMoneyChangeRef = useRef(false);
@@ -39,7 +42,13 @@ function App() {
     // Implement settings logic here
 
   };
-
+  const initialStats = {
+    health: generateRandomStat(),
+    money: generateRandomStat(),
+    mood: generateRandomStat(),
+    time: generateRandomStat(),
+    intelligence: generateRandomStat(),
+  };
 
   const [showEntrancePage, setShowEntrancePage] = useState(true);
 
@@ -58,6 +67,112 @@ function App() {
     time: generateRandomStat(),
     intelligence: generateRandomStat(),
   });
+
+
+  function handleHealthEndings(health) {
+    console.log('Checking health ending condition. Current health:', health);
+
+    if (health < 35) {
+      console.log('Health ending condition met. Game over.');
+      return {
+        text: 'Olamaz! O kadar sağlıksızsın ki, bir kaç leylek seni kaçırdı. Karşı koyamadın.',
+        choices: [
+          { text: 'OK', target: 'ok' }
+        ],
+        background: './images/end.png',
+      };
+    } else if (health > 80) {
+      console.log('Health ending condition met. Game over.');
+      return {
+        text: 'Olamaz! Maşallahın var, çok sağlıklısın. Bu bir kaç sağlık şirketinin dikkatini çekmiş olacak ki üzerinde deney yapmak için seni kaçırdılar.',
+        choices: [
+          { text: 'OK', target: 'ok' }
+        ],
+        background: './images/end.png',
+      };
+    }
+
+    return null;
+  }
+
+
+
+  function handleMoodEndings(mood) {
+    console.log('Checking mood ending condition. Current mood:', mood);
+
+    if (mood < 35) {
+      console.log('Mood ending condition met.');
+      return {
+        text: 'Olamaz! O kadar mutsuzsun ki kuşlar artık ötmeyi bıraktı... Doğanın dengesi bozuldu. Artık hiçbir şeyden hayır gelmez. ',
+        choices: [
+          { text: 'OK', target: 'ok' }
+        ],
+        background: './images/end.png',
+      };
+    } else if (mood > 80) {
+      console.log('Mood ending condition met.');
+      return {
+        text: 'Peki. Keyfin oldukça yerinde gibi. Sana dokunmak istemezdim.. Ama sonuçta hiçbir şey ruh halini bozamaz, değil mi? Oyun bitti.',
+        choices: [
+          { text: 'OK', target: 'ok' }
+        ],
+        background: './images/end.png',
+      };
+    }
+    return null;
+  }
+
+  function handleMoneyEndings(money) {
+    console.log('Checking money ending condition. Current money:', money);
+
+    if (money < 35) {
+      console.log('Money ending condition met.');
+      return {
+        text: 'Olamaz! Parasızlıktan buraya güzel bir sonuç yazacak kişiyi işe alamadın...',
+        choices: [
+          { text: 'OK', target: 'ok' }
+        ],
+        background: './images/end.png',
+      };
+    } else if (money > 80) {
+      console.log('Money ending condition met.');
+      return {
+        text: 'Olamaz! Evet, çok paran var. Baya fazla... Ama vergilerini ödemediğin ortaya çıktı ve artık hiçbir şeyin önemi yok...',
+        choices: [
+          { text: 'OK', target: 'ok' }
+        ],
+        background: './images/end.png',
+      };
+    }
+    return null;
+  }
+
+  function handleIntelligenceEndings(intelligence) {
+    console.log('Checking intelligence ending condition. Current intelligence:', intelligence);
+
+    if (intelligence < 35) {
+      console.log('Intelligence ending condition met.');
+      return {
+        text: 'Olamaz! Bu düşük zeka ile bir amip gibi yaşamaya karar verdin...',
+        choices: [
+          { text: 'OK', target: 'ok' }
+        ],
+        background: './images/end.png',
+      };
+    } else if (intelligence > 80) {
+      console.log('Intelligence ending condition met.');
+      return {
+        text: 'Olamaz! Bu yüksek zeka ile gerçek fikirlerini yaydığın için halk meydanında dayak yedin...',
+        choices: [
+          { text: 'OK', target: 'ok' }
+        ],
+        background: './images/end.png',
+      };
+
+    }
+    return null;
+  }
+
 
 
   const [story, setStory] = useState({
@@ -106,7 +221,7 @@ function App() {
     setShowIntelligenceCheckAnimation,
     setShowMoneyAnimation,
     setShowMoodAnimation,
-    characterStats: characterStats,
+    characterStats,
     newHealthIncrease,
     newMoodIncrease,
     newHealthDecrease,
@@ -122,10 +237,50 @@ function App() {
 
   });
 
+
+
   const handleChoiceWrapper = (path) => {
-    const newStory = handleChoice(path);
+    const newStory = handleChoice(path, characterStats); // Assuming handleChoice is the correct function
+
+    if (newStory.characterStats) {
+      const healthEnding = handleHealthEndings(newStory.characterStats.health);
+      const moodEnding = handleMoodEndings(newStory.characterStats.mood);
+      const moneyEnding = handleMoneyEndings(newStory.characterStats.money);
+      const intelligenceEnding = handleIntelligenceEndings(newStory.characterStats.intelligence);
+
+      if (healthEnding) {
+        setStory(healthEnding);
+        setCharacterStats(initialStats);
+        setShowFooter(false);
+        return;
+      } else if (moneyEnding) {
+        setStory(moneyEnding);
+        setCharacterStats(initialStats);
+        setShowFooter(false);
+        return;
+      } else if (moodEnding) {
+        setStory(moodEnding);
+        setCharacterStats(initialStats);
+        setShowFooter(false);
+        return;
+      } else if (intelligenceEnding) {
+        setStory(intelligenceEnding);
+        setCharacterStats(initialStats);
+        setShowFooter(false);
+        return;
+      }
+    }
+
     setStory(newStory);
   };
+
+
+
+
+
+
+
+
 
   useEffect(() => {
     if (story.background) {
@@ -170,11 +325,7 @@ function App() {
 
   };
 
-  const mobileMaxWidth = 480; // Adjust the maximum width for mobile screens as needed
-  console.log('Current story:', story);
-  console.log('Current characterStats:', characterStats);
-  console.log('Current showFooter:', showFooter);
-  // Add more logs as needed
+  const mobileMaxWidth = 480;
 
   return (
     <div>
@@ -224,6 +375,7 @@ function App() {
               story={story}
               handleChoice={handleChoiceWrapper}
               buttonsContainerStyle={buttonsContainerStyle}
+              characterStats={characterStats}
             />
 
 

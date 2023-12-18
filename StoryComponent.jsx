@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 
 
 
-const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, setShowIntelligenceCheckAnimation, setShowMoneyAnimation, setShowMoodAnimation, newMoodIncrease, newHealthIncrease, newHealthDecrease, newIntelligenceDecrease, newMoneyDecrease, newMoodDecrease, newIntelligenceIncrease, newMoneyIncrease, statHealthChangeRef, statIntelligenceChangeRef, statMoneyChangeRef, statMoodChangeRef, }) => {
+const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, setShowIntelligenceCheckAnimation, setShowMoneyAnimation, setShowMoodAnimation, setShowIntelligenceAnimation, newMoodIncrease, newHealthIncrease, newHealthDecrease, newIntelligenceDecrease, newMoneyDecrease, newMoodDecrease, newIntelligenceIncrease, newMoneyIncrease, statHealthChangeRef, statIntelligenceChangeRef, statMoneyChangeRef, statMoodChangeRef, }) => {
 
 
 
@@ -28,6 +28,18 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
 
         switch (path) {
+
+            case 'ok':
+
+                window.location.reload(true);
+                return {
+
+
+
+                    buttonsDisabled: true,
+
+                    background: './images/end.png',
+                };
             case 'adiNeydi':
 
 
@@ -109,7 +121,6 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 }));
                 dispatch({ type: 'CHANGE_MOOD', payload: newMoodIncrease });
                 dispatch({ type: 'CHANGE_HEALTH', payload: newHealthIncrease });
-                console.log('Dispatched CHANGE_MOOD action in case Su by an increase');
                 return {
                     ...prevStory,
                     text: [
@@ -559,7 +570,6 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 }));
                 dispatch({ type: 'CHANGE_MOOD', payload: newMoodIncrease });
                 dispatch({ type: 'CHANGE_MONEY', payload: -newMoneyDecrease });
-                console.log(merdivenYolu)
 
 
                 return {
@@ -674,7 +684,6 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'korna':
 
-                console.log('merdivenYolu:', merdivenYolu);
 
 
                 return {
@@ -1260,17 +1269,16 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
     };
 
-    const handleChoice = (path) => {
+    const handleChoice = (path, characterStats) => {
         const newStory = handleStory(path);
         setCharacterStats((prevStats) => {
             // Update stats based on new story if needed
             return { ...prevStats };
         });
-        return newStory;
+        return { ...newStory, characterStats: { ...characterStats } };
     };
 
     return { handleChoice };
-
 
 
 
