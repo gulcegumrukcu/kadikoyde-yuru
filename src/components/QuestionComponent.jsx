@@ -37,7 +37,7 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, charact
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             animateText();
-        }, 60); // Adjust the delay as needed
+        }, 0); // Adjust the delay as needed
 
         return () => clearTimeout(timeoutId);
     }, [animatedText, currentTextIndex]);

@@ -140,11 +140,11 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     ],
                     choices: [
                         {
-                            text: 'BU KADAR SAÇMA OLAMAZ. \nKESIN BAŞKA BIR ŞEY SÖYLÜYORDUR.',
+                            text: 'BU KADAR SAÇMA OLAMAZ. \nKESİN BAŞKA BİR ŞEY SÖYLÜYORDUR.',
 
                             target: 'catiSesim',
                         },
-                        { text: '“TABİ Kİ… APARTMANIMIN BANA İHTIYACI VAR.” \nEVDEN ÇIK.', target: 'merdiven' },
+                        { text: '“TABİ Kİ… APARTMANIMIN BANA İHTİYACI VAR.” \nEVDEN ÇIK.', target: 'merdiven' },
                     ],
                     buttonsDisabled: false,
                     background: './images/yonetici-cep.png',
@@ -161,7 +161,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: 'BU İNANDIRICI GELMEDİ, 7 METRELİK MERDİVEN AVINA GİDELİM.', target: 'merdiven' },
                     ],
                     buttonsDisabled: false,
-                    background: './images/kova.png',
+                    background: './images/kova3.png',
                 };
 
 
