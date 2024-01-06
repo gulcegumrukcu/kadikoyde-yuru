@@ -79,20 +79,16 @@ function App() {
 
 
   function handleHealthEndings(health) {
-    const lowHealthText =
-      'Olamaz! O kadar sağlıksızsın ki, bir kaç leylek seni kaçırdı. Karşı koyamadın.';
-    const highHealthText =
-      'Olamaz! Maşallahın var, çok sağlıklısın. Bu bir kaç sağlık şirketinin dikkatini çekmiş olacak ki üzerinde deney yapmak için seni kaçırdılar.';
 
     if (health < 35) {
       return {
-        text: lowHealthText,
+        text: ['Olamaz! O kadar sağlıksızsın ki, bir kaç leylek seni kaçırdı. Karşı koyamadın. Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
     } else if (health > 80) {
       return {
-        text: highHealthText,
+        text: ['Olamaz! Maşallahın var, çok sağlıklısın. Bu bir kaç sağlık şirketinin dikkatini çekmiş olacak ki üzerinde deney yapmak için seni kaçırdılar. Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
@@ -102,20 +98,16 @@ function App() {
   }
 
   function handleMoodEndings(mood) {
-    const lowMoodText =
-      'Olamaz! O kadar mutsuzsun ki kuşlar artık ötmeyi bıraktı... Doğanın dengesi bozuldu. Artık hiçbir şeyden hayır gelmez.';
-    const highMoodText =
-      'Peki. Keyfin oldukça yerinde gibi. Sana dokunmak istemezdim.. Ama sonuçta hiçbir şey ruh halini bozamaz, değil mi? Oyun bitti.';
 
     if (mood < 35) {
       return {
-        text: lowMoodText,
+        text: ['Olamaz! O kadar mutsuzsun ki kuşlar artık ötmeyi bıraktı... Doğanın dengesi bozuldu. Artık hiçbir şeyden hayır gelmez. Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
     } else if (mood > 80) {
       return {
-        text: highMoodText,
+        text: ['Peki. Keyfin oldukça yerinde gibi. Sana dokunmak istemezdim.. Ama sonuçta hiçbir şey ruh halini bozamaz, değil mi? Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
@@ -125,20 +117,17 @@ function App() {
   }
 
   function handleMoneyEndings(money) {
-    const lowMoneyText =
-      'Olamaz! Parasızlıktan buraya güzel bir sonuç yazacak kişiyi işe alamadın...';
-    const highMoneyText =
-      'Olamaz! Evet, çok paran var. Baya fazla... Ama vergilerini ödemediğin ortaya çıktı ve artık hiçbir şeyin önemi yok...';
+
 
     if (money < 35) {
       return {
-        text: lowMoneyText,
+        text: ['Olamaz! Parasızlıktan buraya güzel bir sonuç yazacak kişiyi işe alamadın... Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
     } else if (money > 80) {
       return {
-        text: highMoneyText,
+        text: ['Olamaz! Evet, çok paran var. Baya fazla... Ama vergilerini ödemediğin ortaya çıktı ve artık hiçbir şeyin önemi yok... Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
@@ -148,20 +137,16 @@ function App() {
   }
 
   function handleIntelligenceEndings(intelligence) {
-    const lowIntelligenceText =
-      'Olamaz! Bu düşük zeka ile bir amip gibi yaşamaya karar verdin...';
-    const highIntelligenceText =
-      'Olamaz! Bu yüksek zeka ile gerçek fikirlerini yaydığın için halk meydanında dayak yedin...';
 
     if (intelligence < 35) {
       return {
-        text: lowIntelligenceText,
+        text: ['Olamaz! Bu düşük zeka ile bir amip gibi yaşamaya karar verdin... Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
     } else if (intelligence > 80) {
       return {
-        text: highIntelligenceText,
+        text: ['Olamaz! Bu yüksek zeka ile gerçek fikirlerini yaydığın için halk meydanında dayak yedin... '],
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };

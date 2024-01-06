@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ChoiceButton from './ChoiceButton';
 
-const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, characterStats }) => {
+const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, characterStats, }) => {
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
     const [animatedText, setAnimatedText] = useState([]);
     const [textAnimationCompleted, setTextAnimationCompleted] = useState(false); // New state
@@ -10,25 +10,29 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, charact
         const textArray = story.text;
         const currentTextItem = textArray[currentTextIndex];
 
+
+
         if (currentTextItem) {
-            if (typeof currentTextItem === 'string') {
-                const newText = currentTextItem.slice(0, animatedText.length + 1);
-                setAnimatedText(newText);
+            const newText = currentTextItem.slice(0, animatedText.length + 1);
+            setAnimatedText(newText);
 
-                if (newText.length === currentTextItem.length) {
-                    setTimeout(() => {
+            if (newText.length === currentTextItem.length) {
+                setTimeout(() => {
+                    if (currentTextIndex + 1 === textArray.length) {
+                        // Check if it's the last text item (ending)
+                        setTextAnimationCompleted(true);
+                    } else {
                         setCurrentTextIndex((prevIndex) => prevIndex + 1);
-                    }, 500); // Half-second delay for strings
-                }
-            } else if (typeof currentTextItem === 'object' && currentTextItem.text) {
-                // Check if it's a styled text object with a 'text' property
-                const newStyledText = { ...currentTextItem, text: currentTextItem.text };
-                setAnimatedText((prev) => [...prev, newStyledText]);
-
-                setCurrentTextIndex((prevIndex) => prevIndex + 1);
+                        setAnimatedText([]); // Clear animatedText for regular strings
+                    }
+                }, 500); // Half-second delay for strings
             }
         }
+
+
     };
+
+
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
@@ -60,7 +64,7 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, charact
 
     return (
         <div className='h-auto w-auto max-w-xs p-4 lg:max-h-56vh lg:max-w-2xl lg:h-auto lg:p-8 bg-opacity-95 bg-[#000000] flex flex-col rounded-0 items-center justify-center font-montserrat mb-60 lg:mb-20 hover:bg-opacity-60' id='story'>
-            <div className='text-[#f5fdc3] hover:text-white text-sm lg:text-xl mt-4 whitespace-pre-line'>
+            <div className='text-[#f5fdc3] hover:text-white text-sm lg:text-xl  whitespace-pre-line'>
                 {Array.isArray(animatedText) ? (
                     animatedText.map((item, index) => (
                         typeof item === 'object' ? (
