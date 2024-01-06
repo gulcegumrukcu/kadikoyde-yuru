@@ -249,7 +249,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        '“Eyvallah Suat abi, sana da. ” \n deyiverdin. \n\n Bakışları değişmedi, ama sözünü kestiğin için ilginç bir yinelemenin içine düştü. \n\nDilinle damağının arasındaki sürtünme katsayısı hoşuna gidenden çok daha az. \n\nHidrasyonla igili ne düşünürsün?',
+                        '“Eyvallah Suat abi, sana da.” \n deyiverdin. \n\n Bakışları değişmedi, ama sözünü kestiğin için ilginç bir yinelemenin içine düştü. \n\nDilinle damağının arasındaki sürtünme katsayısı hoşuna gidenden çok daha az. \n\nHidrasyonla igili ne düşünürsün?',
                     ],
                     choices: [
                         { text: 'SU İÇ', target: 'suIc' },
@@ -509,11 +509,11 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        {
-                            text: merdivenYolu
-                                ? 'Yol sorabileceğin bir kahvehaneye denk geldin. Oraya girmek için yolun karşısına geçmeye çalıştığın sırada bir korna sesi sağ kulağını aldı götürdü. \n\n Bu, ters yönden gelen bir motor kurye.'
-                                : 'Ne kadar mükemmel biri olduğunu düşünürken yoğun bir korna sesiyle gerçekliğe çekildin. \n\nTers yönden gelen bir motor kurye kaldırıma çıkmış ve yolundan çıkman için sana korna çalıyor.'
-                        }],
+
+                        merdivenYolu
+                            ? 'Yol sorabileceğin bir kahvehaneye denk geldin. Oraya girmek için yolun karşısına geçmeye çalıştığın sırada bir korna sesi sağ kulağını aldı götürdü. \n\n Bu, ters yönden gelen bir motor kurye.'
+                            : 'Ne kadar mükemmel biri olduğunu düşünürken yoğun bir korna sesiyle gerçekliğe çekildin. \n\nTers yönden gelen bir motor kurye kaldırıma çıkmış ve yolundan çıkman için sana korna çalıyor.'
+                    ],
                     choices: [
                         { text: 'KUSURA BAKMAYIN, HEMEN ÇEKİLİYORUM', target: 'cekil' },
                         { text: 'KALDIRIM ULAN BURASI DAVAR HERİF!', target: 'davar' },
@@ -592,11 +592,14 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                 return {
                     ...prevStory,
-                    text: merdivenYolu
-                        ?
-                        'Afiyet olsun. Şimdi şu merdiveni çabucak bulsan iyi edersin...'
-                        :
-                        'Afiyet olsun. Artık geç kalmamak için hızlansan iyi edersin...',
+                    text: [
+                        merdivenYolu
+                            ?
+                            'Afiyet olsun. Şimdi şu merdiveni çabucak bulsan iyi edersin...'
+                            :
+                            'Afiyet olsun. Artık geç kalmamak için hızlansan iyi edersin...',
+                    ],
+
                     choices: merdivenYolu ? [
                         { text: '>', target: 'kahvehane' },
                     ] : [

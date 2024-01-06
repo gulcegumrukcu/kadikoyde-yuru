@@ -79,24 +79,21 @@ function App() {
 
 
   function handleHealthEndings(health) {
-    console.log('Checking health ending condition. Current health:', health);
+    const lowHealthText =
+      'Olamaz! O kadar sağlıksızsın ki, bir kaç leylek seni kaçırdı. Karşı koyamadın.';
+    const highHealthText =
+      'Olamaz! Maşallahın var, çok sağlıklısın. Bu bir kaç sağlık şirketinin dikkatini çekmiş olacak ki üzerinde deney yapmak için seni kaçırdılar.';
 
     if (health < 35) {
-      console.log('Health ending condition met. Game over.');
       return {
-        text: 'Olamaz! O kadar sağlıksızsın ki, bir kaç leylek seni kaçırdı. Karşı koyamadın.',
-        choices: [
-          { text: 'OK', target: 'ok' }
-        ],
+        text: lowHealthText,
+        choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
     } else if (health > 80) {
-      console.log('Health ending condition met. Game over.');
       return {
-        text: 'Olamaz! Maşallahın var, çok sağlıklısın. Bu bir kaç sağlık şirketinin dikkatini çekmiş olacak ki üzerinde deney yapmak için seni kaçırdılar.',
-        choices: [
-          { text: 'OK', target: 'ok' }
-        ],
+        text: highHealthText,
+        choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
     }
@@ -104,83 +101,75 @@ function App() {
     return null;
   }
 
-
-
   function handleMoodEndings(mood) {
-    console.log('Checking mood ending condition. Current mood:', mood);
+    const lowMoodText =
+      'Olamaz! O kadar mutsuzsun ki kuşlar artık ötmeyi bıraktı... Doğanın dengesi bozuldu. Artık hiçbir şeyden hayır gelmez.';
+    const highMoodText =
+      'Peki. Keyfin oldukça yerinde gibi. Sana dokunmak istemezdim.. Ama sonuçta hiçbir şey ruh halini bozamaz, değil mi? Oyun bitti.';
 
     if (mood < 35) {
-      console.log('Mood ending condition met.');
       return {
-        text: 'Olamaz! O kadar mutsuzsun ki kuşlar artık ötmeyi bıraktı... Doğanın dengesi bozuldu. Artık hiçbir şeyden hayır gelmez. ',
-        choices: [
-          { text: 'OK', target: 'ok' }
-        ],
+        text: lowMoodText,
+        choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
     } else if (mood > 80) {
-      console.log('Mood ending condition met.');
       return {
-        text: 'Peki. Keyfin oldukça yerinde gibi. Sana dokunmak istemezdim.. Ama sonuçta hiçbir şey ruh halini bozamaz, değil mi? Oyun bitti.',
-        choices: [
-          { text: 'OK', target: 'ok' }
-        ],
+        text: highMoodText,
+        choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
     }
+
     return null;
   }
 
   function handleMoneyEndings(money) {
-    console.log('Checking money ending condition. Current money:', money);
+    const lowMoneyText =
+      'Olamaz! Parasızlıktan buraya güzel bir sonuç yazacak kişiyi işe alamadın...';
+    const highMoneyText =
+      'Olamaz! Evet, çok paran var. Baya fazla... Ama vergilerini ödemediğin ortaya çıktı ve artık hiçbir şeyin önemi yok...';
 
     if (money < 35) {
-      console.log('Money ending condition met.');
       return {
-        text: 'Olamaz! Parasızlıktan buraya güzel bir sonuç yazacak kişiyi işe alamadın...',
-        choices: [
-          { text: 'OK', target: 'ok' }
-        ],
+        text: lowMoneyText,
+        choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
     } else if (money > 80) {
-      console.log('Money ending condition met.');
       return {
-        text: 'Olamaz! Evet, çok paran var. Baya fazla... Ama vergilerini ödemediğin ortaya çıktı ve artık hiçbir şeyin önemi yok...',
-        choices: [
-          { text: 'OK', target: 'ok' }
-        ],
+        text: highMoneyText,
+        choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
     }
+
     return null;
   }
 
   function handleIntelligenceEndings(intelligence) {
-    console.log('Checking intelligence ending condition. Current intelligence:', intelligence);
+    const lowIntelligenceText =
+      'Olamaz! Bu düşük zeka ile bir amip gibi yaşamaya karar verdin...';
+    const highIntelligenceText =
+      'Olamaz! Bu yüksek zeka ile gerçek fikirlerini yaydığın için halk meydanında dayak yedin...';
 
     if (intelligence < 35) {
-      console.log('Intelligence ending condition met.');
       return {
-        text: 'Olamaz! Bu düşük zeka ile bir amip gibi yaşamaya karar verdin...',
-        choices: [
-          { text: 'OK', target: 'ok' }
-        ],
+        text: lowIntelligenceText,
+        choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
     } else if (intelligence > 80) {
-      console.log('Intelligence ending condition met.');
       return {
-        text: 'Olamaz! Bu yüksek zeka ile gerçek fikirlerini yaydığın için halk meydanında dayak yedin...',
-        choices: [
-          { text: 'OK', target: 'ok' }
-        ],
+        text: highIntelligenceText,
+        choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
-
     }
+
     return null;
   }
+
 
 
 
@@ -217,7 +206,7 @@ function App() {
     setCharacterStats,
     dispatch,
     setShowHealthAnimation,
-    setShowIntelligenceCheckAnimation,
+    setShowIntelligenceAnimation,
     setShowMoneyAnimation,
     setShowMoodAnimation,
     characterStats,

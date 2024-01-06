@@ -4,6 +4,7 @@ import ChoiceButton from './ChoiceButton';
 const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, characterStats }) => {
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
     const [animatedText, setAnimatedText] = useState([]);
+    const [textAnimationCompleted, setTextAnimationCompleted] = useState(false); // New state
 
     const animateText = () => {
         const textArray = story.text;
@@ -38,10 +39,19 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, charact
     }, [animatedText, currentTextIndex]);
 
     useEffect(() => {
+        if (currentTextIndex === story.text.length) {
+            // Check if text animation is completed
+            setTextAnimationCompleted(true);
+        }
+    }, [animatedText, currentTextIndex, story.text]);
+
+    useEffect(() => {
         // Reset animatedText when moving to a new question
         setAnimatedText([]);
         setCurrentTextIndex(0);
+        setTextAnimationCompleted(false); // Reset text animation completion state
     }, [story]);
+
 
     const onChoiceClick = (target) => {
         // Make sure to update the stats
@@ -67,16 +77,18 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, charact
                     animatedText
                 )}
             </div>
-            <div style={buttonsContainerStyle}>
-                {story.choices.map((choice, index) => (
-                    <ChoiceButton
-                        key={index}
-                        text={choice.text}
-                        onClick={() => onChoiceClick(choice.target, characterStats)}
-                        disabled={story.buttonsDisabled}
-                    />
-                ))}
-            </div>
+            {textAnimationCompleted && (
+                <div style={buttonsContainerStyle}>
+                    {story.choices.map((choice, index) => (
+                        <ChoiceButton
+                            key={index}
+                            text={choice.text}
+                            onClick={() => onChoiceClick(choice.target, characterStats)}
+                            disabled={story.buttonsDisabled}
+                        />
+                    ))}
+                </div>
+            )}
         </div>
     );
 };
