@@ -1,3 +1,4 @@
+
 import React from 'react';
 import utils from './src/components/utils';
 import { useState } from 'react';
@@ -46,7 +47,6 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        ,
                         'Adamı kesinlikle tanıyorsun. Burada yaşadığın süre boyunca en az bir defa gördün. \n\n Bu adam senin apartman yöneticin, adı neydi?',
                     ],
                     choices: [
@@ -62,17 +62,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     ...prevStory,
 
                     text: [
-                        {
-                            text: '“Ya biliyorsun geçen çok fena yağmur yağdı, borular morular sorular aklımda binbir tane, boyalar falan sökülmüş akmış hep duvarlar üstüme üstüme geliyor…”',
-                            style: {
-
-                                fontWeight: 'bold',
-                                color: 'white',
-                                fontStyle: 'italic',
-                            },
-                        }
-
-
+                        '“Ya biliyorsun geçen çok fena yağmur yağdı, borular morular sorular aklımda binbir tane, boyalar falan sökülmüş akmış hep duvarlar üstüme üstüme geliyor…”',
                     ],
                     choices: [
                         { text: '"NASIL YANİ ABİ?"', target: 'neDiyor' },
@@ -85,18 +75,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        {
-                            text: '“Yav işte yağmur büyümüş dolu olmuş, dolu büyümüş çatıya konmuş. Kedi içti ağaca çıktı balta kesti suya düştü inek içti dağa kaçtı yandı bitti kül oldu.” ',
-                            style: {
 
-                                fontWeight: 'bold',
-                                color: 'white',
-                                fontStyle: 'italic',
-                            },
-                        },
-
-
-                        '\n\n Ne diyor bu adam? ',
+                        '“Yav işte yağmur büyümüş dolu olmuş, dolu büyümüş çatıya konmuş. Kedi içti ağaca çıktı, balta kesti suya düştü, inek içti dağa kaçtı, en sonunda yandı bitti kül oldu.” \n\n Ne diyor bu adam? ',
                     ],
 
                     choices: [
@@ -138,15 +118,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        {
-                            text: '“Heh işte onun için para vermen lazım ki biz de adama verelim.”',
-
-                            style: {
-                                fontWeight: 'bold',
-                                color: 'white',
-                                fontStyle: 'italic',
-                            },
-                        },
+                        '“Heh işte onun için para vermen lazım ki biz de adama verelim.”',
                     ],
                     choices: [
                         { text: '“TABİİ ABİ BİR SANİYE.” \n\nPARAYI VER.', target: 'usta' },
@@ -163,21 +135,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        {
-                            text: 'Aynen öyle, apartmanda 7 metrelik bir merdiveni bulabilecek tek kişi sen olduğun için de sana geldiler. \n\n İçini bir kahramanlık ateşi sarıyor ve apartman yöneticin sana soru sorar gözler ile bakıyor. ',
-                            style: {
-                                fontWeight: 'bold',
-
-                                fontStyle: 'italic',
-
-                            },
-                        },
-                        {
-                            text: '\n\n 7 metrelik merdivenini almaya gidecek misin?',
-
-                        }
-
-
+                        'Aynen öyle, apartmanda 7 metrelik bir merdiveni bulabilecek tek kişi sen olduğun için de sana geldiler. \n\n İçini bir kahramanlık ateşi sarıyor ve apartman yöneticin sana soru sorar gözler ile bakıyor. \n\n 7 metrelik merdivenini almaya gidecek misin? ',
 
                     ],
                     choices: [
@@ -206,33 +164,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     background: './images/kova.png',
                 };
 
-                newMoodIncrease = 10,
-                    handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
-                statMoodChangeRef.current = true;
 
-
-                setCharacterStats((prevStats) => ({
-                    ...prevStats,
-                    mood: Math.max(prevStats.mood + newMoodIncrease, 0),
-                }));
-                dispatch({ type: 'CHANGE_MOOD', payload: newMoodIncrease });
-                return {
-                    ...prevStory,
-                    text: [
-
-                        'Tamam, bunu not alıyoruz...',
-                    ],
-                    choices: [
-                        {
-                            text: 'GÜZEL',
-                            target: merdivenYolu ? 'kahvehane' : 'polis',
-                        },
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/not.png',
-                    characterImage: null
-
-                };
             case 'merdiven':
                 setMerdivenYolu(true)
                 return {
@@ -241,17 +173,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
 
                     text: [
-                        {
-                            text: 'Hazırlanma hızın inanılmaz.',
-                            style: {
-                                fontWeight: 'bold',
-
-                                fontStyle: 'italic',
-
-                            },
-                        },
-
-                        '\n\nMerdiven yolu onurlu bir yol. Bol şans.',
+                        'Hazırlanma hızın inanılmaz.\n\nMerdiven yolu onurlu bir yol. Bol şans.',
 
                     ],
                     choices: [
@@ -275,14 +197,10 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        {
-                            text: '“Usta yarım saate geliyor çatıya bakmaya, sen buradasın değil mi?. Adamın başında dur da kaytarmasın.” ',
-                            style: {
-                                fontWeight: 'bold',
-                                fontStyle: 'italic',
-                                color: 'white',
-                            },
-                        },
+
+                        '“Usta yarım saate geliyor çatıya bakmaya, sen buradasın değil mi?. Adamın başında dur da kaytarmasın.” ',
+
+
                     ],
                     choices: [
                         { text: '"YOK ABİ BENİM ÇIKMAM LAZIM"', target: 'cikis' },
@@ -294,43 +212,16 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
 
 
-                newMoodDecrease = 10;
-                handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
-                statMoodChangeRef.current = true;
 
-                setCharacterStats((prevStats) => ({
-                    ...prevStats,
-                    mood: Math.max(prevStats.mood - newMoodDecrease, 0), // Ensure non-negative value
-                }));
-                dispatch({ type: 'CHANGE_MOOD', payload: newMoodDecrease });
-                return {
-                    ...prevStory,
-                    text: [
-                        'Deli adam sana dil çıkarıp burnunu karıştırıyor. Başka bir yere bakmak daha iyi olabilir. ',
-
-                    ],
-                    choices: [
-                        { text: '"İNŞAAT NEREDE?"', target: 'insaat' },
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane.png',
-                    characterImage: null
-
-                };
             case 'yalan':
 
 
                 return {
                     ...prevStory,
                     text: [
-                        {
-                            text: '“İyi bana hatırlatırsın, IBAN’ı atarım Whatsapp’tan. \n Sen buradasın, değil mi? Adamın başında dur da kaytarmasın.”',
-                            style: {
-                                fontWeight: 'bold',
-                                fontStyle: 'italic',
-                                color: 'white',
-                            },
-                        },
+                        '“İyi bana hatırlatırsın, IBAN’ı atarım Whatsapp’tan. \n Sen buradasın, değil mi? Adamın başında dur da kaytarmasın.”',
+
+
                     ],
                     choices: [
                         { text: '"YOK ABİ BENİM ÇIKMAM LAZIM"', target: 'cikis' },
@@ -343,10 +234,9 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        {
-                            text: 'Hazırlanma hızın inanılmaz. Abiyi başından saldığına göre dışarı çıkmaya hazırsın.',
+                        'Hazırlanma hızın inanılmaz. Abiyi başından saldığına göre dışarı çıkmaya hazırsın.',
 
-                        },
+
                     ],
                     choices: [
                         { text: 'EVDEN ÇIK', target: 'dilenci' },
@@ -359,15 +249,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        {
-                            text: '“Eyvallah Suat abi, sana da. ”',
-                            style: {
-                                fontWeight: 'bold',
-                                fontStyle: 'italic',
-                                color: 'white',
-                            },
-                        },
-                        ' deyiverdin. \n\n Bakışları değişmedi, ama sözünü kestiğin için ilginç bir yinelemenin içine düştü. \n\nDilinle damağının arasındaki sürtünme katsayısı hoşuna gidenden çok daha az. \n\nHidrasyonla igili ne düşünürsün?'
+                        '“Eyvallah Suat abi, sana da. ” \n deyiverdin. \n\n Bakışları değişmedi, ama sözünü kestiğin için ilginç bir yinelemenin içine düştü. \n\nDilinle damağının arasındaki sürtünme katsayısı hoşuna gidenden çok daha az. \n\nHidrasyonla igili ne düşünürsün?',
                     ],
                     choices: [
                         { text: 'SU İÇ', target: 'suIc' },
@@ -394,10 +276,9 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        {
-                            text: 'Su çok güzel, ciğerlerine doğru gelen canlanma hissi sana çok müthiş hissettiriyor ve her şey daha net.',
+                        'Su çok güzel, ciğerlerine doğru gelen canlanma hissi sana çok müthiş hissettiriyor ve her şey daha net.',
 
-                        },
+
                     ],
                     choices: [
                         { text: 'OH BE. ŞİMDİ Bİ BAKALIM NE DİYOR SUAT ABİ.', target: 'aidat' },
@@ -414,15 +295,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     ...prevStory,
                     text: [
 
-                        'Adam söylediklerine kaldığı yerden devam ediyor. ',
-                        {
-                            text: '\n\n“İşte senin aidatı bugün vermen lazım ki, biz de ustaya vereceğiz.”',
-                            style: {
-                                fontWeight: 'bold',
-                                fontStyle: 'italic',
-                                color: 'white',
-                            },
-                        },
+                        'Adam söylediklerine kaldığı yerden devam ediyor. \n\n“İşte senin aidatı bugün vermen lazım ki, biz de ustaya vereceğiz.” ',
+
 
                     ],
                     choices: [
@@ -440,23 +314,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        {
-                            text: '“Eyvallah abi, sana da. ”',
-                            style: {
-                                fontWeight: 'bold',
-                                fontStyle: 'italic',
-                                color: 'white',
-                            },
-                        },
-                        ' deyiverdin. \n\n Adam söylediklerine kaldığı yerden devam ediyor. \n\n',
-                        {
-                            text: '“İşte senin aidatı bugün vermen lazım ki, biz de ustaya vereceğiz.”',
-                            style: {
-                                fontWeight: 'bold',
-                                fontStyle: 'italic',
-                                color: 'white',
-                            },
-                        },
+
+                        '“Eyvallah abi, sana da. ” \n deyiverdin. \n\n Adam söylediklerine kaldığı yerden devam ediyor. \n\n “İşte senin aidatı bugün vermen lazım ki, biz de ustaya vereceğiz.”',
 
                     ],
                     choices: [
@@ -473,18 +332,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        'Sokağa çıktın ve vazgeçmek için çok geç olduğunun farkındasın. \n\nNalbur sormak için gördüğün ilk tekele girmek üzereyken bir dilenci yanında bitti.',
-                        {
-                            text: ' \n\n“Çocuğuma şuradan bir tavuk alabilir misin?”',
-                            style: {
+                        'Sokağa çıktın ve vazgeçmek için çok geç olduğunun farkındasın. \n\nNalbur sormak için gördüğün ilk tekele girmek üzereyken bir dilenci yanında bitti. \n\n“Çocuğuma şuradan bir tavuk alabilir misin?”',
 
-                                fontWeight: 'bold',
-                                fontStyle: 'italic',
-                                color: 'white',
-
-
-                            },
-                        },
                     ],
 
                     choices: [
@@ -501,18 +350,9 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        'Sokağa çıktın ve ilk köşeyi döner dönmez bir dilenci yanında bitti.',
-                        {
-                            text: ' \n\n“Çocuğuma şuradan bir tavuk alabilir misin?”',
-                            style: {
-
-                                fontWeight: 'bold',
-                                fontStyle: 'italic',
-                                color: 'white',
+                        'Sokağa çıktın ve ilk köşeyi döner dönmez bir dilenci yanında bitti. \n\n“Çocuğuma şuradan bir tavuk alabilir misin?”',
 
 
-                            },
-                        },
                     ],
 
                     choices: [
@@ -530,18 +370,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     ...prevStory,
                     text: [
 
-                        {
-                            text: '"Canın sağ olsun."',
-                            style: {
-
-                                fontWeight: 'bold',
-                                fontStyle: 'italic',
-                                color: 'white',
-
-
-                            },
-                        },
-                        '\n\n Çocuğun varlığından emin olamasan bile bir bebişi doyuramamak vicdanına çöküyor.',
+                        '"Canın sağ olsun." \n\n Çocuğun varlığından emin olamasan bile bir bebişi doyuramamak vicdanına çöküyor.',
 
                     ],
 
@@ -575,17 +404,10 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        {
-                            text: '“Allah senden razı olsun.”',
-                            style: {
-                                fontWeight: 'bold',
-                                fontStyle: 'italic',
-                                color: 'white',
-                            },
-                        },
-                        {
-                            text: '\n\nAz önce bir dilenciye yardım ettin. Dünyadaki tüm insanlara karşı ahlaki üstünlüğünü parmak uçlarında hissediyorsun.',
-                        },
+
+                        '“Allah senden razı olsun.” \n\nAz önce bir dilenciye yardım ettin. Dünyadaki tüm insanlara karşı ahlaki üstünlüğünü parmak uçlarında hissediyorsun.',
+
+
                     ],
                     choices: merdivenYolu
                         ? [
@@ -621,10 +443,9 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        {
-                            text: 'Haklısın. Bu politik bilinç içini rahatlatmak için yeter de artar bile.',
+                        'Haklısın. Bu politik bilinç içini rahatlatmak için yeter de artar bile.',
 
-                        },
+
                     ],
                     choices: merdivenYolu
                         ? [
@@ -659,10 +480,9 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        {
-                            text: 'Keşke... Neden tüm bu sorumluluğu kabul edip hayatının geri kalanını buna adamıyorsun?',
+                        'Keşke... Neden tüm bu sorumluluğu kabul edip hayatının geri kalanını buna adamıyorsun?',
 
-                        },
+
                     ],
                     choices: merdivenYolu
                         ? [
@@ -707,19 +527,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        {
-                            text: '“Çok teşekkürler.”',
-                            style: {
+                        '“Çok teşekkürler.” \n\n Kurye teşekkür etmek için sana küçük bir tantuni fırlatıp uzaklaşmaya başlıyor. Yola devam?',
 
-                                fontWeight: 'bold',
-                                fontStyle: 'italic',
-                                color: 'white',
-
-
-                            },
-                        },
-
-                        '\n\n Kurye teşekkür etmek için sana küçük bir tantuni fırlatıp uzaklaşmaya başlıyor. Yola devam?'
                     ],
                     choices: [
                         { text: 'TANTUNİYİ YE', target: 'tantuni' },
@@ -834,10 +643,9 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        {
-                            text: 'Nunçakulu bir kuryeyi alt edebileceğine inanman güzel fakat gerçeklerle tanışma zamanı. Artık yoluna devam etmelisin.',
+                        'Nunçakulu bir kuryeyi alt edebileceğine inanman güzel fakat gerçeklerle tanışma zamanı. Artık yoluna devam etmelisin.',
 
-                        },
+
                     ],
                     choices: merdivenYolu
                         ? [
@@ -873,10 +681,9 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        {
-                            text: 'Bugünlük kardiyonu halletmiş oldun. Yola devam..',
+                        'Bugünlük kardiyonu halletmiş oldun. Yola devam..',
 
-                        },
+
                     ],
                     choices: [
                         { text: '>', target: 'polis' },
@@ -892,15 +699,10 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        {
-                            text: 'Hayır.',
-                            style: {
-                                fontWeight: 'bold',
-                                fontStyle: 'italic',
-                                color: 'white',
-                            },
-                        },
-                        '\n\nGözlerinle etrafı tarayarak yürümeye devam ediyorsun.',
+
+                        'Hayır. \n\nGözlerinle etrafı tarayarak yürümeye devam ediyorsun.',
+
+
                     ],
                     choices: [
                         { text: '>', target: 'korna' },
@@ -915,19 +717,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        'Bir polisin zevkine göre fazla farklı giyiniyorsun. Bir tanesi seni durduruyor. ',
+                        'Bir polisin zevkine göre fazla farklı giyiniyorsun. Bir tanesi seni durduruyor. \n\n“Kimliğine bir bakabilir miyiz?”',
 
-                        {
-                            text: '\n\n“Kimliğine bir bakabilir miyiz?”',
-                            style: {
-
-                                fontWeight: 'bold',
-                                fontStyle: 'italic',
-                                color: 'white',
-
-
-                            },
-                        },
 
                     ],
                     choices: [
@@ -945,18 +736,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     ...prevStory,
                     text: [
 
+                        'Teşekkürler. Sigara kullanıyor musun?',
 
-                        {
-                            text: 'Teşekkürler. Sigara kullanıyor musun?',
-                            style: {
-
-                                fontWeight: 'bold',
-                                fontStyle: 'italic',
-                                color: 'white',
-
-
-                            },
-                        },
 
                     ],
                     choices: [
@@ -974,18 +755,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     ...prevStory,
                     text: [
 
+                        '“Paketini görebilir miyim?”',
 
-                        {
-                            text: '“Paketini görebilir miyim?”',
-                            style: {
-
-                                fontWeight: 'bold',
-                                fontStyle: 'italic',
-                                color: 'white',
-
-
-                            },
-                        },
 
                     ],
                     choices: [
@@ -1004,17 +775,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     text: [
 
 
-                        {
-                            text: '"Tamam, devam edebilirsin."',
-                            style: {
+                        '"Tamam, devam edebilirsin."',
 
-                                fontWeight: 'bold',
-                                fontStyle: 'italic',
-                                color: 'white',
-
-
-                            },
-                        },
 
                     ],
                     choices: [
@@ -1040,18 +802,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     ...prevStory,
                     text: [
 
+                        '"Tamam, devam edebilirsin."',
 
-                        {
-                            text: '"Tamam, devam edebilirsin."',
-                            style: {
-
-                                fontWeight: 'bold',
-                                fontStyle: 'italic',
-                                color: 'white',
-
-
-                            },
-                        },
 
                     ],
                     choices: [

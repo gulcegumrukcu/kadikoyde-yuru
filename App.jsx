@@ -58,6 +58,15 @@ function App() {
   };
 
 
+  const [showQuestionComponent, setShowQuestionComponent] = useState(false);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setShowQuestionComponent(true);
+    }, 1000); // 1000 milliseconds = 1 second
+
+    return () => clearTimeout(timeoutId);
+  }, []); // Run this effect only once on component mount
 
 
   const [characterStats, setCharacterStats] = useState({
@@ -176,18 +185,8 @@ function App() {
 
 
   const [story, setStory] = useState({
-    text: [
-      {
-        text: '“İyi sabahlar.”\n',
-        style: {
+    text: ['“İyi sabahlar.” \n\nBir adam silüetine hoşgeldin. Bu görüntüyü silüetten bir kimliğe çekmen gerekiyor.\n'],
 
-          fontWeight: 'bold',
-          color: 'white',
-        },
-      },
-      '\nBir adam silüetine hoşgeldin. Bu görüntüyü silüetten bir kimliğe çekmen gerekiyor.\n',
-      ,
-    ],
     choices: [
       { text: 'GÖZLERİNİ OVUŞTUR', target: 'adiNeydi' },
       { text: 'ADAMI DİNLEMEYE ÇALIŞ', target: 'yagmurYagdi' },
@@ -333,7 +332,6 @@ function App() {
         <EntrancePage onReady={handleEntrancePageReady} />
       ) : (
         <>
-
           <Footer
             showFooter={showFooter}
             onToggleSound={handleToggleSound}
@@ -351,8 +349,8 @@ function App() {
             statMoodChangeRef={statMoodChangeRef}
 
             showIntelligenceCheckAnimation={showIntelligenceCheckAnimation}
-
           />
+
 
 
           <div className='flex items-center justify-center text-center' style={containerStyle}>
@@ -382,17 +380,8 @@ function App() {
             <Settings></Settings>
           </div>
         </>
-
       )}
     </div>
-
-
-
-
-
-
-
-
   );
 }
 
