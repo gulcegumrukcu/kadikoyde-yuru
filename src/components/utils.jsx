@@ -1,7 +1,7 @@
 // utils.js
-import correct from '../assets/correct.mp3'
-import wrong from '../assets/wrong.mp3'
-import animation from '../assets/animation.wav'
+import correct from '../audio/correct.mp3'
+import wrong from '../audio/wrong.mp3'
+import animation from '../audio/animation.mp3'
 
 const correctAudio = new Audio(correct)
 const wrongAudio = new Audio(wrong)

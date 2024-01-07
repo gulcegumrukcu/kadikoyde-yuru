@@ -54,7 +54,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: 'ÖNEMİ VAR MI?', target: 'onemiVarMi' },
                     ],
                     buttonsDisabled: false,
-
+                    audio: './src/audio/storyici/adiNeydi.mp3',
                     background: './images/yonetici1.png',
                 };
             case 'yagmurYagdi':
@@ -249,13 +249,14 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        '“Eyvallah Suat abi, sana da.” \n deyiverdin. \n\n Bakışları değişmedi, ama sözünü kestiğin için ilginç bir yinelemenin içine düştü. \n\nDilinle damağının arasındaki sürtünme katsayısı hoşuna gidenden çok daha az. \n\nHidrasyonla igili ne düşünürsün?',
+                        '“Eyvallah Suat abi, sana da.” deyiverdin. \n\n Bakışları değişmedi, ama sözünü kestiğin için ilginç bir yinelemenin içine düştü. \n\nDilinle damağının arasındaki sürtünme katsayısı hoşuna gidenden çok daha az. \n\nHidrasyonla ilgili ne düşünürsün?',
                     ],
                     choices: [
                         { text: 'SU İÇ', target: 'suIc' },
                         { text: 'NİYE GELMİŞ BU ADAM?', target: 'aidat' },
                     ],
                     buttonsDisabled: false,
+                    audio: './src/audio/storyici/suat.mp3',
                     background: './images/yonetici1.png',
                 };
             case 'suIc':
@@ -285,6 +286,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: './src/audio/storyici/suIc.mp3',
                     background: './images/su.png',
 
                 };

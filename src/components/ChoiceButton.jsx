@@ -1,5 +1,5 @@
 import React from 'react';
-import sound from '../assets/sound.wav';
+import sound from '../audio/sound.mp3';
 
 function ChoiceButton({ text, onClick, disabled }) {
     const audio = new Audio(sound);
