@@ -5,7 +5,7 @@ import StatContainer from './StatContainer';
 import useAnimation from './useAnimation'
 
 
-const Footer = ({ showFooter, onToggleSound, onMenuClick, characterStats, showMoodAnimation, showHealthAnimation, showIntelligenceAnimation, showIntelligenceCheckAnimation, showMoneyAnimation, statMoneyChangeRef, statHealthChangeRef, statIntelligenceChangeRef, statMoodChangeRef, initialAlertText }) => {
+const Footer = ({ showFooter, characterStats, showMoodAnimation, showHealthAnimation, showIntelligenceAnimation, showIntelligenceCheckAnimation, showMoneyAnimation, statMoneyChangeRef, statHealthChangeRef, statIntelligenceChangeRef, statMoodChangeRef, initialAlertText }) => {
 
     const showIntelligenceCheckAnimationValue = useAnimation(showIntelligenceCheckAnimation.text);
     if (!showFooter) {

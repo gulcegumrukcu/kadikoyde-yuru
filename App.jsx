@@ -4,13 +4,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import EntrancePage from './src/components/EntrancePage';
 import { useDispatch } from 'react-redux';
-
-
+import audio1 from './src/audio/audio1.mp3';
+import SoundControl from './src/components/SoundControl';
 import Footer from './src/components/Footer';
 import QuestionComponent from './src/components/QuestionComponent';
-import Settings from './src/components/Settings';
+
 
 import StoryComponent from './StoryComponent';
+import Menu from './src/components/Menu';
 
 
 
@@ -33,15 +34,10 @@ function App() {
   const [showHealthAnimation, setShowHealthAnimation] = useState(false);
   const [showIntelligenceAnimation, setShowIntelligenceAnimation] = useState(false);
   const dispatch = useDispatch();
-  const handleToggleSound = () => {
-    // Implement sound control logic here
+  const audioRef = useRef(null);
 
-  };
 
-  const handleMenuClick = () => {
-    // Implement settings logic here
-
-  };
+  const [isMuted, setIsMuted] = useState(false);
   const initialStats = {
     health: generateRandomStat(),
     money: generateRandomStat(),
@@ -76,6 +72,21 @@ function App() {
     time: generateRandomStat(),
     intelligence: generateRandomStat(),
   });
+
+  const handleToggleSound = () => {
+    const audioElements = document.querySelectorAll('audio');
+    audioElements.forEach((audio) => {
+      audio.muted = !audio.muted;
+    });
+
+    setIsMuted(!isMuted);
+  };
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleMenuClick = () => {
+    setIsPopupOpen((prevIsPopupOpen) => !prevIsPopupOpen);
+  };
 
 
   function handleHealthEndings(health) {
@@ -160,6 +171,7 @@ function App() {
 
   const [story, setStory] = useState({
     text: ['“İyi sabahlar.” \n\nBir adam silüetine hoşgeldin. Bu görüntüyü silüetten bir kimliğe çekmen gerekiyor.\n'],
+    audio: audio1,
 
     choices: [
       { text: 'GÖZLERİNİ OVUŞTUR', target: 'adiNeydi' },
@@ -167,6 +179,7 @@ function App() {
     ],
     buttonsDisabled: false,
     background: './images/siluet.png',
+
   });
 
 
@@ -249,17 +262,14 @@ function App() {
 
 
 
-
-
-
-
-
-
   useEffect(() => {
     if (story.background) {
 
     }
   }, [story.background]);
+
+
+
   const containerStyle = {
     backgroundImage: `url(${story.background || './images/background.png'})`,
     backgroundSize: 'cover',
@@ -308,8 +318,8 @@ function App() {
         <>
           <Footer
             showFooter={showFooter}
-            onToggleSound={handleToggleSound}
-            onMenuClick={handleMenuClick}
+
+
             characterStats={characterStats}
 
             showMoodAnimation={showMoodAnimation}
@@ -326,6 +336,8 @@ function App() {
           />
 
 
+
+          {story.audio && <audio ref={audioRef} src={story.audio} autoPlay loop />}
 
           <div className='flex items-center justify-center text-center' style={containerStyle}>
             <div style={characterContainerStyle}>
@@ -350,10 +362,23 @@ function App() {
               characterStats={characterStats}
             />
 
+            <div className='fixed bottom-0 right-0 bg-black flex-row gap-4 rounded-none p-2 text-white flex mx-auto'>
+              <SoundControl onToggleSound={handleToggleSound} isMuted={isMuted} />
+              <Menu onMenuClick={handleMenuClick} isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
 
-            <Settings></Settings>
+
+            </div>
+
+
+
+
           </div>
+
+
+
         </>
+
+
       )}
     </div>
   );

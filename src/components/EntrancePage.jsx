@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import sound from '../assets/sound.wav'
 import logo from '/images/logo.mp4';
-import Settings from './Settings';
+
+import Menu from './Menu';
+import SoundControl from './SoundControl';
 
 function EntrancePage({ onReady }) {
     const [showButton, setShowButton] = useState(false);
@@ -29,8 +31,10 @@ function EntrancePage({ onReady }) {
                 position: 'relative',
             }}
         >
-            <Settings></Settings>
-            {/* Use the video element with the loop attribute */}
+
+
+
+
             <video autoPlay loop muted className=' w-[100%]'>
                 <source src={logo} type='video/mp4' />
 
