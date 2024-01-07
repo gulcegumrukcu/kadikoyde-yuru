@@ -32,7 +32,10 @@ function EntrancePage({ onReady }) {
             }}
         >
 
+            <div className='fixed bottom-0 right-0 bg-black flex-row gap-4 rounded-none p-2 text-white flex mx-auto'>
 
+
+            </div>
 
 
             <video autoPlay loop muted className=' w-[100%]'>

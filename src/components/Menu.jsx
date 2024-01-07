@@ -15,7 +15,7 @@ const Menu = ({ isPopupOpen, setIsPopupOpen }) => {
             <img src="/images/menu.svg" onClick={handlePopupToggle} alt="Open Menu" className="w-8 h-8 mt-1 cursor-pointer" />
 
             {isPopupOpen && (
-                <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-50 flex items-center justify-center">
+                <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-50 flex items-center justify-center">
                     <div className="bg-black bg-opacity-90 z-50 p-8 rounded-md text-white w-auto mx-auto relative">
                         <button
                             className="absolute top-2 right-2 text-white cursor-pointer"
