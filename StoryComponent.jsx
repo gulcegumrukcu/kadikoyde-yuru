@@ -5,7 +5,9 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-
+import adiNeydiAudio from './src/audio/storyici/adiNeydi.mp3';
+import suatAudio from './src/audio/storyici/suat.mp3';
+import suIcAudio from './src/audio/storyici/suIc.mp3';
 
 
 
@@ -56,7 +58,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: 'ÖNEMİ VAR MI?', target: 'onemiVarMi' },
                     ],
                     buttonsDisabled: false,
-                    audio: './src/audio/storyici/adiNeydi.mp3',
+                    audio: adiNeydiAudio,
                     background: './images/yonetici1.png',
                 };
             case 'yagmurYagdi':
@@ -258,7 +260,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: 'NİYE GELMİŞ BU ADAM?', target: 'aidat' },
                     ],
                     buttonsDisabled: false,
-                    audio: './src/audio/storyici/suat.mp3',
+                    audio: suatAudio,
                     background: './images/yonetici1.png',
                 };
             case 'suIc':
@@ -288,7 +290,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    audio: './src/audio/storyici/suIc.mp3',
+                    audio: suIcAudio,
                     background: './images/su.png',
 
                 };
