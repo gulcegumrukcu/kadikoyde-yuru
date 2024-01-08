@@ -41,6 +41,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     background: './images/end.png',
                 };
+
+
             case 'adiNeydi':
 
 
