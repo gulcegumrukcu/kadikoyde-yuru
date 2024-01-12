@@ -2,10 +2,14 @@
 import correct from '../audio/correct.mp3'
 import wrong from '../audio/wrong.mp3'
 import animation from '../audio/animation.mp3'
+import Sound from './Sound'
+
+
 
 const correctAudio = new Audio(correct)
 const wrongAudio = new Audio(wrong)
 const animationAudio = new Audio(animation)
+
 
 export const createInitialAlertText = (amount, increase) => {
     const backgroundColor = increase ? 'green' : 'red';
@@ -176,5 +180,6 @@ export default {
     handleIntelligenceCheckAnimation,
     setBackground,
     getBackground,
+    Sound,
 };
 

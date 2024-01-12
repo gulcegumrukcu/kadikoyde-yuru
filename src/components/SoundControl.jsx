@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
-
-const SoundControl = ({ onToggleSound }) => {
-    const [isMuted, setIsMuted] = useState(false);
-
+const SoundControl = ({ onToggleSound, isMuted }) => {
     const handleToggleSound = () => {
-        setIsMuted(!isMuted);
-        onToggleSound();
+        console.log('Toggling sound in SoundControl');
+        onToggleSound(!isMuted); // Toggle the current state
     };
 
     return (

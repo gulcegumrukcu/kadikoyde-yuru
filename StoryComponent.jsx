@@ -8,6 +8,9 @@ import { useEffect } from 'react';
 import adiNeydiAudio from './src/audio/storyici/adiNeydi.mp3';
 import suatAudio from './src/audio/storyici/suat.mp3';
 import suIcAudio from './src/audio/storyici/suIc.mp3';
+import yagmurYagdiAudio from './src/audio/storyici/yagmurYagdi.mp3';
+import kovaAudio from './src/audio/storyici/kova.mp3';
+import hazirlanmaAudio from './src/audio/storyici/hazirlanma.mp3';
 
 
 
@@ -73,6 +76,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: 'BEN BİR SU İÇEYİM', target: 'su' },
                     ],
                     buttonsDisabled: false,
+                    audio: yagmurYagdiAudio,
                     background: './images/yari-siluet.png',
                 };
             case 'neDiyor':
@@ -88,6 +92,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: 'YÖNETİCİNİN DEDESİ ÇATIYA ÇIKMIŞ, ONU İNDİRECEĞİZ.', target: 'icSesim' },
                     ],
                     buttonsDisabled: false,
+                    audio: yagmurYagdiAudio,
                     background: './images/yonetici2.png',
                 };
             case 'su':
@@ -115,6 +120,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: 'YÖNETİCİNİN DEDESİ ÇATIYA ÇIKMIŞ, ONU İNDİRECEĞİZ.', target: 'icSesim' },
                     ],
                     buttonsDisabled: false,
+                    audio: suIcAudio,
                     background: './images/su.png',
 
                 };
@@ -130,6 +136,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: yagmurYagdiAudio,
                     background: './images/yonetici-el.png',
 
                 };
@@ -151,6 +158,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: '“TABİ Kİ… APARTMANIMIN BANA İHTİYACI VAR.” \nEVDEN ÇIK.', target: 'merdiven' },
                     ],
                     buttonsDisabled: false,
+                    audio: adiNeydiAudio,
                     background: './images/yonetici-cep.png',
                 };
             case 'catiSesim':
@@ -165,9 +173,9 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: 'BU İNANDIRICI GELMEDİ, 7 METRELİK MERDİVEN AVINA GİDELİM.', target: 'merdiven' },
                     ],
                     buttonsDisabled: false,
+                    audio: kovaAudio,
                     background: './images/kova3.png',
                 };
-
 
             case 'merdiven':
                 setMerdivenYolu(true)
@@ -185,6 +193,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: hazirlanmaAudio,
                     background: './images/cikis.png',
                 };
             case 'usta':
@@ -210,13 +219,9 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: '"YOK ABİ BENİM ÇIKMAM LAZIM"', target: 'cikis' },
                     ],
                     buttonsDisabled: false,
+                    audio: yagmurYagdiAudio,
                     background: './images/yonetici-cep.png',
                 };
-
-
-
-
-
             case 'yalan':
 
 
@@ -231,6 +236,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: '"YOK ABİ BENİM ÇIKMAM LAZIM"', target: 'cikis' },
                     ],
                     buttonsDisabled: false,
+                    audio: yagmurYagdiAudio,
                     background: './images/yonetici-cep.png',
                 };
             case 'cikis':
@@ -246,6 +252,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: 'EVDEN ÇIK', target: 'dilenci' },
                     ],
                     buttonsDisabled: false,
+                    audio: hazirlanmaAudio,
                     background: './images/cikis.png',
                 };
             case 'suat':
@@ -321,7 +328,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     ...prevStory,
                     text: [
 
-                        '“Eyvallah abi, sana da. ” \n deyiverdin. \n\n Adam söylediklerine kaldığı yerden devam ediyor. \n\n “İşte senin aidatı bugün vermen lazım ki, biz de ustaya vereceğiz.”',
+                        '“Eyvallah abi, sana da. ” deyiverdin. \n\n Adam söylediklerine kaldığı yerden devam ediyor. \n\n “İşte senin aidatı bugün vermen lazım ki, biz de ustaya vereceğiz.”',
 
                     ],
                     choices: [
@@ -329,6 +336,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: '"BEN SANA IBANDAN ATAYIM ABİ ONU, NAKTİM KALMADI HİÇ.” \n\nYALAN SÖYLE', target: 'yalan' },
                     ],
                     buttonsDisabled: false,
+                    audio: yagmurYagdiAudio,
                     background: './images/yonetici-el.png',
 
 

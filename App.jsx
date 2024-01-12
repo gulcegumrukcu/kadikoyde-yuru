@@ -8,6 +8,7 @@ import audio1 from './src/audio/audio1.mp3';
 import SoundControl from './src/components/SoundControl';
 import Footer from './src/components/Footer';
 import QuestionComponent from './src/components/QuestionComponent';
+import Sound from './src/components/Sound';
 
 
 import StoryComponent from './StoryComponent';
@@ -34,7 +35,7 @@ function App() {
   const [showHealthAnimation, setShowHealthAnimation] = useState(false);
   const [showIntelligenceAnimation, setShowIntelligenceAnimation] = useState(false);
   const dispatch = useDispatch();
-  const audioRef = useRef(null);
+
 
 
   const [isMuted, setIsMuted] = useState(false);
@@ -74,11 +75,6 @@ function App() {
   });
 
   const handleToggleSound = () => {
-    const audioElements = document.querySelectorAll('audio');
-    audioElements.forEach((audio) => {
-      audio.muted = !audio.muted;
-    });
-
     setIsMuted(!isMuted);
   };
 
@@ -313,7 +309,7 @@ function App() {
   return (
     <div>
       {showEntrancePage ? (
-        <EntrancePage onReady={handleEntrancePageReady} />
+        <EntrancePage onReady={handleEntrancePageReady} onToggleSound={handleToggleSound} setIsMuted={setIsMuted} />
       ) : (
         <>
           <Footer
@@ -337,7 +333,7 @@ function App() {
 
 
 
-          {story.audio && <audio ref={audioRef} src={story.audio} autoPlay loop />}
+          {story.audio && <Sound audioSrc={story.audio} isMuted={isMuted} loop />}
 
           <div className='flex items-center justify-center text-center' style={containerStyle}>
             <div style={characterContainerStyle}>

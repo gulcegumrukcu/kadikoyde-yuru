@@ -37,7 +37,7 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, charact
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             animateText();
-        }, 60); // Adjust the delay as needed
+        }, 0); // Adjust the delay as needed
 
         return () => clearTimeout(timeoutId);
     }, [animatedText, currentTextIndex]);
@@ -83,7 +83,7 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, charact
             </div>
             {textAnimationCompleted && (
                 <div style={buttonsContainerStyle}>
-                    {story.choices.map((choice, index) => (
+                    {story.choices && Array.isArray(story.choices) && story.choices.map((choice, index) => (
                         <ChoiceButton
                             key={index}
                             text={choice.text}

@@ -1,15 +1,22 @@
+// EntrancePage.jsx
+
 import React, { useState, useEffect } from 'react';
-import sound from '../audio/sound.mp3';
+import click from '../audio/click.mp3';
 import music from '../audio/music.mp3';
 import logo from '/images/logo.mp4';
 import Menu from './Menu';
 import SoundControl from './SoundControl';
+import Sound from './Sound'; // Import the Sound component
 
-function EntrancePage({ onReady, onToggleSound, isMuted }) {
+function EntrancePage({ onReady }) {
     const [showButton, setShowButton] = useState(false);
-    const audio = new Audio(sound);
-    const backgroundMusic = new Audio(music);
+    const audio = new Audio(click);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [isMuted, setIsMuted] = useState(false);
+
+    // Declare the backgroundMusic variable
+    const backgroundMusic = new Audio(music);
+    backgroundMusic.muted = isMuted; // Set initial muted state
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -19,51 +26,33 @@ function EntrancePage({ onReady, onToggleSound, isMuted }) {
         return () => clearTimeout(timer);
     }, []);
 
-    useEffect(() => {
-        backgroundMusic.play();
-        backgroundMusic.loop = true;
-
-        const playMusic = () => {
-            backgroundMusic.play();
-        };
-
-        document.addEventListener('visibilitychange', playMusic);
-        backgroundMusic.addEventListener('canplaythrough', playMusic);
-
-        return () => {
-            backgroundMusic.pause();
-            backgroundMusic.currentTime = 0;
-            document.removeEventListener('visibilitychange', playMusic);
-            backgroundMusic.removeEventListener('canplaythrough', playMusic);
-        };
-    }, [backgroundMusic]);
-
     const handleReadyClick = () => {
         audio.play();
         onReady();
     };
 
     const handleTogglePopup = () => {
-        console.log('Toggling Popup in EntrancePage');
         setIsPopupOpen((prevIsPopupOpen) => !prevIsPopupOpen);
     };
 
-    console.log('isPopupOpen in EntrancePage:', isPopupOpen);
+
+    const handleToggleSound = () => {
+        setIsMuted((prevIsMuted) => !prevIsMuted);
+        backgroundMusic.muted = !backgroundMusic.muted; // Toggle the muted state
+    };
+
+
 
     return (
         <div className='min-h-screen flex flex-col items-center justify-center bg-black text-white'>
             <div className='fixed bottom-0 right-0 bg-black flex-row gap-4 rounded-none p-2 text-white flex mx-auto'>
                 <SoundControl
-                    onToggleSound={() => {
-                        backgroundMusic.muted = !backgroundMusic.muted;
-                        setIsMuted(backgroundMusic.muted);
-                    }}
-                    isMuted={backgroundMusic.muted}
+                    onToggleSound={handleToggleSound}
+                    isMuted={isMuted}
                 />
-
                 <Menu setIsPopupOpen={setIsPopupOpen} onTogglePopup={handleTogglePopup} isPopupOpen={isPopupOpen} />
             </div>
-            <video autoPlay loop muted className='w-[100%]'>
+            <video autoPlay muted loop className='w-[100%]'>
                 <source src={logo} type='video/mp4' />
             </video>
             <div className='flex'>
@@ -76,6 +65,9 @@ function EntrancePage({ onReady, onToggleSound, isMuted }) {
                     </button>
                 )}
             </div>
+
+            {/* Add the Sound component for background music */}
+            <Sound audioSrc={music} isMuted={isMuted} loop />
         </div>
     );
 }
