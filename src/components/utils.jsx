@@ -38,7 +38,7 @@ const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimat
     setBackground(backgroundColor); // Correct assignment
     const audioToPlay = animationAudio
     const initialAlertText = amount !== 0
-        ? <span style={{ backgroundColor, padding: '6px', display: 'flex', }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Zeka`}</span>
+        ? <span style={{ backgroundColor, padding: '6px', display: 'flex', fontFamily: 'Kanit, sans-serif !important', }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Zeka`}</span>
         : '';
 
     if (amount !== 0) {
@@ -66,7 +66,7 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodCha
     setBackground(backgroundColor); // Correct assignment
     const audioToPlay = animationAudio;
     const initialAlertText = amount !== 0
-        ? <span style={{ backgroundColor, padding: '6px', display: 'flex', }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Ruh Hali`}</span>
+        ? <span style={{ backgroundColor, padding: '6px', display: 'flex', fontFamily: 'Kanit, sans-serif !important', fontFamily: 'Kanit, sans-serif !important', }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Ruh Hali`}</span>
         : '';
 
     if (amount !== 0) {
@@ -93,7 +93,7 @@ const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, statMoney
     setBackground(backgroundColor);
     const audioToPlay = animationAudio
     const initialAlertText = amount !== 0 ? (
-        <span style={{ backgroundColor, padding: '6px', display: 'flex', }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Para`}</span>
+        <span style={{ backgroundColor, padding: '6px', display: 'flex', fontFamily: 'Kanit, sans-serif !important', fontFamily: 'Kanit, sans-serif !important', }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Para`}</span>
     ) : '';
 
     if (amount !== 0) {
@@ -120,7 +120,7 @@ const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, statHea
     setBackground(backgroundColor); // Correct assignment
     const audioToPlay = animationAudio;
     const initialAlertText = amount !== 0
-        ? <span style={{ backgroundColor, padding: '6px', display: 'flex', }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Sağlık`}</span>
+        ? <span style={{ backgroundColor, padding: '6px', display: 'flex', fontFamily: 'Kanit, sans-serif !important', }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Sağlık`}</span>
         : '';
 
     if (amount !== 0) {
@@ -146,15 +146,15 @@ async function handleIntelligenceCheckAnimation(dispatch, intelligenceCheckResul
     const backgroundColor = intelligenceCheckResult ? 'green' : 'red';
     const audioToPlay = intelligenceCheckResult ? correctAudio : wrongAudio;
     const initialAlertText = intelligenceCheckResult
-        ? <span style={{ backgroundColor, padding: '6px', display: 'flex', }}>Zeka Kontrol Başarılı!</span>
-        : <span style={{ backgroundColor, padding: '6px', display: 'flex', }}>Zeka Kontrol Başarısız!</span>;
+        ? <span style={{ backgroundColor, padding: '6px', display: 'flex', fontFamily: 'Kanit, sans-serif !important', }}>Zeka Kontrol Başarılı!</span>
+        : <span style={{ backgroundColor, padding: '6px', display: 'flex', fontFamily: 'Kanit, sans-serif !important', }}>Zeka Kontrol Başarısız!</span>;
 
     setShowIntelligenceCheckAnimation({
         text: initialAlertText,
         style: {
             backgroundColor,
             padding: '6px',
-            display: 'flex',
+            display: 'flex', fontFamily: 'Kanit, sans-serif !important',
         },
     });
 

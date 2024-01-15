@@ -89,7 +89,7 @@ function App() {
 
     if (health < 35) {
       return {
-        text: ['Olamaz! O kadar sağlıksızsın ki, bir kaç leylek seni kaçırdı. Karşı koyamadın. Oyun bitti.'],
+        text: ['Olamaz! O kadar sağlıksızsın ki, bir kaç leylek seni alıp kaçırdı. Karşı koyamadın. Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
@@ -108,13 +108,13 @@ function App() {
 
     if (mood < 35) {
       return {
-        text: ['Olamaz! O kadar mutsuzsun ki kuşlar artık ötmeyi bıraktı... Doğanın dengesi bozuldu. Artık hiçbir şeyden hayır gelmez. Oyun bitti.'],
+        text: ['Olamaz! O kadar mutsuzsun ki dünyanın en küçük kemanı bu kez de senin için çalıyor... Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
     } else if (mood > 80) {
       return {
-        text: ['Peki. Keyfin oldukça yerinde gibi. Sana dokunmak istemezdim.. Ama sonuçta hiçbir şey ruh halini bozamaz, değil mi? Oyun bitti.'],
+        text: ['Peki. Keyfin oldukça yerinde gibi. Sana dokunmak istemezdim.. Ancak ülkenin çan eğrisi için bu oyunun bitmesi gerek. \nAma merak etme, evine bir davul zurna yolladık, bizden. Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
@@ -134,7 +134,7 @@ function App() {
       };
     } else if (money > 80) {
       return {
-        text: ['Olamaz! Evet, çok paran var. Baya fazla... Ama vergilerini ödemediğin ortaya çıktı ve artık hiçbir şeyin önemi yok... Oyun bitti.'],
+        text: ['Olamaz! Evet, çok paran var. Baya fazla... Ama tam olarak bundan dolayı Kadıköyden taşındın. Artık Kadıköyde yürümek zorunda değilsin. Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
@@ -147,13 +147,13 @@ function App() {
 
     if (intelligence < 35) {
       return {
-        text: ['Olamaz! Bu düşük zeka ile bir amip gibi yaşamaya karar verdin... Oyun bitti.'],
+        text: ['Oalamz! Bu dşüük zkea ile bir aimp gbii yşaaymaa kraar vreidn... Ouyn bttii.'],
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
     } else if (intelligence > 80) {
       return {
-        text: ['Olamaz! Bu yüksek zeka ile gerçek fikirlerini yaydığın için halk meydanında dayak yedin... '],
+        text: ['Olamaz! Bu yüksek zekanı tutamayıp gerçek fikirlerini yaydığın için halk meydanında dayak yedin... Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
@@ -274,7 +274,7 @@ function App() {
     overflow: 'hidden',
     minHeight: showFooter ? 'calc(100vh - 160px)' : '100vh',
     position: 'relative',
-
+    fontFamily: 'Kanit, sans-serif',
   };
 
   const characterContainerStyle = {
@@ -307,6 +307,8 @@ function App() {
   const mobileMaxWidth = 480;
 
   return (
+
+
     <div>
       {showEntrancePage ? (
         <EntrancePage onReady={handleEntrancePageReady} onToggleSound={handleToggleSound} setIsMuted={setIsMuted} />

@@ -58,7 +58,8 @@ function EntrancePage({ onReady }) {
             <div className='flex'>
                 {showButton && (
                     <button
-                        className='px-6 py-3 mt-6 bg-black hover:text-red-400 text-white font-bold rounded-lg focus:outline-none'
+                        className='px-6 py-3 mt-6 bg-black hover:text-red-400 text-white text-xl rounded-lg focus:outline-none'
+                        style={{ fontFamily: 'Kanit, sans-serif' }}
                         onClick={handleReadyClick}
                     >
                         Hazırım.

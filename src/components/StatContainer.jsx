@@ -42,12 +42,17 @@ function StatContainer({ label, value, color, circleBorderColor, statMoneyChange
         alignItems: 'center',
     };
 
+    const statTextStyle = {
+        fontFamily: 'Kanit, sans-serif',
+        // Add other styles as needed
+    };
+
     return (
         <div className='lg:w-[160px]'>
             <div className='flex-col flex w-full gap-2 mx-auto'>
                 <StatBar label={label} value={value} color={color} circleBorderColor={circleBorderColor} />
                 <div style={statValueContainerStyle}>
-                    <div className='text-md font-bold lg:text-xl mx-auto align-center flex'>{displayValue}</div>
+                    <div className='text-md  lg:text-xl mx-auto align-center flex' style={statTextStyle}>{displayValue}</div>
                 </div>
             </div>
         </div>

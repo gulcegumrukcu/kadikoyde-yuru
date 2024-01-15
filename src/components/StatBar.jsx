@@ -5,6 +5,7 @@ const StatBar = ({ label, value, color, circleBorderColor }) => {
         fontSize: '24px',
         color: color || '#ddd',
 
+
     };
 
 
@@ -33,9 +34,14 @@ const StatBar = ({ label, value, color, circleBorderColor }) => {
         background: color || '#ddd',
     };
 
+    const statTextStyle = {
+        fontFamily: 'Kanit, sans-serif',
+        // Add other styles as needed
+    };
+
     return (
         <div style={gaugeContainerStyle}>
-            <div className='text-sm font-bold mb-2  lg:text-[18px] lg:font-bold'>{label}</div>
+            <div style={statTextStyle} className='text-sm  mb-2  lg:text-[18px] '>{label}</div>
             <div style={statBarStyle}>
                 <div className='lg:w-20 lg:h-20 h-16 w-16' style={circleStyle}>
                     <div style={fillStyle}></div>
