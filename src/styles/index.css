@@ -1,9 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap');
+/* Import Open Sans Light and Regular weights */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
 
+/* Use Open Sans Light for the body text */
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    /* Set font weight to light */
+}
+
+/* Include your Tailwind CSS styles */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-body {
-    font-family: 'Kanit', sans-serif;
-}

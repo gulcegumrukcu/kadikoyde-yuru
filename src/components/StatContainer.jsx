@@ -44,7 +44,7 @@ function StatContainer({ label, value, color, circleBorderColor, statMoneyChange
 
     const statTextStyle = {
         fontFamily: 'Kanit, sans-serif',
-        // Add other styles as needed
+        color: '#d8d8d8',
     };
 
     return (

@@ -9,8 +9,8 @@ import SoundControl from './src/components/SoundControl';
 import Footer from './src/components/Footer';
 import QuestionComponent from './src/components/QuestionComponent';
 import Sound from './src/components/Sound';
-
-
+import UserInputForm from './src/components/UserInputForm';
+import Certificate from './src/components/Certificate';
 import StoryComponent from './StoryComponent';
 import Menu from './src/components/Menu';
 
@@ -35,8 +35,19 @@ function App() {
   const [showHealthAnimation, setShowHealthAnimation] = useState(false);
   const [showIntelligenceAnimation, setShowIntelligenceAnimation] = useState(false);
   const dispatch = useDispatch();
+  const [userName, setUserName] = useState('');
+  const [showCertificate, setShowCertificate] = useState(false);
+  const [showInputForm, setShowInputForm] = useState(false);
+
+  const [merdivenYolu, setMerdivenYolu] = useState(false);
 
 
+
+
+
+  const handleInputFormVisibility = (visibility) => {
+    setShowInputForm(visibility);
+  };
 
   const [isMuted, setIsMuted] = useState(false);
   const initialStats = {
@@ -87,13 +98,13 @@ function App() {
 
   function handleHealthEndings(health) {
 
-    if (health < 35) {
+    if (health < 30) {
       return {
         text: ['Olamaz! O kadar sağlıksızsın ki, bir kaç leylek seni alıp kaçırdı. Karşı koyamadın. Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
-    } else if (health > 80) {
+    } else if (health > 100) {
       return {
         text: ['Olamaz! Maşallahın var, çok sağlıklısın. Bu bir kaç sağlık şirketinin dikkatini çekmiş olacak ki üzerinde deney yapmak için seni kaçırdılar. Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
@@ -106,13 +117,13 @@ function App() {
 
   function handleMoodEndings(mood) {
 
-    if (mood < 35) {
+    if (mood < 30) {
       return {
         text: ['Olamaz! O kadar mutsuzsun ki dünyanın en küçük kemanı bu kez de senin için çalıyor... Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
-    } else if (mood > 80) {
+    } else if (mood > 100) {
       return {
         text: ['Peki. Keyfin oldukça yerinde gibi. Sana dokunmak istemezdim.. Ancak ülkenin çan eğrisi için bu oyunun bitmesi gerek. \nAma merak etme, evine bir davul zurna yolladık, bizden. Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
@@ -126,13 +137,13 @@ function App() {
   function handleMoneyEndings(money) {
 
 
-    if (money < 35) {
+    if (money < 30) {
       return {
         text: ['Olamaz! Parasızlıktan buraya güzel bir sonuç yazacak kişiyi işe alamadın... Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
-    } else if (money > 80) {
+    } else if (money > 100) {
       return {
         text: ['Olamaz! Evet, çok paran var. Baya fazla... Ama tam olarak bundan dolayı Kadıköyden taşındın. Artık Kadıköyde yürümek zorunda değilsin. Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
@@ -145,13 +156,13 @@ function App() {
 
   function handleIntelligenceEndings(intelligence) {
 
-    if (intelligence < 35) {
+    if (intelligence < 30) {
       return {
         text: ['Oalamz! Bu dşüük zkea ile bir aimp gbii yşaaymaa kraar vreidn... Ouyn bttii.'],
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
-    } else if (intelligence > 80) {
+    } else if (intelligence > 100) {
       return {
         text: ['Olamaz! Bu yüksek zekanı tutamayıp gerçek fikirlerini yaydığın için halk meydanında dayak yedin... Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
@@ -196,6 +207,19 @@ function App() {
 
 
 
+
+  const handleInputSubmit = (userName, merdivenYolu) => {
+    setUserName(userName);
+    setShowCertificate(true);
+    setShowInputForm(false);
+    setMerdivenYolu(merdivenYolu);
+    onInputSubmit(userName, merdivenYolu);
+    console.log('after setting MerdivenYolu in handleInputSubmit:', merdivenYolu);
+
+  };
+
+
+
   const { handleChoice } = StoryComponent({
     setCharacterStats,
     dispatch,
@@ -216,13 +240,18 @@ function App() {
     statIntelligenceChangeRef,
     statMoneyChangeRef,
     statMoodChangeRef,
-
+    merdivenYolu,
   });
 
 
 
   const handleChoiceWrapper = (path) => {
-    const newStory = handleChoice(path, characterStats); // Assuming handleChoice is the correct function
+    const { merdivenYolu: updatedMerdivenYolu, ...newStory } = handleChoice(path, characterStats); // Assuming handleChoice is the correct function
+    setMerdivenYolu(updatedMerdivenYolu);
+    if (newStory.showInputForm) {
+      setShowInputForm(true);
+      return;
+    }
 
     if (newStory.characterStats) {
       const healthEnding = handleHealthEndings(newStory.characterStats.health);
@@ -306,6 +335,10 @@ function App() {
 
   const mobileMaxWidth = 480;
 
+
+
+
+
   return (
 
 
@@ -337,7 +370,7 @@ function App() {
 
           {story.audio && <Sound audioSrc={story.audio} isMuted={isMuted} loop />}
 
-          <div className='flex items-center justify-center text-center' style={containerStyle}>
+          <div className='flex items-center justify-center ' style={containerStyle}>
             <div style={characterContainerStyle}>
               {story.characterImage && (
                 <img
@@ -358,7 +391,11 @@ function App() {
               handleChoice={handleChoiceWrapper}
               buttonsContainerStyle={buttonsContainerStyle}
               characterStats={characterStats}
+              showInputForm={showInputForm}
+              handleInputFormVisibility={handleInputFormVisibility}
+              setShowInputForm={setShowInputForm}
             />
+
 
             <div className='fixed bottom-0 right-0 bg-black flex-row gap-4 rounded-none p-2 text-white flex mx-auto'>
               <SoundControl onToggleSound={handleToggleSound} isMuted={isMuted} />
@@ -373,7 +410,17 @@ function App() {
           </div>
 
 
+          <div className=''>
+            {showInputForm && (
+              <UserInputForm onInputSubmit={handleInputSubmit} merdivenYolu={merdivenYolu} />
+            )}
+          </div>
 
+          <div className=''>
+            {showCertificate && (
+              <Certificate userName={userName} merdivenYolu={merdivenYolu} />
+            )}
+          </div>
         </>
 
 

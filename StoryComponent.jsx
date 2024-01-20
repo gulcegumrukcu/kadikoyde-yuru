@@ -17,7 +17,8 @@ import kornaAudio from './src/audio/storyici/korna.mp3';
 import kornasizAudio from './src/audio/storyici/kornasiz.mp3';
 import nuncakuAudio from './src/audio/storyici/nuncaku.mp3';
 import notAudio from './src/audio/storyici/not.mp3';
-
+import UserInputForm from './src/components/UserInputForm';
+import Certificate from './src/components/Certificate';
 
 const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, setShowIntelligenceCheckAnimation, setShowMoneyAnimation, setShowMoodAnimation, setShowIntelligenceAnimation, newMoodIncrease, newHealthIncrease, newHealthDecrease, newIntelligenceDecrease, newMoneyDecrease, newMoodDecrease, newIntelligenceIncrease, newMoneyIncrease, statHealthChangeRef, statIntelligenceChangeRef, statMoneyChangeRef, statMoodChangeRef, }) => {
 
@@ -27,7 +28,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
     const [userChoseSuIc, setUserChoseSuIc] = useState(false);
     const [merdivenYolu, setMerdivenYolu] = useState(false);
 
-
+    const [userName, setUserName] = useState('');
     const { handleMoodAnimation, handleIntelligenceCheckAnimation, handleMoneyAnimation, handleHealthAnimation, handleIntelligenceAnimation } = utils;
 
 
@@ -1041,19 +1042,39 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'charlie':
 
-                return {
-                    ...prevStory,
-                    text: [
-                        'Yoluna devam ederken ukulelesini boynuna dayayarak keman gibi çalan Charlie Chaplin taklitçisi yolunu kesiyor. \n“...”',
+                if (merdivenYolu) {
+                    // If merdivenYolu is true, lead to the appropriate scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'MERDİVENYoluna devam ederken ukulelesini boynuna dayayarak keman gibi çalan Charlie Chaplin taklitçisi yolunu kesiyor. \n“...”',
 
-                    ],
-                    choices: [
-                        { text: '“...”', target: '1' },
-                        { text: '“...”', target: '2' },
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                        ],
+                        choices: [
+                            { text: '“...”', target: '1' },
+                            { text: '“...”', target: '2' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
+                    // If merdivenYolu is false, lead to the other scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'Yoluna devam ederken ukulelesini boynuna dayayarak keman gibi çalan Charlie Chaplin taklitçisi yolunu kesiyor. \n“...”',
+
+                        ],
+                        choices: [
+                            { text: '“...”', target: '1' },
+                            { text: '“...”', target: '2' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+
 
                 };
             case '1':
@@ -1068,20 +1089,38 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     health: Math.max(prevStats.health + newHealthIncrease, 0), // Ensure non-negative value
                 }));
                 dispatch({ type: 'CHANGE_HEALTH', payload: -newHealthIncrease });
-                return {
-                    ...prevStory,
-                    text: [
-                        '“...”',
+                if (merdivenYolu) {
+                    // If merdivenYolu is true, lead to the appropriate scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'MERDİVEN“...”',
 
-                    ],
-                    choices: [
-                        { text: '“...”', target: '3' },
-                        { text: '“...”', target: '4' },
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                        ],
+                        choices: [
+                            { text: '“...”', target: '3' },
+                            { text: '“...”', target: '4' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
+                    // If merdivenYolu is false, lead to the other scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            '“...”',
 
+                        ],
+                        choices: [
+                            { text: '“...”', target: '3' },
+                            { text: '“...”', target: '4' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
                 };
             case '2':
                 newMoodDecrease = 10;
@@ -1093,22 +1132,38 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     mood: Math.max(prevStats.mood - newMoodDecrease, 0), // Ensure non-negative value
                 }));
                 dispatch({ type: 'CHANGE_MOOD', payload: newMoodDecrease });
-                return {
+                if (merdivenYolu) {
+                    // If merdivenYolu is true, lead to the appropriate scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'MERDİVEN“...”',
 
+                        ],
+                        choices: [
+                            { text: '“...”', target: '5' },
+                            { text: '“...”', target: '6' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
+                    // If merdivenYolu is false, lead to the other scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            '“...”',
 
-                    ...prevStory,
-                    text: [
-                        '“...”',
-
-                    ],
-                    choices: [
-                        { text: '“...”', target: '5' },
-                        { text: '“...”', target: '6' },
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
-
+                        ],
+                        choices: [
+                            { text: '“...”', target: '5' },
+                            { text: '“...”', target: '6' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
                 };
             case '3':
                 newIntelligenceDecrease = 10;
@@ -1122,20 +1177,38 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 dispatch({ type: 'CHANGE_INTELLIGENCE', payload: -newIntelligenceDecrease });
 
 
-                return {
-                    ...prevStory,
-                    text: [
-                        '“...”',
+                if (merdivenYolu) {
+                    // If merdivenYolu is true, lead to the appropriate scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'MERDİVEN“...”',
 
-                    ],
-                    choices: [
-                        { text: '“...”', target: 'charliesonuc' },
-                        { text: '“...”', target: 'charliesonuc' },
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                        ],
+                        choices: [
+                            { text: '“...”', target: 'charlieSonuc' },
+                            { text: '“...”', target: 'charlieSonuc' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
+                    // If merdivenYolu is false, lead to the other scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            '“...”',
 
+                        ],
+                        choices: [
+                            { text: '“...”', target: 'charlieSonuc' },
+                            { text: '“...”', target: 'charlieSonuc' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
                 };
             case '4':
                 newIntelligenceIncrease = 10;
@@ -1149,20 +1222,39 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 dispatch({ type: 'CHANGE_INTELLIGENCE', payload: -newIntelligenceIncrease });
 
 
-                return {
-                    ...prevStory,
-                    text: [
-                        '“...”',
 
-                    ],
-                    choices: [
-                        { text: '“...”', target: 'charliesonuc' },
-                        { text: '“...”', target: 'charliesonuc' },
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                if (merdivenYolu) {
+                    // If merdivenYolu is true, lead to the appropriate scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'MERDİVEN“...”',
 
+                        ],
+                        choices: [
+                            { text: '“...”', target: 'charlieSonuc' },
+                            { text: '“...”', target: 'charlieSonuc' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
+                    // If merdivenYolu is false, lead to the other scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            '“...”',
+
+                        ],
+                        choices: [
+                            { text: '“...”', target: 'charlieSonuc' },
+                            { text: '“...”', target: 'charlieSonuc' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
                 };
             case '5':
                 newMoneyIncrease = 10;
@@ -1173,20 +1265,39 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     money: Math.max(prevStats.money + newMoneyIncrease, 0), // Ensure non-negative value
                 }));
                 dispatch({ type: 'CHANGE_MONEY', payload: -newMoneyIncrease });
-                return {
-                    ...prevStory,
-                    text: [
-                        '“...”',
 
-                    ],
-                    choices: [
-                        { text: '“...”', target: 'charliesonuc' },
-                        { text: '“...”', target: 'charliesonuc' },
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                if (merdivenYolu) {
+                    // If merdivenYolu is true, lead to the appropriate scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'MERDİVEN“...”',
 
+                        ],
+                        choices: [
+                            { text: '“...”', target: 'charlieSonuc' },
+                            { text: '“...”', target: 'charlieSonuc' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
+                    // If merdivenYolu is false, lead to the other scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            '“...”',
+
+                        ],
+                        choices: [
+                            { text: '“...”', target: 'charlieSonuc' },
+                            { text: '“...”', target: 'charlieSonuc' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
                 };
             case '6':
                 newIntelligenceIncrease = 10;
@@ -1201,93 +1312,189 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
 
 
-                return {
-                    ...prevStory,
-                    text: [
-                        '“...”',
 
-                    ],
-                    choices: [
-                        { text: '“...”', target: 'charliesonuc' },
-                        { text: '“...”', target: 'charliesonuc' },
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                if (merdivenYolu) {
+                    // If merdivenYolu is true, lead to the appropriate scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'MERDİVEN“...”',
 
+                        ],
+                        choices: [
+                            { text: '“...”', target: 'charlieSonuc' },
+                            { text: '“...”', target: 'charlieSonuc' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
+                    // If merdivenYolu is false, lead to the other scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            '“...”',
+
+                        ],
+                        choices: [
+                            { text: '“...”', target: 'charlieSonuc' },
+                            { text: '“...”', target: 'charlieSonuc' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
                 };
-            case 'charliesonuc':
+            case 'charlieSonuc':
                 console.log("charliesonuc");
+                newHealthIncrease = 10;
 
-                return {
-                    ...prevStory,
-                    text: [
-                        'Eee, nasıl buldun şovu?',
+                handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0);
+                statHealthChangeRef.current = true;
+                setCharacterStats((prevStats) => ({
+                    ...prevStats,
+                    health: prevStats.health + newHealthIncrease,
+                }));
+                dispatch({ type: 'CHANGE_HEALTH', payload: newHealthIncrease });
 
-                    ],
-                    choices: [
-                        { text: 'ŞİMDİ NE GEREK VARDI BUNA...', target: 'dimiya' },
-                        { text: 'AYY NE KDAR TATLI...', target: 'dimiya' },
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
 
+                if (merdivenYolu) {
+                    // If merdivenYolu is true, lead to the appropriate scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'merdEee, nasıl buldun şovu?',
+
+                        ],
+                        choices: [
+                            { text: 'ŞİMDİ NE GEREK VARDI BUNA...', target: 'dimiya' },
+                            { text: 'AYY NE KDAR TATLI...', target: 'dimiya' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
+                    // If merdivenYolu is false, lead to the other scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'Eee, nasıl buldun şovu?',
+
+                        ],
+                        choices: [
+                            { text: 'ŞİMDİ NE GEREK VARDI BUNA...', target: 'dimiya' },
+                            { text: 'AYY NE KDAR TATLI...', target: 'dimiya' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
                 };
             case 'dimiya':
 
 
-                return {
-                    ...prevStory,
-                    text: [
-                        'Di mi ya?',
+                if (merdivenYolu) {
+                    // If merdivenYolu is true, lead to the appropriate scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'merdDi mi ya?',
 
-                    ],
-                    choices: [
-                        { text: '>', target: 'scooter' },
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                        ],
+                        choices: [
+                            { text: '>', target: 'scooter' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
+                    // If merdivenYolu is false, lead to the other scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'Di mi ya?',
 
+                        ],
+                        choices: [
+                            { text: '>', target: 'scooter' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
                 };
             case 'scooter':
+                if (merdivenYolu) {
+                    // If merdivenYolu is true, lead to the appropriate scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'merdGitmeye çalıştığın yolda, akıl sağlığı konusunda tartışmalara izin veren bir Kadıköylü, birkaç scooter’ı devirmiş ve tüm yolu kapatmış... \nFransız ihtilalini havada koklayabiliyorsun.',
 
+                        ],
+                        choices: [
+                            { text: 'ÜSTLERİNDEN ATLA', target: 'ustlerindenAtla' },
+                            { text: 'YOLUNU DEĞİŞTİR', target: 'yolunuDegistir' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
+                    // If merdivenYolu is false, lead to the other scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'Gitmeye çalıştığın yolda, akıl sağlığı konusunda tartışmalara izin veren bir Kadıköylü, birkaç scooter’ı devirmiş ve tüm yolu kapatmış... \nFransız ihtilalini havada koklayabiliyorsun.',
 
-                return {
-                    ...prevStory,
-                    text: [
-                        'Gitmeye çalıştığın yolda, akıl sağlığı konusunda tartışmalara izin veren bir Kadıköylü, birkaç scooter’ı devirmiş ve tüm yolu kapatmış... \nFransız ihtilalini havada koklayabiliyorsun.',
-
-                    ],
-                    choices: [
-                        { text: 'ÜSTLERİNDEN ATLA', target: 'ustlerindenAtla' },
-                        { text: 'YOLUNU DEĞİŞTİR', target: 'yolunuDegistir' },
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
-
+                        ],
+                        choices: [
+                            { text: 'ÜSTLERİNDEN ATLA', target: 'ustlerindenAtla' },
+                            { text: 'YOLUNU DEĞİŞTİR', target: 'yolunuDegistir' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
                 };
             case 'ustlerindenAtla':
 
+                if (merdivenYolu) {
+                    // If merdivenYolu is true, lead to the appropriate scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'merdBugün oldukça sportifsin.\nBu formu neye borçluyuz',
 
-                return {
-                    ...prevStory,
-                    text: [
-                        'Bugün oldukça sportifsin.\nBu formu neye borçluyuz?',
+                        ],
+                        choices: [
+                            { text: 'ACELEM OLMASINA', target: 'acelem' },
+                            { text: 'ÜSTÜN IRK OLMAMA', target: 'ustunIrk' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
+                    // If merdivenYolu is false, lead to the other scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'Bugün oldukça sportifsin.\nBu formu neye borçluyuz',
 
-                    ],
-                    choices: [
-                        { text: 'ACELEM OLMASINA', target: 'acelem' },
-                        { text: 'ÜSTÜN IRK OLMAMA', target: 'ustunIrk' },
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
-
+                        ],
+                        choices: [
+                            { text: 'ACELEM OLMASINA', target: 'acelem' },
+                            { text: 'ÜSTÜN IRK OLMAMA', target: 'ustunIrk' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
                 };
-
             case 'acelem':
                 newMoodIncrease = 10,
                     handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
@@ -1299,21 +1506,38 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     mood: Math.max(prevStats.mood + newMoodIncrease, 0),
                 }));
                 dispatch({ type: 'CHANGE_MOOD', payload: newMoodIncrease });
+                if (merdivenYolu) {
+                    // If merdivenYolu is true, lead to the appropriate scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'merdFarkındalık seviyen harika. Hiçbir şey seni durduramaz.',
 
-                return {
-                    ...prevStory,
-                    text: [
-                        'Farkındalık seviyen harika. Hiçbir şey seni durduramaz.',
+                        ],
+                        choices: [
+                            { text: '>', target: 'hayvanlar' },
 
-                    ],
-                    choices: [
-                        { text: '>', target: 'hayvanlar' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
+                    // If merdivenYolu is false, lead to the other scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'Farkındalık seviyen harika. Hiçbir şey seni durduramaz.',
 
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                        ],
+                        choices: [
+                            { text: '>', target: 'hayvanlar' },
 
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
                 };
             case 'ustunIrk':
                 newIntelligenceDecrease = 10;
@@ -1326,60 +1550,109 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 statIntelligenceChangeRef.current = true;
                 dispatch({ type: 'CHANGE_INTELLIGENCE', payload: -newIntelligenceDecrease });
 
+                if (merdivenYolu) {
+                    // If merdivenYolu is true, lead to the appropriate scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'merdVay canına, gerçek bir fındıksın. Ama merak etme, hayat sana birçok fırsat sunacaktır.',
 
+                        ],
+                        choices: [
+                            { text: '>', target: 'hayvanlar' },
 
-                return {
-                    ...prevStory,
-                    text: [
-                        'Vay canına, gerçek bir fındıksın. Ama merak etme, hayat sana birçok fırsat sunacaktır.',
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
+                    // If merdivenYolu is false, lead to the other scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'Vay canına, gerçek bir fındıksın. Ama merak etme, hayat sana birçok fırsat sunacaktır.',
 
-                    ],
-                    choices: [
-                        { text: '>', target: 'hayvanlar' },
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                        ],
+                        choices: [
+                            { text: '>', target: 'hayvanlar' },
 
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
                 };
             case 'yolunuDegistir':
+                if (merdivenYolu) {
+                    // If merdivenYolu is true, lead to the appropriate scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'merdKendini çok zorlamadan bu kargaşadan çıkabileceğin en kolay yolu buldun. Bu seni hedefine yaklaştıracaktır. \nBu manevranın arkasındaki motivasyon neydi?',
 
-                return {
-                    ...prevStory,
-                    text: [
-                        'Kendini çok zorlamadan bu kargaşadan çıkabileceğin en kolay yolu buldun. Bu seni hedefine yaklaştıracaktır. \nBu manevranın arkasındaki motivasyon neydi?',
+                        ],
+                        choices: [
+                            { text: 'ACELEM OLMASI', target: 'acelem' },
+                            { text: 'ÜSTÜN IRK OLMAM', target: 'ustunIrk' },
 
-                    ],
-                    choices: [
-                        { text: 'ACELEM OLMASI', target: 'acelem' },
-                        { text: 'ÜSTÜN IRK OLMAM', target: 'ustunIrk' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
+                    // If merdivenYolu is false, lead to the other scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'Kendini çok zorlamadan bu kargaşadan çıkabileceğin en kolay yolu buldun. Bu seni hedefine yaklaştıracaktır. \nBu manevranın arkasındaki motivasyon neydi?',
 
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                        ],
+                        choices: [
+                            { text: 'ACELEM OLMASI', target: 'acelem' },
+                            { text: 'ÜSTÜN IRK OLMAM', target: 'ustunIrk' },
 
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
                 };
-
             case 'hayvanlar':
+                if (merdivenYolu) {
+                    // If merdivenYolu is true, lead to the appropriate scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'MerdHayvanları seviyor musunuz?',
 
+                        ],
+                        choices: [
+                            { text: 'EVET', target: 'evet' },
+                            { text: 'HAYIR', target: 'hayir' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
+                    // If merdivenYolu is false, lead to the other scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'Hayvanları seviyor musunuz?',
 
-                return {
-                    ...prevStory,
-                    text: [
-                        'Hayvanları seviyor musunuz?',
-
-                    ],
-                    choices: [
-                        { text: 'EVET', target: 'evet' },
-                        { text: 'HAYIR', target: 'hayir' },
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
-
+                        ],
+                        choices: [
+                            { text: 'EVET', target: 'evet' },
+                            { text: 'HAYIR', target: 'hayir' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
                 };
-
             case 'evet':
                 newMoodIncrease = 10,
                     handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
@@ -1391,43 +1664,74 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     mood: Math.max(prevStats.mood + newMoodIncrease, 0),
                 }));
                 dispatch({ type: 'CHANGE_MOOD', payload: newMoodIncrease });
+                if (merdivenYolu) {
+                    // If merdivenYolu is true, lead to the appropriate scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'Merd“Harika, biz de patimati hayvan barınağı için yardım topluyoruz. Bize destek olmak ister misiniz?”',
 
-                return {
-                    ...prevStory,
-                    text: [
-                        '“Harika, biz de patimati hayvan barınağı için yardım topluyoruz. Bize destek olmak ister misiniz?”',
+                        ],
+                        choices: [
+                            { text: 'TABİİ, BU KADAR YETER Mİ? \n\n(PARA VER)', target: 'yeterMi' },
+                            { text: 'MAALESEF ŞU AN ÜSTÜMDE NAKİT YOK', target: 'nakitYok' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
+                    // If merdivenYolu is false, lead to the other scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            '“Harika, biz de patimati hayvan barınağı için yardım topluyoruz. Bize destek olmak ister misiniz?”',
 
-                    ],
-                    choices: [
-                        { text: 'TABİİ, BU KADAR YETER Mİ? \n\n(PARA VER)', target: 'yeterMi' },
-                        { text: 'MAALESEF ŞU AN ÜSTÜMDE NAKİT YOK', target: 'nakitYok' },
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
-
+                        ],
+                        choices: [
+                            { text: 'TABİİ, BU KADAR YETER Mİ? \n\n(PARA VER)', target: 'yeterMi' },
+                            { text: 'MAALESEF ŞU AN ÜSTÜMDE NAKİT YOK', target: 'nakitYok' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
                 };
-
             case 'hayir':
 
+                if (merdivenYolu) {
+                    // If merdivenYolu is true, lead to the appropriate scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'Merd Nasıl yani?',
 
-                return {
-                    ...prevStory,
-                    text: [
-                        'Nasıl yani?',
+                        ],
+                        choices: [
+                            { text: 'EVET DEMEK İSTEMİŞTİM, PARDON', target: 'evet' },
+                            { text: 'SEVMİYORUM HAYVANLARI', target: 'sevmiyorum' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
+                    // If merdivenYolu is false, lead to the other scenario
+                    return {
+                        ...prevStory,
+                        text: [
+                            'Merd Nasıl yani?',
 
-                    ],
-                    choices: [
-                        { text: 'EVET DEMEK İSTEMİŞTİM, PARDON', target: 'evet' },
-                        { text: 'SEVMİYORUM HAYVANLARI', target: 'sevmiyorum' },
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
-
+                        ],
+                        choices: [
+                            { text: 'EVET DEMEK İSTEMİŞTİM, PARDON', target: 'evet' },
+                            { text: 'SEVMİYORUM HAYVANLARI', target: 'sevmiyorum' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
                 };
-
-
             case 'sevmiyorum':
                 newMoodIncrease = 10,
                     handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
@@ -1441,21 +1745,32 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 dispatch({ type: 'CHANGE_MOOD', payload: newMoodIncrease });
 
 
-                return {
-                    ...prevStory,
-                    text: [
-                        'Bu anketörleri reddetmeyi hep istemiştin. Harika hissediyorsun.',
+                if (merdivenYolu) {
+                    return {
+                        ...prevStory,
+                        text: ['Bu anketörleri reddetmeyi hep istemiştin. Harika hissediyorsun.'],
 
-                    ],
-                    choices: [
-                        { text: '>', target: 'X' },
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                        choices: [
+                            { text: '>', target: 'fb' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
 
-                };
+                    return {
+                        ...prevStory,
+                        text: ['Bu anketörleri reddetmeyi hep istemiştin. Harika hissediyorsun.'],
 
+                        choices: [
+                            { text: '>', target: 'biraParasi' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                }
             case 'yeterMi':
 
                 newMoneyDecrease = 10;
@@ -1467,42 +1782,308 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 }));
                 dispatch({ type: 'CHANGE_MONEY', payload: -newMoneyDecrease });
 
-                return {
-                    ...prevStory,
-                    text: [
-                        'Çok teşekkür ederiz...',
+                if (merdivenYolu) {
+                    return {
+                        ...prevStory,
+                        text: ['Çok teşekkür ederiz...'],
 
-                    ],
-                    choices: [
-                        { text: '>', target: 'X' },
+                        choices: [
+                            { text: '>', target: 'fb' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
 
-                    ],
-                    buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                    return {
+                        ...prevStory,
+                        text: ['Çok teşekkür ederiz...'],
 
-                };
-
+                        choices: [
+                            { text: '>', target: 'biraParasi' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                }
             case 'nakitYok':
 
+                if (merdivenYolu) {
+                    return {
+                        ...prevStory,
+                        text: ['“MERHesap numaramızı verebiliriz, mobil bankacılıktan gönderebilirsiniz.”',],
+
+                        choices: [
+                            { text: 'UYGUN BENİM İÇİN', target: 'yeterMi' },
+                            { text: 'MAALESEF ŞARJIM DA BİTTİ', target: 'sarjim' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
+
+                    return {
+                        ...prevStory,
+                        text: ['“Hesap numaramızı verebiliriz, mobil bankacılıktan gönderebilirsiniz.”',],
+
+                        choices: [
+                            { text: 'UYGUN BENİM İÇİN', target: 'yeterMi' },
+                            { text: 'MAALESEF ŞARJIM DA BİTTİ', target: 'sarjim' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                }
+            case 'sarjim':
+                newMoodDecrease = 10,
+                    handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
+                statMoodChangeRef.current = true;
+
+
+                setCharacterStats((prevStats) => ({
+                    ...prevStats,
+                    mood: Math.max(prevStats.mood - newMoodDecrease, 0),
+                }));
+                dispatch({ type: 'CHANGE_MOOD', payload: newMoodDecrease });
+
+                if (merdivenYolu) {
+                    return {
+                        ...prevStory,
+                        text: ['Canınız sağolsun o zaman, iyi günler.'],
+
+                        choices: [
+                            { text: '>', target: 'fb' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                } else {
+
+                    return {
+                        ...prevStory,
+                        text: ['Canınız sağolsun o zaman, iyi günler.'],
+
+                        choices: [
+                            { text: '>', target: 'biraParasi' },
+                        ],
+                        buttonsDisabled: false,
+                        background: './images/kahvehane2.png',
+                        characterImage: null
+                    };
+                }
+            case 'fb':
 
                 return {
                     ...prevStory,
                     text: [
-                        '“Hesap numaramızı verebiliriz, mobil bankacılıktan gönderebilirsiniz.”',
+                        'Fenerbahçe taraftarları en sarı lacivert formalarını giymişler ve sokağa tabure atmış bir dükkanın önünde, iştahla dürüm yiyorlar.',
 
                     ],
                     choices: [
-                        { text: 'UYGUN BENİM İÇİN', target: 'yeterMi' },
-                        { text: 'MAALESEF ŞARJIM DA BİTTİ', target: 'sarjim' },
+                        { text: 'BEN EN BÜYÜK SİZ DEĞİLSİNİZ DİYE BİLİYORUM', target: 'kalemtiras' },
+                        { text: 'HEEY! YAŞASIN FB', target: 'sarilaci' },
+
                     ],
                     buttonsDisabled: false,
                     background: './images/kahvehane2.png',
                     characterImage: null
 
                 };
+            case 'kalemtiras':
 
-            case 'sarjim':
+                return {
+                    ...prevStory,
+                    text: [
+                        '"Ne diyosun lan kalemtıraş kafalı!" diye çıkışıyor içlerinden biri. Kalan herkes etrafınızda toplanmaya başlıyor."',
+
+                    ],
+                    choices: [
+                        { text: 'Bİ GÜNDE ÜÇ KERE DAYAK YİYEMEM, DEMEK Kİ BUNDA DAYAK ATAN BEN OLACAĞIM', target: 'dayak' },
+                        { text: 'Bİ GÜNDE ÜÇ KERE DAYAK YİYEMEM, INCEDEN YOL ALAYIM', target: 'nodayak' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'dayak':
+                newHealthDecrease = 10;
+                handleHealthAnimation(dispatch, newHealthDecrease, setShowHealthAnimation, statHealthChangeRef, false, 0);
+                statHealthChangeRef.current = true;
+
+
+                setCharacterStats((prevStats) => ({
+                    ...prevStats,
+                    health: Math.max(prevStats.health - newHealthDecrease, 0), // Ensure non-negative value
+                }));
+                dispatch({ type: 'CHANGE_HEALTH', payload: -newHealthDecrease });
+
+
+                return {
+                    ...prevStory,
+                    text: [
+                        ':( \n Bugün üç kere dayak yedin...',
+
+                    ],
+                    choices: [
+                        { text: '>', target: 'realInsaat' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'nodayak':
+                newIntelligenceIncrease = 10;
+
+                handleIntelligenceAnimation(dispatch, newIntelligenceIncrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, true);
+                setCharacterStats((prevStats) => ({
+                    ...prevStats,
+                    intelligence: Math.max(prevStats.intelligence + newIntelligenceIncrease, 0),
+                }));
+                statIntelligenceChangeRef.current = true;
+                dispatch({ type: 'CHANGE_INTELLIGENCE', payload: -newIntelligenceIncrease });
+
+
+                newMoodDecrease = 10,
+                    handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
+                statMoodChangeRef.current = true;
+
+
+                setCharacterStats((prevStats) => ({
+                    ...prevStats,
+                    mood: Math.max(prevStats.mood - newMoodDecrease, 0),
+                }));
+                dispatch({ type: 'CHANGE_MOOD', payload: newMoodDecrease });
+                return {
+                    ...prevStory,
+                    text: [
+                        'Kaçış manevran çok zekiceydi. Dayak yemedin, yine de moralin biraz bozuldu...',
+
+                    ],
+                    choices: [
+                        { text: '>', target: 'realInsaat' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'sarilaci':
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Kanı sarı lacivert akan bu güruh seni hızlıca aralarına alıyor ve onların omuzlarında gideceğin yere kadar bırakılıyorsun!',
+
+                    ],
+                    choices: [
+                        { text: '>', target: 'realInsaat' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'realInsaat':
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'İnşaata vardın. Kadıköy Anadolu Lisesinin yeniden yapılıyor olması seni bu merdivene ulaştıracak gibi. Gözüne bir ustayı kestireceğini hissediyorsun.',
+
+                    ],
+                    choices: [
+                        { text: 'PARDON, 7 METRELİK MERDİVENİNİZ VAR MI?', target: 'yediMetre' },
+                        { text: 'KOLAY GELSİN USTAM, NASILSIN?', target: 'kolayGelsin' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'kolayGelsin':
+                return {
+                    ...prevStory,
+                    text: [
+                        'İyilik yav ne olsun, çalışıyoruz işte. Hayırdır birine mi baktın sen?',
+
+                    ],
+                    choices: [
+                        { text: 'ABİ BEN 7 METRELİK MERDİVENİN ARIYORUM', target: 'yediMetre' },
+                        { text: 'OLABİLİR, BANA KENDİNDEN BAHSET USTAM', target: 'kendindenBahset' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'yediMetre':
+
+                return {
+                    ...prevStory,
+                    text: [
+                        '"Aa, valla çok ilginç. Vardı da ödünç verdik bi arkadaşa. Ona bir sor istersen, Yoğurtçu parkının orada bi tadilat işine gitti."',
+
+                    ],
+                    choices: [
+                        { text: 'ARTIK ORADA OLSA İYİ OLUR', target: 'yogurtcuParki' },
+                        { text: 'İYİ YA BÖYLE, BANA KENDİNDEN BAHSET USTAM', target: 'kendindenBahset' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'kendindenBahset':
+
+                return {
+                    ...prevStory,
+                    text: [
+                        '"Kendimden? Yav ben ne bileyim, sen işine baksana!"',
+
+                    ],
+                    choices: [
+                        { text: 'AA USTAM, NEDEN BÖYLE KONUŞUYORSUN?', target: 'nedenBoyle' },
+                        { text: 'TAMAM BEN GİDİYORUM, AMA BİL Kİ GERİ DÖNEBİLİRİM', target: 'yogurtcuParki' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'nedenBoyle':
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Sen ustayı flörtle karışık darlarken, başka usta arkadaşları da tuhaflığın kokusunu alıp olay yerine yaklaşıyor. "Kardeşim, bak, işin yoksa git diyorum!"',
+
+                    ],
+                    choices: [
+                        { text: 'TAMAM, GİDİYORUM', target: 'yogurtcuParki' },
+                        { text: 'USTAM AYIP EDİYORSUN', target: 'ayip' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'ayip':
                 newMoodDecrease = 10,
                     handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
                 statMoodChangeRef.current = true;
@@ -1517,11 +2098,12 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        'Canınız sağ olsun o zaman, iyi günler!',
+                        'Kalabalık git gide artmakta. Sinirden kıpkırmızı olmuş usta bir kez daha bağırıyor. \n"ÇEK GİT!"',
 
                     ],
                     choices: [
-                        { text: '>', target: 'X' },
+                        { text: 'OLUR, GİDİYORUM', target: 'yogurtcuParki' },
+                        { text: 'YANAĞINA SÜRPRİZ BİR ÖPÜCÜK KONDUR', target: 'opucuk' },
 
                     ],
                     buttonsDisabled: false,
@@ -1529,9 +2111,464 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     characterImage: null
 
                 };
+            case 'opucuk':
+                newMoodDecrease = 10,
+                    handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
+                statMoodChangeRef.current = true;
 
 
+                setCharacterStats((prevStats) => ({
+                    ...prevStats,
+                    mood: Math.max(prevStats.mood - newMoodDecrease, 0),
+                }));
+                dispatch({ type: 'CHANGE_MOOD', payload: newMoodDecrease });
 
+                return {
+                    ...prevStory,
+                    text: [
+                        'Wow, enteresan. \n Zaman durdu. Usta ve sen.. \n Artık sadece siz varsınız. \n İstersen biz çıkalım?',
+
+                    ],
+                    choices: [
+                        { text: 'BİR DE ÖYLE DENEYEBİLİRİZ ASLINDA', target: 'askiBuldum' },
+                        { text: 'TAMAM, YOĞURTÇUYA GİDELİM ARTIK', target: 'yogurtcuParki' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'askiBuldum':
+                newMoodDecrease = 10,
+                    handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
+                statMoodChangeRef.current = true;
+
+
+                setCharacterStats((prevStats) => ({
+                    ...prevStats,
+                    mood: Math.max(prevStats.mood - newMoodDecrease, 0),
+                }));
+                dispatch({ type: 'CHANGE_MOOD', payload: newMoodDecrease });
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Dııııt, yanlış cevap. Ustayla kavuştuğun senaryoyu yazmaya üşenmemiz çok yazık oldu. Olsun, en azından ne istediğini biliyorsun.',
+
+                    ],
+                    choices: [
+                        { text: 'TESLİM OLUYORUM', target: 'yogurtcuParki' },
+                        { text: 'PES EDİYORUM', target: 'yogurtcuParki' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'biraParasi':
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Ayvalıtaş meydanına ulaştın. Banklarda oturup bira içen gençlerden biri senden bira parası istiyor.',
+
+                    ],
+                    choices: [
+                        { text: 'PARA VER', target: 'biraParaVer' },
+                        { text: 'GÖRMEZDEN GEL', target: 'gormezdenGel' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'biraParaVer':
+                newMoneyIncrease = 10;
+                handleMoneyAnimation(dispatch, newMoneyIncrease, setShowMoneyAnimation, statMoneyChangeRef, true, 0);
+                statMoneyChangeRef.current = true;
+                setCharacterStats((prevStats) => ({
+                    ...prevStats,
+                    money: Math.max(prevStats.money + newMoneyIncrease, 0), // Ensure non-negative value
+                }));
+                dispatch({ type: 'CHANGE_MONEY', payload: -newMoneyIncrease });
+
+                return {
+                    ...prevStory,
+                    text: [
+                        '"Dostum sağolasın yaa.. Bi fırt ister misin?" diyip zulasından çıkardığı birayı sana uzatıyor.',
+
+                    ],
+                    choices: [
+                        { text: 'VER HADİ', target: 'biraIc' },
+                        { text: 'YOK, SEN YAPIŞTIR', target: 'biraIcme' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'biraIc':
+
+                newMoneyIncrease = 10;
+                handleMoneyAnimation(dispatch, newMoneyIncrease, setShowMoneyAnimation, statMoneyChangeRef, true, 0);
+                statMoneyChangeRef.current = true;
+                setCharacterStats((prevStats) => ({
+                    ...prevStats,
+                    money: Math.max(prevStats.money + newMoneyIncrease, 0), // Ensure non-negative value
+                }));
+                dispatch({ type: 'CHANGE_MONEY', payload: -newMoneyIncrease });
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Bir keyiflendin mi öyle? \n Ne kadar da yardımseversin. Üstelik Karma Polisi seni ödüllendirdi ve yerde 100 lira buldun!',
+
+                    ],
+                    choices: [
+                        { text: '>', target: 'lokma' },
+
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'biraIcme':
+
+                newMoneyIncrease = 10;
+                handleMoneyAnimation(dispatch, newMoneyIncrease, setShowMoneyAnimation, statMoneyChangeRef, true, 0);
+                statMoneyChangeRef.current = true;
+                setCharacterStats((prevStats) => ({
+                    ...prevStats,
+                    money: Math.max(prevStats.money + newMoneyIncrease, 0), // Ensure non-negative value
+                }));
+                dispatch({ type: 'CHANGE_MONEY', payload: -newMoneyIncrease });
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Yardımseverlik IN, rastgele hastalıklar OUT! Karma polisi seni ödüllendirdi ve yerde 20 lira buldun!',
+
+                    ],
+                    choices: [
+                        { text: '>', target: 'lokma' },
+
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'gormezdenGel':
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Arkandan “Canın sağ olsun..” dediğini duyar gibisin.',
+
+                    ],
+                    choices: [
+                        { text: '>', target: 'lokma' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'lokma':
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Kenara bir lokma kamyonu çekmişler. Merhum Yiğit hayrına lokma dökülüyor. \n Bilmeyenler için lokma, küresel şerbet toplarıdır.',
+
+                    ],
+                    choices: [
+                        { text: 'SIRAYA GİRMEYELİM Mİ?', target: 'sira' },
+                        { text: 'KULAĞA UN YAĞ ŞEKER GİBİ GELİYOR', target: 'unyagseker' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'unyagseker':
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Tabii, şerbete hamur batırınca aynen öyle olur.',
+
+                    ],
+                    choices: [
+                        { text: 'E SÜPER, ALALIM O ZAMAN', target: 'sira' },
+                        { text: 'YOK KALSIN, ARTIK BENİ YAVAŞLATMA', target: 'son' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'sira':
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Sıraya kaynak yapan biri var. Kimse lokma yemek için bu kadar sabırsız olmamalı!',
+
+                    ],
+                    choices: [
+                        { text: 'EFENDİM YALNIZ BURADA BİR SIRA VAR', target: 'sira2' },
+                        { text: 'AMAN GEÇSİN, BANA MI KALDI DÜNYANIN DERDİ', target: 'dunyaninDerdi' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'sira2':
+                newMoodIncrease = 10,
+                    handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
+                statMoodChangeRef.current = true;
+
+
+                setCharacterStats((prevStats) => ({
+                    ...prevStats,
+                    mood: Math.max(prevStats.mood + newMoodIncrease, 0),
+                }));
+                dispatch({ type: 'CHANGE_MOOD', payload: newMoodIncrease });
+                newHealthDecrease = 10;
+                handleHealthAnimation(dispatch, newHealthDecrease, setShowHealthAnimation, statHealthChangeRef, false, 0);
+                statHealthChangeRef.current = true;
+
+
+                setCharacterStats((prevStats) => ({
+                    ...prevStats,
+                    health: Math.max(prevStats.health - newHealthDecrease, 0), // Ensure non-negative value
+                }));
+                dispatch({ type: 'CHANGE_HEALTH', payload: -newHealthDecrease });
+
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Kaynakçının gözü senden korkmuşa benziyor, ancak kaçmadan önce dizine bir tekme atmayı ihmal etmedi. /n Sen ise lokmanı yedin ve mutlusun. Tatlılar da yendiğine göre hüzünlü sonumuza gidelim mi?',
+
+                    ],
+                    choices: [
+                        { text: 'OLUR', target: 'son' },
+                        { text: 'TAMAM', target: 'son' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'dunyaninDerdi':
+                newMoodIncrease = 10,
+                    handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
+                statMoodChangeRef.current = true;
+
+
+                setCharacterStats((prevStats) => ({
+                    ...prevStats,
+                    mood: Math.max(prevStats.mood + newMoodIncrease, 0),
+                }));
+                dispatch({ type: 'CHANGE_MOOD', payload: newMoodIncrease });
+
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Kaynakçı ile birlikte sevinç içinde lokmalarınızı yediniz. Tatlılar da yendiğine göre hüzünlü sonumuza gidelim mi?',
+
+                    ],
+                    choices: [
+                        { text: 'OLUR', target: 'son' },
+                        { text: 'TAMAM', target: 'son' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'son':
+
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Moda İlkokulunun çıkış saati. Üstüne doğru gelen onlu yaşlardaki çocuk sürüsüne bakıyorsun. ,\n Hepsinin yüzünde Kadıköyde yürüyecek olmanın getirdiği kaygı belirgin.',
+
+                    ],
+                    choices: [
+                        { text: 'BEN ONLARA GÜVENİYORUM', target: 'guveniyorum' },
+                        { text: 'EVET, NE BİÇİM ZORLANACAKLAR', target: 'nebicim' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'guveniyorum':
+
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Elbette, üstelik bugün başarılı bir şekilde aştığın tüm engeller sayesinde kuşaklararası bir laneti bozdun. İnsanlar seni örnek alacak ve onlar da Kadıköyde kısmi de olsa yürüyebilecek.',
+
+                    ],
+                    choices: [
+                        { text: '>', target: 'input' },
+
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'nebicim':
+
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Tabi ki, ama bu sefer önlerinde senin gibi mükemmel bir örnek var. Sen dostum... Sen Kadıköyde yürüdün.',
+
+                    ],
+                    choices: [
+                        { text: '>', target: 'input' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'yogurtcuParki':
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Yoğurtçu parkına indiğinde gözlerin kamaşıyor. Gökyüzünde şimdiye kadar gördüğün en güzel gökkuşağı var. Renkleri ise tam 5,6...7 tane!',
+
+                    ],
+                    choices: [
+                        { text: 'İŞTE BEN BÖYLE MUCİZELERLE DOLUYUM', target: 'mucize' },
+                        { text: 'EVET, BİRAZ DAHA BAKAYIM ŞU GÖKKUŞAĞINA', target: 'mucize' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'mucize':
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Aynen öyle, gökkuşağının dibinde bir umumi tuvalet seni bekliyor.',
+
+                    ],
+                    choices: [
+                        { text: 'NALAKA?', target: 'nalaka' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'nalaka':
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Biraz yakınına git ve öyle bak istersen',
+
+                    ],
+                    choices: [
+                        { text: 'TAMAM, ÖYLE YAPAYIM', target: 'cuce' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'cuce':
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Umumi tuvalete yaslanmış seni izleyen yeşil bir cüce var, eli ile bir yeri işaret ediyor.',
+
+                    ],
+                    choices: [
+                        { text: 'NEREYİ?', target: 'yer' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'yer':
+
+                return {
+                    ...prevStory,
+                    text: [
+                        'Yedi metrelik bir merdiveni! \n Evet dostum. \nSen bugün... \nKadıköyde yürüdün, ve tüm delüzyonlarını besleyerek yedi metrelik merdivenini buldun.',
+
+                    ],
+                    choices: [
+                        { text: '>', target: 'input' },
+
+                    ],
+                    buttonsDisabled: false,
+                    background: './images/kahvehane2.png',
+                    characterImage: null
+
+                };
+            case 'input':
+
+
+                return {
+                    ...prevStory,
+
+                    inputForm: <UserInputForm onInputSubmit={handleInputSubmit} merdivenYolu={merdivenYolu} />,
+
+                    choices: [], // Remove choices temporarily during the input phase
+                    buttonsDisabled: false,
+                    background: './images/certificate_background.png', // Use an appropriate background for the certificate
+                    characterImage: null,
+                };
+            case 'certificate':
+                return {
+                    ...prevStory,
+
+                    component: <Certificate userName={userName} merdivenYolu={merdivenYolu} />,
+                    choices: [], // Remove choices temporarily during the certificate phase
+                    buttonsDisabled: false,
+                    background: './images/certificate_background.png', // Use an appropriate background for the certificate
+                    characterImage: null,
+                };
             default:
                 console.warn('Unhandled target:', path);
                 return prevStory;
@@ -1542,15 +2579,15 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
     };
 
     const handleChoice = (path, characterStats) => {
-        const newStory = handleStory(path);
+        const newStory = handleStory(path, merdivenYolu);
+        console.log('handlechoice ici story component:', merdivenYolu)
         setCharacterStats((prevStats) => {
             // Update stats based on new story if needed
             return { ...prevStats };
         });
-        return { ...newStory, characterStats: { ...characterStats } };
+        return { ...newStory, characterStats: { ...characterStats }, merdivenYolu: merdivenYolu };
     };
-
-    return { handleChoice };
+    return { handleChoice, merdivenYolu };
 
 
 

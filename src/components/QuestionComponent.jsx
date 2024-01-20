@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import ChoiceButton from './ChoiceButton';
 
-const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, characterStats, }) => {
+const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, characterStats, setShowInputForm }) => {
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
     const [animatedText, setAnimatedText] = useState([]);
-    const [textAnimationCompleted, setTextAnimationCompleted] = useState(false); // New state
+    const [textAnimationCompleted, setTextAnimationCompleted] = useState(false);
 
     const animateText = () => {
         const textArray = story.text;
         const currentTextItem = textArray[currentTextIndex];
-
-
 
         if (currentTextItem) {
             const newText = currentTextItem.slice(0, animatedText.length + 1);
@@ -19,52 +17,46 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, charact
             if (newText.length === currentTextItem.length) {
                 setTimeout(() => {
                     if (currentTextIndex + 1 === textArray.length) {
-                        // Check if it's the last text item (ending)
                         setTextAnimationCompleted(true);
                     } else {
                         setCurrentTextIndex((prevIndex) => prevIndex + 1);
-                        setAnimatedText([]); // Clear animatedText for regular strings
+                        setAnimatedText([]);
                     }
-                }, 500); // Half-second delay for strings
+                }, 500);
             }
         }
-
-
     };
-
-
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             animateText();
-        }, 75); // Adjust the delay as needed
+        }, 0);
 
         return () => clearTimeout(timeoutId);
     }, [animatedText, currentTextIndex]);
 
     useEffect(() => {
         if (currentTextIndex === story.text.length) {
-            // Check if text animation is completed
             setTextAnimationCompleted(true);
         }
     }, [animatedText, currentTextIndex, story.text]);
 
     useEffect(() => {
-        // Reset animatedText when moving to a new question
         setAnimatedText([]);
         setCurrentTextIndex(0);
-        setTextAnimationCompleted(false); // Reset text animation completion state
+        setTextAnimationCompleted(false);
     }, [story]);
-
 
     const onChoiceClick = (target) => {
         // Make sure to update the stats
-        handleChoice(target);
+        if (target === 'input') {
+            setShowInputForm(true);
+        } else {
+            handleChoice(target, characterStats);
+        }
     };
 
     return (
-
-
         <div className='h-auto w-auto max-w-xs p-4 lg:max-h-56vh lg:max-w-2xl lg:h-auto lg:p-8 bg-opacity-95 bg-[#000000] flex flex-col rounded-0 items-center justify-center mb-60 lg:mb-20 hover:bg-opacity-60' id='story' style={{ fontFamily: 'Kanit, sans-serif !important' }}>
             <div className='text-[#f5fdc3] hover:text-white text-sm lg:text-xl  whitespace-pre-line'>
                 {Array.isArray(animatedText) ? (
@@ -89,13 +81,13 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, charact
                         <ChoiceButton
                             key={index}
                             text={choice.text}
-                            onClick={() => onChoiceClick(choice.target, characterStats)}
+                            onClick={() => onChoiceClick(choice.target)}
                             disabled={story.buttonsDisabled}
                         />
                     ))}
                 </div>
             )}
-        </div >
+        </div>
     );
 };
 

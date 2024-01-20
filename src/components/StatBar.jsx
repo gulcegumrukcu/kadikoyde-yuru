@@ -36,7 +36,7 @@ const StatBar = ({ label, value, color, circleBorderColor }) => {
 
     const statTextStyle = {
         fontFamily: 'Kanit, sans-serif',
-        // Add other styles as needed
+        color: '#d8d8d8',
     };
 
     return (
