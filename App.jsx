@@ -333,7 +333,7 @@ function App() {
 
   };
 
-  const mobileMaxWidth = 480;
+  const mobileMaxWidth = 4100;
 
 
 

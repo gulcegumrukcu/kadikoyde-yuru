@@ -173,7 +173,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     ],
                     choices: [
                         { text: '“TAMAM ABİ HALLEDELİM ONU BENCE DE…”', target: 'cati' },
-                        { text: 'BU İNANDIRICI GELMEDİ, 7 METRELİK MERDİVEN AVINA GİDELİM.', target: 'merdiven' },
+                        { text: 'BU İNANDIRICI GELMEDİ, 7 METRELİK  AVINA GİDELİM.', target: 'merdiven' },
                     ],
                     buttonsDisabled: false,
                     audio: kovaAudio,
@@ -911,7 +911,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     choices: [
-                        { text: '"MERHABA, 7 METRELİK BİR MERDİVEN ARIYORUM"', target: 'merdivenAriyorum' },
+                        { text: '"MERHABA, 7 METRELİK BİR  ARIYORUM"', target: 'merdivenAriyorum' },
                         { text: '"VAR MI RÜZGARA KARŞI İŞEYİP BİR BATAK ATACAK OLAN?"', target: 'batak' },
                     ],
                     buttonsDisabled: false,
@@ -959,7 +959,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     choices: [
-                        { text: '"TAMAM, 7 METRELİK BİR MERDİVEN ARIYORUM"', target: 'tamamMerdiven' },
+                        { text: '"TAMAM, 7 METRELİK BİR  ARIYORUM"', target: 'tamamMerdiven' },
                     ],
                     buttonsDisabled: false,
                     background: './images/kahvehane2.png',
@@ -1047,7 +1047,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'MERDİVENYoluna devam ederken ukulelesini boynuna dayayarak keman gibi çalan Charlie Chaplin taklitçisi yolunu kesiyor. \n“...”',
+                            'Yoluna devam ederken ukulelesini boynuna dayayarak keman gibi çalan Charlie Chaplin taklitçisi yolunu kesiyor. \n“...”',
 
                         ],
                         choices: [
@@ -1094,7 +1094,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'MERDİVEN“...”',
+                            '“...”',
 
                         ],
                         choices: [
@@ -1137,7 +1137,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'MERDİVEN“...”',
+                            '“...”',
 
                         ],
                         choices: [
@@ -1182,7 +1182,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'MERDİVEN“...”',
+                            '“...”',
 
                         ],
                         choices: [
@@ -1228,7 +1228,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'MERDİVEN“...”',
+                            '“...”',
 
                         ],
                         choices: [
@@ -1271,7 +1271,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'MERDİVEN“...”',
+                            '“...”',
 
                         ],
                         choices: [
@@ -1318,7 +1318,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'MERDİVEN“...”',
+                            '“...”',
 
                         ],
                         choices: [
@@ -1364,7 +1364,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'merdEee, nasıl buldun şovu?',
+                            'Eee, nasıl buldun şovu?',
 
                         ],
                         choices: [
@@ -1400,7 +1400,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'merdDi mi ya?',
+                            'Di mi ya?',
 
                         ],
                         choices: [
@@ -1432,7 +1432,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'merdGitmeye çalıştığın yolda, akıl sağlığı konusunda tartışmalara izin veren bir Kadıköylü, birkaç scooter’ı devirmiş ve tüm yolu kapatmış... \nFransız ihtilalini havada koklayabiliyorsun.',
+                            'Gitmeye çalıştığın yolda, akıl sağlığı konusunda tartışmalara izin veren bir Kadıköylü, birkaç scooter’ı devirmiş ve tüm yolu kapatmış... \nFransız ihtilalini havada koklayabiliyorsun.',
 
                         ],
                         choices: [
@@ -1467,7 +1467,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'merdBugün oldukça sportifsin.\nBu formu neye borçluyuz',
+                            'Bugün oldukça sportifsin.\nBu formu neye borçluyuz',
 
                         ],
                         choices: [
@@ -1511,7 +1511,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'merdFarkındalık seviyen harika. Hiçbir şey seni durduramaz.',
+                            'Farkındalık seviyen harika. Hiçbir şey seni durduramaz.',
 
                         ],
                         choices: [
@@ -1555,7 +1555,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'merdVay canına, gerçek bir fındıksın. Ama merak etme, hayat sana birçok fırsat sunacaktır.',
+                            'Vay canına, gerçek bir fındıksın. Ama merak etme, hayat sana birçok fırsat sunacaktır.',
 
                         ],
                         choices: [
@@ -1589,7 +1589,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'merdKendini çok zorlamadan bu kargaşadan çıkabileceğin en kolay yolu buldun. Bu seni hedefine yaklaştıracaktır. \nBu manevranın arkasındaki motivasyon neydi?',
+                            'Kendini çok zorlamadan bu kargaşadan çıkabileceğin en kolay yolu buldun. Bu seni hedefine yaklaştıracaktır. \nBu manevranın arkasındaki motivasyon neydi?',
 
                         ],
                         choices: [
@@ -1625,7 +1625,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'MerdHayvanları seviyor musunuz?',
+                            'Hayvanları seviyor musunuz?',
 
                         ],
                         choices: [
@@ -1669,7 +1669,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'Merd“Harika, biz de patimati hayvan barınağı için yardım topluyoruz. Bize destek olmak ister misiniz?”',
+                            '“Harika, biz de patimati hayvan barınağı için yardım topluyoruz. Bize destek olmak ister misiniz?”',
 
                         ],
                         choices: [
@@ -1704,7 +1704,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'Merd Nasıl yani?',
+                            'Nasıl yani?',
 
                         ],
                         choices: [
@@ -1720,7 +1720,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'Merd Nasıl yani?',
+                            'Nasıl yani?',
 
                         ],
                         choices: [
@@ -1813,7 +1813,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 if (merdivenYolu) {
                     return {
                         ...prevStory,
-                        text: ['“MERHesap numaramızı verebiliriz, mobil bankacılıktan gönderebilirsiniz.”',],
+                        text: ['“Hesap numaramızı verebiliriz, mobil bankacılıktan gönderebilirsiniz.”',],
 
                         choices: [
                             { text: 'UYGUN BENİM İÇİN', target: 'yeterMi' },
@@ -2003,7 +2003,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     choices: [
-                        { text: 'PARDON, 7 METRELİK MERDİVENİNİZ VAR MI?', target: 'yediMetre' },
+                        { text: 'PARDON, 7 METRELİK İNİZ VAR MI?', target: 'yediMetre' },
                         { text: 'KOLAY GELSİN USTAM, NASILSIN?', target: 'kolayGelsin' },
 
                     ],
@@ -2020,7 +2020,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     choices: [
-                        { text: 'ABİ BEN 7 METRELİK MERDİVENİN ARIYORUM', target: 'yediMetre' },
+                        { text: 'ABİ BEN 7 METRELİK İN ARIYORUM', target: 'yediMetre' },
                         { text: 'OLABİLİR, BANA KENDİNDEN BAHSET USTAM', target: 'kendindenBahset' },
 
                     ],

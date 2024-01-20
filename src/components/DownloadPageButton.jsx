@@ -1,8 +1,14 @@
-import React from 'react';
+// DownloadPageButton.jsx
+import React, { useState } from 'react';
 import html2canvas from 'html2canvas';
 
 const DownloadPageButton = () => {
+    const [loading, setLoading] = useState(false);
+
     const handleDownload = () => {
+        const buttonsContainer = document.getElementById('buttons-container');
+        buttonsContainer.style.visibility = 'hidden';
+
         const page = document.getElementById('root');
 
         html2canvas(page).then((canvas) => {
@@ -12,15 +18,16 @@ const DownloadPageButton = () => {
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+
+            // Reset visibility after the download is complete
+            buttonsContainer.style.visibility = 'visible';
         });
     };
 
+
     return (
-        <button
-            className="bg-black text-white px-4 py-4 text-xl rounded-md mr-4"
-            onClick={handleDownload}
-        >
-            Sertifikanı İndir
+        <button onClick={handleDownload} className={loading ? 'hidden' : 'block'}>
+            SERTİFİKANI İNDİR
         </button>
     );
 };
