@@ -104,7 +104,7 @@ function App() {
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
-    } else if (health > 100) {
+    } else if (health > 80) {
       return {
         text: ['Olamaz! Maşallahın var, çok sağlıklısın. Bu bir kaç sağlık şirketinin dikkatini çekmiş olacak ki üzerinde deney yapmak için seni kaçırdılar. Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
@@ -123,7 +123,7 @@ function App() {
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
-    } else if (mood > 100) {
+    } else if (mood > 80) {
       return {
         text: ['Peki. Keyfin oldukça yerinde gibi. Sana dokunmak istemezdim.. Ancak ülkenin çan eğrisi için bu oyunun bitmesi gerek. \nAma merak etme, evine bir davul zurna yolladık, bizden. Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
@@ -143,7 +143,7 @@ function App() {
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
-    } else if (money > 100) {
+    } else if (money > 80) {
       return {
         text: ['Olamaz! Evet, çok paran var. Baya fazla... Ama tam olarak bundan dolayı Kadıköyden taşındın. Artık Kadıköyde yürümek zorunda değilsin. Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
@@ -162,7 +162,7 @@ function App() {
         choices: [{ text: 'OK', target: 'ok' }],
         background: './images/end.png',
       };
-    } else if (intelligence > 100) {
+    } else if (intelligence > 80) {
       return {
         text: ['Olamaz! Bu yüksek zekanı tutamayıp gerçek fikirlerini yaydığın için halk meydanında dayak yedin... Oyun bitti.'],
         choices: [{ text: 'OK', target: 'ok' }],
