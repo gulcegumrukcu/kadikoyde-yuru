@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 const Menu = ({ isPopupOpen, setIsPopupOpen }) => {
     const handlePopupToggle = () => {
-        console.log('Toggling Popup');
+
         setIsPopupOpen((prevIsPopupOpen) => !prevIsPopupOpen);
     };
 
@@ -12,7 +12,7 @@ const Menu = ({ isPopupOpen, setIsPopupOpen }) => {
     };
 
     useEffect(() => {
-        console.log('isPopupOpen in Menu (Effect):', isPopupOpen);
+
     }, [isPopupOpen]);
 
     return (

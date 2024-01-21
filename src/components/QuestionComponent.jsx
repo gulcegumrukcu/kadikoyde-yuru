@@ -26,8 +26,7 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, charact
                 }, 500);
             }
         }
-        console.log('Current Text Item:', currentTextItem);
-        console.log('Animated Text:', animatedText);
+
     };
 
     useEffect(() => {

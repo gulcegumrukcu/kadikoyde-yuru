@@ -217,7 +217,6 @@ function App() {
     setShowInputForm(false);
     setMerdivenYolu(merdivenYolu);
     onInputSubmit(userName, merdivenYolu);
-    console.log('after setting MerdivenYolu in handleInputSubmit:', merdivenYolu);
 
   };
 

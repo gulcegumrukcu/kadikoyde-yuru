@@ -6,16 +6,59 @@ import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import adiNeydiAudio from './src/audio/storyici/adiNeydi.mp3';
+import onemiVarMiAudio from './src/audio/storyici/onemiVarMi.mp3';
+import ustaAudio from './src/audio/storyici/usta.mp3';
+import okulAudio from './src/audio/storyici/okul.mp3';
+import yogurtcuAudio from './src/audio/storyici/yogurtcu.mp3';
+import okul2Audio from './src/audio/storyici/okul2.mp3';
+import lokmaAudio from './src/audio/storyici/lokma.mp3';
+import biraAudio from './src/audio/storyici/bira.mp3';
+import bira2Audio from './src/audio/storyici/bira2.mp3';
+import bira3Audio from './src/audio/storyici/bira3.mp3';
+import ruyaAudio from './src/audio/storyici/ruya.mp3';
+import ruya2Audio from './src/audio/storyici/ruya2.mp3';
+import insaatAudio from './src/audio/storyici/insaat.mp3';
+import hayvanlarAudio from './src/audio/storyici/hayvanlar.mp3';
+import hayvanlar2Audio from './src/audio/storyici/hayvanlar2.mp3';
+import florasanAudio from './src/audio/storyici/florasan.mp3';
+import izinBelgesiAudio from './src/audio/storyici/izinBelgesi.mp3';
+import sigaraAudio from './src/audio/storyici/sigara.mp3';
+import insaat3Audio from './src/audio/storyici/insaat3.mp3';
+import insaat6Audio from './src/audio/storyici/insaat6.mp3';
+import insaat4Audio from './src/audio/storyici/insaat4.mp3';
+import insaat5Audio from './src/audio/storyici/insaat5.mp3';
+import insaat2Audio from './src/audio/storyici/insaat2.mp3';
+import fbAudio from './src/audio/storyici/fb.mp3';
+import fb2Audio from './src/audio/storyici/fb2.mp3';
+import fb3Audio from './src/audio/storyici/fb3.mp3';
+import charlieAudio from './src/audio/storyici/charlie.mp3';
+import charlie2Audio from './src/audio/storyici/charlie2.mp3';
+import scooterAudio from './src/audio/storyici/scooter.mp3';
+import scooter2Audio from './src/audio/storyici/scooter2.mp3';
+import polisAudio from './src/audio/storyici/polis.mp3';
+import polis2Audio from './src/audio/storyici/polis2.mp3';
+import cekilAudio from './src/audio/storyici/cekil.mp3';
+import kahve3Audio from './src/audio/storyici/kahve3.mp3';
+import kahve4Audio from './src/audio/storyici/kahve4.mp3';
+import deliAudio from './src/audio/storyici/deli.mp3';
+import kahve2Audio from './src/audio/storyici/kahve2.mp3';
+import kahveAudio from './src/audio/storyici/kahve.mp3';
 import suatAudio from './src/audio/storyici/suat.mp3';
+import gerceklerAudio from './src/audio/storyici/gercekler.mp3';
+import kosAudio from './src/audio/storyici/kos.mp3';
 import suIcAudio from './src/audio/storyici/suIc.mp3';
-import yagmurYagdiAudio from './src/audio/storyici/yagmurYagdi.mp3';
-import kovaAudio from './src/audio/storyici/kova.mp3';
+import politikBilincAudio from './src/audio/storyici/politikBilinc.mp3';
 import hazirlanmaAudio from './src/audio/storyici/hazirlanma.mp3';
 import teyzeAudio from './src/audio/storyici/teyze.mp3';
 import teyze2Audio from './src/audio/storyici/teyze2.mp3';
+import teyze3Audio from './src/audio/storyici/teyze3.mp3';
+import hehIsteAudio from './src/audio/storyici/hehIste.mp3';
 import kornaAudio from './src/audio/storyici/korna.mp3';
 import kornasizAudio from './src/audio/storyici/kornasiz.mp3';
+import catiSuAudio from './src/audio/storyici/catiSu.mp3';
+import yagmurBuyumusAudio from './src/audio/storyici/yagmurBuyumus.mp3';
 import nuncakuAudio from './src/audio/storyici/nuncaku.mp3';
+import yaBiliyorsunAudio from './src/audio/storyici/yaBiliyorsun.mp3';
 import notAudio from './src/audio/storyici/not.mp3';
 import UserInputForm from './src/components/UserInputForm';
 import Certificate from './src/components/Certificate';
@@ -79,7 +122,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: 'BEN BİR SU İÇEYİM', target: 'su' },
                     ],
                     buttonsDisabled: false,
-                    audio: yagmurYagdiAudio,
+                    audio: yaBiliyorsunAudio,
                     background: './images/yari-siluet.png',
                 };
             case 'neDiyor':
@@ -95,7 +138,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: 'YÖNETİCİNİN DEDESİ ÇATIYA ÇIKMIŞ, ONU İNDİRECEĞİZ.', target: 'icSesim' },
                     ],
                     buttonsDisabled: false,
-                    audio: yagmurYagdiAudio,
+                    audio: yagmurBuyumusAudio,
                     background: './images/yonetici2.png',
                 };
             case 'su':
@@ -139,7 +182,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    audio: yagmurYagdiAudio,
+                    audio: hehIsteAudio,
                     background: './images/yonetici-el.png',
 
                 };
@@ -173,10 +216,10 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     ],
                     choices: [
                         { text: '“TAMAM ABİ HALLEDELİM ONU BENCE DE…”', target: 'cati' },
-                        { text: 'BU İNANDIRICI GELMEDİ, 7 METRELİK  AVINA GİDELİM.', target: 'merdiven' },
+                        { text: 'BU İNANDIRICI GELMEDİ, 7 METRELİK MERDİVEN AVINA GİDELİM.', target: 'merdiven' },
                     ],
                     buttonsDisabled: false,
-                    audio: kovaAudio,
+                    audio: catiSuAudio,
                     background: './images/kova3.png',
                 };
             case 'merdiven':
@@ -213,7 +256,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     ...prevStory,
                     text: [
 
-                        '“Usta yarım saate geliyor çatıya bakmaya, sen buradasın değil mi? Adamın başında dur da kaytarmasın.” ',
+                        '“Usta yarım saate geliyor çatıya bakmaya, sen buradasın değil mi? Adamın başında dur da kaytarmasın.”',
 
 
                     ],
@@ -221,7 +264,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: '"YOK ABİ BENİM ÇIKMAM LAZIM"', target: 'cikis' },
                     ],
                     buttonsDisabled: false,
-                    audio: yagmurYagdiAudio,
+                    audio: ustaAudio,
                     background: './images/yonetici-cep.png',
                 };
             case 'yalan':
@@ -238,7 +281,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: '"YOK ABİ BENİM ÇIKMAM LAZIM"', target: 'cikis' },
                     ],
                     buttonsDisabled: false,
-                    audio: yagmurYagdiAudio,
+                    audio: ustaAudio,
                     background: './images/yonetici-cep.png',
                 };
             case 'cikis':
@@ -319,7 +362,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: '"BEN SANA IBANDAN ATAYIM ABİ ONU, NAKTİM KALMADI HİÇ.” \n\nYALAN SÖYLE', target: 'yalan' },
                     ],
                     buttonsDisabled: false,
-                    audio: suatAudio,
+                    audio: ustaAudio,
                     background: './images/yonetici-el.png',
 
 
@@ -339,7 +382,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: '"BEN SANA IBANDAN ATAYIM ABİ ONU, NAKTİM KALMADI HİÇ.” \n\nYALAN SÖYLE', target: 'yalan' },
                     ],
                     buttonsDisabled: false,
-                    audio: yagmurYagdiAudio,
+                    audio: onemiVarMiAudio,
                     background: './images/yonetici-el.png',
 
 
@@ -446,7 +489,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     buttonsDisabled: false,
                     background: './images/second.png',
-                    audio: teyze2Audio,
+                    audio: teyze3Audio,
                     characterImage: './images/teyze-gulen.png',
                 };
             case 'politikBilinc':
@@ -482,7 +525,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             },
                         ],
                     buttonsDisabled: false,
-                    audio: teyze2Audio,
+                    audio: politikBilincAudio,
                     background: './images/second.png',
                     characterImage: './images/teyze.png', // Add the path to your teyze.png
 
@@ -521,7 +564,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         ],
                     buttonsDisabled: false,
                     background: './images/second.png',
-                    audio: teyze2Audio,
+                    audio: politikBilincAudio,
                     characterImage: './images/teyze.png',
 
                 };
@@ -559,7 +602,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: 'YETER ARTIK, BEN VEGANIM', target: 'vegan' },
                     ],
                     buttonsDisabled: false,
-                    audio: kornasizAudio,
+                    audio: cekilAudio,
                     background: './images/trafik.png',
                     characterImage: './images/kurye.png',
 
@@ -693,6 +736,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         ],
 
                     buttonsDisabled: false,
+                    audio: gerceklerAudio,
                     background: './images/trafik.png',
                     characterImage: null,
 
@@ -720,6 +764,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: '>', target: 'polis' },
                     ],
                     buttonsDisabled: false,
+                    audio: kosAudio,
                     background: './images/trafik.png',
                     characterImage: null,
 
@@ -758,6 +803,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: '“İZİN BELGENİZİ GÖREBİLİR MİYİM?', target: 'izinBelgesi' },
                     ],
                     buttonsDisabled: false,
+                    audio: polisAudio,
                     background: './images/cilek.png',
                     characterImage: './images/polis.png',
 
@@ -777,6 +823,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: '"HAYIR, KULLANMIYORUM"', target: 'polisDevam' },
                     ],
                     buttonsDisabled: false,
+                    audio: polis2Audio,
                     background: './images/cilek.png',
                     characterImage: './images/polis.png',
 
@@ -796,6 +843,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: '"PAKET TAŞIMIYORUM, OTLAKÇIYIM"', target: 'otlakci' },
                     ],
                     buttonsDisabled: false,
+                    audio: polisAudio,
                     background: './images/cilek.png',
                     characterImage: './images/polis.png',
 
@@ -815,6 +863,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: '>', target: 'charlie' },
                     ],
                     buttonsDisabled: false,
+                    audio: sigaraAudio,
                     background: './images/cilek.png',
                     characterImage: './images/polis.png',
 
@@ -842,6 +891,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: '>', target: 'charlie' },
                     ],
                     buttonsDisabled: false,
+                    audio: sigaraAudio,
                     background: './images/cilek.png',
                     characterImage: './images/polis.png',
 
@@ -872,6 +922,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: '“PARDON, BUYRUN”', target: 'buyurun' },
                     ],
                     buttonsDisabled: false,
+                    audio: izinBelgesiAudio,
                     background: './images/cilek.png',
                     characterImage: './images/kizgin-polis.png',
 
@@ -898,6 +949,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     choices: [
                         { text: '>', target: 'kahvehane' },
                     ],
+                    audio: izinBelgesiAudio,
                     buttonsDisabled: false,
                     background: './images/trafik.png',
                     characterImage: null
@@ -911,10 +963,11 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     choices: [
-                        { text: '"MERHABA, 7 METRELİK BİR  ARIYORUM"', target: 'merdivenAriyorum' },
+                        { text: '"MERHABA, 7 METRELİK BİR MERDİVEN ARIYORUM"', target: 'merdivenAriyorum' },
                         { text: '"VAR MI RÜZGARA KARŞI İŞEYİP BİR BATAK ATACAK OLAN?"', target: 'batak' },
                     ],
                     buttonsDisabled: false,
+                    audio: kahveAudio,
                     background: './images/kahvehane.png',
                     characterImage: null
 
@@ -931,6 +984,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: '"NALBUR NEREDE?"', target: 'nalbur' },
                     ],
                     buttonsDisabled: false,
+                    audio: kahve2Audio,
                     background: './images/kahvehane.png',
                     characterImage: null
 
@@ -959,9 +1013,10 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     choices: [
-                        { text: '"TAMAM, 7 METRELİK BİR  ARIYORUM"', target: 'tamamMerdiven' },
+                        { text: '"TAMAM, 7 METRELİK BİR MERDİVEN ARIYORUM"', target: 'tamamMerdiven' },
                     ],
                     buttonsDisabled: false,
+                    audio: kahve3Audio,
                     background: './images/kahvehane2.png',
                     characterImage: null
 
@@ -978,6 +1033,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: '"İNŞAAT NEREDE?"', target: 'insaat' },
                         { text: '"NALBUR NEREDE?"', target: 'nalbur' },
                     ],
+                    audio: kahve2Audio,
                     buttonsDisabled: false,
                     background: './images/kahvehane.png',
                     characterImage: null
@@ -995,6 +1051,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: 'ÇIK', target: 'charlie' },
                     ],
                     buttonsDisabled: false,
+                    audio: kahve4Audio,
                     background: './images/kahvehane.png',
                     characterImage: null
 
@@ -1012,6 +1069,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: '"İNŞAAT NEREDE?"', target: 'insaat' },
                     ],
                     buttonsDisabled: false,
+                    audio: kahve2Audio,
                     background: './images/kahvehane2.png',
                     characterImage: null
 
@@ -1036,6 +1094,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         { text: '"İNŞAAT NEREDE?"', target: 'insaat' },
                     ],
                     buttonsDisabled: false,
+                    audio: deliAudio,
                     background: './images/kahvehane.png',
                     characterImage: null
 
@@ -1047,7 +1106,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'Yoluna devam ederken ukulelesini boynuna dayayarak keman gibi çalan Charlie Chaplin taklitçisi yolunu kesiyor. \n“...”',
+                            'Yoluna devam ederken ukulelesini boynuna dayayarak keman gibi çalan Charlie Chaplin taklitçisi yolunu kesiyor. \n\n“...”',
 
                         ],
                         choices: [
@@ -1055,6 +1114,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: '2' },
                         ],
                         buttonsDisabled: false,
+                        audio: charlieAudio,
                         background: './images/charlie.png',
                         characterImage: null
                     };
@@ -1071,6 +1131,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: '2' },
                         ],
                         buttonsDisabled: false,
+                        audio: charlieAudio,
                         background: './images/charlie.png',
                         characterImage: null
                     };
@@ -1098,11 +1159,13 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                         ],
                         choices: [
-                            { text: '“...”', target: '3' },
+                            { text: '“...”', target: '2' },
                             { text: '“...”', target: '4' },
                         ],
                         buttonsDisabled: false,
+
                         background: './images/charlie1.png',
+                        audio: charlieAudio,
                         characterImage: null
                     };
                 } else {
@@ -1114,11 +1177,12 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                         ],
                         choices: [
-                            { text: '“...”', target: '3' },
+                            { text: '“...”', target: '2' },
                             { text: '“...”', target: '4' },
                         ],
                         buttonsDisabled: false,
                         background: './images/charlie1.png',
+                        audio: charlieAudio,
                         characterImage: null
                     };
                 };
@@ -1146,6 +1210,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         ],
                         buttonsDisabled: false,
                         background: './images/charlie1.png',
+                        audio: charlieAudio,
                         characterImage: null
                     };
                 } else {
@@ -1162,6 +1227,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         ],
                         buttonsDisabled: false,
                         background: './images/charlie1.png',
+                        audio: charlieAudio,
                         characterImage: null
                     };
                 };
@@ -1191,6 +1257,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         ],
                         buttonsDisabled: false,
                         background: './images/charlie1.png',
+                        audio: charlieAudio,
                         characterImage: null
                     };
                 } else {
@@ -1207,6 +1274,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         ],
                         buttonsDisabled: false,
                         background: './images/charlie1.png',
+                        audio: charlieAudio,
                         characterImage: null
                     };
                 };
@@ -1237,6 +1305,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         ],
                         buttonsDisabled: false,
                         background: './images/charlie1.png',
+                        audio: charlieAudio,
                         characterImage: null
                     };
                 } else {
@@ -1253,6 +1322,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                         ],
                         buttonsDisabled: false,
                         background: './images/charlie1.png',
+                        audio: charlieAudio,
                         characterImage: null
                     };
                 };
@@ -1279,6 +1349,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: 'charlieSonuc' },
                         ],
                         buttonsDisabled: false,
+                        audio: charlieAudio,
                         background: './images/charlie2.png',
                         characterImage: null
                     };
@@ -1295,6 +1366,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: 'charlieSonuc' },
                         ],
                         buttonsDisabled: false,
+                        audio: charlieAudio,
                         background: './images/charlie2.png',
                         characterImage: null
                     };
@@ -1326,6 +1398,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: 'charlieSonuc' },
                         ],
                         buttonsDisabled: false,
+                        audio: charlieAudio,
                         background: './images/charlie2.png',
                         characterImage: null
                     };
@@ -1342,12 +1415,13 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: 'charlieSonuc' },
                         ],
                         buttonsDisabled: false,
+                        audio: charlieAudio,
                         background: './images/charlie2.png',
                         characterImage: null
                     };
                 };
             case 'charlieSonuc':
-                console.log("charliesonuc");
+
                 newHealthIncrease = 10;
 
                 handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0);
@@ -1372,6 +1446,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'AYY NE KDAR TATLI...', target: 'dimiya' },
                         ],
                         buttonsDisabled: false,
+                        audio: charlie2Audio,
                         background: './images/charlie.png',
                         characterImage: null
                     };
@@ -1388,6 +1463,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'AYY NE KDAR TATLI...', target: 'dimiya' },
                         ],
                         buttonsDisabled: false,
+                        audio: charlie2Audio,
                         background: './images/charlie.png',
                         characterImage: null
                     };
@@ -1407,6 +1483,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '>', target: 'scooter' },
                         ],
                         buttonsDisabled: false,
+                        audio: charlie2Audio,
                         background: './images/charlie2.png',
                         characterImage: null
                     };
@@ -1422,6 +1499,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '>', target: 'scooter' },
                         ],
                         buttonsDisabled: false,
+                        audio: charlie2Audio,
                         background: './images/charlie2.png',
                         characterImage: null
                     };
@@ -1440,6 +1518,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'YOLUNU DEĞİŞTİR', target: 'yolunuDegistir' },
                         ],
                         buttonsDisabled: false,
+                        audio: scooterAudio,
                         background: './images/scooter.png',
                         characterImage: null
                     };
@@ -1456,6 +1535,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'YOLUNU DEĞİŞTİR', target: 'yolunuDegistir' },
                         ],
                         buttonsDisabled: false,
+                        audio: scooterAudio,
                         background: './images/scooter.png',
                         characterImage: null
                     };
@@ -1475,6 +1555,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'ÜSTÜN IRK OLMAMA', target: 'ustunIrk' },
                         ],
                         buttonsDisabled: false,
+                        audio: scooter2Audio,
                         background: './images/scooter.png',
                         characterImage: null
                     };
@@ -1491,6 +1572,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'ÜSTÜN IRK OLMAMA', target: 'ustunIrk' },
                         ],
                         buttonsDisabled: false,
+                        audio: scooter2Audio,
                         background: './images/scooter.png',
                         characterImage: null
                     };
@@ -1519,6 +1601,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                         ],
                         buttonsDisabled: false,
+                        audio: scooterAudio,
                         background: './images/scooter.png',
                         characterImage: null
                     };
@@ -1535,6 +1618,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                         ],
                         buttonsDisabled: false,
+                        audio: scooterAudio,
                         background: './images/scooter.png',
                         characterImage: null
                     };
@@ -1563,6 +1647,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                         ],
                         buttonsDisabled: false,
+                        audio: scooterAudio,
                         background: './images/scooter.png',
                         characterImage: null
                     };
@@ -1579,6 +1664,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                         ],
                         buttonsDisabled: false,
+                        audio: scooterAudio,
                         background: './images/scooter.png',
                         characterImage: null
                     };
@@ -1598,6 +1684,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                         ],
                         buttonsDisabled: false,
+                        audio: scooterAudio,
                         background: './images/scooter.png',
                         characterImage: null
                     };
@@ -1615,6 +1702,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                         ],
                         buttonsDisabled: false,
+                        audio: scooterAudio,
                         background: './images/scooter.png',
                         characterImage: null
                     };
@@ -1625,13 +1713,14 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'Hayvanları seviyor musunuz?',
+                            '"Hayvanları seviyor musunuz?"',
 
                         ],
                         choices: [
                             { text: 'EVET', target: 'evet' },
                             { text: 'HAYIR', target: 'hayir' },
                         ],
+                        audio: notAudio,
                         buttonsDisabled: false,
                         background: './images/anket.png',
                         characterImage: null
@@ -1641,7 +1730,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'Hayvanları seviyor musunuz?',
+                            '"Hayvanları seviyor musunuz?"',
 
                         ],
                         choices: [
@@ -1649,6 +1738,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'HAYIR', target: 'hayir' },
                         ],
                         buttonsDisabled: false,
+                        audio: notAudio,
                         background: './images/anket.png',
                         characterImage: null
                     };
@@ -1676,6 +1766,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'TABİİ, BU KADAR YETER Mİ? \n\n(PARA VER)', target: 'yeterMi' },
                             { text: 'MAALESEF ŞU AN ÜSTÜMDE NAKİT YOK', target: 'nakitYok' },
                         ],
+                        audio: hayvanlarAudio,
                         buttonsDisabled: false,
                         background: './images/anket.png',
                         characterImage: null
@@ -1693,6 +1784,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'MAALESEF ŞU AN ÜSTÜMDE NAKİT YOK', target: 'nakitYok' },
                         ],
                         buttonsDisabled: false,
+                        audio: hayvanlarAudio,
                         background: './images/anket.png',
                         characterImage: null
                     };
@@ -1704,7 +1796,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'Nasıl yani?',
+                            '"Nasıl yani?"',
 
                         ],
                         choices: [
@@ -1712,6 +1804,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'SEVMİYORUM HAYVANLARI', target: 'sevmiyorum' },
                         ],
                         buttonsDisabled: false,
+                        audio: hayvanlar2Audio,
                         background: './images/anket.png',
                         characterImage: null
                     };
@@ -1720,7 +1813,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'Nasıl yani?',
+                            '"Nasıl yani?"',
 
                         ],
                         choices: [
@@ -1728,6 +1821,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'SEVMİYORUM HAYVANLARI', target: 'sevmiyorum' },
                         ],
                         buttonsDisabled: false,
+                        audio: hayvanlar2Audio,
                         background: './images/anket.png',
                         characterImage: null
                     };
@@ -1754,6 +1848,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '>', target: 'fb' },
                         ],
                         buttonsDisabled: false,
+                        audio: florasanAudio,
                         background: './images/anket.png',
                         characterImage: null
                     };
@@ -1767,6 +1862,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '>', target: 'biraParasi' },
                         ],
                         buttonsDisabled: false,
+                        audio: florasanAudio,
                         background: './images/anket.png',
                         characterImage: null
                     };
@@ -1785,12 +1881,13 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 if (merdivenYolu) {
                     return {
                         ...prevStory,
-                        text: ['Çok teşekkür ederiz...'],
+                        text: ['"Çok teşekkür ederiz..."'],
 
                         choices: [
                             { text: '>', target: 'fb' },
                         ],
                         buttonsDisabled: false,
+                        audio: hayvanlarAudio,
                         background: './images/anket.png',
                         characterImage: null
                     };
@@ -1798,12 +1895,13 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     return {
                         ...prevStory,
-                        text: ['Çok teşekkür ederiz...'],
+                        text: ['"Çok teşekkür ederiz..."'],
 
                         choices: [
                             { text: '>', target: 'biraParasi' },
                         ],
                         buttonsDisabled: false,
+                        audio: hayvanlarAudio,
                         background: './images/anket.png',
                         characterImage: null
                     };
@@ -1820,6 +1918,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'MAALESEF ŞARJIM DA BİTTİ', target: 'sarjim' },
                         ],
                         buttonsDisabled: false,
+                        audio: florasanAudio,
                         background: './images/anket.png',
                         characterImage: null
                     };
@@ -1833,7 +1932,9 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'UYGUN BENİM İÇİN', target: 'yeterMi' },
                             { text: 'MAALESEF ŞARJIM DA BİTTİ', target: 'sarjim' },
                         ],
+
                         buttonsDisabled: false,
+                        audio: florasanAudio,
                         background: './images/anket.png',
                         characterImage: null
                     };
@@ -1859,6 +1960,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '>', target: 'fb' },
                         ],
                         buttonsDisabled: false,
+                        audio: florasanAudio,
                         background: './images/anket.png',
                         characterImage: null
                     };
@@ -1872,6 +1974,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '>', target: 'biraParasi' },
                         ],
                         buttonsDisabled: false,
+                        audio: florasanAudio,
                         background: './images/anket.png',
                         characterImage: null
                     };
@@ -1890,6 +1993,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: fbAudio,
                     background: './images/fb.png',
                     characterImage: null
 
@@ -1908,6 +2012,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: fb2Audio,
                     background: './images/fb2.png',
                     characterImage: null
 
@@ -1936,6 +2041,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: fbAudio,
                     background: './images/fb.png',
                     characterImage: null
 
@@ -1973,6 +2079,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: fbAudio,
                     background: './images/fb.png',
                     characterImage: null
 
@@ -1990,6 +2097,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: fb3Audio,
                     background: './images/fb3.png',
                     characterImage: null
 
@@ -2003,11 +2111,12 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     choices: [
-                        { text: 'PARDON, 7 METRELİK İNİZ VAR MI?', target: 'yediMetre' },
+                        { text: 'PARDON, 7 METRELİK MERDİVENİNİZ VAR MI?', target: 'yediMetre' },
                         { text: 'KOLAY GELSİN USTAM, NASILSIN?', target: 'kolayGelsin' },
 
                     ],
                     buttonsDisabled: false,
+                    audio: insaatAudio,
                     background: './images/insaat.png',
                     characterImage: './images/isci.png',
 
@@ -2016,15 +2125,16 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        'İyilik yav ne olsun, çalışıyoruz işte. Hayırdır birine mi baktın sen?',
+                        '"İyilik yav ne olsun, çalışıyoruz işte. Hayırdır birine mi baktın sen?"',
 
                     ],
                     choices: [
-                        { text: 'ABİ BEN 7 METRELİK İN ARIYORUM', target: 'yediMetre' },
+                        { text: 'ABİ BEN 7 METRELİK MERDİVEN ARIYORUM', target: 'yediMetre' },
                         { text: 'OLABİLİR, BANA KENDİNDEN BAHSET USTAM', target: 'kendindenBahset' },
 
                     ],
                     buttonsDisabled: false,
+                    audio: insaat2Audio,
                     background: './images/insaat.png',
                     characterImage: './images/isci.png',
 
@@ -2043,6 +2153,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: insaat3Audio,
                     background: './images/insaat.png',
                     characterImage: './images/confusedIsci.png',
 
@@ -2062,6 +2173,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     ],
                     buttonsDisabled: false,
                     background: './images/insaat.png',
+                    audio: insaat4Audio,
                     characterImage: './images/angryIsci.png',
 
                 };
@@ -2079,6 +2191,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: insaat5Audio,
                     background: './images/insaat.png',
                     characterImage: './images/angryIsci.png',
 
@@ -2107,6 +2220,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: insaat6Audio,
                     background: './images/insaat.png',
                     characterImage: './images/superAngryIsci.png',
 
@@ -2135,6 +2249,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: ruyaAudio,
                     background: './images/ruya.png',
                     characterImage: null
 
@@ -2163,6 +2278,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: ruya2Audio,
                     background: './images/superRuya.png',
                     characterImage: null
 
@@ -2181,6 +2297,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: politikBilincAudio,
                     background: './images/ayvalitas.png',
                     characterImage: './images/bira.png',
 
@@ -2207,6 +2324,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: biraAudio,
                     background: './images/ayvalitas.png',
                     characterImage: './images/bira.png',
 
@@ -2234,6 +2352,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: bira2Audio,
                     background: './images/ayvalitas.png',
                     characterImage: './images/bira.png',
 
@@ -2261,6 +2380,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: bira2Audio,
                     background: './images/ayvalitas.png',
                     characterImage: './images/bira.png',
 
@@ -2278,6 +2398,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: bira3Audio,
                     background: './images/ayvalitas.png',
                     characterImage: './images/bira.png',
 
@@ -2296,6 +2417,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: politikBilincAudio,
                     background: './images/lokma.png',
                     characterImage: null
 
@@ -2314,6 +2436,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: politikBilincAudio,
                     background: './images/lokma.png',
                     characterImage: null
 
@@ -2332,6 +2455,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: politikBilincAudio,
                     background: './images/lokma.png',
                     characterImage: null
 
@@ -2371,6 +2495,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: lokmaAudio,
                     background: './images/lokma.png',
                     characterImage: null
 
@@ -2400,6 +2525,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: politikBilincAudio,
                     background: './images/lokma.png',
                     characterImage: null
 
@@ -2419,6 +2545,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: okulAudio,
                     background: './images/moda.png',
                     characterImage: null
 
@@ -2438,6 +2565,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: okul2Audio,
                     background: './images/moda.png',
                     characterImage: null
 
@@ -2456,6 +2584,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: charlie2Audio,
                     background: './images/moda.png',
                     characterImage: null
 
@@ -2474,6 +2603,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: politikBilincAudio,
                     background: './images/yogurtcu.png',
                     characterImage: null
 
@@ -2491,6 +2621,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: politikBilincAudio,
                     background: './images/yogurtcu2.png',
                     characterImage: null
 
@@ -2508,6 +2639,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: politikBilincAudio,
                     background: './images/yogurtcu2.png',
                     characterImage: null
 
@@ -2525,6 +2657,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: yogurtcuAudio,
                     background: './images/cuce.png',
                     characterImage: null
 
@@ -2542,6 +2675,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
+                    audio: charlie2Audio,
                     background: './images/merdiven.png',
                     characterImage: null
 
@@ -2582,7 +2716,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
     const handleChoice = (path, characterStats) => {
         const newStory = handleStory(path, merdivenYolu);
-        console.log('handlechoice ici story component:', merdivenYolu)
+
         setCharacterStats((prevStats) => {
             // Update stats based on new story if needed
             return { ...prevStats };

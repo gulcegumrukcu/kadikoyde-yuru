@@ -1,6 +1,6 @@
 const SoundControl = ({ onToggleSound, isMuted }) => {
     const handleToggleSound = () => {
-        console.log('Toggling sound in SoundControl');
+
         onToggleSound(!isMuted); // Toggle the current state
     };
 

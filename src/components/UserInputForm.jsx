@@ -18,7 +18,7 @@ const UserInputForm = ({ onInputSubmit, merdivenYolu }) => {
                     <input
                         type="text"
                         name="userName"
-                        className="w-full border mt-4 border-gray-300 p-2 rounded-md"
+                        className="w-full border mt-4 text-black border-gray-300 p-2 rounded-md"
                         required
                         value={userName}
                         onChange={(e) => setUserName(e.target.value)}
