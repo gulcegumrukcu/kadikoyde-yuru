@@ -230,7 +230,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
 
                     text: [
-                        'Hazırlanma hızın inanılmaz.\n\nMerdiven yolu onurlu bir yol. Bol şans.',
+                        'Hazırlanma hızın inanılmaz. \n\nMerdiven yolu onurlu bir yol. Bol şans.',
 
                     ],
                     choices: [
