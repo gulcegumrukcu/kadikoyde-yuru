@@ -60,7 +60,7 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, charact
 
     return (
         <div className='h-auto w-auto max-w-xs p-4 lg:max-h-56vh lg:max-w-2xl lg:h-auto lg:p-8 bg-opacity-95 bg-[#000000] flex flex-col rounded-0 items-center justify-center mb-60 lg:mb-20 hover:bg-opacity-60' id='story' style={{ fontFamily: 'Kanit, sans-serif !important' }}>
-            <div className='text-[#f5fdc3] hover:text-white text-sm lg:text-xl  whitespace-pre-line'>
+            <div className='text-[#f5fdc3]  hover:text-white text-sm lg:text-xl  whitespace-pre-line'>
                 {Array.isArray(animatedText) ? (
                     animatedText.map((item, index) => (
                         typeof item === 'object' ? (
