@@ -57,7 +57,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        'Adamı kesinlikle tanıyorsun. Burada yaşadığın süre boyunca en az bir defa gördün. \n\n Bu adam senin apartman yöneticin, adı neydi?',
+                        'Adamı kesinlikle tanıyorsun. Burada yaşadığın süre boyunca en az bir defa gördün. \n\nBu adam senin apartman yöneticin, adı neydi?',
                     ],
                     choices: [
                         { text: 'SUAT', target: 'suat' },
@@ -87,7 +87,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     ...prevStory,
                     text: [
 
-                        '“Yav işte yağmur büyümüş dolu olmuş, dolu büyümüş çatıya konmuş. Kedi içti ağaca çıktı, balta kesti suya düştü, inek içti dağa kaçtı, en sonunda yandı bitti kül oldu.” \n\n Ne diyor bu adam? ',
+                        '“Yav işte yağmur büyümüş dolu olmuş, dolu büyümüş çatıya konmuş. Kedi içti ağaca çıktı, balta kesti suya düştü, inek içti dağa kaçtı, en sonunda yandı bitti kül oldu.” \n\nNe diyor bu adam? ',
                     ],
 
                     choices: [
@@ -116,7 +116,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        'Su inanılmaz güzel. Derinin en doğru yerlerinden nemlendiğini ve ciğerlerinin havayla dolduğunu hissediyorsun. \n\n Şimdi bir düşün bakalım ne diyor bu adam?',
+                        'Su inanılmaz güzel. Derinin en doğru yerlerinden nemlendiğini ve ciğerlerinin havayla dolduğunu hissediyorsun. \n\nŞimdi bir düşün bakalım ne diyor bu adam?',
                     ],
                     choices: [
                         { text: 'ÇATI AKITMIŞ ONU YAPTIRACAĞIZ.', target: 'cati' },
@@ -149,7 +149,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        'Aynen öyle, apartmanda 7 metrelik bir merdiveni bulabilecek tek kişi sen olduğun için de sana geldiler. \n\n İçini bir kahramanlık ateşi sarıyor ve apartman yöneticin sana soru sorar gözler ile bakıyor. \n\n 7 metrelik merdivenini almaya gidecek misin? ',
+                        'Aynen öyle, apartmanda 7 metrelik bir merdiveni bulabilecek tek kişi sen olduğun için de sana geldiler. \n\nİçini bir kahramanlık ateşi sarıyor ve apartman yöneticin sana soru sorar gözler ile bakıyor. \n\n7 metrelik merdivenini almaya gidecek misin? ',
 
                     ],
                     choices: [
@@ -230,7 +230,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        '“İyi bana hatırlatırsın, IBAN’ı atarım Whatsapp’tan. \n Sen buradasın, değil mi? Adamın başında dur da kaytarmasın.”',
+                        '“İyi bana hatırlatırsın, IBAN’ı atarım Whatsapp’tan. \nSen buradasın, değil mi? Adamın başında dur da kaytarmasın.”',
 
 
                     ],
@@ -262,7 +262,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        '“Eyvallah Suat abi, sana da.” deyiverdin. \n\n Bakışları değişmedi, ama sözünü kestiğin için ilginç bir yinelemenin içine düştü. \n\nDilinle damağının arasındaki sürtünme katsayısı hoşuna gidenden çok daha az. \n\nHidrasyonla ilgili ne düşünürsün?',
+                        '“Eyvallah Suat abi, sana da.” deyiverdin. \n\nBakışları değişmedi, ama sözünü kestiğin için ilginç bir yinelemenin içine düştü. \n\nDilinle damağının arasındaki sürtünme katsayısı hoşuna gidenden çok daha az. \n\nHidrasyonla ilgili ne düşünürsün?',
                     ],
                     choices: [
                         { text: 'SU İÇ', target: 'suIc' },
@@ -331,7 +331,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     ...prevStory,
                     text: [
 
-                        '“Eyvallah abi, sana da. ” deyiverdin. \n\n Adam söylediklerine kaldığı yerden devam ediyor. \n\n “İşte senin aidatı bugün vermen lazım ki, biz de ustaya vereceğiz.”',
+                        '“Eyvallah abi, sana da. ” deyiverdin. \n\nAdam söylediklerine kaldığı yerden devam ediyor. \n\n“İşte senin aidatı bugün vermen lazım ki, biz de ustaya vereceğiz.”',
 
                     ],
                     choices: [
@@ -389,7 +389,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     ...prevStory,
                     text: [
 
-                        '"Canın sağ olsun." \n\n Çocuğun varlığından emin olamasan bile bir bebişi doyuramamak vicdanına çöküyor.',
+                        '"Canın sağ olsun." \n\nÇocuğun varlığından emin olamasan bile bir bebişi doyuramamak vicdanına çöküyor.',
 
                     ],
 
@@ -534,7 +534,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     text: [
 
                         merdivenYolu
-                            ? 'Yol sorabileceğin bir kahvehaneye denk geldin. Oraya girmek için yolun karşısına geçmeye çalıştığın sırada bir korna sesi kulaklarını alıp götürdü. \n\n Bu, ters yönden gelen bir motor kurye.'
+                            ? 'Yol sorabileceğin bir kahvehaneye denk geldin. Oraya girmek için yolun karşısına geçmeye çalıştığın sırada bir korna sesi kulaklarını alıp götürdü. \n\nBu, ters yönden gelen bir motor kurye.'
                             : 'Ne kadar mükemmel biri olduğunu düşünürken yoğun bir korna sesiyle gerçekliğe çekildin. \n\nTers yönden gelen bir motor kurye kaldırıma çıkmış ve yolundan çıkman için sana korna çalıyor.'
                     ],
                     choices: [
@@ -551,7 +551,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        '“Çok teşekkürler.” \n\n Kurye teşekkür etmek için sana küçük bir tantuni fırlatıp uzaklaşmaya başlıyor. Yola devam?',
+                        '“Çok teşekkürler.” \n\nKurye teşekkür etmek için sana küçük bir tantuni fırlatıp uzaklaşmaya başlıyor. Yola devam?',
 
                     ],
                     choices: [
@@ -865,7 +865,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        'İnanılmaz bir bilinçli vatandaşlık hissiyle dolup taşıyorsun ama ne yazık ki bu vatandaşlık Kanada vatandaşlığı değil. \n\n Cebinde beliren o gizemli beyaz paket de ne öyle?',
+                        'İnanılmaz bir bilinçli vatandaşlık hissiyle dolup taşıyorsun ama ne yazık ki bu vatandaşlık Kanada vatandaşlığı değil. \n\nCebinde beliren o gizemli beyaz paket de ne öyle?',
 
                     ],
                     choices: [
@@ -907,7 +907,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        'İçeri girer girmez eline bir bardak çay tutuşturuluyor ve herkesin gözü sana dönüyor. \n\n Burada daha önce hiç senin kadar kahramansı biri bulunmamış herhalde. ',
+                        'İçeri girer girmez eline bir bardak çay tutuşturuluyor ve herkesin gözü sana dönüyor. \n\nBurada daha önce hiç senin kadar kahramansı biri bulunmamış herhalde. ',
 
                     ],
                     choices: [
@@ -1055,7 +1055,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: '2' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/charlie.png',
                         characterImage: null
                     };
                 } else {
@@ -1071,7 +1071,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: '2' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/charlie.png',
                         characterImage: null
                     };
 
@@ -1102,7 +1102,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: '4' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/charlie1.png',
                         characterImage: null
                     };
                 } else {
@@ -1118,7 +1118,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: '4' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/charlie1.png',
                         characterImage: null
                     };
                 };
@@ -1145,7 +1145,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: '6' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/charlie1.png',
                         characterImage: null
                     };
                 } else {
@@ -1161,7 +1161,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: '6' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/charlie1.png',
                         characterImage: null
                     };
                 };
@@ -1190,7 +1190,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: 'charlieSonuc' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/charlie1.png',
                         characterImage: null
                     };
                 } else {
@@ -1206,7 +1206,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: 'charlieSonuc' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/charlie1.png',
                         characterImage: null
                     };
                 };
@@ -1236,7 +1236,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: 'charlieSonuc' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/charlie1.png',
                         characterImage: null
                     };
                 } else {
@@ -1252,7 +1252,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: 'charlieSonuc' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/charlie1.png',
                         characterImage: null
                     };
                 };
@@ -1279,7 +1279,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: 'charlieSonuc' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/charlie2.png',
                         characterImage: null
                     };
                 } else {
@@ -1295,7 +1295,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: 'charlieSonuc' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/charlie2.png',
                         characterImage: null
                     };
                 };
@@ -1326,7 +1326,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: 'charlieSonuc' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/charlie2.png',
                         characterImage: null
                     };
                 } else {
@@ -1342,7 +1342,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '“...”', target: 'charlieSonuc' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/charlie2.png',
                         characterImage: null
                     };
                 };
@@ -1372,7 +1372,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'AYY NE KDAR TATLI...', target: 'dimiya' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/charlie.png',
                         characterImage: null
                     };
                 } else {
@@ -1388,7 +1388,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'AYY NE KDAR TATLI...', target: 'dimiya' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/charlie.png',
                         characterImage: null
                     };
                 };
@@ -1407,7 +1407,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '>', target: 'scooter' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/charlie2.png',
                         characterImage: null
                     };
                 } else {
@@ -1422,7 +1422,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '>', target: 'scooter' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/charlie2.png',
                         characterImage: null
                     };
                 };
@@ -1440,7 +1440,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'YOLUNU DEĞİŞTİR', target: 'yolunuDegistir' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/scooter.png',
                         characterImage: null
                     };
                 } else {
@@ -1456,7 +1456,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'YOLUNU DEĞİŞTİR', target: 'yolunuDegistir' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/scooter.png',
                         characterImage: null
                     };
                 };
@@ -1467,7 +1467,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'Bugün oldukça sportifsin.\nBu formu neye borçluyuz',
+                            'Bugün oldukça sportifsin.\nBu formu neye borçluyuz?',
 
                         ],
                         choices: [
@@ -1475,7 +1475,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'ÜSTÜN IRK OLMAMA', target: 'ustunIrk' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/scooter.png',
                         characterImage: null
                     };
                 } else {
@@ -1483,7 +1483,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'Bugün oldukça sportifsin.\nBu formu neye borçluyuz',
+                            'Bugün oldukça sportifsin.\nBu formu neye borçluyuz?',
 
                         ],
                         choices: [
@@ -1491,7 +1491,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'ÜSTÜN IRK OLMAMA', target: 'ustunIrk' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/scooter.png',
                         characterImage: null
                     };
                 };
@@ -1519,7 +1519,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/scooter.png',
                         characterImage: null
                     };
                 } else {
@@ -1535,7 +1535,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/scooter.png',
                         characterImage: null
                     };
                 };
@@ -1563,7 +1563,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/scooter.png',
                         characterImage: null
                     };
                 } else {
@@ -1579,7 +1579,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/scooter.png',
                         characterImage: null
                     };
                 };
@@ -1589,7 +1589,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     return {
                         ...prevStory,
                         text: [
-                            'Kendini çok zorlamadan bu kargaşadan çıkabileceğin en kolay yolu buldun. Bu seni hedefine yaklaştıracaktır. \nBu manevranın arkasındaki motivasyon neydi?',
+                            'Kendini çok zorlamadan bu kargaşadan çıkabileceğin en kolay yolu buldun. Bu seni hedefine yaklaştıracaktır. \n\nBu manevranın arkasındaki motivasyon neydi?',
 
                         ],
                         choices: [
@@ -1598,7 +1598,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/scooter.png',
                         characterImage: null
                     };
                 } else {
@@ -1615,7 +1615,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/scooter.png',
                         characterImage: null
                     };
                 };
@@ -1633,7 +1633,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'HAYIR', target: 'hayir' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/anket.png',
                         characterImage: null
                     };
                 } else {
@@ -1649,7 +1649,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'HAYIR', target: 'hayir' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/anket.png',
                         characterImage: null
                     };
                 };
@@ -1677,7 +1677,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'MAALESEF ŞU AN ÜSTÜMDE NAKİT YOK', target: 'nakitYok' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/anket.png',
                         characterImage: null
                     };
                 } else {
@@ -1693,7 +1693,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'MAALESEF ŞU AN ÜSTÜMDE NAKİT YOK', target: 'nakitYok' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/anket.png',
                         characterImage: null
                     };
                 };
@@ -1712,7 +1712,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'SEVMİYORUM HAYVANLARI', target: 'sevmiyorum' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/anket.png',
                         characterImage: null
                     };
                 } else {
@@ -1728,7 +1728,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'SEVMİYORUM HAYVANLARI', target: 'sevmiyorum' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/anket.png',
                         characterImage: null
                     };
                 };
@@ -1754,7 +1754,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '>', target: 'fb' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/anket.png',
                         characterImage: null
                     };
                 } else {
@@ -1767,7 +1767,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '>', target: 'biraParasi' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/anket.png',
                         characterImage: null
                     };
                 }
@@ -1791,7 +1791,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '>', target: 'fb' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/anket.png',
                         characterImage: null
                     };
                 } else {
@@ -1804,7 +1804,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '>', target: 'biraParasi' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/anket.png',
                         characterImage: null
                     };
                 }
@@ -1820,7 +1820,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'MAALESEF ŞARJIM DA BİTTİ', target: 'sarjim' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/anket.png',
                         characterImage: null
                     };
                 } else {
@@ -1834,7 +1834,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: 'MAALESEF ŞARJIM DA BİTTİ', target: 'sarjim' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/anket.png',
                         characterImage: null
                     };
                 }
@@ -1859,7 +1859,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '>', target: 'fb' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/anket.png',
                         characterImage: null
                     };
                 } else {
@@ -1872,7 +1872,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                             { text: '>', target: 'biraParasi' },
                         ],
                         buttonsDisabled: false,
-                        background: './images/kahvehane2.png',
+                        background: './images/anket.png',
                         characterImage: null
                     };
                 }
@@ -1890,7 +1890,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/fb.png',
                     characterImage: null
 
                 };
@@ -1904,11 +1904,11 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     ],
                     choices: [
                         { text: 'Bİ GÜNDE ÜÇ KERE DAYAK YİYEMEM, DEMEK Kİ BUNDA DAYAK ATAN BEN OLACAĞIM', target: 'dayak' },
-                        { text: 'Bİ GÜNDE ÜÇ KERE DAYAK YİYEMEM, INCEDEN YOL ALAYIM', target: 'nodayak' },
+                        { text: 'Bİ GÜNDE ÜÇ KERE DAYAK YİYEMEM, İNCEDEN YOL ALAYIM', target: 'nodayak' },
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/fb2.png',
                     characterImage: null
 
                 };
@@ -1928,7 +1928,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        ':( \n Bugün üç kere dayak yedin...',
+                        ':( \nBugün üç kere dayak yedin...',
 
                     ],
                     choices: [
@@ -1936,7 +1936,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/fb.png',
                     characterImage: null
 
                 };
@@ -1973,7 +1973,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/fb.png',
                     characterImage: null
 
                 };
@@ -1990,7 +1990,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/fb3.png',
                     characterImage: null
 
                 };
@@ -1999,7 +1999,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        'İnşaata vardın. Kadıköy Anadolu Lisesinin yeniden yapılıyor olması seni bu merdivene ulaştıracak gibi. Gözüne bir ustayı kestireceğini hissediyorsun.',
+                        'İnşaata vardın. Kadıköy Anadolu Lisesinin yeniden yapılıyor olması seni bu merdivene ulaştıracak gibi. Gözüne bir ustayı kestirdin bile.',
 
                     ],
                     choices: [
@@ -2008,8 +2008,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                    background: './images/insaat.png',
+                    characterImage: './images/isci.png',
 
                 };
             case 'kolayGelsin':
@@ -2025,8 +2025,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                    background: './images/insaat.png',
+                    characterImage: './images/isci.png',
 
                 };
             case 'yediMetre':
@@ -2043,8 +2043,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                    background: './images/insaat.png',
+                    characterImage: './images/confusedIsci.png',
 
                 };
             case 'kendindenBahset':
@@ -2061,8 +2061,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                    background: './images/insaat.png',
+                    characterImage: './images/angryIsci.png',
 
                 };
             case 'nedenBoyle':
@@ -2079,8 +2079,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                    background: './images/insaat.png',
+                    characterImage: './images/angryIsci.png',
 
                 };
             case 'ayip':
@@ -2107,8 +2107,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                    background: './images/insaat.png',
+                    characterImage: './images/superAngryIsci.png',
 
                 };
             case 'opucuk':
@@ -2126,7 +2126,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        'Wow, enteresan. \n Zaman durdu. Usta ve sen.. \n Artık sadece siz varsınız. \n İstersen biz çıkalım?',
+                        'Wow, enteresan. \nZaman durdu. Usta ve sen.. Artık sadece siz varsınız. \n\nİstersen biz çıkalım?',
 
                     ],
                     choices: [
@@ -2135,7 +2135,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/ruya.png',
                     characterImage: null
 
                 };
@@ -2163,7 +2163,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/superRuya.png',
                     characterImage: null
 
                 };
@@ -2181,8 +2181,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                    background: './images/ayvalitas.png',
+                    characterImage: './images/bira.png',
 
                 };
             case 'biraParaVer':
@@ -2207,8 +2207,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                    background: './images/ayvalitas.png',
+                    characterImage: './images/bira.png',
 
                 };
             case 'biraIc':
@@ -2225,7 +2225,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        'Bir keyiflendin mi öyle? \n Ne kadar da yardımseversin. Üstelik Karma Polisi seni ödüllendirdi ve yerde 100 lira buldun!',
+                        'Bir keyiflendin mi öyle? Ne kadar da yardımseversin. \n\nÜstelik Karma Polisi seni ödüllendirdi ve yerde 100 lira buldun!',
 
                     ],
                     choices: [
@@ -2234,8 +2234,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                    background: './images/ayvalitas.png',
+                    characterImage: './images/bira.png',
 
                 };
             case 'biraIcme':
@@ -2252,7 +2252,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        'Yardımseverlik IN, rastgele hastalıklar OUT! Karma polisi seni ödüllendirdi ve yerde 20 lira buldun!',
+                        'Yardımseverlik IN, rastgele hastalıklar OUT! \n\nKarma polisi seni ödüllendirdi ve yerde 20 lira buldun!',
 
                     ],
                     choices: [
@@ -2261,8 +2261,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                    background: './images/ayvalitas.png',
+                    characterImage: './images/bira.png',
 
                 };
             case 'gormezdenGel':
@@ -2278,8 +2278,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
-                    characterImage: null
+                    background: './images/ayvalitas.png',
+                    characterImage: './images/bira.png',
 
                 };
             case 'lokma':
@@ -2287,7 +2287,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        'Kenara bir lokma kamyonu çekmişler. Merhum Yiğit hayrına lokma dökülüyor. \n Bilmeyenler için lokma, küresel şerbet toplarıdır.',
+                        'Kenara bir lokma kamyonu çekmişler. Merhum Yiğit hayrına lokma dökülüyor. \n\nBilmeyenler için lokma, küresel şerbet toplarıdır.',
 
                     ],
                     choices: [
@@ -2296,7 +2296,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/lokma.png',
                     characterImage: null
 
                 };
@@ -2314,7 +2314,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/lokma.png',
                     characterImage: null
 
                 };
@@ -2332,7 +2332,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/lokma.png',
                     characterImage: null
 
                 };
@@ -2362,7 +2362,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        'Kaynakçının gözü senden korkmuşa benziyor, ancak kaçmadan önce dizine bir tekme atmayı ihmal etmedi. /n Sen ise lokmanı yedin ve mutlusun. Tatlılar da yendiğine göre hüzünlü sonumuza gidelim mi?',
+                        'Kaynakçının gözü senden korkmuşa benziyor, ancak kaçmadan önce dizine bir tekme atmayı ihmal etmedi. /n/nSen ise lokmanı yedin ve mutlusun. Tatlılar da yendiğine göre hüzünlü sonumuza gidelim mi?',
 
                     ],
                     choices: [
@@ -2371,7 +2371,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/lokma.png',
                     characterImage: null
 
                 };
@@ -2400,7 +2400,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/lokma.png',
                     characterImage: null
 
                 };
@@ -2410,7 +2410,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        'Moda İlkokulunun çıkış saati. Üstüne doğru gelen onlu yaşlardaki çocuk sürüsüne bakıyorsun. ,\n Hepsinin yüzünde Kadıköyde yürüyecek olmanın getirdiği kaygı belirgin.',
+                        'Moda İlkokulunun çıkış saati. Üstüne doğru gelen onlu yaşlardaki çocuk sürüsüne bakıyorsun. \n\nHepsinin yüzünde Kadıköyde yürüyecek olmanın getirdiği kaygı belirgin.',
 
                     ],
                     choices: [
@@ -2419,7 +2419,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/moda.png',
                     characterImage: null
 
                 };
@@ -2438,7 +2438,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/moda.png',
                     characterImage: null
 
                 };
@@ -2456,7 +2456,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/moda.png',
                     characterImage: null
 
                 };
@@ -2474,7 +2474,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/yogurtcu.png',
                     characterImage: null
 
                 };
@@ -2491,7 +2491,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/yogurtcu2.png',
                     characterImage: null
 
                 };
@@ -2508,7 +2508,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/yogurtcu2.png',
                     characterImage: null
 
                 };
@@ -2525,7 +2525,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/cuce.png',
                     characterImage: null
 
                 };
@@ -2534,7 +2534,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        'Yedi metrelik bir merdiveni! \n Evet dostum. \nSen bugün... \nKadıköyde yürüdün, ve tüm delüzyonlarını besleyerek yedi metrelik merdivenini buldun.',
+                        'Yedi metrelik bir merdiveni! Evet dostum. \nSen bugün... \nKadıköyde yürüdün, ve tüm delüzyonlarını besleyerek yedi metrelik merdivenini buldun.',
 
                     ],
                     choices: [
@@ -2542,7 +2542,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     ],
                     buttonsDisabled: false,
-                    background: './images/kahvehane2.png',
+                    background: './images/merdiven.png',
                     characterImage: null
 
                 };
@@ -2556,7 +2556,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                     choices: [], // Remove choices temporarily during the input phase
                     buttonsDisabled: false,
-                    background: './images/certificate_background.png', // Use an appropriate background for the certificate
+                    background: './images/anket.png', // Use an appropriate background for the certificate
                     characterImage: null,
                 };
             case 'certificate':
@@ -2566,9 +2566,11 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     component: <Certificate userName={userName} merdivenYolu={merdivenYolu} />,
                     choices: [], // Remove choices temporarily during the certificate phase
                     buttonsDisabled: false,
-                    background: './images/certificate_background.png', // Use an appropriate background for the certificate
+                    background: null,// Use an appropriate background for the certificate
                     characterImage: null,
                 };
+
+
             default:
                 console.warn('Unhandled target:', path);
                 return prevStory;

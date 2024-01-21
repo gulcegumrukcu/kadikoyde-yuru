@@ -42,7 +42,9 @@ function App() {
   const [merdivenYolu, setMerdivenYolu] = useState(false);
 
 
-
+  const handleYenidenReload = () => {
+    window.location.reload();
+  };
 
 
   const handleInputFormVisibility = (visibility) => {
@@ -100,15 +102,15 @@ function App() {
 
     if (health < 30) {
       return {
-        text: ['Olamaz! O kadar sağlıksızsın ki, bir kaç leylek seni alıp kaçırdı. Karşı koyamadın. Oyun bitti.'],
-        choices: [{ text: 'OK', target: 'ok' }],
-        background: './images/end.png',
+        text: ['Olamaz! O kadar sağlıksızsın ki, bir kaç leylek seni alıp kaçırdı. Karşı koyamadın. Oyun bitti .('],
+        choices: [{ text: 'BİR DAHA DENE', target: 'yeniden' }],
+        background: './images/leylek.png',
       };
     } else if (health > 80) {
       return {
-        text: ['Olamaz! Maşallahın var, çok sağlıklısın. Bu bir kaç sağlık şirketinin dikkatini çekmiş olacak ki üzerinde deney yapmak için seni kaçırdılar. Oyun bitti.'],
-        choices: [{ text: 'OK', target: 'ok' }],
-        background: './images/end.png',
+        text: ['Olamaz! Maşallahın var, çok sağlıklısın. Bu bir kaç sağlık şirketinin dikkatini çekmiş olacak ki üzerinde deney yapmak için seni kaçırdılar. Oyun bitti .('],
+        choices: [{ text: 'BİR DAHA DENE', target: 'yeniden' }],
+        background: './images/denek.png',
       };
     }
 
@@ -119,15 +121,15 @@ function App() {
 
     if (mood < 30) {
       return {
-        text: ['Olamaz! O kadar mutsuzsun ki dünyanın en küçük kemanı bu kez de senin için çalıyor... Oyun bitti.'],
-        choices: [{ text: 'OK', target: 'ok' }],
-        background: './images/end.png',
+        text: ['Olamaz! O kadar mutsuzsun ki dünyanın en küçük kemanı bu kez de senin için çalıyor... Oyun bitti .('],
+        choices: [{ text: 'BİR DAHA DENE', target: 'yeniden' }],
+        background: './images/keman.png',
       };
     } else if (mood > 80) {
       return {
-        text: ['Peki. Keyfin oldukça yerinde gibi. Sana dokunmak istemezdim.. Ancak ülkenin çan eğrisi için bu oyunun bitmesi gerek. \nAma merak etme, evine bir davul zurna yolladık, bizden. Oyun bitti.'],
-        choices: [{ text: 'OK', target: 'ok' }],
-        background: './images/end.png',
+        text: ['Peki. Keyfin oldukça yerinde gibi. Sana dokunmak istemezdim.. Ancak ülkenin çan eğrisi için bu oyunun bitmesi gerek. \nAma merak etme, evine bir davul zurna yolladık, bizden. Oyun bitti .('],
+        choices: [{ text: 'BİR DAHA DENE', target: 'yeniden' }],
+        background: './images/davul.png',
       };
     }
 
@@ -140,14 +142,14 @@ function App() {
     if (money < 30) {
       return {
         text: ['Olamaz! Parasızlıktan buraya güzel bir sonuç yazacak kişiyi işe alamadın... Oyun bitti.'],
-        choices: [{ text: 'OK', target: 'ok' }],
-        background: './images/end.png',
+        choices: [{ text: 'OK', target: 'YENİDEN DENE' }],
+        background: './images/fakir.png',
       };
     } else if (money > 80) {
       return {
         text: ['Olamaz! Evet, çok paran var. Baya fazla... Ama tam olarak bundan dolayı Kadıköyden taşındın. Artık Kadıköyde yürümek zorunda değilsin. Oyun bitti.'],
-        choices: [{ text: 'OK', target: 'ok' }],
-        background: './images/end.png',
+        choices: [{ text: 'OK', target: 'YENİDEN DENE' }],
+        background: './images/tasinma.png',
       };
     }
 
@@ -159,14 +161,14 @@ function App() {
     if (intelligence < 30) {
       return {
         text: ['Oalamz! Bu dşüük zkea ile bir aimp gbii yşaaymaa kraar vreidn... Ouyn bttii.'],
-        choices: [{ text: 'OK', target: 'ok' }],
-        background: './images/end.png',
+        choices: [{ text: 'OK', target: 'YENİDEN DENE' }],
+        background: './images/amip.png',
       };
     } else if (intelligence > 80) {
       return {
         text: ['Olamaz! Bu yüksek zekanı tutamayıp gerçek fikirlerini yaydığın için halk meydanında dayak yedin... Oyun bitti.'],
-        choices: [{ text: 'OK', target: 'ok' }],
-        background: './images/end.png',
+        choices: [{ text: 'OK', target: 'YENİDEN DENE' }],
+        background: './images/meydanDayagi.png',
       };
     }
 
@@ -191,6 +193,7 @@ function App() {
 
 
   const [showFooter, setShowFooter] = useState(true);
+
 
 
 
@@ -251,6 +254,13 @@ function App() {
     if (newStory.showInputForm) {
       setShowInputForm(true);
       return;
+    }
+
+    if (path === 'yeniden') {
+      handleYenidenReload();
+      return {
+
+      };
     }
 
     if (newStory.characterStats) {

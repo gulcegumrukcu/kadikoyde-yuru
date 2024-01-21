@@ -10,8 +10,9 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, charact
         const textArray = story.text;
         const currentTextItem = textArray[currentTextIndex];
 
-        if (currentTextItem) {
+        if (currentTextItem !== undefined) {
             const newText = currentTextItem.slice(0, animatedText.length + 1);
+
             setAnimatedText(newText);
 
             if (newText.length === currentTextItem.length) {
@@ -25,12 +26,14 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, charact
                 }, 500);
             }
         }
+        console.log('Current Text Item:', currentTextItem);
+        console.log('Animated Text:', animatedText);
     };
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             animateText();
-        }, 70);
+        }, 0);
 
         return () => clearTimeout(timeoutId);
     }, [animatedText, currentTextIndex]);
