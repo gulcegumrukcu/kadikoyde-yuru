@@ -87,11 +87,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                 window.location.reload(true);
                 return {
-
-
-
                     buttonsDisabled: true,
-
                     background: './images/end.png',
                 };
             case 'adiNeydi':
@@ -129,7 +125,6 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-
                         '“Yav işte yağmur büyümüş dolu olmuş, dolu büyümüş çatıya konmuş. Kedi içti ağaca çıktı, balta kesti suya düştü, inek içti dağa kaçtı, en sonunda yandı bitti kül oldu.” \n\nNe diyor bu adam? ',
                     ],
 
@@ -2486,7 +2481,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 return {
                     ...prevStory,
                     text: [
-                        'Kaynakçının gözü senden korkmuşa benziyor, ancak kaçmadan önce dizine bir tekme atmayı ihmal etmedi. /n/nSen ise lokmanı yedin ve mutlusun. Tatlılar da yendiğine göre hüzünlü sonumuza gidelim mi?',
+                        'Kaynakçının gözü senden korkmuşa benziyor, ancak kaçmadan önce dizine bir tekme atmayı ihmal etmedi. \n\n Sen ise lokmanı yedin ve mutlusun. Tatlılar da yendiğine göre hüzünlü sonumuza gidelim mi?',
 
                     ],
                     choices: [

@@ -142,13 +142,13 @@ function App() {
     if (money < 30) {
       return {
         text: ['Olamaz! Parasızlıktan buraya güzel bir sonuç yazacak kişiyi işe alamadın... Oyun bitti.'],
-        choices: [{ text: 'OK', target: 'YENİDEN DENE' }],
+        choices: [{ text: 'OK', target: 'yeniden' }],
         background: './images/fakir.png',
       };
     } else if (money > 80) {
       return {
         text: ['Olamaz! Evet, çok paran var. Baya fazla... Ama tam olarak bundan dolayı Kadıköyden taşındın. Artık Kadıköyde yürümek zorunda değilsin. Oyun bitti.'],
-        choices: [{ text: 'OK', target: 'YENİDEN DENE' }],
+        choices: [{ text: 'OK', target: 'yeniden' }],
         background: './images/tasinma.png',
       };
     }
@@ -161,13 +161,13 @@ function App() {
     if (intelligence < 30) {
       return {
         text: ['Oalamz! Bu dşüük zkea ile bir aimp gbii yşaaymaa kraar vreidn... Ouyn bttii.'],
-        choices: [{ text: 'OK', target: 'YENİDEN DENE' }],
+        choices: [{ text: 'OK', target: 'yeniden' }],
         background: './images/amip.png',
       };
     } else if (intelligence > 80) {
       return {
         text: ['Olamaz! Bu yüksek zekanı tutamayıp gerçek fikirlerini yaydığın için halk meydanında dayak yedin... Oyun bitti.'],
-        choices: [{ text: 'OK', target: 'YENİDEN DENE' }],
+        choices: [{ text: 'OK', target: 'yeniden' }],
         background: './images/meydanDayagi.png',
       };
     }
@@ -389,7 +389,7 @@ function App() {
                     ...characterImage,
                     width: '100%',
                     height: '100%',
-                    maxWidth: window.innerWidth < mobileMaxWidth ? '63%' : '100%',
+                    maxWidth: window.innerWidth < mobileMaxWidth ? '90%' : '100%',
                   }}
                 />
               )}

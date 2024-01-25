@@ -35,11 +35,11 @@ const Menu = ({ isPopupOpen, setIsPopupOpen }) => {
                             </button>
 
                             <button className="block border border-[#f5fdc3] text-white p-8">
-                                CREDİTS
+                                CREDITS
                             </button>
                             <button className="block border border-[#f5fdc3] text-white p-8">
                                 <a href="mailto:gumrukcugulce@gmail.com" >
-                                    MAİL
+                                    MAIL
                                 </a>
                             </button>
 

@@ -18,39 +18,40 @@ const Certificate = ({ userName, merdivenYolu }) => {
                     <img
                         src={certificateImage}
                         alt="Certificate Background"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-center md:object-cover"
+                        style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                     />
                 </div>
 
                 <div className="relative z-10  text-black text-center">
-                    <div className='w-[35%] mx-auto mb-8 flex '>
+                    <div className='w-[80%] mx-auto mb-8 flex md:w-[35%]'>
                         <img src={logo} alt="logo" />
                     </div>
-                    <h2 className="font-cursive text-6xl font-bold  underline inline-block">
+                    <h2 className="font-cursive text-2xl md:text-4xl lg:text-5xl font-bold underline inline-block">
                         {merdivenYolu ? 'Merdiven Buldun!' : 'Kadıköy\'de Yürüdün!'}
                     </h2>
 
                     <img className='w-[15%] mx-auto ' src={sus} alt="sus" />
 
-                    <p className="text-xl font-kanit -my-4 mb-4">Sevinç içinde belirtmek isteriz ki,</p>
-                    <h3 className="my-4 mb-6 font-cursive text-6xl font-bold  underline inline-block">
+                    <p className="text-md md:text-md lg:text-xl font-kanit  md:my-2 lg:mb-2">Sevinç içinde belirtmek isteriz ki,</p>
+                    <h3 className=" md:my-4 my-12 lg:mb-6 font-cursive text-4xl lg:text-5xl font-bold underline inline-block">
                         {userName}
                     </h3>
-                    <p className="text-xl mt-4 font-kanit ">
+                    <p className="text-md md:text-md lg:text-xl font-kanit  md:my-2 lg:mb-2">
                         {merdivenYolu
                             ? 'Başarıyla 7 metrelik merdivenini bularak oyunu bitirdi!'
                             : 'Bu sefer de böyle Kadıköy\'de yürüdü.'}
                     </p>
 
                     {!isDownloaded && (
-                        <div id="buttons-container" className='fixed bottom-0 mb-4 left-0 flex flex-row justify-evenly w-full gap-[75%]'>
+                        <div id="buttons-container" className='fixed bottom-0 pb-4 left-0 flex flex-row justify-evenly bg-black items-center w-full gap-[5%]'>
                             <button
-                                className="-mt-4 text-[#d8d8d8] border bg-black  text-md  border-[#f5fdc3] hover:bg-opacity-10 hover:border-black hover:text-[#420400]  font-kanit font-medium p-[10px]"
+                                className="-mt-2 md:-mt-4 text-[#d8d8d8] border bg-black text-md md:text-lg lg:text-xl border-[#f5fdc3]  hover:border-black hover:text-[#420400] font-kanit font-medium p-[8px] md:p-[10px] lg:p-[12px] hover:bg-[#f5fdc3]"
                                 onClick={() => window.location.reload()}
                             >
                                 YENİDEN OYNA
                             </button>
-                            <div className="-mt-4  text-[#d8d8d8] border bg-black text-md border-[#f5fdc3] hover:bg-opacity-10 hover:border-black hover:text-[#420400]  font-kanit font-medium p-[10px]">
+                            <div className="-mt-2 md:-mt-4 text-[#d8d8d8] border bg-black text-md md:text-lg lg:text-xl border-[#f5fdc3]  hover:border-black hover:text-[#420400] font-kanit font-medium p-[8px] md:p-[10px] lg:p-[12px] hover:bg-[#f5fdc3]">
                                 <DownloadPageButton onDownloadComplete={handleDownloadComplete} />
                             </div>
                         </div>
