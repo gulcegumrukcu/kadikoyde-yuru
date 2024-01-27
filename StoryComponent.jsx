@@ -388,7 +388,6 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     ...prevStory,
                     text: [
                         'Sokağa çıktın ve vazgeçmek için çok geç olduğunun farkındasın. \n\nNalbur sormak için gördüğün ilk tekele girmek üzereyken bir dilenci yanında bitti. \n\n“Çocuğuma şuradan bir tavuk alabilir misin?”',
-
                     ],
 
                     choices: [
