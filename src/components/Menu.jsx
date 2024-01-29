@@ -1,23 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
+import Credits from './Credits';
 
 const Menu = ({ isPopupOpen, setIsPopupOpen }) => {
-    const handlePopupToggle = () => {
+    const [showCredits, setShowCredits] = useState(false);
 
+    const handlePopupToggle = () => {
         setIsPopupOpen((prevIsPopupOpen) => !prevIsPopupOpen);
+        setShowCredits(false); // Close credits when opening the menu
     };
 
     const handleRestart = () => {
         setIsPopupOpen(false);
-        window.location.reload(); // Refresh the page
+        window.location.reload();
     };
 
-    useEffect(() => {
-
-    }, [isPopupOpen]);
+    const handleShowCredits = () => {
+        setIsPopupOpen(false); // Close the menu first
+        setShowCredits(true); // Show the credits after closing the menu
+    };
 
     return (
         <>
-            <img src="/images/menu.svg" onClick={handlePopupToggle} alt="Open Menu" className="w-8 h-8 mt-1 cursor-pointer" />
+            <img
+                src="/images/menu.svg"
+                onClick={handlePopupToggle}
+                alt="Open Menu"
+                className="w-8 h-8 mt-1 cursor-pointer"
+            />
 
             {isPopupOpen && (
                 <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-50 flex items-center justify-center">
@@ -34,20 +43,19 @@ const Menu = ({ isPopupOpen, setIsPopupOpen }) => {
                                 YENİDEN BAŞLA
                             </button>
 
-                            <button className="block border border-[#f5fdc3] text-white p-8">
+                            <button className="block border border-[#f5fdc3] text-white p-8" onClick={handleShowCredits}>
                                 CREDITS
                             </button>
+
                             <button className="block border border-[#f5fdc3] text-white p-8">
-                                <a href="mailto:gumrukcugulce@gmail.com" >
-                                    MAIL
-                                </a>
+                                <a href="mailto:gumrukcugulce@gmail.com">MAIL</a>
                             </button>
-
-
                         </div>
                     </div>
                 </div>
             )}
+
+            {showCredits && <Credits setIsPopupOpen={setIsPopupOpen} />}
         </>
     );
 };
