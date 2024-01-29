@@ -45,13 +45,7 @@ function EntrancePage({ onReady }) {
 
     return (
         <div className='min-h-screen flex flex-col items-center justify-center bg-black text-white'>
-            <div className='fixed bottom-0 right-0 bg-black flex-row gap-4 rounded-none p-2 text-white flex mx-auto'>
-                <SoundControl
-                    onToggleSound={handleToggleSound}
-                    isMuted={isMuted}
-                />
-                <Menu setIsPopupOpen={setIsPopupOpen} onTogglePopup={handleTogglePopup} isPopupOpen={isPopupOpen} />
-            </div>
+
             <video autoPlay muted loop className='w-[100%]'>
                 <source src={logo} type='video/mp4' />
             </video>
@@ -66,7 +60,13 @@ function EntrancePage({ onReady }) {
                     </button>
                 )}
             </div>
-
+            <div className='fixed flex bottom-0 right-0  p-4 gap-2 bg-black '>
+                <SoundControl
+                    onToggleSound={handleToggleSound}
+                    isMuted={isMuted}
+                />
+                <Menu setIsPopupOpen={setIsPopupOpen} onTogglePopup={handleTogglePopup} isPopupOpen={isPopupOpen} />
+            </div>
             {/* Add the Sound component for background music */}
             <Sound audioSrc={music} isMuted={isMuted} loop />
         </div>

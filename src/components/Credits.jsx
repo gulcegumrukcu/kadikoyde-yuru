@@ -13,7 +13,7 @@ const Credits = ({ setIsPopupOpen }) => {
     return (
         // Render the component only if showCredits is true
         showCredits && (
-            <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-50 flex items-center justify-center">
+            <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-20 z-50 flex items-center justify-center">
                 <div className="bg-black bg-opacity-90 z-50 p-8 rounded-md text-white w-full max-w-screen-md mx-auto relative">
                     <button
                         className="absolute top-2 right-2 text-white cursor-pointer"
