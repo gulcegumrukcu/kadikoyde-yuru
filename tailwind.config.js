@@ -9,6 +9,7 @@ export default {
       fontFamily: {
         'cursive': ['Homemade Apple', 'cursive'],
         'kanit': ['Kanit', 'sans-serif'],
+        'press-start': ['"Press Start 2P"', 'cursive'], // Wrap the font name in double quotes
       },
     },
   },

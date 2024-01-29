@@ -30,7 +30,7 @@ const Menu = ({ isPopupOpen, setIsPopupOpen }) => {
 
             {isPopupOpen && (
                 <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-50 flex items-center justify-center">
-                    <div className="bg-black bg-opacity-90 z-50 p-8 rounded-md text-white w-auto mx-auto relative">
+                    <div className="bg-black bg-opacity-90 z-50 p-8 gap-2 rounded-md text-white w-auto mx-auto relative">
                         <button
                             className="absolute top-2 right-2 text-white cursor-pointer"
                             onClick={() => setIsPopupOpen(false)}
