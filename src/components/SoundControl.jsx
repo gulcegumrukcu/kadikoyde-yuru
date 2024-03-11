@@ -1,4 +1,8 @@
-const SoundControl = ({ onToggleSound, isMuted }) => {
+import {useMainContext} from "../context/main-context.jsx";
+
+const SoundControl = ({ onToggleSound }) => {
+
+    const {isMuted} = useMainContext()
     const handleToggleSound = () => {
 
         onToggleSound(!isMuted); // Toggle the current state

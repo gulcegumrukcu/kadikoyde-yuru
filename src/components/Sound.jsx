@@ -1,8 +1,11 @@
 // Sound.jsx
 
 import React, { useEffect, useRef, useState } from 'react';
+import {useMainContext} from "../context/main-context.jsx";
 
-const Sound = ({ audioSrc, isMuted, loop }) => {
+const Sound = ({ audioSrc, loop }) => {
+
+    const {isMuted} = useMainContext();
     const audioRef = useRef(null);
     const isMounted = useRef(true);
 

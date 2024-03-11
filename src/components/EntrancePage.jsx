@@ -6,13 +6,15 @@ import music from '../audio/music.mp3';
 import logo from '/images/logo.mp4';
 import Menu from './Menu';
 import SoundControl from './SoundControl';
-import Sound from './Sound'; // Import the Sound component
+import Sound from './Sound';
+import {useMainContext} from "../context/main-context.jsx"; // Import the Sound component
 
 function EntrancePage({ onReady }) {
+
     const [showButton, setShowButton] = useState(false);
     const audio = new Audio(click);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [isMuted, setIsMuted] = useState(false);
+    const {isMuted, setIsMuted} = useMainContext();
 
     // Declare the backgroundMusic variable
     const backgroundMusic = new Audio(music);
@@ -35,13 +37,10 @@ function EntrancePage({ onReady }) {
         setIsPopupOpen((prevIsPopupOpen) => !prevIsPopupOpen);
     };
 
-
     const handleToggleSound = () => {
         setIsMuted((prevIsMuted) => !prevIsMuted);
         backgroundMusic.muted = !backgroundMusic.muted; // Toggle the muted state
     };
-
-
 
     return (
         <div className='min-h-screen flex flex-col items-center justify-center bg-black text-white'>
