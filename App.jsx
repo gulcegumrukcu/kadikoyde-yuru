@@ -216,7 +216,7 @@ function App() {
     setShowCertificate(true);
     setShowInputForm(false);
     setMerdivenYolu(merdivenYolu);
-    onInputSubmit(userName, merdivenYolu);
+
 
   };
 

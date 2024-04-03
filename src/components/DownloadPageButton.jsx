@@ -9,17 +9,19 @@ const DownloadPageButton = () => {
         const buttonsContainer = document.getElementById('buttons-container');
         buttonsContainer.style.visibility = 'hidden';
 
-        const page = document.getElementById('root');
+        const certificateElement = document.getElementById('certificate-container'); // Make sure this is the ID of your certificate element
 
-        html2canvas(page).then((canvas) => {
+        html2canvas(certificateElement, {
+            scale: window.devicePixelRatio, // This will help in retaining the quality on high-DPI devices
+            useCORS: true, // This is to handle external images if any on the canvas, might not be necessary in your case
+        }).then((canvas) => {
             const link = document.createElement('a');
             link.download = 'certificate.png';
             link.href = canvas.toDataURL('image/png');
-            document.body.appendChild(link);
             link.click();
-            document.body.removeChild(link);
 
-            // Reset visibility after the download is complete
+            // Clean up
+            link.remove();
             buttonsContainer.style.visibility = 'visible';
         });
     };

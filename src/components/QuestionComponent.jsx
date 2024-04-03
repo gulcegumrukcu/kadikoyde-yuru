@@ -32,7 +32,7 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, charact
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             animateText();
-        }, 0);
+        }, 60);
 
         return () => clearTimeout(timeoutId);
     }, [animatedText, currentTextIndex]);
