@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import html2canvas from 'html2canvas';
 
-const DownloadPageButton = () => {
+const DownloadPageButton = ({ onDownloadComplete, handleShare }) => {
     const [loading, setLoading] = useState(false);
 
     const handleDownload = () => {
@@ -25,6 +25,9 @@ const DownloadPageButton = () => {
             buttonsContainer.style.visibility = 'visible';
         });
     };
+
+
+
 
 
     return (

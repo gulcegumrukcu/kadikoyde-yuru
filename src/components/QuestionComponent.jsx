@@ -29,7 +29,7 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, charact
     };
 
     useEffect(() => {
-        console.log('question component, Typewriter Enabled:', typewriterEnabled);
+
 
         let timeoutId;
 

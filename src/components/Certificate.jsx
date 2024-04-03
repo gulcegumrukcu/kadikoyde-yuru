@@ -4,6 +4,7 @@ import logo from '/images/logo.png';
 import sertifika from '/images/sertifika.png';
 import sertifikaVertical from '/images/sertifika-vertical.png';
 import sus from '/images/sus.png';
+import html2canvas from 'html2canvas'; // Import html2canvas library
 
 const Certificate = ({ userName, merdivenYolu }) => {
     const [isDownloaded, setDownloaded] = useState(false);
@@ -20,6 +21,31 @@ const Certificate = ({ userName, merdivenYolu }) => {
     const handleDownloadComplete = () => {
         setDownloaded(true);
     };
+
+    const handleShare = async () => {
+        try {
+            const certificateElement = document.getElementById('certificate-container');
+            const canvas = await html2canvas(certificateElement, { scale: 2 });
+
+            const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+            const file = new File([blob], 'certificate.png', { type: 'image/png' });
+
+            if (navigator.share) {
+                await navigator.share({
+                    files: [file],
+                    title: 'Certificate',
+                    text: 'Check out my certificate!',
+                });
+            } else {
+                throw new Error('Web Share API not supported');
+            }
+        } catch (error) {
+            console.error('Error sharing:', error);
+            // Handle error 
+            alert('Tarayıcınız hasetlik yaparak bu dosyayı paylaşmayı desteklenmiyor. Sertifikayı manuel indirip paylaşabilirsiniz.');
+        }
+    };
+
 
     return (
         <div id="certificate-wrapper" style={{ overflow: 'hidden' }}>
@@ -64,8 +90,11 @@ const Certificate = ({ userName, merdivenYolu }) => {
                         YENİDEN OYNA
                     </button>
                     <div className="-mt-2 md:-mt-4 text-[#d8d8d8] border bg-black text-md md:text-lg lg:text-xl border-[#f5fdc3]  hover:border-black hover:text-[#420400] font-kanit font-medium p-[8px] md:p-[10px] lg:p-[12px] hover:bg-[#f5fdc3]">
-                        <DownloadPageButton onDownloadComplete={handleDownloadComplete} />
+                        <DownloadPageButton onDownloadComplete={handleDownloadComplete} handleShare={handleShare} />
                     </div>
+                    <button className="-mt-2 md:-mt-4 text-[#d8d8d8] border bg-black text-md md:text-lg lg:text-xl border-[#f5fdc3]  hover:border-black hover:text-[#420400] font-kanit font-medium p-[8px] md:p-[10px] lg:p-[12px] hover:bg-[#f5fdc3]" onClick={handleShare}>
+                        PAYLAŞ
+                    </button>
                 </div>
             )}
         </div>
