@@ -13,7 +13,6 @@ import UserInputForm from './src/components/UserInputForm';
 import Certificate from './src/components/Certificate';
 import StoryComponent from './StoryComponent';
 import Menu from './src/components/Menu';
-import {useMainContext} from "./src/context/main-context.jsx";
 
 
 
@@ -52,7 +51,7 @@ function App() {
     setShowInputForm(visibility);
   };
 
-  const {isMuted, setIsMuted} = useMainContext();
+  const [isMuted, setIsMuted] = useState(false);
   const initialStats = {
     health: generateRandomStat(),
     money: generateRandomStat(),

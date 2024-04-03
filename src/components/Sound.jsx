@@ -1,14 +1,11 @@
 // Sound.jsx
 
 import React, { useEffect, useRef, useState } from 'react';
-import {useMainContext} from "../context/main-context.jsx";
 
 const Sound = ({ audioSrc, loop }) => {
-
-    const {isMuted} = useMainContext();
     const audioRef = useRef(null);
     const isMounted = useRef(true);
-
+    const [isMuted, setIsMuted] = useState(false);
     useEffect(() => {
         // Set the mounted flag to true when the component is mounted
         isMounted.current = true;

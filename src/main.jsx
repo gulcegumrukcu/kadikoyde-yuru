@@ -4,12 +4,11 @@ import { Provider } from 'react-redux'; // Import the Provider
 import store from './store'; // Adjust the path accordingly
 import App from '../App';
 import './styles/index.css';
-import {MainProvider} from "./context/main-context.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <MainProvider>
-        <App />
-    </MainProvider>
+
+    <App />
+
   </Provider>,
 );
