@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ChoiceButton from './ChoiceButton';
 
-const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, characterStats, setShowInputForm }) => {
+const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, characterStats, setShowInputForm, typewriterEnabled }) => {
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
     const [animatedText, setAnimatedText] = useState([]);
     const [textAnimationCompleted, setTextAnimationCompleted] = useState(false);
@@ -17,31 +17,37 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, charact
 
             if (newText.length === currentTextItem.length) {
                 setTimeout(() => {
-                    if (currentTextIndex + 1 === textArray.length) {
-                        setTextAnimationCompleted(true);
-                    } else {
+                    if (currentTextIndex + 1 < textArray.length) {
                         setCurrentTextIndex((prevIndex) => prevIndex + 1);
                         setAnimatedText([]);
+                    } else {
+                        setTextAnimationCompleted(true);
                     }
-                }, 500);
+                }, typewriterEnabled ? 500 : 0);
             }
         }
-
     };
 
     useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            animateText();
-        }, 60);
+        console.log('question component, Typewriter Enabled:', typewriterEnabled);
+
+        let timeoutId;
+
+        if (typewriterEnabled) {
+            timeoutId = setTimeout(() => {
+                animateText();
+            }, 60);
+        } else {
+            clearTimeout(timeoutId);
+            if (animatedText.length < story.text[currentTextIndex].length) {
+                setAnimatedText(story.text[currentTextIndex]);
+            } else {
+                setTextAnimationCompleted(true);
+            }
+        }
 
         return () => clearTimeout(timeoutId);
-    }, [animatedText, currentTextIndex]);
-
-    useEffect(() => {
-        if (currentTextIndex === story.text.length) {
-            setTextAnimationCompleted(true);
-        }
-    }, [animatedText, currentTextIndex, story.text]);
+    }, [currentTextIndex, animatedText, typewriterEnabled, story]);
 
     useEffect(() => {
         setAnimatedText([]);
@@ -50,7 +56,6 @@ const QuestionComponent = ({ story, handleChoice, buttonsContainerStyle, charact
     }, [story]);
 
     const onChoiceClick = (target) => {
-        // Make sure to update the stats
         if (target === 'input') {
             setShowInputForm(true);
         } else {

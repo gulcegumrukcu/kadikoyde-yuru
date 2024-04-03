@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Credits from './Credits';
 
-const Menu = ({ isPopupOpen, setIsPopupOpen }) => {
+const Menu = ({ isPopupOpen, setIsPopupOpen, setTypewriterEnabled, typewriterEnabled }) => {
     const [showCredits, setShowCredits] = useState(false);
 
     const handlePopupToggle = () => {
@@ -17,6 +17,10 @@ const Menu = ({ isPopupOpen, setIsPopupOpen }) => {
     const handleShowCredits = () => {
         setIsPopupOpen(false); // Close the menu first
         setShowCredits(true); // Show the credits after closing the menu
+    };
+
+    const handleTypewriterToggle = () => {
+        setTypewriterEnabled((prevEnabled) => !prevEnabled);
     };
 
     return (
@@ -50,6 +54,25 @@ const Menu = ({ isPopupOpen, setIsPopupOpen }) => {
                             <button className="block border border-[#f5fdc3] text-white p-8">
                                 <a href="mailto:gumrukcugulce@gmail.com">MAIL</a>
                             </button>
+
+                            <div className="flex items-center">
+                                <label htmlFor="typewriterToggle" className="text-white mr-2">Typewriter Effect</label>
+                                <div className="relative">
+                                    <input
+                                        id="typewriterToggle"
+                                        type="checkbox"
+                                        checked={typewriterEnabled}
+                                        onChange={handleTypewriterToggle}
+                                        className="sr-only"
+                                    />
+                                    <div
+                                        className={`w-12 h-6 bg-gray-300 rounded-full flex items-center px-1 ${typewriterEnabled ? 'bg-green-500 justify-end' : 'justify-start'}`}
+                                        onClick={handleTypewriterToggle}
+                                    >
+                                        <div className="w-5 h-5 bg-white rounded-full shadow-md"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

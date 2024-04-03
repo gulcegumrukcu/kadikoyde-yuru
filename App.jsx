@@ -40,7 +40,7 @@ function App() {
   const [showInputForm, setShowInputForm] = useState(false);
 
   const [merdivenYolu, setMerdivenYolu] = useState(false);
-
+  const [typewriterEnabled, setTypewriterEnabled] = useState(true);
 
   const handleYenidenReload = () => {
     window.location.reload();
@@ -406,12 +406,13 @@ function App() {
               showInputForm={showInputForm}
               handleInputFormVisibility={handleInputFormVisibility}
               setShowInputForm={setShowInputForm}
+              typewriterEnabled={typewriterEnabled}
             />
 
 
             <div className='fixed bottom-0 right-0 bg-black flex-row gap-4 rounded-none p-2 text-white flex mx-auto'>
               <SoundControl onToggleSound={handleToggleSound} isMuted={isMuted} />
-              <Menu onMenuClick={handleMenuClick} isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
+              <Menu onMenuClick={handleMenuClick} setTypewriterEnabled={setTypewriterEnabled} typewriterEnabled={typewriterEnabled} isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
 
 
             </div>
