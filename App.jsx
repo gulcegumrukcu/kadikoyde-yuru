@@ -313,6 +313,7 @@ function App() {
     minHeight: showFooter ? 'calc(100vh - 160px)' : '100vh',
     position: 'relative',
     fontFamily: 'Kanit, sans-serif',
+
   };
 
   const characterContainerStyle = {
@@ -328,7 +329,7 @@ function App() {
     display: 'flex',
     flexDirection: 'row',
     margin: 'auto',
-    width: '60%',
+    width: '100%',
     justifyContent: 'space-around',
 
 
@@ -342,7 +343,9 @@ function App() {
 
   };
 
-  const mobileMaxWidth = 4100;
+
+
+
 
 
 
@@ -389,7 +392,7 @@ function App() {
                     ...characterImage,
                     width: '100%',
                     height: '100%',
-                    maxWidth: window.innerWidth < mobileMaxWidth ? '90%' : '100%',
+                    maxWidth: window.innerWidth < 768 ? '60%' : '100%',
                   }}
                 />
               )}

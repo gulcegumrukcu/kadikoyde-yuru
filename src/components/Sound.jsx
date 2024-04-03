@@ -2,10 +2,10 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 
-const Sound = ({ audioSrc, loop }) => {
+const Sound = ({ audioSrc, isMuted, loop }) => {
     const audioRef = useRef(null);
     const isMounted = useRef(true);
-    const [isMuted, setIsMuted] = useState(false);
+
     useEffect(() => {
         // Set the mounted flag to true when the component is mounted
         isMounted.current = true;
