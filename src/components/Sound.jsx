@@ -1,5 +1,3 @@
-// Sound.jsx
-
 import React, { useEffect, useRef, useState } from 'react';
 
 const Sound = ({ audioSrc, isMuted, loop }) => {
@@ -34,6 +32,12 @@ const Sound = ({ audioSrc, isMuted, loop }) => {
                     // For example, you might want to show a "paused" UI.
                     console.error('Error playing audio:', error);
                 }
+            } else {
+                // Pause the audio if it's muted or the component is unmounted
+                if (audioRef.current) {
+                    audioRef.current.pause();
+                    audioRef.current.currentTime = 0;
+                }
             }
         };
 
@@ -41,7 +45,7 @@ const Sound = ({ audioSrc, isMuted, loop }) => {
         playAudio();
     }, [isMuted, audioSrc]);
 
-    return <audio ref={audioRef} src={audioSrc} muted={isMuted} loop={loop} />;
+    return <audio ref={audioRef} src={audioSrc} loop={loop} />;
 };
 
 export default Sound;

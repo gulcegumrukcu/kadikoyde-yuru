@@ -1,15 +1,17 @@
-// utils.js
-import correct from '../audio/correct.mp3'
-import wrong from '../audio/wrong.mp3'
+
 import animation from '../audio/animation.mp3'
+
 import Sound from './Sound'
+import { useState } from 'react'; // Import useState hook
 
 
-
-const correctAudio = new Audio(correct)
-const wrongAudio = new Audio(wrong)
 const animationAudio = new Audio(animation)
 
+const useSoundState = () => {
+    const [isMuted, setIsMuted] = useState(false); // Initialize isMuted state
+
+    return { isMuted, setIsMuted };
+};
 
 export const createInitialAlertText = (amount, increase) => {
     const backgroundColor = increase ? 'green' : 'red';
@@ -24,7 +26,6 @@ export const createInitialAlertText = (amount, increase) => {
     return { jsxAlertText, stringAlertText };
 };
 
-
 let backgrounds = [];
 
 const setBackground = (color) => {
@@ -33,10 +34,24 @@ const setBackground = (color) => {
 
 const getBackground = () => backgrounds.pop() || '';
 
-const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimation, statIntelligenceChangeRef, increase = true, delay = 0) => {
+const handleAnimationSound = (audio, isMuted) => {
+
+    if (!isMuted) {
+        audio.play()
+
+    } else {
+
+        audio.pause();
+        audio.currentTime = 0; // Reset the audio to the start if muted
+    }
+};
+
+
+
+const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimation, statIntelligenceChangeRef, increase = true, delay = 0, isMuted) => {
     const backgroundColor = increase ? 'green' : 'red';
     setBackground(backgroundColor); // Correct assignment
-    const audioToPlay = animationAudio
+
     const initialAlertText = amount !== 0
         ? <span style={{ backgroundColor, padding: '6px', display: 'flex', fontFamily: 'Kanit, sans-serif !important', }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Zeka`}</span>
         : '';
@@ -46,7 +61,7 @@ const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimat
     }
 
     const clampedAmount = 10;
-    audioToPlay.play();
+    animationAudio.play();
     setTimeout(() => {
         const intelligenceChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_INTELLIGENCE', payload: intelligenceChange });
@@ -56,15 +71,14 @@ const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimat
 
     return () => {
         setShowIntelligenceAnimation(increase ? clampedAmount : 0);
-
+        handleAnimationSound(animationAudio, isMuted);
     };
 };
 
-const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodChangeRef, increase = true, delay = 0) => {
-
+const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodChangeRef, increase = true, delay = 0, isMuted) => {
     const backgroundColor = increase ? 'green' : 'red';
     setBackground(backgroundColor); // Correct assignment
-    const audioToPlay = animationAudio;
+
     const initialAlertText = amount !== 0
         ? <span style={{ backgroundColor, padding: '6px', display: 'flex', fontFamily: 'Kanit, sans-serif !important', fontFamily: 'Kanit, sans-serif !important', }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Ruh Hali`}</span>
         : '';
@@ -74,7 +88,7 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodCha
     }
 
     const clampedAmount = 10;
-    audioToPlay.play();
+    animationAudio.play();
     setTimeout(() => {
         const moodChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_MOOD', payload: moodChange });
@@ -84,14 +98,14 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodCha
 
     return () => {
         setShowMoodAnimation(increase ? clampedAmount : 0);
-
+        handleAnimationSound(animationAudio, isMuted);
     };
 };
 
-const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, statMoneyChangeRef, increase = true, delay = 0) => {
+const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, statMoneyChangeRef, increase = true, delay = 0, isMuted) => {
     const backgroundColor = increase ? 'green' : 'red';
     setBackground(backgroundColor);
-    const audioToPlay = animationAudio
+
     const initialAlertText = amount !== 0 ? (
         <span style={{ backgroundColor, padding: '6px', display: 'flex', fontFamily: 'Kanit, sans-serif !important', fontFamily: 'Kanit, sans-serif !important', }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Para`}</span>
     ) : '';
@@ -101,7 +115,7 @@ const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, statMoney
     }
 
     const clampedAmount = 10;
-    audioToPlay.play();
+    animationAudio.play();
     setTimeout(() => {
         const moneyChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_MONEY', payload: moneyChange });
@@ -111,14 +125,14 @@ const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, statMoney
 
     return () => {
         setShowMoneyAnimation(increase ? clampedAmount : 0);
-
+        handleAnimationSound(animationAudio, isMuted);
 
     };
 };
-const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, statHealthChangeRef, increase = true, delay = 0) => {
+const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, statHealthChangeRef, increase = true, delay = 0, isMuted) => {
     const backgroundColor = increase ? 'green' : 'red';
     setBackground(backgroundColor); // Correct assignment
-    const audioToPlay = animationAudio;
+
     const initialAlertText = amount !== 0
         ? <span style={{ backgroundColor, padding: '6px', display: 'flex', fontFamily: 'Kanit, sans-serif !important', }}>{`${increase ? '+' : '-'}${Math.abs(amount)} Sağlık`}</span>
         : '';
@@ -128,7 +142,7 @@ const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, statHea
     }
 
     const clampedAmount = 10;
-    audioToPlay.play();
+    animationAudio.play();
     setTimeout(() => {
         const healthChange = increase ? Math.floor(clampedAmount) : Math.ceil(clampedAmount);
         dispatch({ type: 'CHANGE_HEALTH', payload: healthChange });
@@ -138,13 +152,14 @@ const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, statHea
 
     return () => {
         setShowHealthAnimation(increase ? clampedAmount : 0);
-
+        handleAnimationSound(animationAudio, isMuted);
     };
 };
 
 async function handleIntelligenceCheckAnimation(dispatch, intelligenceCheckResult, setShowIntelligenceCheckAnimation,) {
     const backgroundColor = intelligenceCheckResult ? 'green' : 'red';
     const audioToPlay = intelligenceCheckResult ? correctAudio : wrongAudio;
+    handleAnimationSound(audioToPlay, isMuted);
     const initialAlertText = intelligenceCheckResult
         ? <span style={{ backgroundColor, padding: '6px', display: 'flex', fontFamily: 'Kanit, sans-serif !important', }}>Zeka Kontrol Başarılı!</span>
         : <span style={{ backgroundColor, padding: '6px', display: 'flex', fontFamily: 'Kanit, sans-serif !important', }}>Zeka Kontrol Başarısız!</span>;
@@ -158,7 +173,6 @@ async function handleIntelligenceCheckAnimation(dispatch, intelligenceCheckResul
         },
     });
 
-    audioToPlay.play();
 
     return new Promise((resolve) => {
         setTimeout(() => {
@@ -167,9 +181,6 @@ async function handleIntelligenceCheckAnimation(dispatch, intelligenceCheckResul
         }, 3000);
     });
 }
-
-
-
 
 export default {
     createInitialAlertText,
@@ -180,6 +191,7 @@ export default {
     handleIntelligenceCheckAnimation,
     setBackground,
     getBackground,
+    useSoundState,
     Sound,
+    handleAnimationSound,
 };
-

@@ -21,7 +21,7 @@ const Credits = ({ setIsPopupOpen }) => {
                         <img src="/images/close.svg" alt="Close Credits" className="w-8 h-8" />
                     </button>
 
-                    <div className="mx-auto justify-center grid gap-6 text-xl font-normal mt-8">
+                    <div className="mx-auto justify-center grid gap-6 text-xl font-normal mt-2">
                         <div className='font-press-start'>
                             <p className='font-kanit'>fikir/kod/görseller/ses</p>
                             <div className="text-[#f5fdc3] font-bold">gülce g.</div>
@@ -34,6 +34,7 @@ const Credits = ({ setIsPopupOpen }) => {
                             <p className='font-kanit'>tam destek</p>
                             <div className="text-[#f5fdc3] font-bold">alper ü.</div>
                             <div className="text-[#f5fdc3] font-bold">pelin t.</div>
+                            <div className="text-[#f5fdc3] font-bold">tayfun e.</div>
                         </div>
                     </div>
                 </div>

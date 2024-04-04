@@ -60,10 +60,10 @@ const Certificate = ({ userName, merdivenYolu }) => {
                 </div>
 
                 <div className="relative z-10 text-black text-center">
-                    <div className="w-[80%] mx-auto mb-8 flex md:w-[35%]">
+                    <div className="w-[60%] mx-auto mb-8 flex md:w-[25%]">
                         <img src={logo} alt="logo" />
                     </div>
-                    <h2 className="font-cursive text-2xl md:text-4xl lg:text-5xl font-bold underline inline-block">
+                    <h2 className="font-cursive text-xl md:text-2xl lg:text-4xl font-bold underline inline-block">
                         {merdivenYolu ? 'Merdiven Buldun!' : 'Kadıköy\'de Yürüdün!'}
                     </h2>
 
@@ -78,6 +78,15 @@ const Certificate = ({ userName, merdivenYolu }) => {
                             ? 'Başarıyla 7 metrelik merdivenini bularak oyunu bitirdi!'
                             : 'Bu sefer de böyle Kadıköy\'de yürüdü.'}
                     </p>
+                    <h5 className="mt-2 text-md lg:text-lg inline-block mr-2">
+                        by
+                    </h5>
+                    <h4 className="mt-2 font-cursive text-lg lg:text-xl font-bold underline inline-block">
+                        @gulchx
+                    </h4>
+                    <h5 className="mt-2 text-md lg:text-lg inline-block ml-2">
+                        &lt;3
+                    </h5>
                 </div>
             </div>
 

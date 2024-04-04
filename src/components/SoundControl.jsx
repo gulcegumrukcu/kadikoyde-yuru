@@ -1,8 +1,7 @@
+import React from 'react';
+
 const SoundControl = ({ onToggleSound, isMuted }) => {
-
-
     const handleToggleSound = () => {
-
         onToggleSound(!isMuted); // Toggle the current state
     };
 

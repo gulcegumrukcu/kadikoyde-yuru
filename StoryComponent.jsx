@@ -54,6 +54,7 @@ import teyze2Audio from './src/audio/storyici/teyze2.mp3';
 import teyze3Audio from './src/audio/storyici/teyze3.mp3';
 import hehIsteAudio from './src/audio/storyici/hehIste.mp3';
 import kornaAudio from './src/audio/storyici/korna.mp3';
+import animation from './src/audio/animation.mp3';
 import kornasizAudio from './src/audio/storyici/kornasiz.mp3';
 import catiSuAudio from './src/audio/storyici/catiSu.mp3';
 import yagmurBuyumusAudio from './src/audio/storyici/yagmurBuyumus.mp3';
@@ -63,7 +64,7 @@ import notAudio from './src/audio/storyici/not.mp3';
 import UserInputForm from './src/components/UserInputForm';
 import Certificate from './src/components/Certificate';
 
-const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, setShowIntelligenceCheckAnimation, setShowMoneyAnimation, setShowMoodAnimation, setShowIntelligenceAnimation, newMoodIncrease, newHealthIncrease, newHealthDecrease, newIntelligenceDecrease, newMoneyDecrease, newMoodDecrease, newIntelligenceIncrease, newMoneyIncrease, statHealthChangeRef, statIntelligenceChangeRef, statMoneyChangeRef, statMoodChangeRef, }) => {
+const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, setShowIntelligenceCheckAnimation, setShowMoneyAnimation, setShowMoodAnimation, setShowIntelligenceAnimation, newMoodIncrease, newHealthIncrease, newHealthDecrease, newIntelligenceDecrease, newMoneyDecrease, newMoodDecrease, newIntelligenceIncrease, newMoneyIncrease, statHealthChangeRef, statIntelligenceChangeRef, statMoneyChangeRef, statMoodChangeRef, isMuted }) => {
 
 
 
@@ -140,8 +141,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newMoodIncrease = 10;
                 newHealthIncrease = 10;
                 setUserChoseSuIc(true);
-                handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
-                handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0);
+                handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0, isMuted);
+                handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0, isMuted);
                 statMoodChangeRef.current = true;
                 statHealthChangeRef.current = true;
                 setCharacterStats((prevStats) => ({
@@ -239,7 +240,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
             case 'usta':
                 newMoneyDecrease = 10; // Adjust the amount as needed
 
-                handleMoneyAnimation(dispatch, newMoneyDecrease, setShowMoneyAnimation, statMoneyChangeRef, false); // Decrease money
+                handleMoneyAnimation(dispatch, newMoneyDecrease, setShowMoneyAnimation, statMoneyChangeRef, false, isMuted); // Decrease money
 
                 statMoneyChangeRef.current = true;
                 setCharacterStats((prevStats) => ({
@@ -314,8 +315,8 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newMoodIncrease = 10;
                 newHealthIncrease = 10;
                 setUserChoseSuIc(true);
-                handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
-                handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0);
+                handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0, isMuted);
+                handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0, isMuted);
                 statMoodChangeRef.current = true;
                 statHealthChangeRef.current = true;
                 setCharacterStats((prevStats) => ({
@@ -442,11 +443,11 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'dilenciParasiz':
                 newMoneyDecrease = 10;
-                handleMoneyAnimation(dispatch, newMoneyDecrease, setShowMoneyAnimation, statMoneyChangeRef, false, 0);
+                handleMoneyAnimation(dispatch, newMoneyDecrease, setShowMoneyAnimation, statMoneyChangeRef, false, 0, isMuted);
                 statMoneyChangeRef.current = true;
 
                 newMoodIncrease = 10;
-                handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
+                handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0, isMuted);
                 statMoodChangeRef.current = true;
 
                 setCharacterStats((prevStats) => ({
@@ -489,7 +490,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
             case 'politikBilinc':
 
                 newMoodIncrease = 10,
-                    handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
+                    handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0, isMuted);
                 statMoodChangeRef.current = true;
 
 
@@ -527,7 +528,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
             case 'adakHayat':
                 newIntelligenceDecrease = 10;
 
-                handleIntelligenceAnimation(dispatch, newIntelligenceDecrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, false);
+                handleIntelligenceAnimation(dispatch, newIntelligenceDecrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, false, isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     intelligence: Math.max(prevStats.intelligence - newIntelligenceDecrease, 0),
@@ -603,7 +604,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'vegan':
                 newMoodIncrease = 10,
-                    handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
+                    handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0, isMuted);
                 statMoodChangeRef.current = true;
 
 
@@ -633,7 +634,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
             case 'tantuni':
                 newIntelligenceDecrease = 10;
 
-                handleIntelligenceAnimation(dispatch, newIntelligenceDecrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, false);
+                handleIntelligenceAnimation(dispatch, newIntelligenceDecrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, false, isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     intelligence: Math.max(prevStats.intelligence - newIntelligenceDecrease, 0),
@@ -642,7 +643,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 dispatch({ type: 'CHANGE_INTELLIGENCE', payload: -newIntelligenceDecrease });
 
                 newHealthIncrease = 10;
-                handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0);
+                handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0, isMuted);
                 statHealthChangeRef.current = true;
 
 
@@ -698,7 +699,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'kendiniSavun':
                 newHealthDecrease = 10;
-                handleHealthAnimation(dispatch, newHealthDecrease, setShowHealthAnimation, statHealthChangeRef, false, 0);
+                handleHealthAnimation(dispatch, newHealthDecrease, setShowHealthAnimation, statHealthChangeRef, false, 0, isMuted);
                 statHealthChangeRef.current = true;
 
 
@@ -737,7 +738,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'kac':
                 newHealthIncrease = 10;
-                handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0);
+                handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0, isMuted);
                 statHealthChangeRef.current = true;
 
 
@@ -864,7 +865,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'otlakci':
                 newMoodDecrease = 10,
-                    handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
+                    handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
                 statMoodChangeRef.current = true;
 
 
@@ -892,11 +893,11 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'izinBelgesi':
                 newHealthDecrease = 10;
-                handleHealthAnimation(dispatch, newHealthDecrease, setShowHealthAnimation, statHealthChangeRef, false, 0);
+                handleHealthAnimation(dispatch, newHealthDecrease, setShowHealthAnimation, statHealthChangeRef, false, 0, isMuted);
                 statHealthChangeRef.current = true;
 
                 newMoodDecrease = 10;
-                handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
+                handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
                 statMoodChangeRef.current = true;
 
                 setCharacterStats((prevStats) => ({
@@ -924,7 +925,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
             case 'kahvehaneKarari':
 
                 newHealthIncrease = 10;
-                handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0);
+                handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0, isMuted);
                 statHealthChangeRef.current = true;
 
 
@@ -985,11 +986,11 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'batak':
                 newHealthDecrease = 10;
-                handleHealthAnimation(dispatch, newHealthDecrease, setShowHealthAnimation, statHealthChangeRef, false, 0);
+                handleHealthAnimation(dispatch, newHealthDecrease, setShowHealthAnimation, statHealthChangeRef, false, 0, isMuted);
                 statHealthChangeRef.current = true;
 
                 newMoodDecrease = 10;
-                handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
+                handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
                 statMoodChangeRef.current = true;
 
                 setCharacterStats((prevStats) => ({
@@ -1070,7 +1071,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'deliyeInanma':
                 newMoodDecrease = 10;
-                handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
+                handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
                 statMoodChangeRef.current = true;
 
                 setCharacterStats((prevStats) => ({
@@ -1134,7 +1135,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case '1':
                 newHealthIncrease = 10;
-                handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0);
+                handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0, isMuted);
                 statHealthChangeRef.current = true;
 
 
@@ -1182,7 +1183,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case '2':
                 newMoodDecrease = 10;
-                handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
+                handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
                 statMoodChangeRef.current = true;
 
                 setCharacterStats((prevStats) => ({
@@ -1228,7 +1229,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
             case '3':
                 newIntelligenceDecrease = 10;
 
-                handleIntelligenceAnimation(dispatch, newIntelligenceDecrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, false);
+                handleIntelligenceAnimation(dispatch, newIntelligenceDecrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, false, isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     intelligence: Math.max(prevStats.intelligence - newIntelligenceDecrease, 0),
@@ -1275,7 +1276,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
             case '4':
                 newIntelligenceIncrease = 10;
 
-                handleIntelligenceAnimation(dispatch, newIntelligenceIncrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, true);
+                handleIntelligenceAnimation(dispatch, newIntelligenceIncrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, true, isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     intelligence: Math.max(prevStats.intelligence + newIntelligenceIncrease, 0),
@@ -1322,7 +1323,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case '5':
                 newMoneyIncrease = 10;
-                handleMoneyAnimation(dispatch, newMoneyIncrease, setShowMoneyAnimation, statMoneyChangeRef, true, 0);
+                handleMoneyAnimation(dispatch, newMoneyIncrease, setShowMoneyAnimation, statMoneyChangeRef, true, 0, isMuted);
                 statMoneyChangeRef.current = true;
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -1368,7 +1369,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
             case '6':
                 newIntelligenceIncrease = 10;
 
-                handleIntelligenceAnimation(dispatch, newIntelligenceIncrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, true);
+                handleIntelligenceAnimation(dispatch, newIntelligenceIncrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, true, isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     intelligence: Math.max(prevStats.intelligence + newIntelligenceIncrease, 0),
@@ -1418,7 +1419,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                 newHealthIncrease = 10;
 
-                handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0);
+                handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0, isMuted);
                 statHealthChangeRef.current = true;
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -1573,7 +1574,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'acelem':
                 newMoodIncrease = 10,
-                    handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
+                    handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0, isMuted);
                 statMoodChangeRef.current = true;
 
 
@@ -1620,7 +1621,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
             case 'ustunIrk':
                 newIntelligenceDecrease = 10;
 
-                handleIntelligenceAnimation(dispatch, newIntelligenceDecrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, false);
+                handleIntelligenceAnimation(dispatch, newIntelligenceDecrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, false, isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     intelligence: Math.max(prevStats.intelligence - newIntelligenceDecrease, 0),
@@ -1739,7 +1740,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'evet':
                 newMoodIncrease = 10,
-                    handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
+                    handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0, isMuted);
                 statMoodChangeRef.current = true;
 
 
@@ -1822,7 +1823,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'sevmiyorum':
                 newMoodIncrease = 10,
-                    handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
+                    handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0, isMuted);
                 statMoodChangeRef.current = true;
 
 
@@ -1864,7 +1865,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
             case 'yeterMi':
 
                 newMoneyDecrease = 10;
-                handleMoneyAnimation(dispatch, newMoneyDecrease, setShowMoneyAnimation, statMoneyChangeRef, false, 0);
+                handleMoneyAnimation(dispatch, newMoneyDecrease, setShowMoneyAnimation, statMoneyChangeRef, false, 0, isMuted);
                 statMoneyChangeRef.current = true;
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -1935,7 +1936,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 }
             case 'sarjim':
                 newMoodDecrease = 10,
-                    handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
+                    handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
                 statMoodChangeRef.current = true;
 
 
@@ -2013,7 +2014,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'dayak':
                 newHealthDecrease = 10;
-                handleHealthAnimation(dispatch, newHealthDecrease, setShowHealthAnimation, statHealthChangeRef, false, 0);
+                handleHealthAnimation(dispatch, newHealthDecrease, setShowHealthAnimation, statHealthChangeRef, false, 0, isMuted);
                 statHealthChangeRef.current = true;
 
 
@@ -2043,7 +2044,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
             case 'nodayak':
                 newIntelligenceIncrease = 10;
 
-                handleIntelligenceAnimation(dispatch, newIntelligenceIncrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, true);
+                handleIntelligenceAnimation(dispatch, newIntelligenceIncrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, true, isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     intelligence: Math.max(prevStats.intelligence + newIntelligenceIncrease, 0),
@@ -2053,7 +2054,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
 
                 newMoodDecrease = 10,
-                    handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
+                    handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
                 statMoodChangeRef.current = true;
 
 
@@ -2192,7 +2193,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'ayip':
                 newMoodDecrease = 10,
-                    handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
+                    handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
                 statMoodChangeRef.current = true;
 
 
@@ -2221,7 +2222,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'opucuk':
                 newMoodDecrease = 10,
-                    handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
+                    handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
                 statMoodChangeRef.current = true;
 
 
@@ -2250,7 +2251,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'askiBuldum':
                 newMoodDecrease = 10,
-                    handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0);
+                    handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
                 statMoodChangeRef.current = true;
 
 
@@ -2298,7 +2299,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'biraParaVer':
                 newMoneyIncrease = 10;
-                handleMoneyAnimation(dispatch, newMoneyIncrease, setShowMoneyAnimation, statMoneyChangeRef, true, 0);
+                handleMoneyAnimation(dispatch, newMoneyIncrease, setShowMoneyAnimation, statMoneyChangeRef, true, 0, isMuted);
                 statMoneyChangeRef.current = true;
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -2326,7 +2327,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
             case 'biraIc':
 
                 newMoneyIncrease = 10;
-                handleMoneyAnimation(dispatch, newMoneyIncrease, setShowMoneyAnimation, statMoneyChangeRef, true, 0);
+                handleMoneyAnimation(dispatch, newMoneyIncrease, setShowMoneyAnimation, statMoneyChangeRef, true, 0, isMuted);
                 statMoneyChangeRef.current = true;
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -2354,7 +2355,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
             case 'biraIcme':
 
                 newMoneyIncrease = 10;
-                handleMoneyAnimation(dispatch, newMoneyIncrease, setShowMoneyAnimation, statMoneyChangeRef, true, 0);
+                handleMoneyAnimation(dispatch, newMoneyIncrease, setShowMoneyAnimation, statMoneyChangeRef, true, 0, isMuted);
                 statMoneyChangeRef.current = true;
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -2456,7 +2457,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'sira2':
                 newMoodIncrease = 10,
-                    handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
+                    handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0, isMuted);
                 statMoodChangeRef.current = true;
 
 
@@ -2466,7 +2467,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 }));
                 dispatch({ type: 'CHANGE_MOOD', payload: newMoodIncrease });
                 newHealthDecrease = 10;
-                handleHealthAnimation(dispatch, newHealthDecrease, setShowHealthAnimation, statHealthChangeRef, false, 0);
+                handleHealthAnimation(dispatch, newHealthDecrease, setShowHealthAnimation, statHealthChangeRef, false, 0, isMuted);
                 statHealthChangeRef.current = true;
 
 
@@ -2496,7 +2497,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 };
             case 'dunyaninDerdi':
                 newMoodIncrease = 10,
-                    handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0);
+                    handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0, isMuted);
                 statMoodChangeRef.current = true;
 
 
@@ -2712,7 +2713,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
         const newStory = handleStory(path, merdivenYolu);
 
         setCharacterStats((prevStats) => {
-            // Update stats based on new story if needed
+
             return { ...prevStats };
         });
         return { ...newStory, characterStats: { ...characterStats }, merdivenYolu: merdivenYolu };

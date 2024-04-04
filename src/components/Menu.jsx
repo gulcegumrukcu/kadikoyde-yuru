@@ -48,15 +48,14 @@ const Menu = ({ isPopupOpen, setIsPopupOpen, setTypewriterEnabled, typewriterEna
                             </button>
 
                             <button className="block border border-[#f5fdc3] text-white p-8" onClick={handleShowCredits}>
-                                CREDITS
+                                KİMLER KİMLER?
                             </button>
 
                             <button className="block border border-[#f5fdc3] text-white p-8">
                                 <a href="mailto:gumrukcugulce@gmail.com">MAIL</a>
                             </button>
-
                             <div className="flex items-center">
-                                <label htmlFor="typewriterToggle" className="text-white mr-2">Typewriter Effect</label>
+                                <label htmlFor="typewriterToggle" className="text-white mr-4">Daktilo Efekti</label>
                                 <div className="relative">
                                     <input
                                         id="typewriterToggle"
@@ -69,10 +68,11 @@ const Menu = ({ isPopupOpen, setIsPopupOpen, setTypewriterEnabled, typewriterEna
                                         className={`w-12 h-6 bg-gray-300 rounded-full flex items-center px-1 ${typewriterEnabled ? 'bg-green-500 justify-end' : 'justify-start'}`}
                                         onClick={handleTypewriterToggle}
                                     >
-                                        <div className="w-5 h-5 bg-white rounded-full shadow-md"></div>
+                                        <div className="w-6 h-6 bg-black rounded-full shadow-md"></div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

@@ -243,6 +243,7 @@ function App() {
     statMoneyChangeRef,
     statMoodChangeRef,
     merdivenYolu,
+    isMuted,
   });
 
 
@@ -374,7 +375,7 @@ function App() {
             statHealthChangeRef={statHealthChangeRef}
             statIntelligenceChangeRef={statIntelligenceChangeRef}
             statMoodChangeRef={statMoodChangeRef}
-
+            isMuted={isMuted}
             showIntelligenceCheckAnimation={showIntelligenceCheckAnimation}
           />
 
