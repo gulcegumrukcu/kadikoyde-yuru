@@ -2,16 +2,10 @@
 import animation from '../audio/animation.mp3'
 
 import Sound from './Sound'
-import { useState } from 'react'; // Import useState hook
 
 
 const animationAudio = new Audio(animation)
 
-const useSoundState = () => {
-    const [isMuted, setIsMuted] = useState(false); // Initialize isMuted state
-
-    return { isMuted, setIsMuted };
-};
 
 export const createInitialAlertText = (amount, increase) => {
     const backgroundColor = increase ? 'green' : 'red';
@@ -34,20 +28,19 @@ const setBackground = (color) => {
 
 const getBackground = () => backgrounds.pop() || '';
 
-const handleAnimationSound = (audio, isMuted) => {
 
+
+
+export const handleAnimationSound = (isMuted) => {
+
+    console.log('Is sound muted?', isMuted);
     if (!isMuted) {
-        audio.play()
-
+        animationAudio.play();
     } else {
-
-        audio.pause();
-        audio.currentTime = 0; // Reset the audio to the start if muted
+        animationAudio.pause();
+        animationAudio.currentTime = 0;
     }
 };
-
-
-
 const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimation, statIntelligenceChangeRef, increase = true, delay = 0, isMuted) => {
     const backgroundColor = increase ? 'green' : 'red';
     setBackground(backgroundColor); // Correct assignment
@@ -71,6 +64,7 @@ const handleIntelligenceAnimation = (dispatch, amount, setShowIntelligenceAnimat
 
     return () => {
         setShowIntelligenceAnimation(increase ? clampedAmount : 0);
+        console.log('Calling handleAnimationSound from handleIntelligenceAnimation...');
         handleAnimationSound(animationAudio, isMuted);
     };
 };
@@ -98,6 +92,7 @@ const handleMoodAnimation = (dispatch, amount, setShowMoodAnimation, statMoodCha
 
     return () => {
         setShowMoodAnimation(increase ? clampedAmount : 0);
+        console.log('Calling handleAnimationSound from handleMoodAnimation...');
         handleAnimationSound(animationAudio, isMuted);
     };
 };
@@ -125,6 +120,7 @@ const handleMoneyAnimation = (dispatch, amount, setShowMoneyAnimation, statMoney
 
     return () => {
         setShowMoneyAnimation(increase ? clampedAmount : 0);
+        console.log('Calling handleAnimationSound from handleMoneyAnimation...');
         handleAnimationSound(animationAudio, isMuted);
 
     };
@@ -152,6 +148,7 @@ const handleHealthAnimation = (dispatch, amount, setShowHealthAnimation, statHea
 
     return () => {
         setShowHealthAnimation(increase ? clampedAmount : 0);
+        console.log('Calling handleAnimationSound from handleHealthAnimation...');
         handleAnimationSound(animationAudio, isMuted);
     };
 };
@@ -191,7 +188,6 @@ export default {
     handleIntelligenceCheckAnimation,
     setBackground,
     getBackground,
-    useSoundState,
     Sound,
     handleAnimationSound,
 };

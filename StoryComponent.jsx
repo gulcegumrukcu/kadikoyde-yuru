@@ -63,6 +63,9 @@ import yaBiliyorsunAudio from './src/audio/storyici/yaBiliyorsun.mp3';
 import notAudio from './src/audio/storyici/not.mp3';
 import UserInputForm from './src/components/UserInputForm';
 import Certificate from './src/components/Certificate';
+import {
+    handleAnimationSound
+} from './src/components/utils';
 
 const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, setShowIntelligenceCheckAnimation, setShowMoneyAnimation, setShowMoodAnimation, setShowIntelligenceAnimation, newMoodIncrease, newHealthIncrease, newHealthDecrease, newIntelligenceDecrease, newMoneyDecrease, newMoodDecrease, newIntelligenceIncrease, newMoneyIncrease, statHealthChangeRef, statIntelligenceChangeRef, statMoneyChangeRef, statMoodChangeRef, isMuted }) => {
 
@@ -143,6 +146,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 setUserChoseSuIc(true);
                 handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0, isMuted);
                 handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0, isMuted);
+                handleAnimationSound(isMuted);
                 statMoodChangeRef.current = true;
                 statHealthChangeRef.current = true;
                 setCharacterStats((prevStats) => ({
@@ -241,7 +245,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newMoneyDecrease = 10; // Adjust the amount as needed
 
                 handleMoneyAnimation(dispatch, newMoneyDecrease, setShowMoneyAnimation, statMoneyChangeRef, false, isMuted); // Decrease money
-
+                handleAnimationSound(isMuted);
                 statMoneyChangeRef.current = true;
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -317,6 +321,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 setUserChoseSuIc(true);
                 handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0, isMuted);
                 handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0, isMuted);
+                handleAnimationSound(isMuted);
                 statMoodChangeRef.current = true;
                 statHealthChangeRef.current = true;
                 setCharacterStats((prevStats) => ({
@@ -444,12 +449,13 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
             case 'dilenciParasiz':
                 newMoneyDecrease = 10;
                 handleMoneyAnimation(dispatch, newMoneyDecrease, setShowMoneyAnimation, statMoneyChangeRef, false, 0, isMuted);
+
                 statMoneyChangeRef.current = true;
 
                 newMoodIncrease = 10;
                 handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0, isMuted);
                 statMoodChangeRef.current = true;
-
+                handleAnimationSound(isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     mood: Math.max(prevStats.mood + newMoodIncrease, 0), // Ensure non-negative value
@@ -492,7 +498,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newMoodIncrease = 10,
                     handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0, isMuted);
                 statMoodChangeRef.current = true;
-
+                handleAnimationSound(isMuted);
 
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -529,6 +535,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newIntelligenceDecrease = 10;
 
                 handleIntelligenceAnimation(dispatch, newIntelligenceDecrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, false, isMuted);
+                handleAnimationSound(isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     intelligence: Math.max(prevStats.intelligence - newIntelligenceDecrease, 0),
@@ -606,7 +613,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newMoodIncrease = 10,
                     handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0, isMuted);
                 statMoodChangeRef.current = true;
-
+                handleAnimationSound(isMuted);
 
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -635,6 +642,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newIntelligenceDecrease = 10;
 
                 handleIntelligenceAnimation(dispatch, newIntelligenceDecrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, false, isMuted);
+
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     intelligence: Math.max(prevStats.intelligence - newIntelligenceDecrease, 0),
@@ -645,7 +653,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newHealthIncrease = 10;
                 handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0, isMuted);
                 statHealthChangeRef.current = true;
-
+                handleAnimationSound(isMuted);
 
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -701,7 +709,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newHealthDecrease = 10;
                 handleHealthAnimation(dispatch, newHealthDecrease, setShowHealthAnimation, statHealthChangeRef, false, 0, isMuted);
                 statHealthChangeRef.current = true;
-
+                handleAnimationSound(isMuted);
 
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -740,7 +748,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newHealthIncrease = 10;
                 handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0, isMuted);
                 statHealthChangeRef.current = true;
-
+                handleAnimationSound(isMuted);
 
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -867,7 +875,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newMoodDecrease = 10,
                     handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
                 statMoodChangeRef.current = true;
-
+                handleAnimationSound(isMuted);
 
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -894,12 +902,13 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
             case 'izinBelgesi':
                 newHealthDecrease = 10;
                 handleHealthAnimation(dispatch, newHealthDecrease, setShowHealthAnimation, statHealthChangeRef, false, 0, isMuted);
+
                 statHealthChangeRef.current = true;
 
                 newMoodDecrease = 10;
                 handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
                 statMoodChangeRef.current = true;
-
+                handleAnimationSound(isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     mood: Math.max(prevStats.mood - newMoodDecrease, 0), // Ensure non-negative value
@@ -928,7 +937,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0, isMuted);
                 statHealthChangeRef.current = true;
 
-
+                handleAnimationSound(isMuted);
 
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -992,7 +1001,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newMoodDecrease = 10;
                 handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
                 statMoodChangeRef.current = true;
-
+                handleAnimationSound(isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     mood: Math.max(prevStats.mood - newMoodDecrease, 0), // Ensure non-negative value
@@ -1073,7 +1082,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newMoodDecrease = 10;
                 handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
                 statMoodChangeRef.current = true;
-
+                handleAnimationSound(isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     mood: Math.max(prevStats.mood - newMoodDecrease, 0), // Ensure non-negative value
@@ -1139,7 +1148,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 statHealthChangeRef.current = true;
 
 
-
+                handleAnimationSound(isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     health: Math.max(prevStats.health + newHealthIncrease, 0), // Ensure non-negative value
@@ -1185,7 +1194,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newMoodDecrease = 10;
                 handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
                 statMoodChangeRef.current = true;
-
+                handleAnimationSound(isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     mood: Math.max(prevStats.mood - newMoodDecrease, 0), // Ensure non-negative value
@@ -1230,6 +1239,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newIntelligenceDecrease = 10;
 
                 handleIntelligenceAnimation(dispatch, newIntelligenceDecrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, false, isMuted);
+                handleAnimationSound(isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     intelligence: Math.max(prevStats.intelligence - newIntelligenceDecrease, 0),
@@ -1277,6 +1287,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newIntelligenceIncrease = 10;
 
                 handleIntelligenceAnimation(dispatch, newIntelligenceIncrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, true, isMuted);
+                handleAnimationSound(isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     intelligence: Math.max(prevStats.intelligence + newIntelligenceIncrease, 0),
@@ -1325,6 +1336,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newMoneyIncrease = 10;
                 handleMoneyAnimation(dispatch, newMoneyIncrease, setShowMoneyAnimation, statMoneyChangeRef, true, 0, isMuted);
                 statMoneyChangeRef.current = true;
+                handleAnimationSound(isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     money: Math.max(prevStats.money + newMoneyIncrease, 0), // Ensure non-negative value
@@ -1370,6 +1382,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newIntelligenceIncrease = 10;
 
                 handleIntelligenceAnimation(dispatch, newIntelligenceIncrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, true, isMuted);
+                handleAnimationSound(isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     intelligence: Math.max(prevStats.intelligence + newIntelligenceIncrease, 0),
@@ -1420,6 +1433,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newHealthIncrease = 10;
 
                 handleHealthAnimation(dispatch, newHealthIncrease, setShowHealthAnimation, statHealthChangeRef, true, 0, isMuted);
+                handleAnimationSound(isMuted);
                 statHealthChangeRef.current = true;
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -1576,7 +1590,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newMoodIncrease = 10,
                     handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0, isMuted);
                 statMoodChangeRef.current = true;
-
+                handleAnimationSound(isMuted);
 
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -1622,6 +1636,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newIntelligenceDecrease = 10;
 
                 handleIntelligenceAnimation(dispatch, newIntelligenceDecrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, false, isMuted);
+                handleAnimationSound(isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     intelligence: Math.max(prevStats.intelligence - newIntelligenceDecrease, 0),
@@ -1742,7 +1757,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newMoodIncrease = 10,
                     handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0, isMuted);
                 statMoodChangeRef.current = true;
-
+                handleAnimationSound(isMuted);
 
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -1825,7 +1840,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newMoodIncrease = 10,
                     handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0, isMuted);
                 statMoodChangeRef.current = true;
-
+                handleAnimationSound(isMuted);
 
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -1866,6 +1881,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
 
                 newMoneyDecrease = 10;
                 handleMoneyAnimation(dispatch, newMoneyDecrease, setShowMoneyAnimation, statMoneyChangeRef, false, 0, isMuted);
+                handleAnimationSound(isMuted);
                 statMoneyChangeRef.current = true;
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -1939,7 +1955,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
                 statMoodChangeRef.current = true;
 
-
+                handleAnimationSound(isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     mood: Math.max(prevStats.mood - newMoodDecrease, 0),
@@ -2016,7 +2032,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newHealthDecrease = 10;
                 handleHealthAnimation(dispatch, newHealthDecrease, setShowHealthAnimation, statHealthChangeRef, false, 0, isMuted);
                 statHealthChangeRef.current = true;
-
+                handleAnimationSound(isMuted);
 
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -2045,6 +2061,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newIntelligenceIncrease = 10;
 
                 handleIntelligenceAnimation(dispatch, newIntelligenceIncrease, setShowIntelligenceAnimation, statIntelligenceChangeRef, true, isMuted);
+
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     intelligence: Math.max(prevStats.intelligence + newIntelligenceIncrease, 0),
@@ -2056,7 +2073,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newMoodDecrease = 10,
                     handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
                 statMoodChangeRef.current = true;
-
+                handleAnimationSound(isMuted);
 
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
@@ -2196,7 +2213,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
                 statMoodChangeRef.current = true;
 
-
+                handleAnimationSound(isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     mood: Math.max(prevStats.mood - newMoodDecrease, 0),
@@ -2225,7 +2242,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
                 statMoodChangeRef.current = true;
 
-
+                handleAnimationSound(isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     mood: Math.max(prevStats.mood - newMoodDecrease, 0),
@@ -2252,6 +2269,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
             case 'askiBuldum':
                 newMoodDecrease = 10,
                     handleMoodAnimation(dispatch, newMoodDecrease, setShowMoodAnimation, statMoodChangeRef, false, 0, isMuted);
+                handleAnimationSound(isMuted);
                 statMoodChangeRef.current = true;
 
 
@@ -2301,6 +2319,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newMoneyIncrease = 10;
                 handleMoneyAnimation(dispatch, newMoneyIncrease, setShowMoneyAnimation, statMoneyChangeRef, true, 0, isMuted);
                 statMoneyChangeRef.current = true;
+                handleAnimationSound(isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     money: Math.max(prevStats.money + newMoneyIncrease, 0), // Ensure non-negative value
@@ -2329,6 +2348,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newMoneyIncrease = 10;
                 handleMoneyAnimation(dispatch, newMoneyIncrease, setShowMoneyAnimation, statMoneyChangeRef, true, 0, isMuted);
                 statMoneyChangeRef.current = true;
+                handleAnimationSound(isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     money: Math.max(prevStats.money + newMoneyIncrease, 0), // Ensure non-negative value
@@ -2357,6 +2377,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 newMoneyIncrease = 10;
                 handleMoneyAnimation(dispatch, newMoneyIncrease, setShowMoneyAnimation, statMoneyChangeRef, true, 0, isMuted);
                 statMoneyChangeRef.current = true;
+                handleAnimationSound(isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     money: Math.max(prevStats.money + newMoneyIncrease, 0), // Ensure non-negative value
@@ -2468,6 +2489,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                 dispatch({ type: 'CHANGE_MOOD', payload: newMoodIncrease });
                 newHealthDecrease = 10;
                 handleHealthAnimation(dispatch, newHealthDecrease, setShowHealthAnimation, statHealthChangeRef, false, 0, isMuted);
+                handleAnimationSound(isMuted);
                 statHealthChangeRef.current = true;
 
 
@@ -2500,7 +2522,7 @@ const StoryComponent = ({ prevStory, setCharacterStats, setShowHealthAnimation, 
                     handleMoodAnimation(dispatch, newMoodIncrease, setShowMoodAnimation, statMoodChangeRef, true, 0, isMuted);
                 statMoodChangeRef.current = true;
 
-
+                handleAnimationSound(isMuted);
                 setCharacterStats((prevStats) => ({
                     ...prevStats,
                     mood: Math.max(prevStats.mood + newMoodIncrease, 0),
