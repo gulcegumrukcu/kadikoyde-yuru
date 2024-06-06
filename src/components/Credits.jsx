@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Credits = ({ setIsPopupOpen }) => {
-    const [showCredits, setShowCredits] = useState(true);
+    const [creditsInfo, setCreditsInfo] = useState(null);
+
+    useEffect(() => {
+        fetch('http://localhost:3000/credits')
+            .then(response => response.json())
+            .then(data => {
+                setCreditsInfo(data);
+            })
+            .catch(error => console.error('Error fetching credits:', error));
+    }, []); // Run this effect only once when the component mounts
 
     const handleCloseCredits = () => {
-        setShowCredits(false);
+        console.log('Closing credits popup'); // Add this line to check if the function is being called
         setTimeout(() => {
             setIsPopupOpen(false);
         }, 500);
     };
-
     return (
-        showCredits && (
+        creditsInfo && (
             <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-20 z-50 flex items-center justify-center">
                 <div className="bg-black bg-opacity-90 z-50 p-8 rounded-md text-white w-full max-w-screen-md mx-auto relative">
                     <button
@@ -23,18 +31,18 @@ const Credits = ({ setIsPopupOpen }) => {
 
                     <div className="mx-auto justify-center grid gap-6 text-xl font-normal mt-2">
                         <div className='font-press-start'>
-                            <p className='font-kanit'>fikir/kod/görseller/ses</p>
-                            <div className="text-[#f5fdc3] font-bold">gülce g.</div>
+                            <p className='font-kanit'>{creditsInfo.title1}</p>
+                            <div className="text-yellow-200 font-bold">{creditsInfo.paragraph1}</div>
                         </div>
                         <div className='font-press-start'>
-                            <p className='font-kanit'>senaryo</p>
-                            <div className="text-[#f5fdc3] font-bold">yiğit e.</div>
+                            <p className='font-kanit'>{creditsInfo.title2}</p>
+                            <div className="text-yellow-200 font-bold">{creditsInfo.paragraph2}</div>
                         </div>
                         <div className='font-press-start'>
-                            <p className='font-kanit'>tam destek</p>
-                            <div className="text-[#f5fdc3] font-bold">alper ü.</div>
-                            <div className="text-[#f5fdc3] font-bold">pelin t.</div>
-                            <div className="text-[#f5fdc3] font-bold">tayfun e.</div>
+                            <p className='font-kanit'>{creditsInfo.title3}</p>
+                            <div className="text-yellow-200 font-bold">{creditsInfo.paragraph3}</div>
+                            <div className="text-yellow-200 font-bold">{creditsInfo.paragraph4}</div>
+                            <div className="text-yellow-200 font-bold">{creditsInfo.paragraph5}</div>
                         </div>
                     </div>
                 </div>
