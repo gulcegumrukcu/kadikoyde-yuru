@@ -3,24 +3,31 @@ import Credits from './Credits';
 
 const Menu = ({ isPopupOpen, setIsPopupOpen, setTypewriterEnabled, typewriterEnabled }) => {
     const [showCredits, setShowCredits] = useState(false);
-
     const handlePopupToggle = () => {
+        console.log('Menu toggle clicked');
         setIsPopupOpen((prevIsPopupOpen) => !prevIsPopupOpen);
-        setShowCredits(false); // Close credits when opening the menu
     };
 
     const handleRestart = () => {
+        console.log('Restart clicked');
         setIsPopupOpen(false);
         window.location.reload();
     };
 
     const handleShowCredits = () => {
-        setIsPopupOpen(false); // Close the menu first
-        setShowCredits(true); // Show the credits after closing the menu
+        console.log('Show credits clicked');
+        setShowCredits(true);
+        setIsPopupOpen(false); // Close the menu when opening credits
     };
 
     const handleTypewriterToggle = () => {
+        console.log('Typewriter toggle clicked');
         setTypewriterEnabled((prevEnabled) => !prevEnabled);
+    };
+
+    const handleCloseCredits = () => {
+        console.log('Close credits clicked');
+        setShowCredits(false);
     };
 
     return (
@@ -72,13 +79,12 @@ const Menu = ({ isPopupOpen, setIsPopupOpen, setTypewriterEnabled, typewriterEna
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             )}
 
-            {showCredits && <Credits setIsPopupOpen={setIsPopupOpen} />}
+            {showCredits && <Credits setIsPopupOpen={handleCloseCredits} />}
         </>
     );
 };

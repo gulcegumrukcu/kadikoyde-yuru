@@ -434,6 +434,8 @@ function App() {
             {showCertificate && (
               <Certificate userName={userName} merdivenYolu={merdivenYolu} />
             )}
+
+
           </div>
         </>
 
